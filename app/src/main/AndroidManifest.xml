@@ -18,6 +18,9 @@
         <activity android:name=".alumno.MenuEventosActivity"
             android:exported="false"/>
         <activity
+            android:name=".ConfirmacionRegistro"
+            android:exported="false" />
+        <activity
             android:name=".Registro"
             android:exported="false" />
         <activity

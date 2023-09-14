@@ -81,4 +81,20 @@
         android:text="¡Bienvenido a Tech-Bat!"
         tools:layout_editor_absoluteX="132dp"
         tools:layout_editor_absoluteY="253dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inicio Sesión"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="277dp" />
+
+    <Button
+        android:id="@+id/registrarse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrarse"
+        tools:layout_editor_absoluteX="210dp"
+        tools:layout_editor_absoluteY="277dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

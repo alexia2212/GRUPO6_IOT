@@ -18,11 +18,6 @@ public class Login extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Button button = findViewById(R.id.iniciarSesion);
-        button.setOnClickListener(view -> {
 
-                }
-
-                );
     }
 }
