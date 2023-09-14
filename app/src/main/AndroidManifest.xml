@@ -15,8 +15,13 @@
         <activity
             android:name=".alumno.EventoActivity"
             android:exported="false" />
+        <activity android:name=".alumno.MenuEventosActivity"
+            android:exported="false"/>
         <activity
-            android:name=".alumno.MenuEventosActivity"
+            android:name=".Registro"
+            android:exported="false" />
+        <activity
+            android:name=".OlvidoContrasena"
             android:exported="false" />
         <activity
             android:name=".Login2"
