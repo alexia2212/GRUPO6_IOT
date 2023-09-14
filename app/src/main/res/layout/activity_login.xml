@@ -11,16 +11,15 @@
 
     <Button
         android:id="@+id/iniciarSesion"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_marginStart="138dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="139dp"
         android:layout_marginBottom="25dp"
         android:text="Iniciar Sesión"
-        app:layout_constraintBottom_toTopOf="@+id/textoInicio"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textoInicio"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
@@ -34,6 +33,7 @@
         android:text="¿No tienes una cuenta? Registrate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iniciarSesion" />
 

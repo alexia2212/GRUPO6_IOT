@@ -6,6 +6,9 @@ android {
     namespace 'com.example.grupo_iot'
     compileSdk 33
 
+    buildFeatures{
+        viewBinding true
+    }
     defaultConfig {
         applicationId "com.example.grupo_iot"
         minSdk 27
