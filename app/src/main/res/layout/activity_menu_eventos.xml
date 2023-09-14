@@ -1,397 +1,440 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D9D9D9"
     tools:context=".alumno.MenuEventosActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="478dp"
-        android:layout_height="196dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/cab" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="35dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/chat" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/notifications" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/sidebar" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/logo" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Eventos"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/buscarEvento"
+    <!-- Contenido principal -->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Buscar evento"
-        app:boxBackgroundColor="@color/white"
-        app:boxCornerRadiusBottomEnd="20dp"
-        app:boxCornerRadiusBottomStart="20dp"
-        app:boxCornerRadiusTopEnd="20dp"
-        app:boxCornerRadiusTopStart="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="478dp"
+            android:layout_height="196dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/cab" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="35dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintStart_toEndOf="@+id/imageView7"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/chat" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/notifications" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/sidebar" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/logo" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="112dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Eventos"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/buscarEvento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Buscar evento"
+            app:boxBackgroundColor="@color/white"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-    <ScrollView
-        android:layout_width="385dp"
-        android:layout_height="502dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buscarEvento">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ScrollView
+            android:layout_width="385dp"
+            android:layout_height="502dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buscarEvento">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/evento1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="185dp"
-                    app:srcCompat="@mipmap/evento2" />
+            <ImageView
+                android:id="@+id/evento1"
+                android:layout_width="wrap_content"
+                android:layout_height="185dp"
+                app:srcCompat="@mipmap/evento2" />
 
-                <ImageView
-                    android:id="@+id/dif1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/dif" />
+            <ImageView
+                android:id="@+id/dif1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/dif" />
 
-                <TextView
-                    android:id="@+id/nombreEvento1"
-                    android:layout_width="145dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/evento1"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="92dp"
-                    android:text="Futsal damas"
-                    android:textColor="@android:color/black"
-                    android:textSize="23sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/nombreEvento1"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/evento1"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="92dp"
+                android:text="Futsal damas"
+                android:textColor="@android:color/black"
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/fechaLugar1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/evento1"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="100dp"
-                    android:layout_toEndOf="@id/nombreEvento1"
-                    android:text="12/10/2023     Polideportivo"
-                    android:textColor="#A1494848"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/fechaLugar1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/evento1"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="100dp"
+                android:layout_toEndOf="@id/nombreEvento1"
+                android:text="12/10/2023     Polideportivo"
+                android:textColor="#A1494848"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/descripcion1"
-                    android:layout_width="302dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/nombreEvento1"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="32dp"
-                    android:text="No te pierdas el debut de la Fibra en este evento el próximo lunes."
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/descripcion1"
+                android:layout_width="302dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/nombreEvento1"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="32dp"
+                android:text="No te pierdas el debut de la Fibra en este evento el próximo lunes."
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/right1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/fechaLugar1"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="26dp"
-                    android:layout_toEndOf="@id/descripcion1"
-                    android:onClick="irEvento"
-                    app:srcCompat="@mipmap/right" />
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/right1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/fechaLugar1"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="26dp"
+                android:layout_toEndOf="@id/descripcion1"
+                android:onClick="irEvento"
+                app:srcCompat="@mipmap/right" />
+        </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/evento2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="185dp"
-                    android:layout_marginTop="5dp"
-                    app:srcCompat="@mipmap/evento1" />
+            <ImageView
+                android:id="@+id/evento2"
+                android:layout_width="wrap_content"
+                android:layout_height="185dp"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@mipmap/evento1" />
 
-                <ImageView
-                    android:id="@+id/dif2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/dif" />
+            <ImageView
+                android:id="@+id/dif2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/dif" />
 
-                <TextView
-                    android:id="@+id/nombreEvento2"
-                    android:layout_width="145dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/evento2"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="92dp"
-                    android:text="Baile cultural"
-                    android:textColor="@android:color/black"
-                    android:textSize="23sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/nombreEvento2"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/evento2"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="92dp"
+                android:text="Baile cultural"
+                android:textColor="@android:color/black"
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/fechaLugar2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/evento2"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="100dp"
-                    android:layout_toEndOf="@id/nombreEvento2"
-                    android:text="12/10/2023     Polideportivo"
-                    android:textColor="#A1494848"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/fechaLugar2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/evento2"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="100dp"
+                android:layout_toEndOf="@id/nombreEvento2"
+                android:text="12/10/2023     Polideportivo"
+                android:textColor="#A1494848"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/descripcion2"
-                    android:layout_width="302dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/nombreEvento2"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="32dp"
-                    android:text="Participa en la danza cultural para apoyar a la Fibra, no te lo pierdas."
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/descripcion2"
+                android:layout_width="302dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/nombreEvento2"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="32dp"
+                android:text="Participa en la danza cultural para apoyar a la Fibra, no te lo pierdas."
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/right2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/fechaLugar2"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="26dp"
-                    android:layout_toEndOf="@id/descripcion2"
-                    android:onClick="irEvento"
-                    app:srcCompat="@mipmap/right" />
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/right2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/fechaLugar2"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="26dp"
+                android:layout_toEndOf="@id/descripcion2"
+                android:onClick="irEvento"
+                app:srcCompat="@mipmap/right" />
+        </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/evento3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="185dp"
-                    android:layout_marginTop="5dp"
-                    app:srcCompat="@mipmap/evento2" />
+            <ImageView
+                android:id="@+id/evento3"
+                android:layout_width="wrap_content"
+                android:layout_height="185dp"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@mipmap/evento2" />
 
-                <ImageView
-                    android:id="@+id/dif3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/dif" />
+            <ImageView
+                android:id="@+id/dif3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/dif" />
 
-                <TextView
-                    android:id="@+id/nombreEvento3"
-                    android:layout_width="145dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/evento3"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="92dp"
-                    android:text="Futsal damas"
-                    android:textColor="@android:color/black"
-                    android:textSize="23sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/nombreEvento3"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/evento3"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="92dp"
+                android:text="Futsal damas"
+                android:textColor="@android:color/black"
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/fechaLugar3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/evento3"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="100dp"
-                    android:layout_toEndOf="@id/nombreEvento3"
-                    android:text="13/10/2023     Polideportivo"
-                    android:textColor="#A1494848"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/fechaLugar3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/evento3"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="100dp"
+                android:layout_toEndOf="@id/nombreEvento3"
+                android:text="13/10/2023     Polideportivo"
+                android:textColor="#A1494848"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/descripcion3"
-                    android:layout_width="302dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/nombreEvento3"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="32dp"
-                    android:text="No te pierdas el debut de la Fibra en este evento el próximo lunes."
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/descripcion3"
+                android:layout_width="302dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/nombreEvento3"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="32dp"
+                android:text="No te pierdas el debut de la Fibra en este evento el próximo lunes."
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/right3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/fechaLugar3"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="26dp"
-                    android:layout_toEndOf="@id/descripcion3"
-                    android:onClick="irEvento"
-                    app:srcCompat="@mipmap/right" />
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/right3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/fechaLugar3"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="26dp"
+                android:layout_toEndOf="@id/descripcion3"
+                android:onClick="irEvento"
+                app:srcCompat="@mipmap/right" />
+        </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/evento4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="185dp"
-                    android:layout_marginTop="5dp"
-                    app:srcCompat="@mipmap/evento2" />
+            <ImageView
+                android:id="@+id/evento4"
+                android:layout_width="wrap_content"
+                android:layout_height="185dp"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@mipmap/evento2" />
 
-                <ImageView
-                    android:id="@+id/dif4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/dif" />
+            <ImageView
+                android:id="@+id/dif4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/dif" />
 
-                <TextView
-                    android:id="@+id/nombreEvento4"
-                    android:layout_width="145dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/evento4"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="92dp"
-                    android:text="Voley Mixto"
-                    android:textColor="@android:color/black"
-                    android:textSize="23sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/nombreEvento4"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/evento4"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="92dp"
+                android:text="Voley Mixto"
+                android:textColor="@android:color/black"
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/fechaLugar4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/evento4"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="100dp"
-                    android:layout_toEndOf="@id/nombreEvento4"
-                    android:text="14/10/2023     Polideportivo"
-                    android:textColor="#A1494848"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/fechaLugar4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/evento4"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="100dp"
+                android:layout_toEndOf="@id/nombreEvento4"
+                android:text="14/10/2023     Polideportivo"
+                android:textColor="#A1494848"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/descripcion4"
-                    android:layout_width="302dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/nombreEvento4"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="32dp"
-                    android:text="No te pierdas el debut de la Fibra en este evento el próximo lunes."
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/descripcion4"
+                android:layout_width="302dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/nombreEvento4"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="32dp"
+                android:text="No te pierdas el debut de la Fibra en este evento el próximo lunes."
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/right4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/fechaLugar4"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="26dp"
-                    android:layout_toEndOf="@id/descripcion4"
-                    android:onClick="irEvento"
-                    app:srcCompat="@mipmap/right" />
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/right4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/fechaLugar4"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="26dp"
+                android:layout_toEndOf="@id/descripcion4"
+                android:onClick="irEvento"
+                app:srcCompat="@mipmap/right" />
+        </RelativeLayout>
+        </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- NavigationView para el sidebar -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+        app:itemTextAppearance="@style/MenuItemStyle">
+
+        <LinearLayout
+            android:id="@+id/logout_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="130dp"
+            android:layout_marginBottom="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cerrar sesión"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/cerrar_sesion"
+                android:layout_marginStart="16dp"/>
 
 
         </LinearLayout>
-    </ScrollView>
+    </com.google.android.material.navigation.NavigationView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

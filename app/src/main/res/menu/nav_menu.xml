@@ -1,0 +1,29 @@
+<!-- res/menu/nav_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group_menu1">
+        <item
+            android:id="@+id/menu_option_1"
+            android:title="Todos los eventos"
+            android:icon="@mipmap/calendar"/>
+        </group>
+    <group android:id="@+id/group_menu2">
+        <item
+            android:id="@+id/menu_option_2"
+            android:title="Eventos apoyados"
+            android:icon="@mipmap/eventos_apoyados"/>
+    </group>
+    <group android:id="@+id/group_menu3">
+        <item
+            android:id="@+id/menu_option_3"
+            android:title="Donación"
+            android:icon="@mipmap/donacion"/>
+    </group>
+    <!--
+    <group android:id="@+id/group_menu4">
+        <item
+            android:id="@+id/menu_logout"
+            android:title="Cerrar sesión"
+            android:icon="@mipmap/donacion" />
+    </group>
+    -->
+    </menu>
