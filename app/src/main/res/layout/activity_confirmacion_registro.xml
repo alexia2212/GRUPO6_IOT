@@ -64,7 +64,7 @@
         android:layout_width="93dp"
         android:layout_height="75dp"
         android:elevation="13dp"
-        app:srcCompat="@drawable/baseline_person_pin_24"
+        app:srcCompat="@mipmap/img"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
