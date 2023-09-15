@@ -88,9 +88,9 @@
 
     <View
         android:id="@+id/view2"
-        android:layout_width="318dp"
-        android:layout_height="498dp"
+        android:layout_width="328dp"
+        android:layout_height="512dp"
         android:background="@color/white"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="166dp" />
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="170dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
