@@ -4,97 +4,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+
     tools:context=".Login2">
+
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="167dp"
-        android:layout_marginTop="484dp"
-        android:layout_marginEnd="154dp"
-        android:layout_marginBottom="199dp"
-        android:text="Ingresar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/password"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.75"
+        android:text="Ingresar"
+        android:elevation="25dp"
+        android:textSize="16dp"
+        android:backgroundTint="@color/design_default_color_secondary_variant"
+
+        />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="205dp"
         android:layout_height="185dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.08"
+        android:elevation="20dp"
         app:srcCompat="@drawable/logo"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="31dp" />
+         />
 
-    <EditText
-        android:id="@+id/usuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Usuario"
-        tools:layout_editor_absoluteX="108dp"
-        tools:layout_editor_absoluteY="352dp" />
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteX="108dp"
-        tools:layout_editor_absoluteY="410dp" />
 
     <TextView
         android:id="@+id/olvidoContra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="179dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="174dp"
-        android:layout_marginBottom="154dp"
-        android:text="¿Olvidó su contraseña?"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.8"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:elevation="20dp"
+        android:textColor="@color/black"
+
+        android:text="¿Olvidó su contraseña?"
+         />
 
     <TextView
         android:id="@+id/olvidoPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="25dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.85"
         android:text="Ingresa Aquí"
-        app:layout_constraintStart_toEndOf="@+id/olvidoContra"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:elevation="19dp"
+        android:textColor="@color/black"
+        />
 
     <TextView
         android:id="@+id/bienvenido"
+        android:elevation="19dp"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.3"
         android:text="¡Bienvenido a Tech-Bat!"
-        tools:layout_editor_absoluteX="132dp"
-        tools:layout_editor_absoluteY="253dp" />
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+         />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Inicio Sesión"
-        tools:layout_editor_absoluteX="73dp"
-        tools:layout_editor_absoluteY="277dp" />
+    <View
+        android:id="@+id/view6"
+        android:layout_width="336dp"
+        android:layout_height="455dp"
+        android:background="@color/white"
+        android:elevation="9dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75"
+         />
 
-    <Button
-        android:id="@+id/registrarse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Registrarse"
-        tools:layout_editor_absoluteX="210dp"
-        tools:layout_editor_absoluteY="277dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
