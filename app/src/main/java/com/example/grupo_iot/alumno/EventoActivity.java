@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.grupo_iot.R;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ public class EventoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evento);
 
-        // SECCION SIDEBAR
+        //SECCION SIDEBAR
         ImageView abrirSidebar = findViewById(R.id.imageView6);
         //ImageView cerrarSidebar = findViewById(R.id.cerrarSidebar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -50,8 +53,31 @@ public class EventoActivity extends AppCompatActivity {
             }
         });*/
 
-        // FIN SECCION SIDEBAR
+        //Opciones navigationView
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
 
+                if(menuItem.getItemId()==R.id.menu_option_1){
+                    Intent intent = new Intent(EventoActivity.this, MenuEventosActivity.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.menu_option_2){
+                    Intent intent = new Intent(EventoActivity.this, EventosApoyadosActivity.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.menu_option_3){
+                    Intent intent = new Intent(EventoActivity.this, DonacionesActivity.class);
+                    startActivity(intent);
+                }
+                //Cierra el sidebar después de la selección
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+
+        //SECCION APOYAR EVENTO
         String[] listaOpciones = {"Apoyar evento", "Participante", "Apoyo"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.spinner_item, listaOpciones);
@@ -59,6 +85,11 @@ public class EventoActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
 
+    }
+
+    public void irMensajeria(View view){
+        Intent intent = new Intent(this, ListaDeChatsActivity.class);
+        startActivity(intent);
     }
 
 }

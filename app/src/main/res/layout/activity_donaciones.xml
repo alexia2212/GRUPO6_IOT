@@ -13,6 +13,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="239dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/background3"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:text="Angie  Alejandro                                                                9977899705"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="478dp"
@@ -31,6 +48,7 @@
             android:layout_height="29dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="40dp"
+            android:onClick="irMensajeria"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/chat" />
@@ -67,6 +85,125 @@
             app:layout_constraintStart_toEndOf="@+id/imageView6"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/logo" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="Donaciones"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="308dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="8dp"
+            android:justificationMode="inter_word"
+            android:text="¡Súmate tu también! Con tu donación podremos seguir ayudando a la Fibra para conseguir más trofeos."
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="305dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:justificationMode="inter_word"
+            android:text="Para donar lo puedes hacer mediante Yape o Plin al siguiente número o código QR."
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:srcCompat="@mipmap/yape" />
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="64dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:srcCompat="@mipmap/plin" />
+
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView11"
+            app:srcCompat="@mipmap/qr1" />
+
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView14"
+            app:layout_constraintTop_toBottomOf="@+id/imageView13"
+            app:srcCompat="@mipmap/qr2" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="299dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="16dp"
+            android:justificationMode="inter_word"
+            android:text="Para confirmar tu donación no olvides subir una captura de pantalla de tu transferencia."
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/SpinnerStyle"
+            android:layout_width="181dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="16dp"
+            android:onClick="subirFoto"
+            android:paddingStart="0dp"
+            android:text="Subir imagen"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- Fin Contenido principal -->

@@ -7,10 +7,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.grupo_iot.R;
+import com.google.android.material.navigation.NavigationView;
 
 public class MenuEventosActivity extends AppCompatActivity {
 
@@ -45,10 +48,37 @@ public class MenuEventosActivity extends AppCompatActivity {
             }
         });*/
 
-        // FIN SECCION SIDEBAR
+        //Opciones navigationView
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                if(menuItem.getItemId()==R.id.menu_option_1){
+                    Intent intent = new Intent(MenuEventosActivity.this, MenuEventosActivity.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.menu_option_2){
+                    Intent intent = new Intent(MenuEventosActivity.this, EventosApoyadosActivity.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.menu_option_3){
+                    Intent intent = new Intent(MenuEventosActivity.this, DonacionesActivity.class);
+                    startActivity(intent);
+                }
+                //Cierra el sidebar después de la selección
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
     }
     public void irEvento(View view){
         Intent intent = new Intent(this, EventoActivity.class);
+        startActivity(intent);
+    }
+
+    public void irMensajeria(View view){
+        Intent intent = new Intent(this, ListaDeChatsActivity.class);
         startActivity(intent);
     }
 

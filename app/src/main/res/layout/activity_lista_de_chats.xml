@@ -31,6 +31,7 @@
             android:layout_height="29dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="40dp"
+            android:onClick="irMensajeria"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/chat" />
@@ -68,11 +69,450 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/logo" />
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="342dp"
+            android:layout_height="526dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/background4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="252dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:text="SALAS DE CHAT"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/view" />
+
+        <ScrollView
+            android:layout_width="332dp"
+            android:layout_height="439dp"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/textView14">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background5">
+
+                    <ImageView
+                        android:id="@+id/chat1"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="257dp"
+                        app:srcCompat="@mipmap/chat1" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="196dp"
+                        android:layout_height="37dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginEnd="28dp"
+                        android:text="Grupo Barra Futsal"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="217dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="46dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="Maria: ¿Cuantos podran asistir ..." />
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="260dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="2:12 pm"
+                        android:textColor="#8A8A8A"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/imageView22"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="273dp"
+                        android:layout_marginTop="46dp"
+                        android:layout_marginEnd="0dp"
+                        app:srcCompat="@mipmap/msg1" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/background5">
+
+                    <ImageView
+                        android:id="@+id/chat2"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="257dp"
+                        app:srcCompat="@mipmap/chat2" />
+
+                    <TextView
+                        android:layout_width="196dp"
+                        android:layout_height="37dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginEnd="28dp"
+                        android:text="Grupo Inauguracion"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="217dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="46dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="Hiro: tengo sed" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="260dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="2:02 pm"
+                        android:textColor="#8A8A8A"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="273dp"
+                        android:layout_marginTop="46dp"
+                        android:layout_marginEnd="0dp"
+                        app:srcCompat="@mipmap/msg2" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/background5">
+
+                    <ImageView
+                        android:id="@+id/chat3"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="257dp"
+                        app:srcCompat="@mipmap/chat3" />
+
+                    <TextView
+                        android:layout_width="196dp"
+                        android:layout_height="37dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginEnd="28dp"
+                        android:text="Grupo Voley"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="217dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="46dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="Leonardo: Siguen ahi?" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="260dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="1:37 pm"
+                        android:textColor="#8A8A8A"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="273dp"
+                        android:layout_marginTop="46dp"
+                        android:layout_marginEnd="0dp"
+                        app:srcCompat="@mipmap/msg2" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/background5">
+
+                    <ImageView
+                        android:id="@+id/chat4"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="257dp"
+                        app:srcCompat="@mipmap/chat4" />
+
+                    <TextView
+                        android:layout_width="196dp"
+                        android:layout_height="37dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginEnd="28dp"
+                        android:text="Porristas Telito"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="217dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="46dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="Tú: Estoy cerca" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="260dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="1:30 pm"
+                        android:textColor="#8A8A8A"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/background5">
+
+                    <ImageView
+                        android:id="@+id/chat5"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="257dp"
+                        app:srcCompat="@mipmap/chat1" />
+
+                    <TextView
+                        android:layout_width="196dp"
+                        android:layout_height="37dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginEnd="28dp"
+                        android:text="Grupo Barra Futsal"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="217dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="46dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="Maria: ¿Cuantos podran asistir ..." />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="260dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="1:25 pm"
+                        android:textColor="#8A8A8A"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="273dp"
+                        android:layout_marginTop="46dp"
+                        android:layout_marginEnd="0dp"
+                        app:srcCompat="@mipmap/msg1" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/background5">
+
+                    <ImageView
+                        android:id="@+id/chat6"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="257dp"
+                        app:srcCompat="@mipmap/chat1" />
+
+                    <TextView
+                        android:layout_width="196dp"
+                        android:layout_height="37dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginEnd="28dp"
+                        android:text="Grupo Barra Futsal"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="217dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="46dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="Maria: ¿Cuantos podran asistir ..." />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="260dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="2:12 pm"
+                        android:textColor="#8A8A8A"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="273dp"
+                        android:layout_marginTop="46dp"
+                        android:layout_marginEnd="0dp"
+                        app:srcCompat="@mipmap/msg1" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- Fin Contenido principal -->
-
-
-
 
     <!-- NavigationView para el sidebar -->
     <com.google.android.material.navigation.NavigationView
