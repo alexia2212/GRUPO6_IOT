@@ -4,29 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+
     tools:context=".ConfirmacionRegistro">
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="214dp"
-        android:layout_height="183dp"
-        app:srcCompat="@drawable/logo"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="28dp" />
+        android:layout_width="250dp"
+        android:layout_height="219dp"
+        android:elevation="13dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/textoConfirma"
         android:layout_width="307dp"
         android:layout_height="126dp"
+        android:elevation="13dp"
         android:text="Gracias por registrarte. Antes de iniciar sesión debemos corroborar los datos que ingresaste. Para activar tu cuenta te enviaremos un email a tu correo electrónico registrado. ¡No olvides revisarlo!"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="366dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6"
+        />
 
     <Button
         android:id="@+id/buttonRegresar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Regresar"
+        android:elevation="13dp"
+
         tools:layout_editor_absoluteX="162dp"
         tools:layout_editor_absoluteY="510dp" />
 
@@ -34,15 +47,36 @@
         android:id="@+id/textoGracias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="13dp"
         android:text="¡Gracias por completar el formulario!"
-        tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="323dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45"
+        android:textStyle="bold"
+        android:textSize="18dp"/>
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="93dp"
         android:layout_height="75dp"
+        android:elevation="13dp"
         app:srcCompat="@drawable/baseline_person_pin_24"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="229dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35"/>
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="336dp"
+        android:layout_height="472dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75" />
 </androidx.constraintlayout.widget.ConstraintLayout>
