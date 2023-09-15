@@ -13,10 +13,32 @@
         android:theme="@style/Theme.GRUPO_IOT"
         tools:targetApi="31">
         <activity
+            android:name=".alumno.NotificacionesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".alumno.EventosApoyadosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".alumno.ListaDeChatsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".alumno.ChatGrupalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".alumno.ConfirmacionTransferenciaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".alumno.FotoTransferenciaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".alumno.DonacionesActivity"
+            android:exported="false" />
+        <activity
             android:name=".alumno.EventoActivity"
             android:exported="false" />
-        <activity android:name=".alumno.MenuEventosActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".alumno.MenuEventosActivity"
+            android:exported="false" />
         <activity
             android:name=".ConfirmacionRegistro"
             android:exported="false" />

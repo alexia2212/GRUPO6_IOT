@@ -21,6 +21,8 @@ public class MenuEventosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_eventos);
 
+
+        // SECCION SIDEBAR
         ImageView abrirSidebar = findViewById(R.id.imageView6);
         //ImageView cerrarSidebar = findViewById(R.id.cerrarSidebar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -42,6 +44,8 @@ public class MenuEventosActivity extends AppCompatActivity {
                 drawerLayout.closeDrawer(GravityCompat.START);
             }
         });*/
+
+        // FIN SECCION SIDEBAR
     }
     public void irEvento(View view){
         Intent intent = new Intent(this, EventoActivity.class);
