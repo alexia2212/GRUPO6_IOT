@@ -49,6 +49,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="24dp"
+            android:onClick="abrirNotificaciones"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -169,8 +170,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="130dp"
-            android:layout_marginBottom="30dp">
+            android:layout_marginLeft="110dp"
+            android:layout_marginBottom="25dp">
 
             <TextView
                 android:layout_width="wrap_content"

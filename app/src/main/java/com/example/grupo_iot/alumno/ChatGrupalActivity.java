@@ -79,4 +79,9 @@ public class ChatGrupalActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NotificacionesActivity.class);
         startActivity(intent);
     }
+
+    public void volverListaChats(View view){
+        Intent intent = new Intent(this, ListaDeChatsActivity.class);
+        startActivity(intent);
+    }
 }

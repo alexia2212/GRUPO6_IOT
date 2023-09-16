@@ -71,7 +71,7 @@ public class ConfirmacionApoyoActivity extends AppCompatActivity {
     }
 
     public void irEvento(View view){
-        Intent intent = new Intent(this, EventoActivity.class);
+        Intent intent = new Intent(this, EventoApoyadoActivity.class);
         startActivity(intent);
     }
 
@@ -79,12 +79,10 @@ public class ConfirmacionApoyoActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MenuEventosActivity.class);
         startActivity(intent);
     }
-
     public void irMensajeria(View view){
         Intent intent = new Intent(this, ListaDeChatsActivity.class);
         startActivity(intent);
     }
-
     public void abrirNotificaciones(View view){
         Intent intent = new Intent(this, NotificacionesActivity.class);
         startActivity(intent);

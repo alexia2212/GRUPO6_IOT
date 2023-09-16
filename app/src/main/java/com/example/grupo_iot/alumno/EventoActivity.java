@@ -75,7 +75,7 @@ public class EventoActivity extends AppCompatActivity {
         //FIN SIDEBAR
 
         //SECCION APOYAR EVENTO
-        String[] listaOpciones = {"Apoyar evento", "Participante", "Apoyo"};
+        String[] listaOpciones = {"Apoyar evento", "Barra", "Participante"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.spinner_item, listaOpciones);
         Spinner spinner = findViewById(R.id.spinner);
@@ -91,6 +91,16 @@ public class EventoActivity extends AppCompatActivity {
 
     public void abrirNotificaciones(View view){
         Intent intent = new Intent(this, NotificacionesActivity.class);
+        startActivity(intent);
+    }
+
+    public void confirmarApoyo(View view){
+        Intent intent = new Intent(this, ConfirmacionApoyoActivity.class);
+        startActivity(intent);
+    }
+
+    public void verRutaMasCorta(View view){
+        Intent intent = new Intent(this, RutaMasCortaActivity.class);
         startActivity(intent);
     }
 

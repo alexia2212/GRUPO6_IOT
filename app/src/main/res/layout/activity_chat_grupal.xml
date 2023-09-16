@@ -31,6 +31,7 @@
             android:layout_height="29dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="40dp"
+            android:onClick="irMensajeria"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/chat" />
@@ -42,6 +43,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="24dp"
+            android:onClick="abrirNotificaciones"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -96,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="14dp"
+            android:onClick="volverListaChats"
             app:layout_constraintEnd_toEndOf="@+id/view5"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/view5"
@@ -382,14 +385,14 @@ no se vea muy desorganizado"
                         app:srcCompat="@mipmap/maria" />
 
                     <TextView
-                        android:layout_width="224dp"
-                        android:layout_height="55dp"
+                        android:layout_width="220dp"
+                        android:layout_height="54dp"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="70dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginEnd="82dp"
+                        android:layout_marginEnd="77dp"
                         android:background="@drawable/background5"
                         android:paddingStart="20dp"
                         android:paddingTop="5dp"
@@ -407,7 +410,7 @@ no se vea muy desorganizado"
                         android:layout_marginStart="90dp"
                         android:layout_marginTop="40dp"
                         android:layout_marginEnd="5dp"
-                        android:text="cuando es el siguiente ensayo?"
+                        android:text="¿Cuántos podrán asistir al evento?"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -491,14 +494,13 @@ no se vea muy desorganizado"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="130dp"
-            android:layout_marginBottom="30dp">
+            android:layout_marginLeft="110dp"
+            android:layout_marginBottom="25dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cerrar sesión"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:textSize="16sp"
                 android:textStyle="bold"/>

@@ -154,7 +154,7 @@
         android:layout_height="36dp"
         android:text="Alumno"
         android:textColor="@color/white"
-        android:backgroundTint="@color/material_dynamic_neutral40" a
+        android:backgroundTint="@color/material_dynamic_neutral40"
         tools:layout_editor_absoluteX="123dp"
         tools:layout_editor_absoluteY="674dp" />
 
