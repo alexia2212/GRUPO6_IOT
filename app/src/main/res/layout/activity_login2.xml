@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08"
+        app:layout_constraintVertical_bias="0.05"
         android:elevation="20dp"
         app:srcCompat="@drawable/logo"
          />
@@ -70,7 +70,7 @@
         android:textSize="18dp"
         android:textStyle="bold"
         android:elevation="19dp"
-        android:textColor="@color/black"
+        android:textColor="@color/design_default_color_secondary_variant"
         />
 
     <TextView
@@ -83,7 +83,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.325"
+        app:layout_constraintVertical_bias="0.3"
         android:text="¡Bienvenido a Tech-Bat!"
         android:textSize="25dp"
         android:textColor="@color/black"
@@ -92,21 +92,21 @@
 
     <View
         android:id="@+id/view6"
-        android:layout_width="336dp"
-        android:layout_height="455dp"
+        android:layout_width="341dp"
+        android:layout_height="469dp"
         android:background="@color/white"
-        android:elevation="9dp"
+        android:elevation="-9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75"
-         />
+        app:layout_constraintVertical_bias="0.753" />
 
     <EditText
         android:id="@+id/usuarioEditText"
-        android:layout_width="288dp"
-        android:layout_height="35dp"
+        android:layout_width="287dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -123,26 +123,51 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
+        app:layout_constraintVertical_bias="0.5" />
+
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="287dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_background"
+        android:drawablePadding="8dp"
+        android:elevation="23dp"
+        android:hint="Password"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        android:elevation="30dp"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="255dp" />
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/design_default_color_secondary_variant"
+        android:elevation="38dp"
+        android:text="Iniciar Sesión"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="261dp" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/material_dynamic_neutral70"
+        android:elevation="0dp"
         android:text="Button"
-        android:elevation="29dp"
 
-        tools:layout_editor_absoluteX="213dp"
-        tools:layout_editor_absoluteY="252dp" />
+        tools:layout_editor_absoluteX="185dp"
+        tools:layout_editor_absoluteY="261dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
