@@ -55,7 +55,7 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.menu_option_2){
-                    Intent intent = new Intent(FotoTransferenciaActivity.this, EventosApoyadosActivity.class);
+                    Intent intent = new Intent(FotoTransferenciaActivity.this, ListaEventosApoyadosActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.menu_option_3){
@@ -67,6 +67,7 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
                 return true;
             }
         });
+        //FIN SIDEBAR
     }
 
     public void subirFoto(View view){
@@ -76,6 +77,11 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
 
     public void irMensajeria(View view){
         Intent intent = new Intent(this, ListaDeChatsActivity.class);
+        startActivity(intent);
+    }
+
+    public void abrirNotificaciones(View view){
+        Intent intent = new Intent(this, NotificacionesActivity.class);
         startActivity(intent);
     }
 }

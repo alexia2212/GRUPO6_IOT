@@ -55,7 +55,7 @@ public class ListaDeChatsActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.menu_option_2){
-                    Intent intent = new Intent(ListaDeChatsActivity.this, EventosApoyadosActivity.class);
+                    Intent intent = new Intent(ListaDeChatsActivity.this, ListaEventosApoyadosActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.menu_option_3){
@@ -67,10 +67,16 @@ public class ListaDeChatsActivity extends AppCompatActivity {
                 return true;
             }
         });
+        //FIN SIDEBAR
     }
 
     public void irMensajeria(View view){
         Intent intent = new Intent(this, ListaDeChatsActivity.class);
+        startActivity(intent);
+    }
+
+    public void abrirNotificaciones(View view){
+        Intent intent = new Intent(this, NotificacionesActivity.class);
         startActivity(intent);
     }
 }

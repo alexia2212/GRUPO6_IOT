@@ -13,10 +13,19 @@
         android:theme="@style/Theme.GRUPO_IOT"
         tools:targetApi="31">
         <activity
+            android:name=".alumno.RutaMasCortaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".alumno.EventoApoyadoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".alumno.ConfirmacionApoyoActivity"
+            android:exported="false" />
+        <activity
             android:name=".alumno.NotificacionesActivity"
             android:exported="false" />
         <activity
-            android:name=".alumno.EventosApoyadosActivity"
+            android:name=".alumno.ListaEventosApoyadosActivity"
             android:exported="false" />
         <activity
             android:name=".alumno.ListaDeChatsActivity"

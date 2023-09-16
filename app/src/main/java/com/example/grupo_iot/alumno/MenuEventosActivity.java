@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.grupo_iot.R;
 import com.google.android.material.navigation.NavigationView;
@@ -59,7 +58,7 @@ public class MenuEventosActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.menu_option_2){
-                    Intent intent = new Intent(MenuEventosActivity.this, EventosApoyadosActivity.class);
+                    Intent intent = new Intent(MenuEventosActivity.this, ListaEventosApoyadosActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.menu_option_3){
@@ -71,6 +70,7 @@ public class MenuEventosActivity extends AppCompatActivity {
                 return true;
             }
         });
+        //FIN SIDEBAR
     }
     public void irEvento(View view){
         Intent intent = new Intent(this, EventoActivity.class);
@@ -79,6 +79,11 @@ public class MenuEventosActivity extends AppCompatActivity {
 
     public void irMensajeria(View view){
         Intent intent = new Intent(this, ListaDeChatsActivity.class);
+        startActivity(intent);
+    }
+
+    public void abrirNotificaciones(View view){
+        Intent intent = new Intent(this, NotificacionesActivity.class);
         startActivity(intent);
     }
 
