@@ -1,4 +1,4 @@
-package com.example.grupo_iot;
+package com.example.grupo_iot.delactividad;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.example.grupo_iot.R;
 import com.example.grupo_iot.delactividad.Adaptador;
 import com.example.grupo_iot.delactividad.Lista;
 

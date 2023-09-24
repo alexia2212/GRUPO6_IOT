@@ -9,10 +9,12 @@
         android:icon="@mipmap/logo"
         android:label="Tech-Bat"
         android:roundIcon="@mipmap/logo"
-
         android:supportsRtl="true"
         android:theme="@style/Theme.GRUPO_IOT"
         tools:targetApi="31">
+        <activity
+            android:name=".delactividad.VistaPreviaEvento"
+            android:exported="false" />
         <activity
             android:name=".Login"
             android:exported="false" />
@@ -26,7 +28,7 @@
             android:name=".alumno.ConfirmacionApoyoActivity"
             android:exported="false" />
         <activity
-            android:name=".delactprincipal"
+            android:name=".delactividad.delactprincipal"
             android:exported="false" />
         <activity
             android:name=".alumno.NotificacionesActivity"
@@ -75,9 +77,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
     </application>
 
 </manifest>
