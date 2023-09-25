@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void irMenuAlumno(View view){
-        Intent intent = new Intent(this, VistaPreviaEvento.class);
+        Intent intent = new Intent(this, MenuEventosActivity.class);
         startActivity(intent);
     }
 
