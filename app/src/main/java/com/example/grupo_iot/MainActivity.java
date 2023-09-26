@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.example.grupo_iot.alumno.MenuEventosActivity;
 import com.example.grupo_iot.databinding.ActivityMainBinding;
+import com.example.grupo_iot.delactividad.ActualizarActivity;
 import com.example.grupo_iot.delactividad.VistaPreviaEvento;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void irMenuAlumno(View view){
-        Intent intent = new Intent(this, MenuEventosActivity.class);
+        Intent intent = new Intent(this, ActualizarActivity.class);
         startActivity(intent);
     }
 

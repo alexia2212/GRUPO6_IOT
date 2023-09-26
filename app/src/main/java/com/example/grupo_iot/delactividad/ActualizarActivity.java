@@ -4,49 +4,73 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Spinner;
 
 import com.example.grupo_iot.R;
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class ActualizarActivity extends AppCompatActivity {
+
+    private Spinner spinnerLugar;
+    private TextInputEditText etFecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actualizar);
 
-        // Obtén una referencia al AutoCompleteTextView desde tu diseño XML
-        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.autocompleteLugar);
+        spinnerLugar = findViewById(R.id.spinnerLugar);
 
-        // Crea un ArrayAdapter utilizando el array de strings definido en strings.xml
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
-                android.R.layout.simple_dropdown_item_1line, // Diseño predeterminado para las opciones desplegables
-                getResources().getStringArray(R.array.simple_items) // El array de strings
+                R.array.simple_items, // El array de opciones definido en strings.xml
+                android.R.layout.simple_spinner_item // Diseño predeterminado para el Spinner
         );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // Configura el AutoCompleteTextView con el adaptador
-        autoCompleteTextView.setAdapter(adapter);
+        spinnerLugar.setAdapter(adapter);
 
-        findViewById(R.id.etInput3).setOnClickListener(new View.OnClickListener() {
+
+        spinnerLugar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Obtén la opción seleccionada por el usuario
+                String selectedLugar = spinnerLugar.getSelectedItem().toString();
+                // Puedes hacer lo que necesites con la opción seleccionada, como almacenarla en una variable
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // En caso de que no se seleccione nada
+            }
+        });
+        etFecha = findViewById(R.id.etInput3);
+        etFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              showDatePicker();  ; // Llama a la función para mostrar el selector de fecha
+                showDatePicker(); // Llama a la función para mostrar el selector de fecha
             }
         });
     }
 
     private void showDatePicker() {
-        // Crea y configura el selector de fecha
         MaterialDatePicker<Long> datePicker =
                 MaterialDatePicker.Builder.datePicker()
                         .setTitleText("Select date")
                         .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
                         .build();
-
-        // Muestra el selector de fecha
+        datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+            @Override
+            public void onPositiveButtonClick(Long selection) {
+                // Actualiza el contenido del TextInputEditText de fecha con la fecha seleccionada
+                etFecha.setText(datePicker.getHeaderText());
+            }
+        });
         datePicker.show(getSupportFragmentManager(), "DATE_PICKER_TAG");
     }
 }

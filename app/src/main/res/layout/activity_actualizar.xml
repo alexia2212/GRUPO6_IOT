@@ -95,6 +95,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cardView3">
 
             <!-- Contenido de la CardView -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="522dp"
@@ -111,7 +112,7 @@
 
                 <ImageView
                     android:id="@+id/cardImageView"
-                    android:layout_width="317dp"
+                    android:layout_width="345dp"
                     android:layout_height="200dp"
                     android:layout_marginLeft="27dp"
                     android:layout_marginTop="5dp"
@@ -126,9 +127,9 @@
 
                     <Button
                         android:id="@+id/botonEliminar"
-                        android:layout_width="150dp"
+                        android:layout_width="160dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="20dp"
                         android:backgroundTint="@color/gris"
                         android:gravity="center"
                         android:text="Eliminar Foto"
@@ -136,9 +137,9 @@
 
                     <Button
                         android:id="@+id/botonsubirfoto"
-                        android:layout_width="150dp"
+                        android:layout_width="160dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="40dp"
                         android:backgroundTint="@color/turquesa"
                         android:gravity="center"
                         android:text="Subir Foto"
@@ -148,7 +149,7 @@
                 <!-- Inputs de Material Design -->
                 <!-- Inputs de Material Design -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="340dp"
+                    android:layout_width="370dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="13dp"
                     android:layout_marginTop="5dp"
@@ -163,7 +164,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="340dp"
+                    android:layout_width="370dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="13dp"
                     android:layout_marginTop="8dp"
@@ -184,9 +185,9 @@
 
                     <!-- Campo de Fecha con DatePickerDialog -->
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="150dp"
+                        android:layout_width="165dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="13dp"
+                        android:layout_marginLeft="17dp"
                         android:layout_marginTop="8dp"
                         android:hint="Fecha">
 
@@ -195,36 +196,55 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="none"
-                            android:text="09/10/2023" />
+                            android:text="Sep 20,2023" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Campo de Lugar con AutoCompleteTextView -->
+                    <!-- Campo de Lugar con AutoCompleteTextView y TextView para el hint -->
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="150dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginTop="0dp"
+                        android:layout_width="175dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="6dp"
                         android:hint="Lugar">
 
-                        <AutoCompleteTextView
-                            android:id="@+id/autocompleteLugar"
+                        <!-- Agregar un TextView para el hint -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lugar"
+                            android:textSize="12sp"
+                            android:textColorHint="?android:attr/textColorHint"
+                            android:id="@+id/textViewHint" />
+
+                        <Spinner
+                            android:id="@+id/spinnerLugar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:simpleItems="@array/simple_items" />
+                            android:layout_below="@+id/textViewHint" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
 
 
 
                 </LinearLayout>
 
 
-
             </LinearLayout>
+
+            <Button
+                android:id="@+id/botonFecha"
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="260dp"
+                android:text="Actualizar Evento"
+                android:backgroundTint="@color/turquesa"
+                android:layout_gravity="center" />
 
 
         </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Fin Contenido principal -->

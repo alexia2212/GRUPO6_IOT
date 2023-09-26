@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GRUPO_IOT</string>
+    <string name="lugar_hint">Selecciona un lugar</string>
 </resources>
