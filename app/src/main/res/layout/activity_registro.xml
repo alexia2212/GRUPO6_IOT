@@ -23,8 +23,8 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="282dp"
-        android:layout_height="203dp"
+        android:layout_width="191dp"
+        android:layout_height="166dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -182,11 +182,11 @@
 
     <View
         android:id="@+id/view5"
-        android:layout_width="391dp"
-        android:layout_height="649dp"
+        android:layout_width="352dp"
+        android:layout_height="557dp"
         android:alpha="0.8"
-        android:elevation="-10dp"
         android:background="@drawable/background5"
+        android:elevation="-10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
