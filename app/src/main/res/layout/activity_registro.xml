@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/logo" />
 
     <TextView
@@ -38,8 +38,8 @@
         android:layout_height="wrap_content"
         android:text="¡Bienvenido a Tech-Bat!"
         android:textColor="@color/black"
-        android:elevation="20dp"
-        android:textSize="30dp"
+        android:elevation="18dp"
+        android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="@+id/view5"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
@@ -122,23 +122,23 @@
 
     <Button
         android:id="@+id/iniciosesion"
-        android:layout_width="180dp"
+        android:layout_width="163dp"
         android:layout_height="59dp"
         android:elevation="50dp"
-        android:text="Iniciar Sesión      "
+        android:text="Iniciar Sesión   "
         android:textSize="15dp"
         android:textColor="@color/white"
         android:backgroundTint="@color/material_dynamic_neutral70"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="@+id/view5"
-        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="@+id/view5"
         app:layout_constraintTop_toTopOf="@+id/view5"
         app:layout_constraintVertical_bias="0.12" />
 
     <Button
         android:id="@+id/register"
-        android:layout_width="150dp"
+        android:layout_width="163dp"
         android:layout_height="59dp"
         android:text="Registrarse"
         android:elevation="-30dp"
@@ -147,7 +147,7 @@
         android:backgroundTint="@color/material_dynamic_primary60"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="@+id/view5"
-        app:layout_constraintHorizontal_bias="0.79"
+        app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="@+id/view5"
         app:layout_constraintTop_toTopOf="@+id/view5"
         app:layout_constraintVertical_bias="0.12" />
@@ -185,7 +185,7 @@
         android:layout_width="352dp"
         android:layout_height="557dp"
         android:alpha="0.8"
-        android:background="@drawable/background5"
+        android:background="@drawable/background7"
         android:elevation="-10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
