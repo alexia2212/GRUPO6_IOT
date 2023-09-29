@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import com.example.grupo_iot.R;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+
 public class MenuEventosActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
@@ -23,6 +25,8 @@ public class MenuEventosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_eventos);
 
+        ArrayList<String> eventos = new ArrayList<>();
+        eventos.add("Evento");
 
         // SECCION SIDEBAR
         ImageView abrirSidebar = findViewById(R.id.imageView6);
