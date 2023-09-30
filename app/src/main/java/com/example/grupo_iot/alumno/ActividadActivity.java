@@ -1,6 +1,5 @@
 package com.example.grupo_iot.alumno;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -9,28 +8,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.Spinner;
 
 import com.example.grupo_iot.R;
-import com.example.grupo_iot.alumno.entity.Evento;
-import com.example.grupo_iot.databinding.ActivityEventoBinding;
+import com.example.grupo_iot.databinding.ActivityActividadBinding;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
+public class ActividadActivity extends AppCompatActivity {
 
-public class EventoActivity extends AppCompatActivity {
-
-    ActivityEventoBinding binding;
+    ActivityActividadBinding binding;
     private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityEventoBinding.inflate(getLayoutInflater());
+        binding = ActivityActividadBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         //SECCION SIDEBAR
@@ -63,15 +54,15 @@ public class EventoActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 if(menuItem.getItemId()==R.id.menu_option_1){
-                    Intent intent = new Intent(EventoActivity.this, MenuEventosActivity.class);
+                    Intent intent = new Intent(ActividadActivity.this, MenuEventosActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.menu_option_2){
-                    Intent intent = new Intent(EventoActivity.this, ListaEventosApoyadosActivity.class);
+                    Intent intent = new Intent(ActividadActivity.this, ListaEventosApoyadosActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.menu_option_3){
-                    Intent intent = new Intent(EventoActivity.this, DonacionesActivity.class);
+                    Intent intent = new Intent(ActividadActivity.this, DonacionesActivity.class);
                     startActivity(intent);
                 }
                 //Cierra el sidebar después de la selección
@@ -80,13 +71,6 @@ public class EventoActivity extends AppCompatActivity {
             }
         });
         //FIN SIDEBAR
-
-        //SECCION APOYAR EVENTO
-        String[] listaOpciones = {"Apoyar evento", "Barra", "Participante"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.spinner_item, listaOpciones);
-        Spinner spinner = findViewById(R.id.spinner);
-        spinner.setAdapter(adapter);
     }
 
     public void irMensajeria(View view){
@@ -108,5 +92,4 @@ public class EventoActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RutaMasCortaActivity.class);
         startActivity(intent);
     }
-
 }

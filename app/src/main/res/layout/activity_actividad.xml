@@ -6,12 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D9D9D9"
-    tools:context=".alumno.MenuEventosActivity">
+    tools:context=".alumno.ActividadActivity">
 
     <!-- Contenido principal -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="194dp"
+            android:layout_height="61dp"
+            android:justificationMode="none"
+            android:lineSpacingExtra="3sp"
+            android:text="Lugar:   Coliseo Polideportivo Fecha:   jueves 09 de octubre      Hora:   6:00 p.m."
+            android:textAlignment="viewStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -43,7 +56,6 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="24dp"
-            android:onClick="abrirNotificaciones"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -74,61 +86,126 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="112dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Eventos"
+            android:layout_marginTop="104dp"
+            android:fontFamily="sans-serif"
+            android:text="Futsal Damas"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="34sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.157"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/buscarEvento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="354dp"
+            android:layout_height="161dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Buscar evento"
-            app:boxBackgroundColor="@color/white"
-            app:boxCornerRadiusBottomEnd="20dp"
-            app:boxCornerRadiusBottomStart="20dp"
-            app:boxCornerRadiusTopEnd="20dp"
-            app:boxCornerRadiusTopStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:srcCompat="@mipmap/evento2" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="330dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:justificationMode="inter_word"
+            android:lineSpacingExtra="3sp"
+            android:text="El jueves 09 de Octubre nuestras integrantes del equipo de Futsal Damas harán su debut en la Semana de Ingeniería. Este partido es muy importante para toda la Fibra Tóxica y esperamos contar con tu apoyo en las gradas."
+            android:textAlignment="viewStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="353dp"
+            android:layout_height="126dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:srcCompat="@mipmap/map_evento" />
 
-        <ScrollView
-            android:layout_width="385dp"
-            android:layout_height="502dp"
+        <Spinner
+            android:id="@+id/spinner"
+            style="@style/SpinnerStyle"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
             android:layout_marginTop="16dp"
+            android:layout_weight="1"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.163"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buscarEvento">
+            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:rotation="180"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.393"
+            app:layout_constraintStart_toStartOf="@+id/spinner"
+            app:layout_constraintTop_toTopOf="@+id/spinner"
+            app:srcCompat="@drawable/baseline_arrow_drop_up_24" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewListaEventos"
-                android:layout_width="match_parent"
-                android:layout_height="459dp" />
-        </LinearLayout>
-        </ScrollView>
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/SpinnerStyle"
+            android:layout_width="143dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:onClick="verRutaMasCorta"
+            android:paddingStart="15dp"
+            android:text="Ver ruta más corta"
+            android:textColor="#676565"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/spinner"
+            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView4"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintTop_toTopOf="@+id/textView4"
+            app:srcCompat="@drawable/baseline_pin_drop_24" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/background2"
+            android:onClick="confirmarApoyo"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:text="CONFIRMAR PARTICIPACIÓN"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Fin Contenido principal -->
+
+
+
 
     <!-- NavigationView para el sidebar -->
     <com.google.android.material.navigation.NavigationView
@@ -167,6 +244,6 @@
 
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>
-
+    <!-- Fin NavigationView -->
 
 </androidx.drawerlayout.widget.DrawerLayout>

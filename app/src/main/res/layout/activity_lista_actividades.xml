@@ -6,12 +6,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D9D9D9"
-    tools:context=".alumno.MenuEventosActivity">
+    tools:context=".alumno.ListaActividadesActivity">
 
     <!-- Contenido principal -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView32"
+            style="@style/SpinnerStyle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="13dp"
+            android:paddingStart="30dp"
+            android:text="1er Partido"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+        <TextView
+            android:id="@+id/textView34"
+            style="@style/SpinnerStyle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="13dp"
+            android:paddingStart="30dp"
+            android:text="2do Partido"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -43,7 +77,6 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="24dp"
-            android:onClick="abrirNotificaciones"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -74,61 +107,93 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="112dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Eventos"
+            android:layout_marginTop="104dp"
+            android:fontFamily="sans-serif"
+            android:text="Futsal Damas"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="34sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.157"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/buscarEvento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="354dp"
+            android:layout_height="161dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Buscar evento"
-            app:boxBackgroundColor="@color/white"
-            app:boxCornerRadiusBottomEnd="20dp"
-            app:boxCornerRadiusBottomStart="20dp"
-            app:boxCornerRadiusTopEnd="20dp"
-            app:boxCornerRadiusTopStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:srcCompat="@mipmap/evento2" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:justificationMode="inter_word"
+            android:lineSpacingExtra="3sp"
+            android:text="Lista de Actividades:"
+            android:textAlignment="viewStart"
+            android:textColor="#686666"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/baseline_arrow_drop_up_24"
+            tools:layout_editor_absoluteY="642dp" />
 
-        <ScrollView
-            android:layout_width="385dp"
-            android:layout_height="502dp"
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/SpinnerStyle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:padding="13dp"
+            android:paddingStart="30dp"
+            android:text="Convocatoria"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buscarEvento">
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView29"
+            style="@style/SpinnerStyle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="13dp"
+            android:paddingStart="30dp"
+            android:text="Entrenamiento"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewListaEventos"
-                android:layout_width="match_parent"
-                android:layout_height="459dp" />
-        </LinearLayout>
-        </ScrollView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Fin Contenido principal -->
+
+
+
 
     <!-- NavigationView para el sidebar -->
     <com.google.android.material.navigation.NavigationView
@@ -167,6 +232,6 @@
 
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>
-
+    <!-- Fin NavigationView -->
 
 </androidx.drawerlayout.widget.DrawerLayout>

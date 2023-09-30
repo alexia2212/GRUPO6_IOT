@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/evento1"
+            android:id="@+id/imgEvento"
             android:layout_width="wrap_content"
             android:layout_height="185dp"
             app:srcCompat="@mipmap/evento2" />
@@ -22,10 +22,10 @@
             app:srcCompat="@mipmap/dif" />
 
         <TextView
-            android:id="@+id/nombreEvento1"
-            android:layout_width="145dp"
+            android:id="@+id/textViewNombreEvento"
+            android:layout_width="184dp"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/evento1"
+            android:layout_alignTop="@+id/imgEvento"
             android:layout_alignParentStart="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="92dp"
@@ -35,23 +35,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/fechaLugar1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/evento1"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="100dp"
-            android:layout_toEndOf="@id/nombreEvento1"
-            android:text="12/10/2023     Polideportivo"
-            android:textColor="#A1494848"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/descripcion1"
+            android:id="@+id/textViewDescripcionEvento"
             android:layout_width="302dp"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/nombreEvento1"
+            android:layout_alignTop="@+id/textViewNombreEvento"
             android:layout_alignParentStart="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="32dp"
@@ -60,15 +47,15 @@
             android:textSize="14sp" />
 
         <ImageView
-            android:id="@+id/right1"
+            android:id="@+id/btnVerEvento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/fechaLugar1"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="130dp"
             android:layout_marginEnd="26dp"
-            android:layout_toEndOf="@id/descripcion1"
+            android:layout_toEndOf="@id/textViewDescripcionEvento"
             android:onClick="irEvento"
             app:srcCompat="@mipmap/right" />
     </RelativeLayout>
