@@ -8,7 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityActividadBinding;
@@ -23,6 +26,7 @@ public class ActividadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityActividadBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
         //SECCION SIDEBAR
         ImageView abrirSidebar = findViewById(R.id.imageView6);
@@ -71,6 +75,13 @@ public class ActividadActivity extends AppCompatActivity {
             }
         });
         //FIN SIDEBAR
+
+        //SECCION APOYAR EVENTO
+        String[] listaOpciones = {"Apoyar evento", "Barra", "Participante"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                R.layout.spinner_item, listaOpciones);
+        Spinner spinner = findViewById(R.id.spinner);
+        spinner.setAdapter(adapter);
     }
 
     public void irMensajeria(View view){
@@ -90,6 +101,11 @@ public class ActividadActivity extends AppCompatActivity {
 
     public void verRutaMasCorta(View view){
         Intent intent = new Intent(this, RutaMasCortaActivity.class);
+        startActivity(intent);
+    }
+
+    public void guardarCambios(View view){
+        Intent intent = new Intent(this, ActividadActivity.class);
         startActivity(intent);
     }
 }

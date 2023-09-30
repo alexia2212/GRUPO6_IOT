@@ -89,6 +89,8 @@ public class EventoActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
     }
 
+
+
     public void irMensajeria(View view){
         Intent intent = new Intent(this, ListaDeChatsActivity.class);
         startActivity(intent);

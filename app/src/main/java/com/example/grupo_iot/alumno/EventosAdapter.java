@@ -1,9 +1,12 @@
 package com.example.grupo_iot.alumno;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,6 +52,19 @@ public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.EventoVi
         Evento evento;
         public EventoViewHolder(@NonNull View itemView){
             super(itemView);
+            ImageView btnVerEvento = itemView.findViewById(R.id.btnVerEvento);
+            TextView nombreEvento = itemView.findViewById(R.id.textViewNombreEvento);
+            TextView descripcionEvento = itemView.findViewById(R.id.textViewDescripcionEvento);
+            ImageView imagenEvento = itemView.findViewById(R.id.imgEvento);
+
+            btnVerEvento.setOnClickListener(view -> {
+                Intent intent = new Intent(context,ListaActividadesActivity.class);
+                intent.putExtra("nombreEvento", nombreEvento.getText().toString());
+                intent.putExtra("descripcionEvento", descripcionEvento.getText().toString());
+                intent.putExtra("imagenEventoResource", evento.getImagenEvento());
+                context.startActivity(intent);
+            });
+
         }
     }
 

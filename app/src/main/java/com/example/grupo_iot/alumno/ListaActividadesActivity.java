@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityEventoBinding;
@@ -23,6 +24,25 @@ public class ListaActividadesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityListaActividadesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Intent intent = getIntent();
+        String nombreEvento = intent.getStringExtra("nombreEvento");
+        String descripcionEvento = intent.getStringExtra("descripcionEvento");
+        int imagenEventoResource = intent.getIntExtra("imagenEventoResource", 0);
+
+
+        TextView textViewNombreEvento = findViewById(R.id.textView2);
+        //TextView textViewDescripcionEvento = findViewById(R.id.textViewDescripcionEvento);
+        ImageView imageViewEvento = findViewById(R.id.imageView2);
+
+        textViewNombreEvento.setText(nombreEvento);
+        //textViewDescripcionEvento.setText(descripcionEvento);
+
+        if (imagenEventoResource != 0) {
+            imageViewEvento.setImageResource(imagenEventoResource);
+        } else {
+            // Si el ID de recurso no es válido, puedes establecer una imagen de error predeterminada o hacer algo apropiado.
+        }
 
         //SECCION SIDEBAR
         ImageView abrirSidebar = findViewById(R.id.imageView6);
