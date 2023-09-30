@@ -12,17 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GRUPO_IOT"
         tools:targetApi="31">
-        <activity
-            android:name=".delactividad.EventoFinalizadoActivity"
-            android:exported="false" />
+
         <activity
             android:name=".delactividad.PreviaActualizacionLayout"
             android:exported="false" />
         <activity
             android:name=".delactividad.ActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".delactividad.VistaPreviaCreacion"
             android:exported="false" />
         <activity
             android:name=".delactividad.VistaPreviaEvento"
@@ -67,9 +62,8 @@
             android:name=".alumno.EventoActivity"
             android:exported="false" />
         <activity
-            android:name=".alumno.MenuEventosActivity"
-            android:exported="true" >
-
+            android:name=".delactividad.UsuariosInscritos"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -90,9 +84,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>
