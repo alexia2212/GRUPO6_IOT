@@ -1,4 +1,4 @@
-package com.example.grupo_iot.alumno;
+package com.example.grupo_iot.alumno.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -13,15 +13,36 @@ import android.widget.ImageView;
 import com.example.grupo_iot.R;
 import com.google.android.material.navigation.NavigationView;
 
-public class FotoTransferenciaActivity extends AppCompatActivity {
+public class ConfirmacionApoyoActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_foto_transferencia);
+        setContentView(R.layout.activity_confirmacion_apoyo);
 
-        // SECCION SIDEBAR
+        generarSidebar();
+    }
+
+    public void irEvento(View view){
+        Intent intent = new Intent(this, EventoApoyadoActivity.class);
+        startActivity(intent);
+    }
+
+    public void irInicio(View view){
+        Intent intent = new Intent(this, ListaActividadesActivity.class);
+        startActivity(intent);
+    }
+    public void irMensajeria(View view){
+        Intent intent = new Intent(this, ListaDeChatsActivity.class);
+        startActivity(intent);
+    }
+    public void abrirNotificaciones(View view){
+        Intent intent = new Intent(this, NotificacionesActivity.class);
+        startActivity(intent);
+    }
+
+    public void generarSidebar(){
         ImageView abrirSidebar = findViewById(R.id.imageView6);
         //ImageView cerrarSidebar = findViewById(R.id.cerrarSidebar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -51,15 +72,15 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 if(menuItem.getItemId()==R.id.menu_option_1){
-                    Intent intent = new Intent(FotoTransferenciaActivity.this, MenuEventosActivity.class);
+                    Intent intent = new Intent(ConfirmacionApoyoActivity.this, ListaActividadesActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.menu_option_2){
-                    Intent intent = new Intent(FotoTransferenciaActivity.this, ListaEventosApoyadosActivity.class);
+                    Intent intent = new Intent(ConfirmacionApoyoActivity.this, ListaEventosApoyadosActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.menu_option_3){
-                    Intent intent = new Intent(FotoTransferenciaActivity.this, DonacionesActivity.class);
+                    Intent intent = new Intent(ConfirmacionApoyoActivity.this, DonacionesActivity.class);
                     startActivity(intent);
                 }
                 //Cierra el sidebar después de la selección
@@ -67,21 +88,6 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
                 return true;
             }
         });
-        //FIN SIDEBAR
     }
 
-    public void subirFoto(View view){
-        Intent intent = new Intent(this, ConfirmacionTransferenciaActivity.class);
-        startActivity(intent);
-    }
-
-    public void irMensajeria(View view){
-        Intent intent = new Intent(this, ListaDeChatsActivity.class);
-        startActivity(intent);
-    }
-
-    public void abrirNotificaciones(View view){
-        Intent intent = new Intent(this, NotificacionesActivity.class);
-        startActivity(intent);
-    }
 }

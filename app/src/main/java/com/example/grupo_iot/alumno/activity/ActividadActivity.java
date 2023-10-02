@@ -1,5 +1,6 @@
-package com.example.grupo_iot.alumno;
+package com.example.grupo_iot.alumno.activity;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -11,24 +12,57 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityActividadBinding;
+import com.example.grupo_iot.databinding.ActivityEventoBinding;
 import com.google.android.material.navigation.NavigationView;
 
 public class ActividadActivity extends AppCompatActivity {
 
     ActivityActividadBinding binding;
     private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityActividadBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        generarSidebar();
 
-        //SECCION SIDEBAR
+        //SECCION APOYAR EVENTO
+        String[] listaOpciones = {"Apoyar evento", "Barra", "Participante"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                R.layout.spinner_item, listaOpciones);
+        Spinner spinner = findViewById(R.id.spinner);
+        spinner.setAdapter(adapter);
+    }
+
+
+
+    public void irMensajeria(View view){
+        Intent intent = new Intent(this, ListaDeChatsActivity.class);
+        startActivity(intent);
+    }
+
+    public void abrirNotificaciones(View view){
+        Intent intent = new Intent(this, NotificacionesActivity.class);
+        startActivity(intent);
+    }
+
+    public void confirmarApoyo(View view){
+        Intent intent = new Intent(this, ConfirmacionApoyoActivity.class);
+        startActivity(intent);
+    }
+
+    public void verRutaMasCorta(View view){
+        Intent intent = new Intent(this, RutaMasCortaActivity.class);
+        startActivity(intent);
+    }
+
+    public void generarSidebar(){
         ImageView abrirSidebar = findViewById(R.id.imageView6);
         //ImageView cerrarSidebar = findViewById(R.id.cerrarSidebar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -58,7 +92,7 @@ public class ActividadActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 if(menuItem.getItemId()==R.id.menu_option_1){
-                    Intent intent = new Intent(ActividadActivity.this, MenuEventosActivity.class);
+                    Intent intent = new Intent(ActividadActivity.this, ListaActividadesActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.menu_option_2){
@@ -74,38 +108,6 @@ public class ActividadActivity extends AppCompatActivity {
                 return true;
             }
         });
-        //FIN SIDEBAR
-
-        //SECCION APOYAR EVENTO
-        String[] listaOpciones = {"Apoyar evento", "Barra", "Participante"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.spinner_item, listaOpciones);
-        Spinner spinner = findViewById(R.id.spinner);
-        spinner.setAdapter(adapter);
     }
 
-    public void irMensajeria(View view){
-        Intent intent = new Intent(this, ListaDeChatsActivity.class);
-        startActivity(intent);
-    }
-
-    public void abrirNotificaciones(View view){
-        Intent intent = new Intent(this, NotificacionesActivity.class);
-        startActivity(intent);
-    }
-
-    public void confirmarApoyo(View view){
-        Intent intent = new Intent(this, ConfirmacionApoyoActivity.class);
-        startActivity(intent);
-    }
-
-    public void verRutaMasCorta(View view){
-        Intent intent = new Intent(this, RutaMasCortaActivity.class);
-        startActivity(intent);
-    }
-
-    public void guardarCambios(View view){
-        Intent intent = new Intent(this, ActividadActivity.class);
-        startActivity(intent);
-    }
 }

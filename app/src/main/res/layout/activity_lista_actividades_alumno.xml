@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D9D9D9"
-    tools:context=".alumno.MenuEventosActivity">
+    tools:context=".alumno.activity.ListaActividadesActivity">
 
     <!-- Contenido principal -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="112dp"
             android:fontFamily="sans-serif-black"
-            android:text="Eventos"
+            android:text="Actividades"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="34sp"
@@ -123,7 +123,7 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewListaEventos"
+                android:id="@+id/recyclerViewListaActividades"
                 android:layout_width="match_parent"
                 android:layout_height="459dp" />
         </LinearLayout>

@@ -13,10 +13,13 @@
         android:theme="@style/Theme.GRUPO_IOT"
         tools:targetApi="31">
         <activity
-            android:name=".alumno.ActividadActivity"
+            android:name=".delactividad.MenuActividadesActivity"
             android:exported="false" />
         <activity
-            android:name=".alumno.ListaActividadesActivity"
+            android:name=".alumno.activity.EventoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".alumno.activity.ListaEventosActivity"
             android:exported="false" />
         <activity
             android:name=".delactividad.PreviaActualizacionLayout"
@@ -31,43 +34,43 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".alumno.RutaMasCortaActivity"
+            android:name=".alumno.activity.RutaMasCortaActivity"
             android:exported="false" />
         <activity
-            android:name=".alumno.EventoApoyadoActivity"
+            android:name=".alumno.activity.EventoApoyadoActivity"
             android:exported="false" />
         <activity
-            android:name=".alumno.ConfirmacionApoyoActivity"
+            android:name=".alumno.activity.ConfirmacionApoyoActivity"
             android:exported="false" />
         <activity
             android:name=".delactividad.delactprincipal"
             android:exported="false" />
         <activity
-            android:name=".alumno.NotificacionesActivity"
+            android:name=".alumno.activity.NotificacionesActivity"
             android:exported="false" />
         <activity
-            android:name=".alumno.ListaEventosApoyadosActivity"
+            android:name=".alumno.activity.ListaEventosApoyadosActivity"
             android:exported="false" />
         <activity
-            android:name=".alumno.ListaDeChatsActivity"
+            android:name=".alumno.activity.ListaDeChatsActivity"
             android:exported="false" />
         <activity
-            android:name=".alumno.ChatGrupalActivity"
+            android:name=".alumno.activity.ChatGrupalActivity"
             android:exported="false" />
         <activity
-            android:name=".alumno.ConfirmacionTransferenciaActivity"
+            android:name=".alumno.activity.ConfirmacionTransferenciaActivity"
             android:exported="false" />
         <activity
-            android:name=".alumno.FotoTransferenciaActivity"
+            android:name=".alumno.activity.FotoTransferenciaActivity"
             android:exported="false" />
         <activity
-            android:name=".alumno.DonacionesActivity"
+            android:name=".alumno.activity.DonacionesActivity"
             android:exported="false" />
         <activity
-            android:name=".alumno.EventoActivity"
+            android:name=".alumno.activity.ActividadActivity"
             android:exported="true" />
         <activity
-            android:name=".alumno.MenuEventosActivity"
+            android:name=".alumno.activity.ListaActividadesActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

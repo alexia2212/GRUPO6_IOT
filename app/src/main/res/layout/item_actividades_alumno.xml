@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imgEvento"
+            android:id="@+id/imgActividad"
             android:layout_width="wrap_content"
             android:layout_height="185dp"
             app:srcCompat="@mipmap/evento2" />
@@ -22,10 +22,10 @@
             app:srcCompat="@mipmap/dif" />
 
         <TextView
-            android:id="@+id/textViewNombreEvento"
+            android:id="@+id/textViewNombreActividad"
             android:layout_width="184dp"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/imgEvento"
+            android:layout_alignTop="@+id/imgActividad"
             android:layout_alignParentStart="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="92dp"
@@ -35,10 +35,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textViewDescripcionEvento"
+            android:id="@+id/textViewDescripcionActividad"
             android:layout_width="302dp"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/textViewNombreEvento"
+            android:layout_alignTop="@+id/textViewNombreActividad"
             android:layout_alignParentStart="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="32dp"
@@ -47,7 +47,7 @@
             android:textSize="14sp" />
 
         <ImageView
-            android:id="@+id/btnVerEvento"
+            android:id="@+id/btnVerActividad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -55,7 +55,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="130dp"
             android:layout_marginEnd="26dp"
-            android:layout_toEndOf="@id/textViewDescripcionEvento"
+            android:layout_toEndOf="@id/textViewDescripcionActividad"
             android:onClick="irEvento"
             app:srcCompat="@mipmap/right" />
     </RelativeLayout>

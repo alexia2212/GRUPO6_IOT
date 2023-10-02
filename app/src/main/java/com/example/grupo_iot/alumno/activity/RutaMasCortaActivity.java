@@ -1,4 +1,4 @@
-package com.example.grupo_iot.alumno;
+package com.example.grupo_iot.alumno.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -21,7 +21,26 @@ public class RutaMasCortaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ruta_mas_corta);
 
-        //SECCION SIDEBAR
+        generarSidebar();
+
+    }
+
+    public void irMensajeria(View view){
+        Intent intent = new Intent(this, ListaDeChatsActivity.class);
+        startActivity(intent);
+    }
+
+    public void abrirNotificaciones(View view){
+        Intent intent = new Intent(this, NotificacionesActivity.class);
+        startActivity(intent);
+    }
+
+    public void volverEvento(View view){
+        Intent intent = new Intent(this, ActividadActivity.class);
+        startActivity(intent);
+    }
+
+    public void generarSidebar(){
         ImageView abrirSidebar = findViewById(R.id.imageView6);
         //ImageView cerrarSidebar = findViewById(R.id.cerrarSidebar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -51,7 +70,7 @@ public class RutaMasCortaActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 if(menuItem.getItemId()==R.id.menu_option_1){
-                    Intent intent = new Intent(RutaMasCortaActivity.this, MenuEventosActivity.class);
+                    Intent intent = new Intent(RutaMasCortaActivity.this, ListaActividadesActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.menu_option_2){
@@ -67,22 +86,6 @@ public class RutaMasCortaActivity extends AppCompatActivity {
                 return true;
             }
         });
-        //FIN SIDEBAR
-    }
-
-    public void irMensajeria(View view){
-        Intent intent = new Intent(this, ListaDeChatsActivity.class);
-        startActivity(intent);
-    }
-
-    public void abrirNotificaciones(View view){
-        Intent intent = new Intent(this, NotificacionesActivity.class);
-        startActivity(intent);
-    }
-
-    public void volverEvento(View view){
-        Intent intent = new Intent(this, EventoActivity.class);
-        startActivity(intent);
     }
 
 }

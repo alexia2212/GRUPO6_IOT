@@ -6,14 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.grupo_iot.alumno.MenuEventosActivity;
 import com.example.grupo_iot.databinding.ActivityMainBinding;
-import com.example.grupo_iot.delactividad.ActualizarActivity;
 import com.example.grupo_iot.delactividad.EventoFinalizadoActivity;
-import com.example.grupo_iot.delactividad.PreviaActualizacionLayout;
-import com.example.grupo_iot.delactividad.VistaPreviaActualizacionLista;
-import com.example.grupo_iot.delactividad.VistaPreviaCreacion;
-import com.example.grupo_iot.delactividad.VistaPreviaEvento;
 
 public class MainActivity extends AppCompatActivity {
 
