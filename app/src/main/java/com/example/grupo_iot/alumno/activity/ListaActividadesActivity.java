@@ -108,16 +108,16 @@ public class ListaActividadesActivity extends AppCompatActivity {
     }
 
     public void generarSidebar(){
-        ImageView abrirSidebar = findViewById(R.id.imageView6);
+        ImageView abrirSidebar = findViewById(R.id.imageView5);
         //ImageView cerrarSidebar = findViewById(R.id.cerrarSidebar);
         drawerLayout = findViewById(R.id.drawer_layout);
         abrirSidebar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                    drawerLayout.closeDrawer(GravityCompat.START);
+                if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                    drawerLayout.closeDrawer(GravityCompat.END);
                 } else {
-                    drawerLayout.openDrawer(GravityCompat.START);
+                    drawerLayout.openDrawer(GravityCompat.END);
                 }
             }
         });
@@ -149,7 +149,7 @@ public class ListaActividadesActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 //Cierra el sidebar después de la selección
-                drawerLayout.closeDrawer(GravityCompat.START);
+                drawerLayout.closeDrawer(GravityCompat.END);
                 return true;
             }
         });

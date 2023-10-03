@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_activities"
+        android:icon="@mipmap/calendar"
+        android:title="Actividades" />
+    <item
+        android:id="@+id/navigation_supports"
+        android:icon="@mipmap/eventos_apoyados"
+        android:title="Apoyos" />
+    <item
+        android:id="@+id/navigation_chats"
+        android:icon="@mipmap/chat"
+        android:title="Chats" />
+    <item
+        android:id="@+id/navigation_donations"
+        android:icon="@mipmap/donacion"
+        android:title="Donación" />
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/baseline_account_circle_24"
+        android:title="Perfil" />
+
+</menu>
