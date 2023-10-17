@@ -60,38 +60,26 @@
             app:srcCompat="@mipmap/cab" />
 
         <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="35dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="40dp"
-            android:onClick="irMensajeria"
-            app:layout_constraintStart_toEndOf="@+id/imageView7"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/chat" />
-
-        <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="40dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
+            android:onClick="abrirNotificaciones"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/notifications" />
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="27dp"
+            android:rotation="180"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/sidebar" />
+            app:srcCompat="@drawable/baseline_exit_to_app_24" />
 
         <ImageView
             android:id="@+id/imageView7"
@@ -145,16 +133,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rotation="180"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/baseline_arrow_drop_up_24"
-            tools:layout_editor_absoluteY="642dp" />
-
+        
         <TextView
             android:id="@+id/textView4"
             style="@style/SpinnerStyle"
@@ -188,11 +167,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            style="@style/NoRippleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom"
+            android:background="#F6F5F5"
+            android:paddingStart="10dp"
+            app:itemIconTint="@color/selector_btn_color"
+            app:itemPaddingBottom="10dp"
+            app:itemPaddingTop="2dp"
+            app:itemTextAppearanceActive="@style/BottomNavigationViewLabel"
+            app:itemTextAppearanceInactive="@style/BottomNavigationViewLabel"
+            app:itemTextColor="@color/selector_text_color"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_navigation_menu" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="32dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- Fin Contenido principal -->
-
-
 
 
     <!-- NavigationView para el sidebar -->

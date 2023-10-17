@@ -13,19 +13,23 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.grupo_iot.R;
-import com.example.grupo_iot.databinding.ActivityActividadBinding;
+import com.example.grupo_iot.databinding.ActivityEventoBinding;
+import com.example.grupo_iot.databinding.ActivityListaEventosAlumnoBinding;
 import com.google.android.material.navigation.NavigationView;
 
 public class EventoActivity extends AppCompatActivity {
 
-    ActivityActividadBinding binding;
+    ActivityEventoBinding binding;
     private DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityActividadBinding.inflate(getLayoutInflater());
+        binding = ActivityEventoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        Intent intent = getIntent();
+        String nombreEvento = intent.getStringExtra("nombreEvento");
+        binding.textView7.setText(String.valueOf(nombreEvento));
         generarSidebar();
 
         //SECCION APOYAR EVENTO

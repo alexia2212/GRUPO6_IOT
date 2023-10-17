@@ -1,29 +1,30 @@
 <!-- res/menu/nav_menu.xml -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/titulo_notif">
+        <item
+            android:id="@+id/menu_notif"
+            android:title="" />
+    </group>
     <group android:id="@+id/group_menu1">
         <item
             android:id="@+id/menu_option_1"
-            android:title="Todos los eventos"
-            android:icon="@mipmap/calendar"/>
+            android:title="No olvides que Futsal Damas empieza a las 6:00 pm. Esperamos tu apoyo en las gradas" />
         </group>
     <group android:id="@+id/group_menu2">
         <item
             android:id="@+id/menu_option_2"
-            android:title="Eventos apoyados"
-            android:icon="@mipmap/eventos_apoyados"/>
+            android:title="Usted ha sido calificado para recibir su Kit Teleco, podrá recogerlo en la Bati" />
     </group>
     <group android:id="@+id/group_menu3">
         <item
             android:id="@+id/menu_option_3"
-            android:title="Donación"
-            android:icon="@mipmap/donacion"/>
+            android:title="Bienvenido a Tele-Bat, participa junto a la Fibra y diviertete!" />
     </group>
-    <!--
-    <group android:id="@+id/group_menu4">
+    <group android:id="@+id/tt">
         <item
-            android:id="@+id/menu_logout"
-            android:title="Cerrar sesión"
-            android:icon="@mipmap/donacion" />
+            android:id="@+id/menu_tt"
+            android:title="" />
     </group>
-    -->
-    </menu>
+</menu>

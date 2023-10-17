@@ -44,6 +44,15 @@ public class ListaEventosActivity extends AppCompatActivity {
         }
 
         generarSidebar();
+
+        binding.textView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(ListaEventosActivity.this, EventoActivity.class);
+                intent1.putExtra("nombreEvento", binding.textView4.getText());
+                startActivity(intent1);
+            }
+        });
     }
 
 

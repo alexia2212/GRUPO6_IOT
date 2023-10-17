@@ -36,7 +36,7 @@ public class RutaMasCortaActivity extends AppCompatActivity {
     }
 
     public void volverEvento(View view){
-        Intent intent = new Intent(this, ActividadActivity.class);
+        Intent intent = new Intent(this, ListaEventosActivity.class);
         startActivity(intent);
     }
 

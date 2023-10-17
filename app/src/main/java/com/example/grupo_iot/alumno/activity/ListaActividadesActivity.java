@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.adapter.ListaActividadesAdapter;
@@ -93,7 +94,7 @@ public class ListaActividadesActivity extends AppCompatActivity {
         binding.recyclerViewListaActividades.setLayoutManager(new LinearLayoutManager(ListaActividadesActivity.this));
     }
     public void irEvento(View view){
-        Intent intent = new Intent(this, ActividadActivity.class);
+        Intent intent = new Intent(this, ListaEventosActivity.class);
         startActivity(intent);
     }
 
@@ -136,23 +137,25 @@ public class ListaActividadesActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
+                if(menuItem.getItemId()==R.id.menu_notif){
+
+                }
                 if(menuItem.getItemId()==R.id.menu_option_1){
-                    Intent intent = new Intent(ListaActividadesActivity.this, ListaActividadesActivity.class);
-                    startActivity(intent);
+
                 }
                 if(menuItem.getItemId()==R.id.menu_option_2){
-                    Intent intent = new Intent(ListaActividadesActivity.this, ListaEventosApoyadosActivity.class);
-                    startActivity(intent);
+
                 }
                 if(menuItem.getItemId()==R.id.menu_option_3){
-                    Intent intent = new Intent(ListaActividadesActivity.this, DonacionesActivity.class);
-                    startActivity(intent);
+
                 }
+
                 //Cierra el sidebar después de la selección
                 drawerLayout.closeDrawer(GravityCompat.END);
                 return true;
             }
         });
+
     }
 
 }
