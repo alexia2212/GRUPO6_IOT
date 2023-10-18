@@ -30,7 +30,13 @@ public class EventoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String nombreEvento = intent.getStringExtra("nombreEvento");
+        int imagenActividad = intent.getIntExtra("imgEvento", 0);
+
         binding.textView7.setText(String.valueOf(nombreEvento));
+        if (imagenActividad != 0) {
+            binding.imageView26.setImageResource(imagenActividad);
+        }
+
         generarSidebar();
         generarBottomNavigationMenu();
 
@@ -63,7 +69,7 @@ public class EventoActivity extends AppCompatActivity {
     }
 
     public void guardarCambios(View view){
-        Intent intent = new Intent(this, EventoActivity.class);
+        Intent intent = new Intent(this, ConfirmacionApoyoActivity.class);
         startActivity(intent);
     }
 
@@ -140,13 +146,10 @@ public class EventoActivity extends AppCompatActivity {
                     Intent intent = new Intent(EventoActivity.this, DonacionesActivity.class);
                     startActivity(intent);
                 }
-                /*
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(EventoActivity.this, ListaActividadesActivity.class);
+                    Intent intent = new Intent(EventoActivity.this, EditarPerfilActivity.class);
                     startActivity(intent);
                 }
-
-                 */
                 return true;
             }
         });

@@ -182,13 +182,10 @@ public class ListaActividadesActivity extends AppCompatActivity {
                     Intent intent = new Intent(ListaActividadesActivity.this, DonacionesActivity.class);
                     startActivity(intent);
                 }
-                /*
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(ListaActividadesActivity.this, ListaActividadesActivity.class);
+                    Intent intent = new Intent(ListaActividadesActivity.this, EditarPerfilActivity.class);
                     startActivity(intent);
                 }
-
-                 */
                 return true;
             }
         });

@@ -274,7 +274,5 @@
     </com.google.android.material.navigation.NavigationView>
     <!-- Fin NavigationView -->
 
-
-
 </androidx.drawerlayout.widget.DrawerLayout>
 

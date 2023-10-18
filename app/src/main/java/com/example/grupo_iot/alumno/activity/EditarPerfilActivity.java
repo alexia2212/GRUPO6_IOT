@@ -11,26 +11,24 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.grupo_iot.R;
-import com.example.grupo_iot.databinding.ActivityDonacionesBinding;
+import com.example.grupo_iot.databinding.ActivityEditarPerfilBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
-public class DonacionesActivity extends AppCompatActivity {
-
-    ActivityDonacionesBinding binding;
-    DrawerLayout drawerLayout;
+public class EditarPerfilActivity extends AppCompatActivity {
+    ActivityEditarPerfilBinding binding;
+    private DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityDonacionesBinding.inflate(getLayoutInflater());
+        binding = ActivityEditarPerfilBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         generarSidebar();
         generarBottomNavigationMenu();
     }
 
-    public void subirFoto(View view){
-        Intent intent = new Intent(this, FotoTransferenciaActivity.class);
+    public void irEvento(View view){
+        Intent intent = new Intent(this, ListaEventosActivity.class);
         startActivity(intent);
     }
 
@@ -103,28 +101,27 @@ public class DonacionesActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 if(menuItem.getItemId()==R.id.navigation_lista_actividades){
-                    Intent intent = new Intent(DonacionesActivity.this, ListaActividadesActivity.class);
+                    Intent intent = new Intent(EditarPerfilActivity.this, ListaActividadesActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
-                    Intent intent = new Intent(DonacionesActivity.this, ListaEventosApoyadosActivity.class);
+                    Intent intent = new Intent(EditarPerfilActivity.this, ListaEventosApoyadosActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_lista_chats){
-                    Intent intent = new Intent(DonacionesActivity.this, ListaDeChatsActivity.class);
+                    Intent intent = new Intent(EditarPerfilActivity.this, ListaDeChatsActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
-                    Intent intent = new Intent(DonacionesActivity.this, DonacionesActivity.class);
+                    Intent intent = new Intent(EditarPerfilActivity.this, DonacionesActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(DonacionesActivity.this, EditarPerfilActivity.class);
+                    Intent intent = new Intent(EditarPerfilActivity.this, EditarPerfilActivity.class);
                     startActivity(intent);
                 }
                 return true;
             }
         });
     }
-
 }

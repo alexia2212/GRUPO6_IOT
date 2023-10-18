@@ -52,6 +52,7 @@ public class ListaEventosActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent1 = new Intent(ListaEventosActivity.this, EventoActivity.class);
                 intent1.putExtra("nombreEvento", binding.textView4.getText());
+                intent1.putExtra("imgEvento", imagenActividad);
                 startActivity(intent1);
             }
         });
@@ -152,13 +153,10 @@ public class ListaEventosActivity extends AppCompatActivity {
                     Intent intent = new Intent(ListaEventosActivity.this, DonacionesActivity.class);
                     startActivity(intent);
                 }
-                /*
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(ListaActividadesActivity.this, ListaActividadesActivity.class);
+                    Intent intent = new Intent(ListaEventosActivity.this, EditarPerfilActivity.class);
                     startActivity(intent);
                 }
-
-                 */
                 return true;
             }
         });

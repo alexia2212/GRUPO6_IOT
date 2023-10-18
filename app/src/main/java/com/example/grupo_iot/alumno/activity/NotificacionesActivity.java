@@ -11,16 +11,18 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.databinding.ActivityNotificacionesBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class NotificacionesActivity extends AppCompatActivity {
-
+    ActivityNotificacionesBinding binding;
     DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notificaciones);
+        binding = ActivityNotificacionesBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         generarSidebar();
         generarBottomNavigationMenu();
@@ -110,13 +112,10 @@ public class NotificacionesActivity extends AppCompatActivity {
                     Intent intent = new Intent(NotificacionesActivity.this, DonacionesActivity.class);
                     startActivity(intent);
                 }
-                /*
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(NotificacionesActivity.this, ListaActividadesActivity.class);
+                    Intent intent = new Intent(NotificacionesActivity.this, EditarPerfilActivity.class);
                     startActivity(intent);
                 }
-
-                 */
                 return true;
             }
         });
