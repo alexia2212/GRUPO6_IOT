@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_activities"
+        android:id="@+id/navigation_lista_actividades"
         android:icon="@mipmap/calendar"
         android:title="Actividades" />
     <item
-        android:id="@+id/navigation_supports"
+        android:id="@+id/navigation_eventos_apoyados"
         android:icon="@mipmap/eventos_apoyados"
         android:title="Apoyos" />
     <item
-        android:id="@+id/navigation_chats"
+        android:id="@+id/navigation_lista_chats"
         android:icon="@mipmap/chat"
         android:title="Chats" />
     <item
-        android:id="@+id/navigation_donations"
+        android:id="@+id/navigation_donaciones"
         android:icon="@mipmap/donacion"
         android:title="Donación" />
     <item
-        android:id="@+id/navigation_profile"
+        android:id="@+id/navigation_perfil"
         android:icon="@drawable/baseline_account_circle_24"
         android:title="Perfil" />
 

@@ -119,7 +119,7 @@
             </LinearLayout>
         </ScrollView>
 
-        <!-- Nueva Navegacion -->
+        <!-- Bottom Navigation -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             style="@style/NoRippleStyle"
@@ -140,14 +140,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_navigation_menu" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="32dp" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Fin del contenido principal -->
 
     <!-- NavigationView para el sidebar -->
     <com.google.android.material.navigation.NavigationView

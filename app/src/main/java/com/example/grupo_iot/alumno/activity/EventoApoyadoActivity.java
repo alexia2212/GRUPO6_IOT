@@ -11,17 +11,22 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.databinding.ActivityEventoApoyadoBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class EventoApoyadoActivity extends AppCompatActivity {
 
+    ActivityEventoApoyadoBinding binding;
     DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_evento_apoyado);
+        binding = ActivityEventoApoyadoBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         generarSidebar();
+        generarBottomNavigationMenu();
     }
 
     public void irMensajeria(View view){
@@ -44,16 +49,16 @@ public class EventoApoyadoActivity extends AppCompatActivity {
     }
 
     public void generarSidebar(){
-        ImageView abrirSidebar = findViewById(R.id.imageView6);
+        ImageView abrirSidebar = findViewById(R.id.imageView5);
         //ImageView cerrarSidebar = findViewById(R.id.cerrarSidebar);
         drawerLayout = findViewById(R.id.drawer_layout);
         abrirSidebar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                    drawerLayout.closeDrawer(GravityCompat.START);
+                if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                    drawerLayout.closeDrawer(GravityCompat.END);
                 } else {
-                    drawerLayout.openDrawer(GravityCompat.START);
+                    drawerLayout.openDrawer(GravityCompat.END);
                 }
             }
         });
@@ -66,26 +71,64 @@ public class EventoApoyadoActivity extends AppCompatActivity {
             }
         });*/
 
+        /*
         //Opciones navigationView
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
+                if(menuItem.getItemId()==R.id.menu_notif){
+
+                }
                 if(menuItem.getItemId()==R.id.menu_option_1){
+
+                }
+                if(menuItem.getItemId()==R.id.menu_option_2){
+
+                }
+                if(menuItem.getItemId()==R.id.menu_option_3){
+
+                }
+
+                //Cierra el sidebar después de la selección
+                drawerLayout.closeDrawer(GravityCompat.END);
+                return true;
+            }
+        });
+
+         */
+    }
+
+    void generarBottomNavigationMenu(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                if(menuItem.getItemId()==R.id.navigation_lista_actividades){
                     Intent intent = new Intent(EventoApoyadoActivity.this, ListaActividadesActivity.class);
                     startActivity(intent);
                 }
-                if(menuItem.getItemId()==R.id.menu_option_2){
+                if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
                     Intent intent = new Intent(EventoApoyadoActivity.this, ListaEventosApoyadosActivity.class);
                     startActivity(intent);
                 }
-                if(menuItem.getItemId()==R.id.menu_option_3){
+                if(menuItem.getItemId()==R.id.navigation_lista_chats){
+                    Intent intent = new Intent(EventoApoyadoActivity.this, ListaDeChatsActivity.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(EventoApoyadoActivity.this, DonacionesActivity.class);
                     startActivity(intent);
                 }
-                //Cierra el sidebar después de la selección
-                drawerLayout.closeDrawer(GravityCompat.START);
+                /*
+                if(menuItem.getItemId()==R.id.navigation_perfil){
+                    Intent intent = new Intent(EventoApoyadoActivity.this, ListaActividadesActivity.class);
+                    startActivity(intent);
+                }
+
+                 */
                 return true;
             }
         });

@@ -17,16 +17,15 @@ import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.adapter.ListaActividadesAdapter;
 import com.example.grupo_iot.alumno.entity.Actividad;
 import com.example.grupo_iot.databinding.ActivityListaActividadesAlumnoBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListaActividadesActivity extends AppCompatActivity {
-
     ActivityListaActividadesAlumnoBinding binding;
     private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +36,7 @@ public class ListaActividadesActivity extends AppCompatActivity {
         eventos.add("Evento");
 
         generarSidebar();
+        generarBottomNavigationMenu();
 
     }
 
@@ -131,6 +131,7 @@ public class ListaActividadesActivity extends AppCompatActivity {
             }
         });*/
 
+        /*
         //Opciones navigationView
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -156,6 +157,40 @@ public class ListaActividadesActivity extends AppCompatActivity {
             }
         });
 
+         */
     }
 
+    void generarBottomNavigationMenu(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                if(menuItem.getItemId()==R.id.navigation_lista_actividades){
+                    Intent intent = new Intent(ListaActividadesActivity.this, ListaActividadesActivity.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
+                    Intent intent = new Intent(ListaActividadesActivity.this, ListaEventosApoyadosActivity.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_lista_chats){
+                    Intent intent = new Intent(ListaActividadesActivity.this, ListaDeChatsActivity.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_donaciones){
+                    Intent intent = new Intent(ListaActividadesActivity.this, DonacionesActivity.class);
+                    startActivity(intent);
+                }
+                /*
+                if(menuItem.getItemId()==R.id.navigation_perfil){
+                    Intent intent = new Intent(ListaActividadesActivity.this, ListaActividadesActivity.class);
+                    startActivity(intent);
+                }
+
+                 */
+                return true;
+            }
+        });
+    }
 }
