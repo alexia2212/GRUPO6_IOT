@@ -3,6 +3,7 @@ package com.example.grupo_iot.alumno.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,23 +13,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.alumno.adapter.ListaActividadesAdapter;
+import com.example.grupo_iot.alumno.entity.Actividad;
 import com.example.grupo_iot.databinding.ActivityListaEventosAlumnoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListaEventosActivity extends AppCompatActivity {
     ActivityListaEventosAlumnoBinding binding;
     private DrawerLayout drawerLayout;
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityListaEventosAlumnoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        db = FirebaseFirestore.getInstance();
 
         Intent intent = getIntent();
         String nombreActividad = intent.getStringExtra("nombreActividad");
         String descripcionActividad = intent.getStringExtra("descripcionActividad");
-        int imagenActividad = intent.getIntExtra("imagenActividad", 0);
+        String nombreImagen  = intent.getStringExtra("imagenActividad");
 
 
         TextView textViewNombreEvento = findViewById(R.id.textView2);
@@ -38,12 +48,14 @@ public class ListaEventosActivity extends AppCompatActivity {
         textViewNombreEvento.setText(nombreActividad);
         //textViewDescripcionEvento.setText(descripcionEvento);
 
-        if (imagenActividad != 0) {
-            imageViewEvento.setImageResource(imagenActividad);
-        } else {
-            // Si el ID de recurso no es válido, puedes establecer una imagen de error predeterminada o hacer algo apropiado.
+        // Carga la imagen basada en el nombre del recurso
+        int resourceId = getResources().getIdentifier(nombreImagen , "drawable", getPackageName());
+
+        if (resourceId != 0) {
+            imageViewEvento.setImageResource(resourceId);
         }
 
+        cargarListaEventos();
         generarSidebar();
         generarBottomNavigationMenu();
 
@@ -52,12 +64,15 @@ public class ListaEventosActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent1 = new Intent(ListaEventosActivity.this, EventoActivity.class);
                 intent1.putExtra("nombreEvento", binding.textView4.getText());
-                intent1.putExtra("imgEvento", imagenActividad);
+                //intent1.putExtra("imgEvento", imagenActividad);
                 startActivity(intent1);
             }
         });
     }
 
+    public void cargarListaEventos(){
+
+    }
 
     public void irMensajeria(View view){
         Intent intent = new Intent(this, ListaDeChatsActivity.class);

@@ -38,7 +38,14 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
 
         nombreActividad.setText(actividad.getNombreActividad());
         descripcionActividad.setText(actividad.getDescripcionActividad());
-        imagenActividad.setImageResource(actividad.getImagenActividad());
+
+        String nombreImagen = actividad.getIdImagenActividad();
+
+        // Se carga la imagen basada en el nombre del archivo
+        int resourceId = context.getResources().getIdentifier(nombreImagen, "drawable", context.getPackageName());
+        if (resourceId != 0) {
+            imagenActividad.setImageResource(resourceId);
+        }
     }
 
     @Override
@@ -60,7 +67,7 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
                 Intent intent = new Intent(context, ListaEventosActivity.class);
                 intent.putExtra("nombreActividad", nombreActividad.getText().toString());
                 intent.putExtra("descripcionActividad", descripcionActividad.getText().toString());
-                intent.putExtra("imagenActividad", actividad.getImagenActividad());
+                intent.putExtra("imagenActividad", actividad.getIdImagenActividad());
                 context.startActivity(intent);
             });
 
