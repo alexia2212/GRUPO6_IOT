@@ -35,7 +35,13 @@
             android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".alumno.activity.RutaMasCortaActivity"
             android:exported="false" />
@@ -70,16 +76,9 @@
             android:name=".alumno.activity.DonacionesActivity"
             android:exported="false" />
         <activity
-            android:name=".alumno.activity.ActividadActivity"
-            android:exported="true" />
-        <activity
             android:name=".alumno.activity.ListaActividadesActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".delactividad.UsuariosInscritos"
