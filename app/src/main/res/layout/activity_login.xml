@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
 
-    tools:context=".Login">
+    tools:context=".LoginActivity">
 
 
     <Button
-        android:id="@+id/iniciarSesion"
+        android:id="@+id/btnIniciarSesion"
         android:layout_width="194dp"
         android:layout_height="63dp"
         android:backgroundTint="@color/design_default_color_secondary_variant"
@@ -27,16 +27,30 @@
         android:id="@+id/textoInicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="50dp"
+        android:text="¿No tienes una cuenta?"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.75"
-        android:text="¿No tienes una cuenta? Registrate"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75" />
+
+    <TextView
+        android:id="@+id/btnIrARegistrarse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Regístrate"
+        android:textColor="@color/design_default_color_secondary_variant"
         android:textSize="20dp"
-        android:textColor="#FFFFFF"
         android:textStyle="bold"
-         />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toEndOf="@+id/textoInicio"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75" />
 
 
     <ImageView

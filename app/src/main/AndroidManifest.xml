@@ -34,9 +34,13 @@
             android:name=".delactividad.VistaPreviaEvento"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".LoginActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".alumno.activity.RutaMasCortaActivity"
@@ -74,11 +78,7 @@
         <activity
             android:name=".alumno.activity.ListaActividadesActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".delactividad.UsuariosInscritos"
@@ -87,13 +87,13 @@
             android:name=".ConfirmacionRegistro"
             android:exported="false" />
         <activity
-            android:name=".Registro"
+            android:name=".RegistrarseActivity"
             android:exported="false" />
         <activity
             android:name=".OlvidoContrasena"
             android:exported="false" />
         <activity
-            android:name=".Login2"
+            android:name=".IniciarSesionActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
