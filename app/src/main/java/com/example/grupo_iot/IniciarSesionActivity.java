@@ -36,6 +36,17 @@ public class IniciarSesionActivity extends AppCompatActivity {
             validarUsuario(usuarioIngresado,contrasenaIngresada);
         });
 
+
+        binding.button4.setOnClickListener(view -> {
+            Intent intent = new Intent(this, RegistrarseActivity.class);
+            startActivity(intent);
+        });
+
+        binding.olvidoPassword.setOnClickListener(view -> {
+            Intent intent = new Intent(this, OlvidoContrasena.class);
+            startActivity(intent);
+        });
+
     }
 
     public void validarUsuario(String usuario, String password){

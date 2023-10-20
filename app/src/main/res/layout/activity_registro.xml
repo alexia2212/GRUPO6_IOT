@@ -56,6 +56,8 @@
         android:ems="10"
         android:inputType="text"
         android:text="Nombres"
+        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+
         android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="@+id/view5"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
@@ -246,5 +248,8 @@
         app:layout_constraintEnd_toEndOf="@+id/apellidos"
         app:layout_constraintVertical_bias="0.35"
         app:layout_constraintHorizontal_bias="0.5"/>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

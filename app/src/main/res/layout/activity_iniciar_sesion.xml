@@ -154,12 +154,12 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="163dp"
+        android:layout_width="165dp"
         android:layout_height="59dp"
         android:textSize="15dp"
         android:backgroundTint="@color/material_dynamic_primary60"
         android:elevation="38dp"
-        android:text="Iniciar Sesión"
+        android:text="Iniciar Sesión     "
         app:layout_constraintBottom_toBottomOf="@+id/view6"
         app:layout_constraintEnd_toEndOf="@+id/view6"
         app:layout_constraintHorizontal_bias="0.17"
