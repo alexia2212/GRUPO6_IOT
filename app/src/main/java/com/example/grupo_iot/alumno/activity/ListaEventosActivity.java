@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,10 +15,14 @@ import android.widget.TextView;
 
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.adapter.ListaActividadesAdapter;
+import com.example.grupo_iot.alumno.adapter.ListaEventosAdapter;
 import com.example.grupo_iot.alumno.entity.Actividad;
+import com.example.grupo_iot.alumno.entity.Evento;
 import com.example.grupo_iot.databinding.ActivityListaEventosAlumnoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -28,6 +33,8 @@ public class ListaEventosActivity extends AppCompatActivity {
     ActivityListaEventosAlumnoBinding binding;
     private DrawerLayout drawerLayout;
     FirebaseFirestore db;
+    String nombreActividad;
+    String nombreImagen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,17 +43,15 @@ public class ListaEventosActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         Intent intent = getIntent();
-        String nombreActividad = intent.getStringExtra("nombreActividad");
+        nombreActividad = intent.getStringExtra("nombreActividad");
         String descripcionActividad = intent.getStringExtra("descripcionActividad");
-        String nombreImagen  = intent.getStringExtra("imagenActividad");
+        nombreImagen  = intent.getStringExtra("imagenActividad");
 
 
         TextView textViewNombreEvento = findViewById(R.id.textView2);
-        //TextView textViewDescripcionEvento = findViewById(R.id.textViewDescripcionEvento);
         ImageView imageViewEvento = findViewById(R.id.imageView2);
 
         textViewNombreEvento.setText(nombreActividad);
-        //textViewDescripcionEvento.setText(descripcionEvento);
 
         // Carga la imagen basada en el nombre del recurso
         int resourceId = getResources().getIdentifier(nombreImagen , "drawable", getPackageName());
@@ -58,20 +63,31 @@ public class ListaEventosActivity extends AppCompatActivity {
         cargarListaEventos();
         generarSidebar();
         generarBottomNavigationMenu();
-
-        binding.textView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent1 = new Intent(ListaEventosActivity.this, EventoActivity.class);
-                intent1.putExtra("nombreEvento", binding.textView4.getText());
-                //intent1.putExtra("imgEvento", imagenActividad);
-                startActivity(intent1);
-            }
-        });
     }
 
     public void cargarListaEventos(){
+        CollectionReference actividadesCollection = db.collection("actividades");
+        DocumentReference actividadDocument = actividadesCollection.document(nombreActividad);
+        CollectionReference listaEventosCollection = actividadDocument.collection("listaEventos");
 
+        listaEventosCollection
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        List<Evento> eventoList = new ArrayList<>();
+                        for (QueryDocumentSnapshot evento : task.getResult()) {
+                            Evento event = evento.toObject(Evento.class);
+                            eventoList.add(event);
+                        }
+                        ListaEventosAdapter listaEventosAdapter = new ListaEventosAdapter();
+                        listaEventosAdapter.setEventoList(eventoList);
+                        listaEventosAdapter.setContext(ListaEventosActivity.this);
+                        listaEventosAdapter.setIdImagenEvento(nombreImagen);
+                        listaEventosAdapter.setActividad(nombreActividad);
+                        binding.recyclerViewListaEventos.setAdapter(listaEventosAdapter);
+                        binding.recyclerViewListaEventos.setLayoutManager(new LinearLayoutManager(ListaEventosActivity.this));
+                    }
+                });
     }
 
     public void irMensajeria(View view){

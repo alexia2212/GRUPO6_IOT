@@ -60,7 +60,7 @@
         <View
             android:id="@+id/view"
             android:layout_width="342dp"
-            android:layout_height="515dp"
+            android:layout_height="540dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
@@ -99,7 +99,7 @@
             android:id="@+id/textView35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="Fecha: 09/10/2023"
             android:textColor="#919090"
             android:textSize="16sp"
@@ -123,6 +123,18 @@
             app:layout_constraintTop_toTopOf="@+id/view" />
 
         <TextView
+            android:id="@+id/textView40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Voley mixto"
+            android:textColor="#919090"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textView7"
+            app:layout_constraintStart_toStartOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <TextView
             android:id="@+id/textView13"
             android:layout_width="264dp"
             android:layout_height="51dp"
@@ -133,14 +145,14 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
         <TextView
             android:id="@+id/textViewGuardarCambios"
             style="@style/SpinnerStyle"
             android:layout_width="186dp"
             android:layout_height="39dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/background9"
             android:onClick="guardarCambios"
             android:paddingStart="0dp"

@@ -13,40 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView32"
-            style="@style/SpinnerStyle"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:padding="13dp"
-            android:paddingStart="30dp"
-            android:text="1er Partido"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView29" />
-
-        <TextView
-            android:id="@+id/textView34"
-            style="@style/SpinnerStyle"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:padding="13dp"
-            android:paddingStart="30dp"
-            android:text="2do Partido"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView32" />
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="478dp"
@@ -133,39 +99,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-        
-        <TextView
-            android:id="@+id/textView4"
-            style="@style/SpinnerStyle"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:padding="13dp"
-            android:paddingStart="30dp"
-            android:text="Convocatoria"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <TextView
-            android:id="@+id/textView29"
-            style="@style/SpinnerStyle"
+        <ScrollView
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:padding="13dp"
-            android:paddingStart="30dp"
-            android:text="Entrenamiento"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:layout_height="310dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="1.0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewListaEventos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+        </ScrollView>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
@@ -187,12 +142,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_navigation_menu" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="32dp" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- Fin Contenido principal -->

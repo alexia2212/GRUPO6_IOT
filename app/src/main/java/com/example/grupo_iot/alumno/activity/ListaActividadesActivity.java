@@ -17,9 +17,12 @@ import android.widget.LinearLayout;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.adapter.ListaActividadesAdapter;
 import com.example.grupo_iot.alumno.entity.Actividad;
+import com.example.grupo_iot.alumno.entity.Evento;
 import com.example.grupo_iot.databinding.ActivityListaActividadesAlumnoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -72,6 +75,8 @@ public class ListaActividadesActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
     public void irEvento(View view){
         Intent intent = new Intent(this, ListaEventosActivity.class);
         startActivity(intent);

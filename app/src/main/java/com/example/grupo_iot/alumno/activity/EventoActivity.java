@@ -6,6 +6,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,8 +19,9 @@ import com.example.grupo_iot.databinding.ActivityListaEventosAlumnoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-public class EventoActivity extends AppCompatActivity {
+import java.util.Date;
 
+public class EventoActivity extends AppCompatActivity {
     ActivityEventoBinding binding;
     private DrawerLayout drawerLayout;
     @Override
@@ -29,12 +31,26 @@ public class EventoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Intent intent = getIntent();
+        String nombreActividad = intent.getStringExtra("nombreActividad");
         String nombreEvento = intent.getStringExtra("nombreEvento");
-        int imagenActividad = intent.getIntExtra("imgEvento", 0);
+        String descripcionEvento = intent.getStringExtra("descripcionEvento");
+        String fechaEvento = intent.getStringExtra("fechaEvento");
+        String horaEvento = intent.getStringExtra("horaEvento");
+        String lugarEvento = intent.getStringExtra("lugarEvento");
+        String nombreImagen  = intent.getStringExtra("idImagenEvento");
 
-        binding.textView7.setText(String.valueOf(nombreEvento));
-        if (imagenActividad != 0) {
-            binding.imageView26.setImageResource(imagenActividad);
+        binding.textView40.setText(nombreActividad);
+        binding.textView7.setText(nombreEvento);
+        binding.textView13.setText(descripcionEvento);
+        binding.textView35.setText("Fecha: "+fechaEvento);
+        binding.textView36.setText("Hora: "+horaEvento+" Hrs.");
+        binding.textView37.setText("Lugar: "+lugarEvento);
+        ImageView imageViewEvento = findViewById(R.id.imageView26);
+
+        // Carga la imagen basada en el nombre del recurso
+        int resourceId = getResources().getIdentifier(nombreImagen , "drawable", getPackageName());
+        if (resourceId != 0) {
+            imageViewEvento.setImageResource(resourceId);
         }
 
         generarSidebar();
