@@ -21,6 +21,7 @@ import java.util.List;
 
 public class IniciarSesionActivity extends AppCompatActivity {
     ActivityIniciarSesionBinding binding;
+
     FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
