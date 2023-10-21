@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gris">#332F2F</color>
     <color name="turquesa">#00BCD4</color>
+    <color name="lightGrey">#979797</color>
 </resources>

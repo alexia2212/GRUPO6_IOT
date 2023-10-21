@@ -6,7 +6,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,11 +14,7 @@ import android.widget.Spinner;
 
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityEventoBinding;
-import com.example.grupo_iot.databinding.ActivityListaEventosAlumnoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
-
-import java.util.Date;
 
 public class EventoActivity extends AppCompatActivity {
     ActivityEventoBinding binding;
@@ -59,7 +54,7 @@ public class EventoActivity extends AppCompatActivity {
         //SECCION APOYAR EVENTO
         String[] listaOpciones = {"Apoyar evento", "Barra", "Participante"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.spinner_item, listaOpciones);
+                R.layout.item_spinner_apoyo_evento, listaOpciones);
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
     }

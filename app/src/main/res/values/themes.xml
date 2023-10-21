@@ -13,9 +13,15 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="SpinnerStyleCondicionUsuario" parent="Widget.AppCompat.Spinner">
+        <item name="android:background">@drawable/background10</item>
+        <item name="android:popupBackground">@drawable/spinner_condicion_usuario_background</item>
+    </style>
+
     <style name="MenuItemStyle">
         <item name="android:textSize">14sp</item>
     </style>
+
     <style name="tituloNotificaciones">
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>

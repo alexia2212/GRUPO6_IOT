@@ -13,6 +13,10 @@ import com.example.grupo_iot.alumno.activity.ListaActividadesActivity;
 import com.example.grupo_iot.alumno.adapter.ListaActividadesAdapter;
 import com.example.grupo_iot.alumno.entity.Actividad;
 import com.example.grupo_iot.databinding.ActivityIniciarSesionBinding;
+import com.example.grupo_iot.delactividad.delactprincipal;
+import com.example.grupo_iot.delegadoGeneral.MenuDelegadoGeneralActivity;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -31,8 +35,11 @@ public class IniciarSesionActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         binding.btnIngresar.setOnClickListener(view -> {
-            String usuarioIngresado = binding.usuarioEditText.getText().toString();
-            String contrasenaIngresada = binding.passwordEditText.getText().toString();
+            String usuarioIngresado = ((TextInputEditText) binding.inputEmail.getEditText()).getText().toString();
+            String contrasenaIngresada = ((TextInputEditText) binding.inputPasswd.getEditText()).getText().toString();
+            Log.d("msg-test",usuarioIngresado);
+            Log.d("msg-test",contrasenaIngresada);
+
             validarUsuario(usuarioIngresado,contrasenaIngresada);
         });
 
@@ -55,16 +62,39 @@ public class IniciarSesionActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         boolean usuarioValido = false;
+                        //String rol = null;
                         for (QueryDocumentSnapshot u : task.getResult()) {
                             Usuario user = u.toObject(Usuario.class);
                             if(user.getEmail().equals(usuario) && user.getPassword().equals(password)){
+                                /*
+                                rol = user.getRol();
+                                Log.d("msg-test",user.getNombre());
+                                Log.d("msg-test",user.getEmail());
+                                Log.d("msg-test",user.getPassword());
+                                Log.d("msg-test",user.getRol());
+
+                                 */
                                 usuarioValido = true;
                                 break;
                             }
                         }
                         if(usuarioValido){
-                            Intent intent = new Intent(IniciarSesionActivity.this, ListaActividadesActivity.class);
+                            Intent intent = new Intent(IniciarSesionActivity.this, MenuDelegadoGeneralActivity.class);
                             startActivity(intent);
+                            /*
+                            if(rol.equals("alumno")){
+                                Intent intent = new Intent(IniciarSesionActivity.this, ListaActividadesActivity.class);
+                                startActivity(intent);
+                            } else if (rol.equals("delegado general")) {
+                                Intent intent = new Intent(IniciarSesionActivity.this, MenuDelegadoGeneralActivity.class);
+                                startActivity(intent);
+                            } else if (rol.equals("delegado actividad")) {
+                                Intent intent = new Intent(IniciarSesionActivity.this, delactprincipal.class);
+                                startActivity(intent);
+                            }
+
+                             */
+
                         }else {
                             Toast.makeText(this, "Usuario o contraseña incorrecta", Toast.LENGTH_SHORT).show();
                         }
