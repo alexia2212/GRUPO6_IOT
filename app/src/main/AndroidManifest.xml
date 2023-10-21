@@ -62,9 +62,12 @@
             android:name=".delactividad.NuevoEvento"
             android:exported="false" />
 
+
         <activity
-            android:name=".alumno.activity.NotificacionesActivity"
-            android:exported="false" />
+            android:name=".delactividad.delactprincipal"
+            android:exported="false" >
+
+        </activity>
         <activity
             android:name=".alumno.activity.ListaEventosApoyadosActivity"
             android:exported="false" />
