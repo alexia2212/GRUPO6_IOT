@@ -5,7 +5,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.delactividad.Adaptador;
@@ -34,5 +38,19 @@ public class delactprincipal extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         Adaptador adapter = new Adaptador(dataList);
         recyclerView.setAdapter(adapter);
+
+        ImageView addImage = findViewById(R.id.imageView21);
+        addImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Abre la nueva actividad aquí
+                Intent intent = new Intent(delactprincipal.this, NuevoEvento.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
+
 }

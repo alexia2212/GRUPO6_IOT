@@ -2,11 +2,13 @@ package com.example.grupo_iot.delactividad;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.grupo_iot.R;
@@ -54,6 +56,16 @@ public class ActualizarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showDatePicker(); // Llama a la función para mostrar el selector de fecha
+            }
+        });
+
+        ImageView addImage = findViewById(R.id.imageView25);
+        addImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Abre la nueva actividad aquí
+                Intent intent = new Intent(ActualizarActivity.this, NuevoEvento.class);
+                startActivity(intent);
             }
         });
     }

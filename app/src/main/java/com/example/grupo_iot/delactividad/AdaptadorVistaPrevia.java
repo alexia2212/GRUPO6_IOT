@@ -1,8 +1,12 @@
 package com.example.grupo_iot.delactividad;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +41,91 @@ public class AdaptadorVistaPrevia extends RecyclerView.Adapter<AdaptadorVistaPre
         holder.descripcionTextView.setText(lista2.descripcion);
         holder.ubicacionTextView.setText(lista2.ubicacion);
 
+        holder.imagen2ImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, ActualizarActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        holder.imagen3ImageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                mostrarDialogoDeConfirmacion(view.getContext());
+            }
+        });
+
+        holder.boton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarDialogoDeConfirmacion2(view.getContext());
+            }
+        });
+
+
+
+
+
+    }
+
+    private void mostrarDialogoDeConfirmacion(Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View dialogView = inflater.inflate(R.layout.dialog_confirmacion, null);
+        builder.setView(dialogView);
+
+        AlertDialog dialog = builder.create();
+
+        Button botonSi = dialogView.findViewById(R.id.boton_si);
+        botonSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Aquí puedes agregar la lógica para eliminar el evento
+                dialog.dismiss();
+            }
+        });
+
+        Button botonCancelar = dialogView.findViewById(R.id.boton_cancelar);
+        botonCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
+
+    }
+
+    private void mostrarDialogoDeConfirmacion2(Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View dialogView = inflater.inflate(R.layout.dialog_confirmacion2, null);
+        builder.setView(dialogView);
+
+        AlertDialog dialog = builder.create();
+
+        Button botonSi = dialogView.findViewById(R.id.boton_si);
+        botonSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Aquí puedes agregar la lógica para eliminar el evento
+                dialog.dismiss();
+            }
+        });
+
+        Button botonCancelar = dialogView.findViewById(R.id.boton_cancelar);
+        botonCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
 
     }
 
@@ -53,6 +142,16 @@ public class AdaptadorVistaPrevia extends RecyclerView.Adapter<AdaptadorVistaPre
         TextView descripcionTextView;
         TextView ubicacionTextView;
 
+        ImageView imagen2ImageView;
+
+        Button botonVerListaAlumnos;
+
+        ImageView imagen3ImageView;
+
+        Button boton2;
+
+
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +160,10 @@ public class AdaptadorVistaPrevia extends RecyclerView.Adapter<AdaptadorVistaPre
             imagen1ImageView = itemView.findViewById(R.id.imagen1);
             descripcionTextView = itemView.findViewById(R.id.descripcion);
             ubicacionTextView = itemView.findViewById(R.id.ubicacion);
+            imagen2ImageView = itemView.findViewById(R.id.icono_derecha);
+            imagen3ImageView = itemView.findViewById(R.id.icono_izquierda);
+            boton2 = itemView.findViewById(R.id.boton2);
+
 
         }
     }

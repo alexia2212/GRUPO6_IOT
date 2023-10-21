@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/vistaprevia"
+    android:layout_width="400dp"
+    android:layout_height="650dp"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true">
+
+        <!-- Imagen arriba -->
+        <ImageView
+            android:id="@+id/imagen1"
+            android:layout_width="116dp"
+            android:layout_height="126dp"
+            android:layout_marginTop="58dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/angeloramos" />
+
+        <!-- 3 TextView al lado de la imagen -->
+
+        <!-- Botón "Guardar Funcionalidad" debajo de la imagen -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="89dp"
+            android:layout_toRightOf="@id/imagen1"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="Angelo Ramos" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:layout_marginBottom="141dp"
+            android:layout_marginTop="120dp"
+            android:layout_toRightOf="@id/imagen1"
+            android:text="Condición: Alumno" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/boton1"
+            android:layout_marginLeft="38dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@id/imagen1"
+            android:text="Código: 20192258" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/boton1"
+            android:layout_marginLeft="-30dp"
+            android:layout_marginBottom="-40dp"
+            android:layout_toRightOf="@id/imagen1"
+            android:text="Correo: a20192258@pucp.edu.pe" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/boton1"
+            android:layout_marginLeft="-100dp"
+            android:layout_marginBottom="-100dp"
+            android:textSize="18dp"
+            android:layout_toRightOf="@id/imagen1"
+            android:text="Seleccionar Función: " />
+
+
+
+        <Button
+            android:id="@+id/boton1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imagen1"
+            android:layout_toRightOf="@id/imagen1"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="-100dp"
+            android:backgroundTint="@color/turquesa"
+            android:text="Guardar Funcionalidad" />
+
+        <RadioGroup
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_above="@+id/boton1"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="-170dp"
+
+
+            >
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Barra" />
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-50dp"
+                android:layout_marginLeft="170dp"
+                android:text="Equipo" />
+        </RadioGroup>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

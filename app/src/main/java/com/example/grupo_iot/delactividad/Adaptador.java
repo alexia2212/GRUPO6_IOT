@@ -1,6 +1,7 @@
 package com.example.grupo_iot.delactividad;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
@@ -36,7 +37,7 @@ import kotlinx.coroutines.ObsoleteCoroutinesApi;
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
             Lista lista = dataList.get(position);
 
             holder.tituloTextView.setText(lista.titulo);
@@ -44,6 +45,14 @@ import kotlinx.coroutines.ObsoleteCoroutinesApi;
             holder.imagen1ImageView.setImageResource(lista.imagen1);
             holder.imagen2ImageView.setImageResource(lista.imagen2);
 
+            holder.imagen1ImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Context context = view.getContext();
+                    Intent intent = new Intent(context, VistaPreviaEvento.class);
+                    context.startActivity(intent);
+                }
+            });
         }
 
         @Override

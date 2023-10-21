@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/vistapreviadcreacion"
+    android:layout_width="400dp"
+    android:layout_height="700dp"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginTop="10dp">
+
+        <!-- Contenedor de texto en el centro -->
+        <TextView
+            android:id="@+id/texto_central"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Compartir Fotos"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <!-- Texto "Máximo subir 9 fotos" -->
+        <TextView
+            android:id="@+id/texto_max_fotos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/texto_central"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:text="Máximo subir 9 fotos" />
+
+        <!-- Cuadros para añadir fotos (3 filas x 3 columnas) -->
+        <GridLayout
+            android:id="@+id/grid_fotos"
+            android:layout_width="match_parent"
+            android:layout_height="420dp"
+            android:layout_below="@id/texto_max_fotos"
+            android:layout_marginTop="10dp"
+            android:columnCount="3">
+
+            <!-- Define 9 cuadros para fotos, puedes personalizarlos según tus necesidades -->
+
+            <ImageView
+                android:id="@+id/cuadro_foto_1"
+                android:layout_width="0dp"
+                android:layout_height="98dp"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="50dp"
+                android:layout_margin="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/rounded_background2" />
+
+            <ImageView
+                android:id="@+id/cuadro_foto_2"
+                android:layout_width="0dp"
+                android:layout_height="98dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:layout_marginTop="50dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/rounded_background2" />
+
+            <ImageView
+                android:id="@+id/cuadro_foto_3"
+                android:layout_width="0dp"
+                android:layout_height="98dp"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="50dp"
+                android:layout_margin="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/rounded_background2" />
+
+            <ImageView
+                android:id="@+id/cuadro_foto_4"
+                android:layout_width="0dp"
+                android:layout_height="98dp"
+                android:layout_marginTop="20dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/rounded_background2" />
+
+            <ImageView
+                android:id="@+id/cuadro_foto_5"
+                android:layout_width="0dp"
+                android:layout_height="98dp"
+                android:layout_marginTop="20dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/rounded_background2" />
+
+            <ImageView
+                android:id="@+id/cuadro_foto_6"
+                android:layout_width="0dp"
+                android:layout_height="98dp"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="20dp"
+                android:layout_margin="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/rounded_background2" />
+
+            <ImageView
+                android:id="@+id/cuadro_foto_7"
+                android:layout_width="0dp"
+                android:layout_height="98dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/rounded_background2" />
+
+            <ImageView
+                android:id="@+id/cuadro_foto_8"
+                android:layout_width="0dp"
+                android:layout_height="98dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/rounded_background2" />
+
+            <ImageView
+                android:id="@+id/cuadro_foto_9"
+                android:layout_width="0dp"
+                android:layout_height="98dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/rounded_background2" />
+
+            <!-- Repite el mismo patrón para los otros 6 cuadros -->
+
+        </GridLayout>
+
+        <!-- Botón para subir fotos -->
+        <Button
+            android:id="@+id/boton_subir_fotos"
+            android:layout_width="300dp"
+            android:layout_height="65dp"
+            android:backgroundTint="@color/turquesa"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="500dp"
+            android:text="Subir Fotos" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

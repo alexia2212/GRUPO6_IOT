@@ -15,7 +15,13 @@
         android:theme="@style/Theme.GRUPO_IOT"
         tools:targetApi="31">
         <activity
+            android:name=".ListaDeUsuarios"
+            android:exported="false" />
+        <activity
             android:name=".delegadoGeneral.MenuDelegadoGeneralActivity"
+            android:exported="false" />
+        <activity
+            android:name=".delactividad.NuevoEvento"
             android:exported="false" />
         <activity
             android:name=".alumno.activity.EditarPerfilActivity"
@@ -33,13 +39,16 @@
             android:name=".delactividad.PreviaActualizacionLayout"
             android:exported="false" />
         <activity
+            android:name=".delactividad.VistaPrevia"
+            android:exported="false" />
+        <activity
             android:name=".delactividad.ActualizarActivity"
             android:exported="false" />
         <activity
             android:name=".delactividad.VistaPreviaEvento"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".delactividad.delactprincipal"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,9 +64,6 @@
             android:exported="false" />
         <activity
             android:name=".alumno.activity.ConfirmacionApoyoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".delactividad.delactprincipal"
             android:exported="false" />
         <activity
             android:name=".alumno.activity.NotificacionesActivity"

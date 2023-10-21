@@ -28,6 +28,7 @@ public class UsuariosInscritosAdaptador extends RecyclerView.Adapter<UsuariosIns
         return new ViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         UsuariosLista dato = listaDatos.get(position);
