@@ -38,8 +38,7 @@
     <Button
         android:id="@+id/guardar"
         android:layout_width="200dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/material_dynamic_secondary10"
         android:text="Guardar Registro"
         android:textColor="@color/white"
@@ -48,35 +47,20 @@
         app:layout_constraintEnd_toEndOf="@+id/view5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxTerminos"
         app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Acepto Terminos y Condiciones"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/view5"
-        app:layout_constraintEnd_toEndOf="@+id/view5"
-        app:layout_constraintHorizontal_bias="0.58"
-        app:layout_constraintStart_toStartOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCondicionUsuario"
-        app:layout_constraintVertical_bias="0.0" />
-
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/checkBoxTerminos"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view5"
-        app:layout_constraintEnd_toEndOf="@+id/view5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.45" />
+        android:layout_height="51dp"
+        android:text="Acepto Terminos y Condiciones."
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerCondicionUsuario"
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintStart_toStartOf="@+id/spinnerCondicionUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCondicionUsuario" />
+
 
     <Button
         android:id="@+id/iniciosesion"

@@ -1,27 +1,20 @@
 package com.example.grupo_iot;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.grupo_iot.alumno.activity.ListaActividadesActivity;
-import com.example.grupo_iot.alumno.adapter.ListaActividadesAdapter;
-import com.example.grupo_iot.alumno.entity.Actividad;
 import com.example.grupo_iot.databinding.ActivityIniciarSesionBinding;
 import com.example.grupo_iot.delactividad.delactprincipal;
 import com.example.grupo_iot.delegadoGeneral.MenuDelegadoGeneralActivity;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class IniciarSesionActivity extends AppCompatActivity {
     ActivityIniciarSesionBinding binding;
@@ -38,9 +31,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
         binding.btnIngresar.setOnClickListener(view -> {
             String usuarioIngresado = ((TextInputEditText) binding.inputEmail.getEditText()).getText().toString();
             String contrasenaIngresada = ((TextInputEditText) binding.inputPasswd.getEditText()).getText().toString();
-            Log.d("msg-test",usuarioIngresado);
-            Log.d("msg-test",contrasenaIngresada);
-
             validarUsuario(usuarioIngresado,contrasenaIngresada);
         });
 
@@ -51,7 +41,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
         });
 
         binding.olvidoPassword.setOnClickListener(view -> {
-            Intent intent = new Intent(this, OlvidoContrasena.class);
+            Intent intent = new Intent(this, OlvidoContrasenaActivity.class);
             startActivity(intent);
         });
 
@@ -63,25 +53,73 @@ public class IniciarSesionActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         boolean usuarioValido = false;
-                        //String rol = null;
+                        String rol = null;
                         for (QueryDocumentSnapshot u : task.getResult()) {
                             Usuario user = u.toObject(Usuario.class);
                             if(user.getEmail().equals(usuario) && user.getPassword().equals(password)){
+                                rol = user.getRol();
+                                usuarioValido = true;
+                                break;
+                            }
+                        }
+                        if(usuarioValido){
+                            if(rol.equals("alumno")){
+                                Intent intent = new Intent(IniciarSesionActivity.this, ListaActividadesActivity.class);
+                                startActivity(intent);
+                            } else if (rol.equals("delegado general")) {
+                                Intent intent = new Intent(IniciarSesionActivity.this, MenuDelegadoGeneralActivity.class);
+                                startActivity(intent);
+                            } else if (rol.equals("delegado actividad")) {
+                                Intent intent = new Intent(IniciarSesionActivity.this, delactprincipal.class);
+                                startActivity(intent);
+                            }
+                        }else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                            builder.setMessage("Correo o contraseña incorrecta. Vuelva a ingresar sus datos.")
+                                    .setTitle("Aviso")
+                                    .setPositiveButton("Aceptar", (dialog, which) -> {
+                                    });
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                        }
+                    }
+                });
+
+    }
+
+    public void validarUsuario2(String usuario, String password){
+        db.collection("credenciales")
+                .addSnapshotListener((snapshot, error) -> {
+                    boolean usuarioValido = false;
+                    if (error != null) {
+                        Log.w("msg-test", "Listen failed.", error);
+                        return;
+                    }
+
+                    for (QueryDocumentSnapshot u : snapshot) {
+                        Usuario user = u.toObject(Usuario.class);
+                        if(user.getEmail().equals(usuario) && user.getPassword().equals(password)){
+                            Log.d("msg-test","*****email******");
+
+                            Log.d("msg-test",user.getEmail());
+                            Log.d("msg-test","*****passwd******");
+                            Log.d("msg-test",user.getPassword());
+                            Log.d("msg-test",user.getNombre());
+                            Log.d("msg-test","*****#####******");
                                 /*
                                 rol = user.getRol();
                                 Log.d("msg-test",user.getNombre());
                                 Log.d("msg-test",user.getEmail());
                                 Log.d("msg-test",user.getPassword());
                                 Log.d("msg-test",user.getRol());
-
                                  */
-                                usuarioValido = true;
-                                break;
-                            }
+                            usuarioValido = true;
+                            break;
                         }
-                        if(usuarioValido){
-                            Intent intent = new Intent(IniciarSesionActivity.this, MenuDelegadoGeneralActivity.class);
-                            startActivity(intent);
+                    }
+                    if(usuarioValido){
+                        Intent intent = new Intent(IniciarSesionActivity.this, MenuDelegadoGeneralActivity.class);
+                        startActivity(intent);
                             /*
                             if(rol.equals("alumno")){
                                 Intent intent = new Intent(IniciarSesionActivity.this, ListaActividadesActivity.class);
@@ -96,11 +134,10 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
                              */
 
-                        }else {
-                            Toast.makeText(this, "Usuario o contraseña incorrecta", Toast.LENGTH_SHORT).show();
-                        }
+                    }else {
+                        Toast.makeText(this, "Usuario o contraseña incorrecta", Toast.LENGTH_SHORT).show();
                     }
-                });
 
+                });
     }
 }
