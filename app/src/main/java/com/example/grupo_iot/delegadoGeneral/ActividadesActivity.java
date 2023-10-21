@@ -42,6 +42,10 @@ public class ActividadesActivity extends AppCompatActivity {
         Intent intent=new Intent(this, EventosActivity.class);
         startActivity(intent);
     }
+    public void crearActividad(View view){
+        Intent intent=new Intent(this, CrearActividadActivity.class);
+        startActivity(intent);
+    }
 
     public void cargarDataActividades (){
         db.collection("actividadesG")

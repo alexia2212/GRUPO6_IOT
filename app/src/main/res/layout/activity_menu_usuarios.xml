@@ -175,7 +175,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-condensed-medium"
-                android:text="Alexia Jauregui"
+                android:text="Angelo Ramos"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="16sp"
                 android:typeface="sans" />
@@ -189,21 +189,21 @@
                 android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-condensed-medium"
-                android:text="20201188"
+                android:text="20201222"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="16sp"
                 android:typeface="sans" />
 
             <Button
                 android:id="@+id/button16"
-                android:layout_width="55dp"
+                android:layout_width="47dp"
                 android:layout_height="match_parent"
-                android:onClick="usuario"
-                android:text="+"
-
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="#5BB4BE"
+                android:onClick="usuario"
+                android:text="" />
 
         </LinearLayout>
 
@@ -230,7 +230,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-condensed-medium"
-                android:text="Angelo Ramos"
+                android:text="Alexia Jauregui"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="16sp"
                 android:typeface="sans" />
