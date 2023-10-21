@@ -140,6 +140,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_navigation_menu" />
 
+        <ImageView
+            android:id="@+id/btnBuscarEvento"
+            android:layout_width="30dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/buscarEvento"
+            app:layout_constraintEnd_toEndOf="@+id/buscarEvento"
+            app:layout_constraintHorizontal_bias="0.94"
+            app:layout_constraintStart_toStartOf="@+id/buscarEvento"
+            app:layout_constraintTop_toTopOf="@+id/buscarEvento"
+            app:srcCompat="@drawable/baseline_search_24" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- Fin del contenido principal -->
 
