@@ -1,5 +1,6 @@
 package com.example.grupo_iot.alumno.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -10,21 +11,38 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.databinding.ActivityEventoApoyadoBinding;
+import com.example.grupo_iot.databinding.ActivityEventosApoyadosBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class ListaEventosApoyadosActivity extends AppCompatActivity {
-    //ActivityListaEventosApoyados binding;
+    ActivityEventosApoyadosBinding binding;
     DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //binding = ActivityListaEventosApoyados.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_eventos_apoyados);
+        binding = ActivityEventosApoyadosBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         generarSidebar();
         generarBottomNavigationMenu();
+
+        binding.imageView6.setOnClickListener(view -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                    .setTitle("Aviso")
+                    .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                        Intent intent1 = new Intent(this, LoginActivity.class);
+                        startActivity(intent1);
+                    })
+                    .setNegativeButton("Cancelar", null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        });
     }
 
     public void irMensajeria(View view){

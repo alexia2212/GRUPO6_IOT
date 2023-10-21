@@ -1,5 +1,6 @@
 package com.example.grupo_iot.alumno.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.Usuario;
 import com.example.grupo_iot.alumno.entity.Alumno;
@@ -44,6 +46,20 @@ public class EditarPerfilActivity extends AppCompatActivity {
         codigoTextInputLayout.getEditText().setText(alumno.getCodigo());
         emailTextInputLayout.getEditText().setText(alumno.getEmail());
         passwordTextInputLayout.getEditText().setText(alumno.getPassword());
+
+        binding.imageView6.setOnClickListener(view -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                    .setTitle("Aviso")
+                    .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                        Intent intent1 = new Intent(this, LoginActivity.class);
+                        startActivity(intent1);
+                    })
+                    .setNegativeButton("Cancelar", null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        });
     }
 
     public void irEvento(View view){

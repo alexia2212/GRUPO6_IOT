@@ -1,5 +1,6 @@
 package com.example.grupo_iot.alumno.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityEventoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -57,6 +59,20 @@ public class EventoActivity extends AppCompatActivity {
                 R.layout.item_spinner_apoyo_evento, listaOpciones);
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
+
+        binding.imageView6.setOnClickListener(view -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                    .setTitle("Aviso")
+                    .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                        Intent intent1 = new Intent(this, LoginActivity.class);
+                        startActivity(intent1);
+                    })
+                    .setNegativeButton("Cancelar", null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        });
     }
 
     public void irMensajeria(View view){

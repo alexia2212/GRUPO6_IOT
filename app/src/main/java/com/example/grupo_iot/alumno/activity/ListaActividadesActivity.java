@@ -1,6 +1,7 @@
 package com.example.grupo_iot.alumno.activity;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -8,12 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.adapter.ListaActividadesAdapter;
 import com.example.grupo_iot.alumno.adapter.ListaEventosAdapter;
@@ -37,6 +41,7 @@ public class ListaActividadesActivity extends AppCompatActivity {
     FirebaseFirestore db;
     String correoAlumno;
     Alumno alumno = new Alumno();
+    List<Actividad> listaActividadesCompleta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +62,23 @@ public class ListaActividadesActivity extends AppCompatActivity {
         generarSidebar();
         generarBottomNavigationMenu();
 
+        binding.btnBuscarEvento.setOnClickListener(view -> {
+            realizarBusquedaEvento();
+        });
+
+        binding.imageView6.setOnClickListener(view -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                    .setTitle("Aviso")
+                    .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                        Intent intent1 = new Intent(this, LoginActivity.class);
+                        startActivity(intent1);
+                    })
+                    .setNegativeButton("Cancelar", null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        });
     }
 
     @Override
@@ -75,6 +97,8 @@ public class ListaActividadesActivity extends AppCompatActivity {
                             Actividad activ = actividad.toObject(Actividad.class);
                             actividadList.add(activ);
                         }
+                        listaActividadesCompleta = actividadList;
+
                         ListaActividadesAdapter listaActividadesAdapter = new ListaActividadesAdapter();
                         listaActividadesAdapter.setActividadList(actividadList);
                         listaActividadesAdapter.setContext(ListaActividadesActivity.this);
@@ -83,6 +107,27 @@ public class ListaActividadesActivity extends AppCompatActivity {
                         binding.recyclerViewListaActividades.setLayoutManager(new LinearLayoutManager(ListaActividadesActivity.this));
                     }
                 });
+    }
+
+    private void realizarBusquedaEvento() {
+        String textoBusqueda = binding.buscarEvento.getEditText().getText().toString().toLowerCase();
+        List<Actividad> actividadesFiltradas = new ArrayList<>();
+        for (Actividad actividad : listaActividadesCompleta) {
+            if (actividad.getNombreActividad().toLowerCase().contains(textoBusqueda)) {
+                actividadesFiltradas.add(actividad);
+            }
+        }
+        for(Actividad a : actividadesFiltradas){
+            Log.d("msg-test",a.getNombreActividad());
+            Log.d("msg-test",a.getIdImagenActividad());
+        }
+
+        ListaActividadesAdapter listaActividadesFiltradasAdapter = new ListaActividadesAdapter();
+        listaActividadesFiltradasAdapter.setActividadList(actividadesFiltradas);
+        listaActividadesFiltradasAdapter.setContext(ListaActividadesActivity.this);
+        binding.recyclerViewListaActividades.setAdapter(listaActividadesFiltradasAdapter);
+        binding.recyclerViewListaActividades.setLayoutManager(new LinearLayoutManager(ListaActividadesActivity.this));
+        listaActividadesFiltradasAdapter.notifyDataSetChanged();
     }
 
 
