@@ -7,6 +7,7 @@ public class Usuario implements Serializable {
     private String password;
     private String email;
     private String apellido;
+    private String rol;
 
     public String getNombre() {
         return nombre;
@@ -38,5 +39,13 @@ public class Usuario implements Serializable {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

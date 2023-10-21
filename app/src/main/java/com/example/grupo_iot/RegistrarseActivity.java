@@ -17,15 +17,11 @@ public class RegistrarseActivity extends AppCompatActivity {
         binding = ActivityRegistroBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.register.setOnClickListener(view -> {
-            Intent intent = new Intent(this, RegistrarseActivity.class);
+        binding.guardar.setOnClickListener(view -> {
+            Intent intent = new Intent(this, ConfirmacionRegistroActivity.class);
             startActivity(intent);
         });
 
-        binding.iniciosesion.setOnClickListener(view -> {
-            Intent intent = new Intent(this, IniciarSesionActivity.class);
-            startActivity(intent);
-        });
 
 
 

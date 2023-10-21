@@ -84,7 +84,7 @@
             android:name=".delactividad.UsuariosInscritos"
             android:exported="true" />
         <activity
-            android:name=".ConfirmacionRegistro"
+            android:name=".ConfirmacionRegistroActivity"
             android:exported="false" />
         <activity
             android:name=".RegistrarseActivity"

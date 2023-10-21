@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
 
-    tools:context=".ConfirmacionRegistro">
+    tools:context=".ConfirmacionRegistroActivity">
 
     <ImageView
         android:id="@+id/imageView6"
