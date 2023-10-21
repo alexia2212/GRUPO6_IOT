@@ -6,13 +6,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.Usuario;
+import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.databinding.ActivityEditarPerfilBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class EditarPerfilActivity extends AppCompatActivity {
     ActivityEditarPerfilBinding binding;
@@ -25,6 +29,21 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
         generarSidebar();
         generarBottomNavigationMenu();
+
+        Intent intent = getIntent();
+        Alumno alumno = (Alumno) intent.getSerializableExtra("alumno");
+
+        TextInputLayout nombreTextInputLayout = binding.inputNombre;
+        TextInputLayout apellidoTextInputLayout = binding.inputApellido;
+        TextInputLayout codigoTextInputLayout = binding.inputCodigo;
+        TextInputLayout emailTextInputLayout = binding.inputEmail;
+        TextInputLayout passwordTextInputLayout = binding.inputPass;
+
+        nombreTextInputLayout.getEditText().setText(alumno.getNombre());
+        apellidoTextInputLayout.getEditText().setText(alumno.getApellido());
+        codigoTextInputLayout.getEditText().setText(alumno.getCodigo());
+        emailTextInputLayout.getEditText().setText(alumno.getEmail());
+        passwordTextInputLayout.getEditText().setText(alumno.getPassword());
     }
 
     public void irEvento(View view){

@@ -16,7 +16,9 @@ import android.widget.LinearLayout;
 
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.adapter.ListaActividadesAdapter;
+import com.example.grupo_iot.alumno.adapter.ListaEventosAdapter;
 import com.example.grupo_iot.alumno.entity.Actividad;
+import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.alumno.entity.Evento;
 import com.example.grupo_iot.databinding.ActivityListaActividadesAlumnoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,6 +35,8 @@ public class ListaActividadesActivity extends AppCompatActivity {
     ActivityListaActividadesAlumnoBinding binding;
     private DrawerLayout drawerLayout;
     FirebaseFirestore db;
+    String correoAlumno;
+    Alumno alumno = new Alumno();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +44,14 @@ public class ListaActividadesActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         db = FirebaseFirestore.getInstance();
-
+/*
         ArrayList<String> eventos = new ArrayList<>();
         eventos.add("Evento");
+
+ */
+        Intent intent = getIntent();
+        correoAlumno = intent.getStringExtra("correoAlumno");
+        buscarDatosAlumnos(correoAlumno);
 
         cargarDataActividades();
         generarSidebar();
@@ -94,7 +103,6 @@ public class ListaActividadesActivity extends AppCompatActivity {
 
     public void generarSidebar(){
         ImageView abrirSidebar = findViewById(R.id.imageView5);
-        //ImageView cerrarSidebar = findViewById(R.id.cerrarSidebar);
         drawerLayout = findViewById(R.id.drawer_layout);
         abrirSidebar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,45 +114,25 @@ public class ListaActividadesActivity extends AppCompatActivity {
                 }
             }
         });
-        /*
-        cerrarSidebar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Cierra el sidebar al hacer clic en el botón "Cerrar Sidebar"
-                drawerLayout.closeDrawer(GravityCompat.START);
-            }
-        });*/
-
-        /*
-        //Opciones navigationView
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-                if(menuItem.getItemId()==R.id.menu_notif){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_1){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_2){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_3){
-
-                }
-
-                //Cierra el sidebar después de la selección
-                drawerLayout.closeDrawer(GravityCompat.END);
-                return true;
-            }
-        });
-
-         */
     }
 
-    void generarBottomNavigationMenu(){
+    public void buscarDatosAlumnos(String correo){
+        db.collection("alumnos")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        for (QueryDocumentSnapshot user : task.getResult()) {
+                            Alumno a = user.toObject(Alumno.class);
+                            if(a.getEmail().equals(correo)){
+                                alumno = a;
+                                break;
+                            }
+                        }
+                    }
+                });
+    }
+
+    public void generarBottomNavigationMenu(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -168,6 +156,7 @@ public class ListaActividadesActivity extends AppCompatActivity {
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
                     Intent intent = new Intent(ListaActividadesActivity.this, EditarPerfilActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 return true;

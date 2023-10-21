@@ -11,20 +11,25 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.databinding.ActivityChatGrupalBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class ChatGrupalActivity extends AppCompatActivity {
-
+    FirebaseFirestore db;
     ActivityChatGrupalBinding binding;
     DrawerLayout drawerLayout;
+    Alumno alumno = new Alumno();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityChatGrupalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        db = FirebaseFirestore.getInstance();
         generarSidebar();
         generarBottomNavigationMenu();
     }
@@ -58,42 +63,22 @@ public class ChatGrupalActivity extends AppCompatActivity {
                 }
             }
         });
-        /*
-        cerrarSidebar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Cierra el sidebar al hacer clic en el botón "Cerrar Sidebar"
-                drawerLayout.closeDrawer(GravityCompat.START);
-            }
-        });*/
+    }
 
-        /*
-        //Opciones navigationView
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-                if(menuItem.getItemId()==R.id.menu_notif){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_1){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_2){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_3){
-
-                }
-
-                //Cierra el sidebar después de la selección
-                drawerLayout.closeDrawer(GravityCompat.END);
-                return true;
-            }
-        });
-
-         */
+    public void buscarDatosAlumnos(String correo){
+        db.collection("alumnos")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        for (QueryDocumentSnapshot user : task.getResult()) {
+                            Alumno a = user.toObject(Alumno.class);
+                            if(a.getEmail().equals(correo)){
+                                alumno = a;
+                                break;
+                            }
+                        }
+                    }
+                });
     }
 
     void generarBottomNavigationMenu(){

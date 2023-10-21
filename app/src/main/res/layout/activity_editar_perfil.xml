@@ -123,8 +123,8 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="300dp"
-            android:layout_height="293dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
@@ -156,8 +156,28 @@
                 android:id="@+id/inputApellido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:hint="Apellido"
+                app:boxBackgroundColor="@color/white"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:paddingStart="24dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputCodigo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Código"
                 app:boxBackgroundColor="@color/white"
                 app:boxCornerRadiusBottomEnd="20dp"
                 app:boxCornerRadiusBottomStart="20dp"
@@ -178,7 +198,7 @@
                 android:id="@+id/inputEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+
                 android:hint="Email"
                 app:boxBackgroundColor="@color/white"
                 app:boxCornerRadiusBottomEnd="20dp"
@@ -200,7 +220,6 @@
                 android:id="@+id/inputPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:hint="Contraseña"
                 app:boxBackgroundColor="@color/white"
                 app:boxCornerRadiusBottomEnd="20dp"

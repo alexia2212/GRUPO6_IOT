@@ -53,23 +53,24 @@ public class IniciarSesionActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         boolean usuarioValido = false;
-                        String rol = null;
+                        Usuario userValido = new Usuario();
                         for (QueryDocumentSnapshot u : task.getResult()) {
                             Usuario user = u.toObject(Usuario.class);
                             if(user.getEmail().equals(usuario) && user.getPassword().equals(password)){
-                                rol = user.getRol();
+                                userValido = user;
                                 usuarioValido = true;
                                 break;
                             }
                         }
                         if(usuarioValido){
-                            if(rol.equals("alumno")){
+                            if(userValido.getRol().equals("alumno")){
                                 Intent intent = new Intent(IniciarSesionActivity.this, ListaActividadesActivity.class);
+                                intent.putExtra("correoAlumno", userValido.getEmail());
                                 startActivity(intent);
-                            } else if (rol.equals("delegado general")) {
+                            } else if (userValido.getRol().equals("delegado general")) {
                                 Intent intent = new Intent(IniciarSesionActivity.this, MenuDelegadoGeneralActivity.class);
                                 startActivity(intent);
-                            } else if (rol.equals("delegado actividad")) {
+                            } else if (userValido.getRol().equals("delegado actividad")) {
                                 Intent intent = new Intent(IniciarSesionActivity.this, delactprincipal.class);
                                 startActivity(intent);
                             }
