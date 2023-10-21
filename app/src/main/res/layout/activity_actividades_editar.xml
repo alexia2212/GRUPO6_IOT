@@ -5,8 +5,8 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D9D9D9">
-    >
+    android:background="#D9D9D9"
+    tools:context=".delegadoGeneral.EditarActivity">
 
     <!-- Contenido principal -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -100,7 +100,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/cardView15"
             android:layout_width="300dp"
             android:layout_height="80dp"
             android:layout_rowWeight="1"
@@ -117,7 +117,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView6"
+            android:id="@+id/cardView16"
             android:layout_width="300dp"
             android:layout_height="100dp"
             android:layout_rowWeight="1"
@@ -130,13 +130,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView">
+            app:layout_constraintTop_toBottomOf="@+id/cardView15">
 
 
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/textView35"
+            android:id="@+id/DescripEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
@@ -144,15 +144,15 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#000000"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/cardView6"
-            app:layout_constraintEnd_toEndOf="@+id/cardView6"
+            app:layout_constraintBottom_toTopOf="@+id/cardView16"
+            app:layout_constraintEnd_toEndOf="@+id/cardView16"
             app:layout_constraintHorizontal_bias="0.01"
-            app:layout_constraintStart_toStartOf="@+id/cardView6"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView16"
+            app:layout_constraintTop_toBottomOf="@+id/cardView15"
             app:layout_constraintVertical_bias="0.695" />
 
         <TextView
-            android:id="@+id/textView37"
+            android:id="@+id/tituloEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
@@ -160,44 +160,43 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#000000"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/cardView"
-            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintBottom_toTopOf="@+id/cardView15"
+            app:layout_constraintEnd_toEndOf="@+id/cardView15"
             app:layout_constraintHorizontal_bias="0.012"
-            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView15"
             app:layout_constraintTop_toTopOf="@+id/view6"
             app:layout_constraintVertical_bias="0.903" />
 
         <TextView
-            android:id="@+id/textView36"
+            android:id="@+id/editarActividad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Nueva Actividad"
+            android:text="Editar Actividad"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#000000"
             android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView37"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/view6"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/buttonEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#5BB4BE"
             android:fontFamily="sans-serif-medium"
             android:onClick="nuevaActividad"
-            android:text="Agregar"
+            android:text="Actualizar"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#FFFFFF"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="@+id/view6"
             app:layout_constraintEnd_toEndOf="@+id/view6"
             app:layout_constraintStart_toStartOf="@+id/view6"
-            app:layout_constraintTop_toBottomOf="@+id/cardView6" />
+            app:layout_constraintTop_toBottomOf="@+id/cardView16" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

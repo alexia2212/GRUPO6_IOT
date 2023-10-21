@@ -98,36 +98,16 @@
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toBottomOf="@+id/imageView" />-->
 
-        <View
-            android:id="@+id/view17"
-            android:layout_width="312dp"
-            android:layout_height="170dp"
-            android:background="@drawable/background5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="319dp" />
-
-        <View
-            android:id="@+id/view26"
-            android:layout_width="360dp"
-            android:layout_height="400dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/background22"
-            android:elevation="-9dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.529"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView" />
-
         <LinearLayout
             android:id="@+id/backgroundContainer5"
             android:layout_width="328dp"
             android:layout_height="32dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="36dp"
             android:background="@drawable/background52"
-            android:orientation="horizontal"
 
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@+id/view26"
+            app:layout_constraintHorizontal_bias="0.542"
             app:layout_constraintStart_toStartOf="@+id/view26"
             app:layout_constraintTop_toTopOf="@+id/view26"> <!-- Puedes cambiar @color/colorAccent por el recurso de fondo que prefieras -->
 
@@ -151,25 +131,25 @@
                 android:id="@+id/textView73"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Código"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="16sp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="60dp"
-                android:layout_marginBottom="5dp"
-                android:typeface="sans"/>
+                android:typeface="sans" />
 
             <TextView
                 android:id="@+id/textView74"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Info"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="16sp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:typeface="sans" />
         </LinearLayout>
 
@@ -214,15 +194,17 @@
                 android:textSize="16sp"
                 android:typeface="sans" />
 
-            <ImageView
-                android:id="@+id/imageView35"
-                android:layout_width="30dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginRight="35dp"
-                android:layout_marginBottom="5dp"
+            <Button
+                android:id="@+id/button16"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:onClick="usuario"
+                android:text="+"
 
-                app:srcCompat="@mipmap/ver" />
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="5dp"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -230,10 +212,11 @@
             android:layout_width="326dp"
             android:layout_height="47dp"
 
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/background52"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@+id/view26"
+            app:layout_constraintHorizontal_bias="0.513"
             app:layout_constraintStart_toStartOf="@+id/view26"
             app:layout_constraintTop_toBottomOf="@+id/backgroundContainer6">
 
@@ -275,7 +258,30 @@
                 android:layout_marginBottom="5dp"
 
                 app:srcCompat="@mipmap/ver" />
+
         </LinearLayout>
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="361dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/round_background2"
+            app:layout_constraintBottom_toTopOf="@+id/view26"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <View
+            android:id="@+id/view26"
+            android:layout_width="365dp"
+            android:layout_height="275dp"
+            android:background="@drawable/background22"
+            android:elevation="-9dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D9D9D9">
-    >
 
     <!-- Contenido principal -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,146 +57,140 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/logo" />
 
-
         <View
-            android:id="@+id/view9"
+            android:id="@+id/view35"
             android:layout_width="414dp"
             android:layout_height="70dp"
             android:layout_margin="25dp"
-            android:layout_marginTop="24dp"
             android:background="#37383A"
             android:foregroundTint="#636262"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7">
-
-        </View>
+            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
         <TextView
-            android:id="@+id/textView203"
+            android:id="@+id/textView80"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-black"
-            android:text="Actividades"
+            android:text="Usuarios"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="34sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/view9"
-            app:layout_constraintEnd_toEndOf="@+id/view9"
+            app:layout_constraintEnd_toEndOf="@+id/view35"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/view9" />
+            app:layout_constraintTop_toTopOf="@+id/view35" />
+
 
         <View
-            android:id="@+id/view6"
-            android:layout_width="360dp"
-            android:layout_height="440dp"
-            android:layout_margin="40dp"
+            android:id="@+id/view26"
+            android:layout_width="365dp"
+            android:layout_height="391dp"
             android:background="@drawable/round_background"
             android:elevation="-9dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.652"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.514" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="300dp"
-            android:layout_height="80dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="110dp"
-            android:layout_marginTop="110dp"
-            android:backgroundTint="#D6D4D4"
-            app:cardCornerRadius="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.513"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/view6">
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView6"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="50dp"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/background3"
-            android:backgroundTint="#D6D4D4"
-            app:cardCornerRadius="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView">
-
-
-        </androidx.cardview.widget.CardView>
+        <ImageView
+            android:id="@+id/imageView38"
+            android:layout_width="132dp"
+            android:layout_height="119dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/view26"
+            app:layout_constraintHorizontal_bias="0.094"
+            app:layout_constraintStart_toStartOf="@+id/view26"
+            app:layout_constraintTop_toTopOf="@+id/view26"
+            app:srcCompat="@mipmap/angelo" />
 
         <TextView
-            android:id="@+id/textView35"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:text="Descripcion"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#000000"
+            android:id="@+id/textViewNombreU"
+            android:layout_width="134dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="44dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Angelo Ramos"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/cardView6"
-            app:layout_constraintEnd_toEndOf="@+id/cardView6"
-            app:layout_constraintHorizontal_bias="0.01"
-            app:layout_constraintStart_toStartOf="@+id/cardView6"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            app:layout_constraintVertical_bias="0.695" />
+            android:typeface="sans"
+            app:layout_constraintEnd_toEndOf="@+id/view26"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView38"
+            app:layout_constraintTop_toTopOf="@+id/view26" />
 
         <TextView
-            android:id="@+id/textView37"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:text="Titulo"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/cardView"
-            app:layout_constraintEnd_toEndOf="@+id/cardView"
-            app:layout_constraintHorizontal_bias="0.012"
-            app:layout_constraintStart_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toTopOf="@+id/view6"
-            app:layout_constraintVertical_bias="0.903" />
-
-        <TextView
-            android:id="@+id/textView36"
+            android:id="@+id/textView32"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Condición: Alumno"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textSize="16sp"
+            android:typeface="sans"
+            app:layout_constraintEnd_toEndOf="@+id/view26"
+            app:layout_constraintHorizontal_bias="0.458"
+            app:layout_constraintStart_toEndOf="@+id/imageView38"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNombreU" />
+
+        <Button
+            android:id="@+id/editarUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginEnd="105dp"
+            android:layout_marginBottom="48dp"
+            android:backgroundTint="#5BB4BE"
             android:fontFamily="sans-serif-medium"
-            android:text="Nueva Actividad"
+            android:onClick="editarActividad"
+            android:text="Actualizar"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#000000"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView37"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/view6"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view26"
+            app:layout_constraintEnd_toEndOf="@+id/view26"
+            app:layout_constraintStart_toStartOf="@+id/view26" />
+
+        <Button
+            android:id="@+id/button13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="56dp"
+            android:backgroundTint="#A7B3B5"
+            android:fontFamily="sans-serif-medium"
+            android:text="Alumno"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/editarUsuario"
+            app:layout_constraintStart_toStartOf="@+id/view26"
+            app:layout_constraintTop_toBottomOf="@+id/imageView38"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/button14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#5BB4BE"
+            android:layout_marginBottom="52dp"
+            android:backgroundTint="#A7B3B5"
             android:fontFamily="sans-serif-medium"
-            android:onClick="nuevaActividad"
-            android:text="Agregar"
+            android:text="Egresado"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#FFFFFF"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="@+id/view6"
-            app:layout_constraintEnd_toEndOf="@+id/view6"
-            app:layout_constraintStart_toStartOf="@+id/view6"
-            app:layout_constraintTop_toBottomOf="@+id/cardView6" />
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/editarUsuario"
+            app:layout_constraintEnd_toEndOf="@+id/view26"
+            app:layout_constraintHorizontal_bias="0.449"
+            app:layout_constraintStart_toEndOf="@+id/button13" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
