@@ -234,7 +234,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/botonFecha"
+                android:id="@+id/botonCorrecto"
                 android:layout_width="350dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="260dp"

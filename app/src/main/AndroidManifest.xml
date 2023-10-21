@@ -55,8 +55,13 @@
             android:name=".alumno.activity.ConfirmacionApoyoActivity"
             android:exported="false" />
         <activity
-            android:name=".delactividad.delactprincipal"
+            android:name=".delactividad.ListaDeUsuarios"
             android:exported="false" />
+
+        <activity
+            android:name=".delactividad.NuevoEvento"
+            android:exported="false" />
+
         <activity
             android:name=".alumno.activity.NotificacionesActivity"
             android:exported="false" />

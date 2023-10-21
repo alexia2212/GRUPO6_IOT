@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.grupo_iot.R;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -68,7 +70,20 @@ public class ActualizarActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button miBoton = findViewById(R.id.botonCorrecto);
+
+        // Agrega un OnClickListener al botón
+        miBoton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Muestra el Toast cuando se hace clic en el botón
+                Toast.makeText(getApplicationContext(), "Se actualizó", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+
 
     private void showDatePicker() {
         MaterialDatePicker<Long> datePicker =

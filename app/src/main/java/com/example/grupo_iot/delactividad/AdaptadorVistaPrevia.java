@@ -63,6 +63,17 @@ public class AdaptadorVistaPrevia extends RecyclerView.Adapter<AdaptadorVistaPre
             }
         });
 
+        holder.botonVerListaAlumnos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, ListaDeUsuarios.class);
+                context.startActivity(intent);
+            }
+        });
+
+
+
 
 
 
@@ -163,6 +174,7 @@ public class AdaptadorVistaPrevia extends RecyclerView.Adapter<AdaptadorVistaPre
             imagen2ImageView = itemView.findViewById(R.id.icono_derecha);
             imagen3ImageView = itemView.findViewById(R.id.icono_izquierda);
             boton2 = itemView.findViewById(R.id.boton2);
+            botonVerListaAlumnos = itemView.findViewById(R.id.boton1);
 
 
         }
