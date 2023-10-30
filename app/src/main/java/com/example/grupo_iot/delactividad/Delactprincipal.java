@@ -2,23 +2,19 @@ package com.example.grupo_iot.delactividad;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.grupo_iot.R;
-import com.example.grupo_iot.delactividad.Adaptador;
-import com.example.grupo_iot.delactividad.Lista;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class delactprincipal extends AppCompatActivity {
+public class Delactprincipal extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +40,7 @@ public class delactprincipal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Abre la nueva actividad aquí
-                Intent intent = new Intent(delactprincipal.this, NuevoEvento.class);
+                Intent intent = new Intent(Delactprincipal.this, NuevoEvento.class);
                 startActivity(intent);
             }
         });

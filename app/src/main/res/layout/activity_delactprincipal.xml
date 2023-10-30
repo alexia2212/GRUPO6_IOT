@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D9D9D9"
-    tools:context=".delactividad.delactprincipal">
+    tools:context=".delactividad.Delactprincipal">
 
     <!-- Contenido principal -->
 
@@ -107,6 +107,7 @@
             android:layout_height="46dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="28dp"
+            android:onClick="crear"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_add_24" />

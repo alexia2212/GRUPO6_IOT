@@ -1,5 +1,7 @@
 package com.example.grupo_iot.delactividad;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +37,8 @@ public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.View
         holder.nombre.setText(usuario.getNombre());
         holder.condicion.setText(usuario.getCondicion());
         holder.funcion.setText(usuario.getFuncion());
+
+
     }
 
     @Override

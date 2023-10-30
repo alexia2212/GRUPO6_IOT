@@ -29,5 +29,7 @@ public class ListaDeUsuarios extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+
     }
 }
