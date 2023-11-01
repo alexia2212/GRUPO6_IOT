@@ -70,7 +70,7 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/imageViewsalir"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="24dp"

@@ -14,6 +14,7 @@ import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityCompartirfotosBinding;
 import com.example.grupo_iot.databinding.ActivityDelactprincipalBinding;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,8 @@ import java.util.List;
 public class Delactprincipal extends AppCompatActivity {
 
     ActivityDelactprincipalBinding binding;
+
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

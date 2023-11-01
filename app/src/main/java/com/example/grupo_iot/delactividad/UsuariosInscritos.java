@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.databinding.ActivityActualizarBinding;
+import com.example.grupo_iot.databinding.ActivityUsuariosInscritosBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +19,15 @@ public class UsuariosInscritos extends AppCompatActivity {
     private UsuariosInscritosAdaptador adapter;
     private List<UsuariosLista> listaDatos;
 
+    ActivityUsuariosInscritosBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usuarios_inscritos);
+        binding = ActivityUsuariosInscritosBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        recyclerView = findViewById(R.id.usuarios1);
+        //recyclerView = findViewById(R.id.usuarios1);
         listaDatos = obtenerDatos(); // Obtén tus datos de algún lugar (por ejemplo, una base de datos o una lista)
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
