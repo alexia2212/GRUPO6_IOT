@@ -19,6 +19,7 @@ import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.adapter.ListaActividadesAdapter;
 import com.example.grupo_iot.alumno.adapter.ListaEventosAdapter;
 import com.example.grupo_iot.alumno.entity.Actividad;
+import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.alumno.entity.Evento;
 import com.example.grupo_iot.databinding.ActivityListaEventosAlumnoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -37,6 +38,7 @@ public class ListaEventosActivity extends AppCompatActivity {
     FirebaseFirestore db;
     String nombreActividad;
     String nombreImagen;
+    Alumno alumno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +50,7 @@ public class ListaEventosActivity extends AppCompatActivity {
         nombreActividad = intent.getStringExtra("nombreActividad");
         String descripcionActividad = intent.getStringExtra("descripcionActividad");
         nombreImagen  = intent.getStringExtra("imagenActividad");
-
+        alumno = (Alumno) intent.getSerializableExtra("alumno");
 
         TextView textViewNombreEvento = findViewById(R.id.textView2);
         ImageView imageViewEvento = findViewById(R.id.imageView2);
@@ -100,6 +102,7 @@ public class ListaEventosActivity extends AppCompatActivity {
                         listaEventosAdapter.setContext(ListaEventosActivity.this);
                         listaEventosAdapter.setIdImagenEvento(nombreImagen);
                         listaEventosAdapter.setActividad(nombreActividad);
+                        listaEventosAdapter.setAlumno(alumno);
                         binding.recyclerViewListaEventos.setAdapter(listaEventosAdapter);
                         binding.recyclerViewListaEventos.setLayoutManager(new LinearLayoutManager(ListaEventosActivity.this));
                     }
@@ -128,8 +131,8 @@ public class ListaEventosActivity extends AppCompatActivity {
 
     public void generarSidebar(){
         ImageView abrirSidebar = findViewById(R.id.imageView5);
-        //ImageView cerrarSidebar = findViewById(R.id.cerrarSidebar);
         drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         abrirSidebar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,42 +143,15 @@ public class ListaEventosActivity extends AppCompatActivity {
                 }
             }
         });
-        /*
-        cerrarSidebar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Cierra el sidebar al hacer clic en el botón "Cerrar Sidebar"
-                drawerLayout.closeDrawer(GravityCompat.START);
-            }
-        });*/
 
-        /*
-        //Opciones navigationView
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
+        View headerView = navigationView.getHeaderView(0);
+        //ImageView imageView12 = headerView.findViewById(R.id.imageView12);
+        TextView textView6 = headerView.findViewById(R.id.textView6);
+        TextView estado = headerView.findViewById(R.id.estado);
 
-                if(menuItem.getItemId()==R.id.menu_notif){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_1){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_2){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_3){
-
-                }
-
-                //Cierra el sidebar después de la selección
-                drawerLayout.closeDrawer(GravityCompat.END);
-                return true;
-            }
-        });
-
-         */
+        //imageView12.setImageResource(R.mipmap.perfil1);
+        textView6.setText(alumno.getNombre()+" "+alumno.getApellido());
+        estado.setText(alumno.getCondicion());
     }
 
     void generarBottomNavigationMenu(){
@@ -186,22 +162,27 @@ public class ListaEventosActivity extends AppCompatActivity {
 
                 if(menuItem.getItemId()==R.id.navigation_lista_actividades){
                     Intent intent = new Intent(ListaEventosActivity.this, ListaActividadesActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
                     Intent intent = new Intent(ListaEventosActivity.this, ListaEventosApoyadosActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_lista_chats){
                     Intent intent = new Intent(ListaEventosActivity.this, ListaDeChatsActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(ListaEventosActivity.this, DonacionesActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
                     Intent intent = new Intent(ListaEventosActivity.this, EditarPerfilActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 return true;

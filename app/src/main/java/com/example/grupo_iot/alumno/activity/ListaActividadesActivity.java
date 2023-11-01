@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
@@ -81,12 +82,6 @@ public class ListaActividadesActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart(){
-        super.onStart();
-         //Se carga la data de las actividades (nombre y descripcion) al adapter correspondiente
-    }
-
     public void cargarDataActividades (){
         db.collection("actividades")
                 .get()
@@ -102,6 +97,7 @@ public class ListaActividadesActivity extends AppCompatActivity {
                         ListaActividadesAdapter listaActividadesAdapter = new ListaActividadesAdapter();
                         listaActividadesAdapter.setActividadList(actividadList);
                         listaActividadesAdapter.setContext(ListaActividadesActivity.this);
+                        listaActividadesAdapter.setAlumno(alumno);
 
                         binding.recyclerViewListaActividades.setAdapter(listaActividadesAdapter);
                         binding.recyclerViewListaActividades.setLayoutManager(new LinearLayoutManager(ListaActividadesActivity.this));
@@ -117,14 +113,11 @@ public class ListaActividadesActivity extends AppCompatActivity {
                 actividadesFiltradas.add(actividad);
             }
         }
-        for(Actividad a : actividadesFiltradas){
-            Log.d("msg-test",a.getNombreActividad());
-            Log.d("msg-test",a.getIdImagenActividad());
-        }
 
         ListaActividadesAdapter listaActividadesFiltradasAdapter = new ListaActividadesAdapter();
         listaActividadesFiltradasAdapter.setActividadList(actividadesFiltradas);
         listaActividadesFiltradasAdapter.setContext(ListaActividadesActivity.this);
+        listaActividadesFiltradasAdapter.setAlumno(alumno);
         binding.recyclerViewListaActividades.setAdapter(listaActividadesFiltradasAdapter);
         binding.recyclerViewListaActividades.setLayoutManager(new LinearLayoutManager(ListaActividadesActivity.this));
         listaActividadesFiltradasAdapter.notifyDataSetChanged();
@@ -133,22 +126,26 @@ public class ListaActividadesActivity extends AppCompatActivity {
 
     public void irEvento(View view){
         Intent intent = new Intent(this, ListaEventosActivity.class);
+        intent.putExtra("alumno", alumno);
         startActivity(intent);
     }
 
     public void irMensajeria(View view){
         Intent intent = new Intent(this, ListaDeChatsActivity.class);
+        intent.putExtra("alumno", alumno);
         startActivity(intent);
     }
 
     public void abrirNotificaciones(View view){
         Intent intent = new Intent(this, NotificacionesActivity.class);
+        intent.putExtra("alumno", alumno);
         startActivity(intent);
     }
 
     public void generarSidebar(){
         ImageView abrirSidebar = findViewById(R.id.imageView5);
         drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         abrirSidebar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,6 +156,15 @@ public class ListaActividadesActivity extends AppCompatActivity {
                 }
             }
         });
+
+        View headerView = navigationView.getHeaderView(0);
+        //ImageView imageView12 = headerView.findViewById(R.id.imageView12);
+        TextView textView6 = headerView.findViewById(R.id.textView6);
+        TextView estado = headerView.findViewById(R.id.estado);
+
+        //imageView12.setImageResource(R.mipmap.perfil1);
+        textView6.setText(alumno.getNombre()+" "+alumno.getApellido());
+        estado.setText(alumno.getCondicion());
     }
 
     public void buscarDatosAlumnos(String correo){
@@ -185,18 +191,22 @@ public class ListaActividadesActivity extends AppCompatActivity {
 
                 if(menuItem.getItemId()==R.id.navigation_lista_actividades){
                     Intent intent = new Intent(ListaActividadesActivity.this, ListaActividadesActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
                     Intent intent = new Intent(ListaActividadesActivity.this, ListaEventosApoyadosActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_lista_chats){
                     Intent intent = new Intent(ListaActividadesActivity.this, ListaDeChatsActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(ListaActividadesActivity.this, DonacionesActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){

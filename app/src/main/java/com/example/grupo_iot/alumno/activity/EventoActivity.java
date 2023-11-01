@@ -15,12 +15,14 @@ import android.widget.Spinner;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.databinding.ActivityEventoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class EventoActivity extends AppCompatActivity {
     ActivityEventoBinding binding;
     private DrawerLayout drawerLayout;
+    Alumno alumno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,7 @@ public class EventoActivity extends AppCompatActivity {
         String horaEvento = intent.getStringExtra("horaEvento");
         String lugarEvento = intent.getStringExtra("lugarEvento");
         String nombreImagen  = intent.getStringExtra("idImagenEvento");
+        alumno = (Alumno) intent.getSerializableExtra("alumno");
 
         binding.textView40.setText(nombreActividad);
         binding.textView7.setText(nombreEvento);
@@ -59,6 +62,23 @@ public class EventoActivity extends AppCompatActivity {
                 R.layout.item_spinner_apoyo_evento, listaOpciones);
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
+
+        binding.textViewGuardarCambios.setOnClickListener(view -> {
+            String opcionSeleccionada = binding.spinner.getSelectedItem().toString();
+            if ("Apoyar evento".equals(opcionSeleccionada)) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Debes seleccionar una de las opciones: Barra o Participante.")
+                        .setTitle("Aviso")
+                        .setPositiveButton("Aceptar", (dialog, which) -> {
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else if ("Barra".equals(opcionSeleccionada) || "Participante".equals(opcionSeleccionada)) {
+                Intent intent1 = new Intent(this, ConfirmacionApoyoActivity.class);
+                intent.putExtra("alumno", alumno);
+                startActivity(intent1);
+            }
+        });
 
         binding.imageView6.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);

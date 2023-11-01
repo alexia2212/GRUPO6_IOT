@@ -14,12 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.activity.ListaEventosActivity;
 import com.example.grupo_iot.alumno.entity.Actividad;
+import com.example.grupo_iot.alumno.entity.Alumno;
 
 import java.util.List;
 
 public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividadesAdapter.ActividadViewHolder>{
     private List<Actividad> actividadList;
     private Context context;
+    private Alumno alumno;
     @NonNull
     @Override
     public ActividadViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
@@ -68,6 +70,7 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
                 intent.putExtra("nombreActividad", nombreActividad.getText().toString());
                 intent.putExtra("descripcionActividad", descripcionActividad.getText().toString());
                 intent.putExtra("imagenActividad", actividad.getIdImagenActividad());
+                intent.putExtra("alumno",alumno);
                 context.startActivity(intent);
             });
 
@@ -89,5 +92,13 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
 
     public void setContext(Context context) {
         this.context = context;
+    }
+
+    public Alumno getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
 }
