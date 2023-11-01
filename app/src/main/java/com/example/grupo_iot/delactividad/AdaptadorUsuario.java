@@ -38,6 +38,15 @@ public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.View
         holder.condicion.setText(usuario.getCondicion());
         holder.funcion.setText(usuario.getFuncion());
 
+        holder.imagen1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, UsuariosInscritos.class);
+                context.startActivity(intent);
+            }
+        });
+
 
     }
 

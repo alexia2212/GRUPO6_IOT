@@ -25,16 +25,16 @@
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
+            android:layout_width="73dp"
+            android:layout_height="55dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="140dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.833"
-            app:layout_constraintStart_toEndOf="@+id/imageView24"
+            app:layout_constraintHorizontal_bias="0.764"
+            app:layout_constraintStart_toEndOf="@+id/imageViewsalir"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.056"
+            app:layout_constraintVertical_bias="0.083"
             app:srcCompat="@mipmap/logo" />
 
         <androidx.cardview.widget.CardView
@@ -63,14 +63,15 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <ImageView
-            android:id="@+id/imageView24"
-            android:layout_width="55dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/baseline_arrow_back_24"
+            android:id="@+id/imageViewsalir"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="27dp"
+            android:rotation="180"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_exit_to_app_24" />
 
         <ImageView
             android:id="@+id/imageView25"
@@ -84,15 +85,15 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="396dp"
-            android:layout_height="591dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="385dp"
+            android:layout_height="585dp"
+            android:layout_marginBottom="-54dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/cardView3"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3">
+            app:layout_constraintTop_toTopOf="@+id/imageView7">
 
             <!-- Contenido de la CardView -->
 
@@ -210,12 +211,12 @@
 
                         <!-- Agregar un TextView para el hint -->
                         <TextView
+                            android:id="@+id/textViewHint"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Lugar"
-                            android:textSize="12sp"
                             android:textColorHint="?android:attr/textColorHint"
-                            android:id="@+id/textViewHint" />
+                            android:textSize="12sp" />
 
                         <Spinner
                             android:id="@+id/spinnerLugar"
@@ -224,8 +225,6 @@
                             android:layout_below="@+id/textViewHint" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
                 </LinearLayout>
@@ -237,13 +236,36 @@
                 android:id="@+id/botonCorrecto"
                 android:layout_width="350dp"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="260dp"
-                android:text="Actualizar Evento"
                 android:backgroundTint="@color/turquesa"
-                android:layout_gravity="center" />
+                android:text="Actualizar Evento" />
 
 
         </androidx.cardview.widget.CardView>
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation2"
+            style="@style/NoRippleStyle"
+            android:elevation="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom"
+            android:background="#F6F5F5"
+            android:paddingStart="10dp"
+            app:itemIconTint="@color/selector_btn_color"
+            app:itemPaddingBottom="10dp"
+            app:itemPaddingTop="2dp"
+            app:itemTextAppearanceActive="@style/BottomNavigationViewLabel"
+            app:itemTextAppearanceInactive="@style/BottomNavigationViewLabel"
+            app:itemTextColor="@color/selector_text_color"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_navigation_menu2" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -39,13 +39,13 @@ public class EditarPerfilActivity extends AppCompatActivity {
         TextInputLayout apellidoTextInputLayout = binding.inputApellido;
         TextInputLayout codigoTextInputLayout = binding.inputCodigo;
         TextInputLayout emailTextInputLayout = binding.inputEmail;
-        TextInputLayout passwordTextInputLayout = binding.inputPass;
+        //TextInputLayout passwordTextInputLayout = binding.inputPass;
 
         nombreTextInputLayout.getEditText().setText(alumno.getNombre());
         apellidoTextInputLayout.getEditText().setText(alumno.getApellido());
         codigoTextInputLayout.getEditText().setText(alumno.getCodigo());
         emailTextInputLayout.getEditText().setText(alumno.getEmail());
-        passwordTextInputLayout.getEditText().setText(alumno.getPassword());
+        //passwordTextInputLayout.getEditText().setText(alumno.getPassword());
 
         binding.imageView6.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);

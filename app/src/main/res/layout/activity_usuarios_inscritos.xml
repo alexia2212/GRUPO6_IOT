@@ -29,38 +29,38 @@
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="27dp"
+            android:rotation="180"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/sidebar" />
+            app:srcCompat="@drawable/baseline_exit_to_app_24" />
+
+        <!-- Primera CardView -->
+
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="91dp"
+            android:layout_height="75dp"
             android:layout_marginStart="64dp"
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.027"
+            app:layout_constraintHorizontal_bias="0.218"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@mipmap/logo" />
 
-        <!-- Primera CardView -->
-
-
-
         <ImageView
             android:id="@+id/imageView21"
-            android:layout_width="45dp"
-            android:layout_height="46dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="28dp"
+            android:layout_width="35dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="36dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_add_24" />
@@ -68,8 +68,8 @@
         <androidx.cardview.widget.CardView
 
             android:id="@+id/vistaprevia"
-            android:layout_width="380dp"
-            android:layout_height="570dp"
+            android:layout_width="389dp"
+            android:layout_height="578dp"
             android:animateLayoutChanges="true"
             app:cardCornerRadius="10dp"
             app:cardElevation="2dp"
@@ -156,8 +156,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imagen1"
-                    android:layout_marginLeft="-100dp"
-                    android:layout_marginTop="200dp"
+                    android:layout_marginLeft="-110dp"
+                    android:layout_marginTop="197dp"
                     android:layout_toRightOf="@id/imagen1"
                     android:backgroundTint="@color/turquesa"
                     android:text="Guardar Funcionalidad" />
@@ -190,7 +190,30 @@
                         android:text="Equipo" />
                 </RadioGroup>
             </RelativeLayout>
+
+
         </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation2"
+            style="@style/NoRippleStyle"
+            android:elevation="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom"
+            android:background="#F6F5F5"
+            android:paddingStart="10dp"
+            app:itemIconTint="@color/selector_btn_color"
+            app:itemPaddingBottom="10dp"
+            app:itemPaddingTop="2dp"
+            app:itemTextAppearanceActive="@style/BottomNavigationViewLabel"
+            app:itemTextAppearanceInactive="@style/BottomNavigationViewLabel"
+            app:itemTextColor="@color/selector_text_color"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_navigation_menu2" />
 
 
 
@@ -206,48 +229,6 @@
     <!-- Fin Contenido principal -->
 
 
-
-
-    <!-- NavigationView para el sidebar -->
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu"
-        app:itemTextAppearance="@style/MenuItemStyle">
-
-        <LinearLayout
-            android:id="@+id/logout_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="130dp"
-            android:layout_marginBottom="30dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cerrar sesión"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/cerrar_sesion"
-                android:layout_marginStart="16dp"/>
-
-
-
-
-        </LinearLayout>
-    </com.google.android.material.navigation.NavigationView>
-    <!-- Fin NavigationView -->
 
 
 

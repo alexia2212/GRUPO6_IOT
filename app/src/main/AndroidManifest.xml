@@ -64,7 +64,7 @@
 
 
         <activity
-            android:name=".delactividad.delactprincipal"
+            android:name=".delactividad.Delactprincipal"
             android:exported="false" >
 
         </activity>
