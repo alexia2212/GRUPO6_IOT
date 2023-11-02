@@ -32,6 +32,12 @@ public class VistaPreviaPerfil extends AppCompatActivity {
         generarBottomNavigationMenu();
         Intent intent = getIntent();
         Alumno alumno = (Alumno) intent.getSerializableExtra("alumno");
+
+        binding.btnCambiarContrasena.setOnClickListener(view -> {
+            Intent intent1 = new Intent(this, EditarPerfilActivity.class);
+            startActivity(intent1);
+        });
+
         binding.imageView6.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
