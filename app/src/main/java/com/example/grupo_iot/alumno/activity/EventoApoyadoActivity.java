@@ -107,42 +107,6 @@ public class EventoApoyadoActivity extends AppCompatActivity {
                 }
             }
         });
-        /*
-        cerrarSidebar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Cierra el sidebar al hacer clic en el botón "Cerrar Sidebar"
-                drawerLayout.closeDrawer(GravityCompat.START);
-            }
-        });*/
-
-        /*
-        //Opciones navigationView
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-                if(menuItem.getItemId()==R.id.menu_notif){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_1){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_2){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_3){
-
-                }
-
-                //Cierra el sidebar después de la selección
-                drawerLayout.closeDrawer(GravityCompat.END);
-                return true;
-            }
-        });
-
-         */
     }
 
     void generarBottomNavigationMenu(){

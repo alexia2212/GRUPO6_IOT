@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.databinding.ActivityConfirmacionApoyoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -21,11 +22,24 @@ public class ConfirmacionApoyoActivity extends AppCompatActivity {
 
     ActivityConfirmacionApoyoBinding binding;
     DrawerLayout drawerLayout;
+
+    Alumno alumno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityConfirmacionApoyoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Intent intent = getIntent();
+        String nombreActividad = intent.getStringExtra("nombreActividad");
+        String nombreEvento = intent.getStringExtra("nombreEvento");
+        String descripcionEvento = intent.getStringExtra("descripcionEvento");
+        String fechaEvento = intent.getStringExtra("fechaEvento");
+        String horaEvento = intent.getStringExtra("horaEvento");
+        String lugarEvento = intent.getStringExtra("lugarEvento");
+        String nombreImagen  = intent.getStringExtra("idImagenEvento");
+        String apoyo = intent.getStringExtra("apoyo");
+        alumno = (Alumno) intent.getSerializableExtra("alumno");
 
         generarSidebar();
         generarBottomNavigationMenu();
@@ -41,7 +55,20 @@ public class ConfirmacionApoyoActivity extends AppCompatActivity {
                     .setNegativeButton("Cancelar", null);
             AlertDialog dialog = builder.create();
             dialog.show();
+        });
 
+        binding.textView17.setOnClickListener(view -> {
+            Intent intent1 = new Intent(this, EventoApoyadoActivity.class);
+            intent1.putExtra("nombreActividad", nombreActividad);
+            intent1.putExtra("nombreEvento", nombreEvento);
+            intent1.putExtra("descripcionEvento", descripcionEvento);
+            intent1.putExtra("lugarEvento", lugarEvento);
+            intent1.putExtra("idImagenEvento",nombreImagen);
+            intent1.putExtra("fechaEvento", fechaEvento);
+            intent1.putExtra("horaEvento", horaEvento);
+            intent1.putExtra("apoyo", apoyo);
+            intent1.putExtra("alumno", alumno);
+            startActivity(intent1);
         });
     }
 

@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,18 +17,26 @@ import android.widget.Spinner;
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.entity.Alumno;
+import com.example.grupo_iot.alumno.entity.EventoApoyado;
 import com.example.grupo_iot.databinding.ActivityEventoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class EventoActivity extends AppCompatActivity {
     ActivityEventoBinding binding;
     private DrawerLayout drawerLayout;
     Alumno alumno;
+
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityEventoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        db = FirebaseFirestore.getInstance();
 
         Intent intent = getIntent();
         String nombreActividad = intent.getStringExtra("nombreActividad");
@@ -74,8 +83,33 @@ public class EventoActivity extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
             } else if ("Barra".equals(opcionSeleccionada) || "Participante".equals(opcionSeleccionada)) {
+                EventoApoyado eventoApoyado = new EventoApoyado();
+                eventoApoyado.setActividad(nombreActividad);
+                eventoApoyado.setEvento(nombreEvento);
+                eventoApoyado.setApoyo(opcionSeleccionada);
+
+                CollectionReference alumnosCollection = db.collection("alumnos");
+                DocumentReference actividadDocument = alumnosCollection.document(alumno.getCodigo());
+                CollectionReference listaEventosApoyadosCollection = actividadDocument.collection("listaEventosApoyados");
+
+                listaEventosApoyadosCollection
+                        .document(nombreEvento+nombreActividad)
+                        .set(eventoApoyado)
+                        .addOnSuccessListener(unused -> {
+                            Log.d("msg-test","Data guardada exitosamente");
+                        })
+                        .addOnFailureListener(e -> e.printStackTrace());
+
                 Intent intent1 = new Intent(this, ConfirmacionApoyoActivity.class);
-                intent.putExtra("alumno", alumno);
+                intent1.putExtra("nombreActividad", nombreActividad);
+                intent1.putExtra("nombreEvento", nombreEvento);
+                intent1.putExtra("descripcionEvento", descripcionEvento);
+                intent1.putExtra("lugarEvento", lugarEvento);
+                intent1.putExtra("idImagenEvento",nombreImagen);
+                intent1.putExtra("fechaEvento", fechaEvento);
+                intent1.putExtra("horaEvento", horaEvento);
+                intent1.putExtra("apoyo", opcionSeleccionada);
+                intent1.putExtra("alumno", alumno);
                 startActivity(intent1);
             }
         });
@@ -134,42 +168,6 @@ public class EventoActivity extends AppCompatActivity {
                 }
             }
         });
-        /*
-        cerrarSidebar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Cierra el sidebar al hacer clic en el botón "Cerrar Sidebar"
-                drawerLayout.closeDrawer(GravityCompat.START);
-            }
-        });*/
-
-        /*
-        //Opciones navigationView
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-                if(menuItem.getItemId()==R.id.menu_notif){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_1){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_2){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_3){
-
-                }
-
-                //Cierra el sidebar después de la selección
-                drawerLayout.closeDrawer(GravityCompat.END);
-                return true;
-            }
-        });
-
-         */
     }
     void generarBottomNavigationMenu(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
