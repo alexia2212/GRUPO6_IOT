@@ -11,70 +11,65 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grupo_iot.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import kotlinx.coroutines.ObsoleteCoroutinesApi;
+public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
+    private List<Lista> dataList;
 
+    public Adaptador(List<Lista> dataList) {
+        this.dataList = dataList;
+    }
 
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_layout, parent, false);
+        return new ViewHolder(view);
+    }
 
-    public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
-        private List<Lista> dataList;
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        Lista lista = dataList.get(position);
 
-        public Adaptador(List<Lista> dataList) {
-            this.dataList = dataList;
-        }
+        holder.tituloTextView.setText(lista.titulo);
+        holder.fechaTextView.setText(lista.fecha);
+        Picasso.get().load(lista.getImagen1()).into(holder.imagen1ImageView);
 
-        @NonNull
-        @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_layout, parent, false);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-            Lista lista = dataList.get(position);
-
-            holder.tituloTextView.setText(lista.titulo);
-            holder.fechaTextView.setText(lista.fecha);
-            holder.imagen1ImageView.setImageResource(lista.imagen1);
-            holder.imagen2ImageView.setImageResource(lista.imagen2);
-
-            holder.imagen1ImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Context context = view.getContext();
-                    Intent intent = new Intent(context, VistaPreviaEvento.class);
-                    context.startActivity(intent);
-                }
-            });
-        }
-
-        @Override
-        public int getItemCount() {
-            return dataList.size();
-        }
-
-        public static class ViewHolder extends RecyclerView.ViewHolder {
-            TextView tituloTextView;
-            TextView fechaTextView;
-            ImageView imagen1ImageView;
-            ImageView imagen2ImageView;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                tituloTextView = itemView.findViewById(R.id.titulo);
-                fechaTextView = itemView.findViewById(R.id.fecha);
-                imagen1ImageView = itemView.findViewById(R.id.imagen1);
-                imagen2ImageView = itemView.findViewById(R.id.imagen2);
+        holder.imagen1ImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, VistaPreviaEvento.class);
+                context.startActivity(intent);
             }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return dataList.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tituloTextView;
+        TextView fechaTextView;
+        ImageView imagen1ImageView;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tituloTextView = itemView.findViewById(R.id.titulo);
+            fechaTextView = itemView.findViewById(R.id.fecha);
+            imagen1ImageView = itemView.findViewById(R.id.imagen1);
         }
     }
 
-
-
+    public void setDataList(List<Lista> dataList) {
+        this.dataList = dataList;
+        notifyDataSetChanged();
+    }
+}

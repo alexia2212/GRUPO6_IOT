@@ -201,7 +201,6 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Campo de Lugar con AutoCompleteTextView y TextView para el hint -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="175dp"
                         android:layout_height="wrap_content"
@@ -209,7 +208,6 @@
                         android:layout_marginTop="6dp"
                         android:hint="Lugar">
 
-                        <!-- Agregar un TextView para el hint -->
                         <TextView
                             android:id="@+id/textViewHint"
                             android:layout_width="wrap_content"

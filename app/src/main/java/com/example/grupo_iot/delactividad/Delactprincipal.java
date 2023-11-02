@@ -7,14 +7,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.alumno.entity.Evento;
 import com.example.grupo_iot.databinding.ActivityCompartirfotosBinding;
 import com.example.grupo_iot.databinding.ActivityDelactprincipalBinding;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,15 +31,27 @@ import java.util.List;
 
 public class Delactprincipal extends AppCompatActivity {
 
+    FirebaseFirestore db;
+
     ActivityDelactprincipalBinding binding;
 
-    FirebaseFirestore db;
+    private Adaptador adapter;
+    private List<Lista> dataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityDelactprincipalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        db = FirebaseFirestore.getInstance();
+        dataList = new ArrayList<>();
+        adapter = new Adaptador(dataList);
+
+        RecyclerView recyclerView = findViewById(R.id.eventos);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
 
         binding.imageViewsalir.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -43,35 +64,67 @@ public class Delactprincipal extends AppCompatActivity {
                     .setNegativeButton("Cancelar", null);
             AlertDialog dialog = builder.create();
             dialog.show();
-
         });
 
-        List<Lista> dataList = new ArrayList<>();
-        dataList.add(new Lista("Convocatoria", "15/09/2023", R.drawable.voley1, R.drawable.baseline_favorite_24));
-        dataList.add(new Lista("Entrenamiento", "19/09/2023", R.drawable.voley2, R.drawable.baseline_favorite_border_24));
-        dataList.add(new Lista("1er partido", "14/10/2023", R.drawable.voley3, R.drawable.baseline_favorite_border_24));
-        dataList.add(new Lista("2do partido", "16/10/2023", R.drawable.voley4, R.drawable.baseline_favorite_24));
-        dataList.add(new Lista("3er partido", "18/10/2023", R.drawable.voley5, R.drawable.baseline_favorite_border_24));
-        dataList.add(new Lista("4to partido", "22/10/2023", R.drawable.voley1, R.drawable.baseline_favorite_24));
+        TextInputEditText searchEditText = findViewById(R.id.searchEditText);
 
-        RecyclerView recyclerView = findViewById(R.id.eventos);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(layoutManager);
-        Adaptador adapter = new Adaptador(dataList);
-        recyclerView.setAdapter(adapter);
+        if (searchEditText != null) {
+            searchEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    String searchText = charSequence.toString().toLowerCase().trim();
+                    filterData(searchText);
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                }
+            });
+        }
+
+        db.collection("listaeventos")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    dataList.clear();
+
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        Lista lista = document.toObject(Lista.class);
+                        String titulo = lista.getTitulo();
+                        String fecha = lista.getFecha();
+                        String imageUrl = lista.getImagen1();
+
+                        dataList.add(new Lista(titulo, fecha, imageUrl));
+                    }
+
+                    adapter.setDataList(dataList);
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Delactprincipal", "Error al obtener los eventos", e);
+                });
 
         ImageView addImage = findViewById(R.id.imageView21);
         addImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Abre la nueva actividad aquí
                 Intent intent = new Intent(Delactprincipal.this, NuevoEvento.class);
                 startActivity(intent);
             }
         });
-
-
-
     }
 
+    private void filterData(String searchText) {
+        List<Lista> filteredList = new ArrayList<>();
+
+        for (Lista lista : dataList) {
+            if (lista.getTitulo().toLowerCase().contains(searchText)) {
+                filteredList.add(lista);
+            }
+        }
+
+        adapter.setDataList(filteredList);
+    }
 }
