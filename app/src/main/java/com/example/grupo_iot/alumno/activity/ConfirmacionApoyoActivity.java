@@ -138,7 +138,7 @@ public class ConfirmacionApoyoActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(ConfirmacionApoyoActivity.this, EditarPerfilActivity.class);
+                    Intent intent = new Intent(ConfirmacionApoyoActivity.this, VistaPreviaPerfil.class);
                     startActivity(intent);
                 }
                 return true;
