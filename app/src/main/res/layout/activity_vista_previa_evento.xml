@@ -92,11 +92,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vistaprevia"
-            android:layout_width="389dp"
-            android:layout_height="633dp"
+            android:layout_width="407dp"
+            android:layout_height="593dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/cardView3"
-            app:layout_constraintHorizontal_bias="0.722"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView7"
             app:layout_constraintVertical_bias="0.0" />
