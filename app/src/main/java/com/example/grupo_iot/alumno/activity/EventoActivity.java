@@ -194,7 +194,7 @@ public class EventoActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(EventoActivity.this, EditarPerfilActivity.class);
+                    Intent intent = new Intent(EventoActivity.this, VistaPreviaPerfil.class);
                     startActivity(intent);
                 }
                 return true;

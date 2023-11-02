@@ -134,7 +134,7 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(FotoTransferenciaActivity.this, EditarPerfilActivity.class);
+                    Intent intent = new Intent(FotoTransferenciaActivity.this, VistaPreviaPerfil.class);
                     startActivity(intent);
                 }
                 return true;
