@@ -9,10 +9,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.grupo_iot.alumno.activity.ListaActividadesActivity;
+import com.example.grupo_iot.alumno.entity.EventoApoyado;
 import com.example.grupo_iot.databinding.ActivityIniciarSesionBinding;
 import com.example.grupo_iot.delactividad.Delactprincipal;
 import com.example.grupo_iot.delegadoGeneral.MenuDelegadoGeneralActivity;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -34,7 +37,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
             validarUsuario(usuarioIngresado,contrasenaIngresada);
         });
 
-
         binding.button4.setOnClickListener(view -> {
             Intent intent = new Intent(this, RegistrarseActivity.class);
             startActivity(intent);
@@ -44,7 +46,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
             Intent intent = new Intent(this, OlvidoContrasenaActivity.class);
             startActivity(intent);
         });
-
     }
 
     public void validarUsuario(String usuario, String password){

@@ -38,6 +38,7 @@ public class ListaEventosActivity extends AppCompatActivity {
     FirebaseFirestore db;
     String nombreActividad;
     String nombreImagen;
+    String descripcionActividad;
     Alumno alumno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +49,10 @@ public class ListaEventosActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         nombreActividad = intent.getStringExtra("nombreActividad");
-        String descripcionActividad = intent.getStringExtra("descripcionActividad");
+        descripcionActividad = intent.getStringExtra("descripcionActividad");
         nombreImagen  = intent.getStringExtra("imagenActividad");
         alumno = (Alumno) intent.getSerializableExtra("alumno");
-
+        Log.d("msg-test", "sadasd:"+alumno.getNombre());
         TextView textViewNombreEvento = findViewById(R.id.textView2);
         ImageView imageViewEvento = findViewById(R.id.imageView2);
 
