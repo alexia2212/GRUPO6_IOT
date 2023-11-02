@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.databinding.ActivityEventoApoyadoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -21,6 +22,7 @@ public class EventoApoyadoActivity extends AppCompatActivity {
 
     ActivityEventoApoyadoBinding binding;
     DrawerLayout drawerLayout;
+    Alumno alumno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,33 @@ public class EventoApoyadoActivity extends AppCompatActivity {
 
         generarSidebar();
         generarBottomNavigationMenu();
+
+        Intent intent = getIntent();
+        String nombreActividad = intent.getStringExtra("nombreActividad");
+        String nombreEvento = intent.getStringExtra("nombreEvento");
+        String descripcionEvento = intent.getStringExtra("descripcionEvento");
+        String fechaEvento = intent.getStringExtra("fechaEvento");
+        String horaEvento = intent.getStringExtra("horaEvento");
+        String lugarEvento = intent.getStringExtra("lugarEvento");
+        String nombreImagen  = intent.getStringExtra("idImagenEvento");
+        String apoyo = intent.getStringExtra("apoyo");
+        alumno = (Alumno) intent.getSerializableExtra("alumno");
+
+        binding.textView40.setText(nombreActividad);
+        binding.textView7.setText(nombreEvento);
+        binding.textView13.setText(descripcionEvento);
+        binding.textView35.setText("Fecha: "+fechaEvento);
+        binding.textView36.setText("Hora: "+horaEvento+" Hrs.");
+        binding.textView37.setText("Lugar: "+lugarEvento);
+        binding.textView3.setText("Apoyo: "+apoyo);
+
+        ImageView imageViewEvento = findViewById(R.id.imageView26);
+
+        // Carga la imagen basada en el nombre del recurso
+        int resourceId = getResources().getIdentifier(nombreImagen , "drawable", getPackageName());
+        if (resourceId != 0) {
+            imageViewEvento.setImageResource(resourceId);
+        }
 
         binding.imageView6.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);

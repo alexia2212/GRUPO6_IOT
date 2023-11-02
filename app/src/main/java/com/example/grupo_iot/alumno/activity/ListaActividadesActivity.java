@@ -60,7 +60,7 @@ public class ListaActividadesActivity extends AppCompatActivity {
         buscarDatosAlumnos(correoAlumno);
 
         cargarDataActividades();
-        generarSidebar();
+
         generarBottomNavigationMenu();
 
         binding.btnBuscarEvento.setOnClickListener(view -> {
@@ -159,11 +159,13 @@ public class ListaActividadesActivity extends AppCompatActivity {
 
         View headerView = navigationView.getHeaderView(0);
         //ImageView imageView12 = headerView.findViewById(R.id.imageView12);
-        TextView textView6 = headerView.findViewById(R.id.textView6);
+        TextView usuario = headerView.findViewById(R.id.textView6);
         TextView estado = headerView.findViewById(R.id.estado);
 
         //imageView12.setImageResource(R.mipmap.perfil1);
-        textView6.setText(alumno.getNombre()+" "+alumno.getApellido());
+        usuario.setText(alumno.getNombre()+" "+alumno.getApellido());
+        //usuario.setText("####");
+        //Log.d("msg-test", alumno.getNombre());
         estado.setText(alumno.getCondicion());
     }
 
@@ -175,7 +177,9 @@ public class ListaActividadesActivity extends AppCompatActivity {
                         for (QueryDocumentSnapshot user : task.getResult()) {
                             Alumno a = user.toObject(Alumno.class);
                             if(a.getEmail().equals(correo)){
+                                Log.d("msg-test", a.getNombre());
                                 alumno = a;
+                                generarSidebar();
                                 break;
                             }
                         }

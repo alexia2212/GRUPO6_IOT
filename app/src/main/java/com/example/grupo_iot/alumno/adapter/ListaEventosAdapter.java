@@ -37,7 +37,7 @@ public class ListaEventosAdapter extends RecyclerView.Adapter<ListaEventosAdapte
     private String idImagenEvento;
     private String actividad;
     private Alumno alumno;
-
+    private EventoApoyado eventApoyado;
     private List<EventoApoyado> eventosApoyadosList = new ArrayList<>();
     FirebaseFirestore db;
 
@@ -59,7 +59,6 @@ public class ListaEventosAdapter extends RecyclerView.Adapter<ListaEventosAdapte
                 verificarEventoApoyado(evento.getNombre(), actividad, new VerificacionEventoCallback() {
                     @Override
                     public void onEventoVerificado(boolean eventoApoyado) {
-                        // Aquí puedes manejar el resultado de manera asincrónica
                         if (eventoApoyado) {
                             // El evento ha sido apoyado
                             Intent intent = new Intent(context, EventoApoyadoActivity.class);
@@ -70,7 +69,8 @@ public class ListaEventosAdapter extends RecyclerView.Adapter<ListaEventosAdapte
                             intent.putExtra("idImagenEvento",idImagenEvento);
                             intent.putExtra("fechaEvento", fechaStr);
                             intent.putExtra("horaEvento", horaStr);
-                            intent.putExtra("alumno",alumno);
+                            intent.putExtra("alumno", alumno);
+                            intent.putExtra("apoyo", eventApoyado.getApoyo());
                             context.startActivity(intent);
                         } else {
                             // El evento no ha sido apoyado
@@ -120,24 +120,23 @@ public class ListaEventosAdapter extends RecyclerView.Adapter<ListaEventosAdapte
     public void verificarEventoApoyado(String nombreEvento, String nombreActividad, VerificacionEventoCallback callback) {
         CollectionReference alumnosCollection = db.collection("alumnos");
         DocumentReference actividadDocument = alumnosCollection.document(alumno.getCodigo());
-        //Log.d("msg-test", "#dsadsad");
-        //Log.d("msg-test", alumno.getCodigo());
         CollectionReference listaEventosApoyadosCollection = actividadDocument.collection("listaEventosApoyados");
 
         listaEventosApoyadosCollection
                 .get()
                 .addOnCompleteListener(task -> {
-                    boolean eventoApoyado = false;
+                    boolean ev = false;
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot e : task.getResult()) {
                             EventoApoyado eventApoy = e.toObject(EventoApoyado.class);
                             if (eventApoy.getActividad().equals(nombreActividad) && eventApoy.getEvento().equals(nombreEvento)) {
-                                eventoApoyado = true;
-                                break; // No necesitas seguir buscando
+                                ev = true;
+                                eventApoyado = eventApoy;
+                                break;
                             }
                         }
                     }
-                    callback.onEventoVerificado(eventoApoyado);
+                    callback.onEventoVerificado(ev);
                 });
     }
 

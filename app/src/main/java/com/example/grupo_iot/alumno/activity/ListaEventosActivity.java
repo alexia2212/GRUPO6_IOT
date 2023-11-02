@@ -52,7 +52,7 @@ public class ListaEventosActivity extends AppCompatActivity {
         descripcionActividad = intent.getStringExtra("descripcionActividad");
         nombreImagen  = intent.getStringExtra("imagenActividad");
         alumno = (Alumno) intent.getSerializableExtra("alumno");
-        Log.d("msg-test", "sadasd:"+alumno.getNombre());
+
         TextView textViewNombreEvento = findViewById(R.id.textView2);
         ImageView imageViewEvento = findViewById(R.id.imageView2);
 
