@@ -66,6 +66,24 @@ public class Delactprincipal extends AppCompatActivity {
             dialog.show();
         });
 
+        // Obtén una referencia a Firebase Storage
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+// Crea una referencia para la ubicación de la imagen que deseas obtener
+        StorageReference imagenRef = storageRef.child("imagenes/voley2.png");
+
+// Obtiene el enlace de descarga de la imagen
+        imagenRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            String imagenUrl = uri.toString();
+            // Imprime la URL de la imagen
+            System.out.println("URL de la imagen: " + imagenUrl);
+
+            // También puedes mostrar la URL en un TextView o cualquier otro lugar necesario en tu aplicación
+        }).addOnFailureListener(exception -> {
+            // Maneja errores si no se puede obtener el enlace de descarga
+        });
+
+
         TextInputEditText searchEditText = findViewById(R.id.searchEditText);
 
         if (searchEditText != null) {
@@ -96,8 +114,10 @@ public class Delactprincipal extends AppCompatActivity {
                         String titulo = lista.getTitulo();
                         String fecha = lista.getFecha();
                         String imageUrl = lista.getImagen1();
+                        String descripcion = lista.getDescripcion();
+                        String lugar = lista.getLugar();
 
-                        dataList.add(new Lista(titulo, fecha, imageUrl));
+                        dataList.add(new Lista(titulo, fecha, imageUrl, descripcion, lugar));
                     }
 
                     adapter.setDataList(dataList);

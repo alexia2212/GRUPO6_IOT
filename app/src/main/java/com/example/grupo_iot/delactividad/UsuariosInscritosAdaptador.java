@@ -1,5 +1,7 @@
 package com.example.grupo_iot.delactividad;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,8 +41,14 @@ public class UsuariosInscritosAdaptador extends RecyclerView.Adapter<UsuariosIns
         holder.condicion.setText(dato.getCondicion());
         holder.imagen1.setImageResource(dato.img1);
 
-        // Aquí puedes cargar la imagen usando una biblioteca como Glide o Picasso
-        // Ejemplo con Glide: Glide.with(holder.imagen1.getContext()).load(dato.getUrlImagen()).into(holder.imagen1);
+        holder.imagen1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, VistaUsuarioActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

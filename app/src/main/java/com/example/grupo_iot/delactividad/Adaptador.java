@@ -45,9 +45,15 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
             public void onClick(View view) {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, VistaPreviaEvento.class);
+
+                // Agrega los datos que deseas conservar en el Intent
+                Lista selectedLista = dataList.get(holder.getAdapterPosition());
+                intent.putExtra("listaData", selectedLista);
+
                 context.startActivity(intent);
             }
         });
+
     }
 
     @Override

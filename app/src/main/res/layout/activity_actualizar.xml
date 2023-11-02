@@ -112,7 +112,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/cardImageView"
+                    android:id="@+id/imagenact"
                     android:layout_width="345dp"
                     android:layout_height="200dp"
                     android:layout_marginLeft="27dp"

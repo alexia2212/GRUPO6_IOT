@@ -1,17 +1,41 @@
 package com.example.grupo_iot.delactividad;
 
-public class Lista {
+import java.io.Serializable;
+
+public class Lista implements Serializable {
     public String titulo;
     public String fecha;
 
     public String imagen1;
 
-    public Lista(String titulo, String fecha, String imagen1) {
+    public String descripcion;
+
+    public String lugar;
+
+    public Lista(String titulo, String fecha, String imagen1, String descripcion, String lugar) {
         this.titulo = titulo;
         this.fecha = fecha;
         this.imagen1 = imagen1;
-
+        this.descripcion = descripcion;
+        this.lugar = lugar;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
 
     public Lista() {
         // Constructor sin argumentos
