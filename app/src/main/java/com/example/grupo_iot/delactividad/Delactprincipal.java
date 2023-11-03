@@ -70,7 +70,7 @@ public class Delactprincipal extends AppCompatActivity {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
 // Crea una referencia para la ubicación de la imagen que deseas obtener
-        StorageReference imagenRef = storageRef.child("imagenes/voley2.png");
+        StorageReference imagenRef = storageRef.child("imagenes/voley6.jpg");
 
 // Obtiene el enlace de descarga de la imagen
         imagenRef.getDownloadUrl().addOnSuccessListener(uri -> {

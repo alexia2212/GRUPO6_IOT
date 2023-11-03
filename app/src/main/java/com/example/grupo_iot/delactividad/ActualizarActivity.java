@@ -291,7 +291,7 @@ public class ActualizarActivity extends AppCompatActivity {
         datePicker.show(getSupportFragmentManager(), "DATE_PICKER_TAG");
     }
 
-    void generarBottomNavigationMenu(){
+    /*void generarBottomNavigationMenu(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -337,7 +337,7 @@ public class ActualizarActivity extends AppCompatActivity {
             // También puedes guardar la Uri de la imagen seleccionada en una variable o en Firebase Storage, si es necesario.
         }
     }
-
+*/
 
 
 
