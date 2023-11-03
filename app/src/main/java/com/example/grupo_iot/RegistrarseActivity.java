@@ -2,8 +2,10 @@ package com.example.grupo_iot;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
@@ -18,6 +20,7 @@ import com.example.grupo_iot.alumno.adapter.ListaActividadesAdapter;
 import com.example.grupo_iot.alumno.entity.Actividad;
 import com.example.grupo_iot.databinding.ActivityRegistroBinding;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -35,7 +38,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-
 public class RegistrarseActivity extends AppCompatActivity {
 
     ActivityRegistroBinding binding;
@@ -48,10 +50,6 @@ public class RegistrarseActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         db = FirebaseFirestore.getInstance();
-        binding.guardar.setOnClickListener(view -> {
-            Intent intent = new Intent(this, ConfirmacionRegistroActivity.class);
-            startActivity(intent);
-        });
 
         //SECCION CONDICION USUARIO
         String[] listaOpciones = {"Condición de Usuario", "Alumno", "Egresado"};
@@ -60,38 +58,59 @@ public class RegistrarseActivity extends AppCompatActivity {
         Spinner spinner = binding.spinnerCondicionUsuario;
         spinner.setAdapter(adapter);
 
+        binding.guardar.setOnClickListener(view ->{
+            String selectedOption = spinner.getSelectedItem().toString();
+            Log.d("sprinner", "a"+spinner.getSelectedItem().toString());
+            Toast.makeText(this, spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT);
 
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle("Confirmacion");
+            alert.setMessage("Estas seguro de enviar tu registro");
+            alert.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    // GUARDAR DATOS
+                    String nombre = ((TextInputEditText) binding.inputNombre.getEditText()).getText().toString();
+                    String apellido = ((TextInputEditText) binding.inputApellido.getEditText()).getText().toString();
+                    String codigo = ((TextInputEditText) binding.inputCodigo.getEditText()).getText().toString();
+                    String email = ((TextInputEditText) binding.inputEmail.getEditText()).getText().toString();
+                    String password = ((TextInputEditText) binding.inputPass.getEditText()).getText().toString();
+                    String rol= binding.spinnerCondicionUsuario.getSelectedItem().toString();
+                    CheckBox checkBox = binding.checkBoxTerminos;
 
-        binding.guardar.setOnClickListener(view -> {
+                    if (nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || password.isEmpty() || codigo.isEmpty()) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(RegistrarseActivity.this);
+                        builder.setMessage("Todos los campos deben estar completos.")
+                                .setTitle("Aviso")
+                                .setPositiveButton("Aceptar", (dialog, which) -> {
+                                });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
 
-            String nombre = ((TextInputEditText) binding.inputNombre.getEditText()).getText().toString();
-            String apellido = ((TextInputEditText) binding.inputApellido.getEditText()).getText().toString();
-            String codigo = ((TextInputEditText) binding.inputCodigo.getEditText()).getText().toString();
-            String email = ((TextInputEditText) binding.inputEmail.getEditText()).getText().toString();
-            String password = ((TextInputEditText) binding.inputPass.getEditText()).getText().toString();
-            CheckBox checkBox = binding.checkBoxTerminos;
+                    }else if(codigo.length() != 8 || codigo.contains(" ")) {
+                        binding.inputCodigo.setError("El código debe tener 8 dígitos");
+                    }else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.contains(" ")){
+                        binding.inputEmail.setError("El correo electrónico no es válido");
+                    }else if(selectedOption.equals("Condición de Usuario")){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(RegistrarseActivity.this);
+                        builder.setMessage("Por favor, seleccione una condición válida (Egresado o Alumno).")
+                                .setTitle("Aviso")
+                                .setPositiveButton("Aceptar", (dialog, which) -> {
+                                });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
 
-            if (nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || password.isEmpty() || codigo.isEmpty()) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("Todos los campos deben estar completos.")
-                        .setTitle("Aviso")
-                        .setPositiveButton("Aceptar", (dialog, which) -> {
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            } else if (!checkBox.isChecked()) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("Debe aceptar los términos y condiciones para continuar.")
-                        .setTitle("Aviso")
-                        .setPositiveButton("Aceptar", (dialog, which) -> {
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            } else {
-                db.collection("credenciales")
-                        .get()
-                        .addOnCompleteListener(task -> {
-                            if(task.isSuccessful()){
+                    }else if (!checkBox.isChecked()) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(RegistrarseActivity.this);
+                        builder.setMessage("Debe aceptar los términos y condiciones para continuar.")
+                                .setTitle("Aviso")
+                                .setPositiveButton("Aceptar", (dialog, which) -> {
+                                });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    } else {
+                        db.collection("credenciales").get().addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
                                 List<String> listaCorreosRegistrados = new ArrayList<>();
                                 boolean usuarioRegistrado = false;
                                 boolean usuarioPorRegistrar = false;
@@ -106,7 +125,7 @@ public class RegistrarseActivity extends AppCompatActivity {
                                     }
                                 }
                                 if(usuarioRegistrado){
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(RegistrarseActivity.this);
                                     builder.setMessage("Usted ya se encuentra registrado. Inicie sesión con su correo PUCP y contraseña.")
                                             .setTitle("Aviso")
                                             .setPositiveButton("Aceptar", (dialog, which) -> {
@@ -120,8 +139,9 @@ public class RegistrarseActivity extends AppCompatActivity {
                                     UsuarioPorRegistrar.put("codigo", codigo);
                                     UsuarioPorRegistrar.put("email", email);
                                     UsuarioPorRegistrar.put("password", password);
+                                    UsuarioPorRegistrar.put("rol", rol);
 
-                                    db.collection("usuariosPorRegistrar")
+                                    db.collection("credenciales")
                                             .add(UsuarioPorRegistrar)
                                             .addOnSuccessListener(documentReference -> {
                                                 Intent intent = new Intent(RegistrarseActivity.this, ConfirmacionRegistroActivity.class);
@@ -130,15 +150,21 @@ public class RegistrarseActivity extends AppCompatActivity {
                                                 Log.e("msg-test", e.getMessage());
                                                 e.printStackTrace();
                                             });
-
-
                                 }
+
                             }
                         });
-            }
+                    }
+                }
+            });
+            alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    // enviar a iniciar sesion
+                }
+            });
+            alert.show();
         });
-
-
 
     }
 

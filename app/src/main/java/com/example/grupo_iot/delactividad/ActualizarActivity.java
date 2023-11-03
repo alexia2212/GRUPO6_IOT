@@ -25,6 +25,7 @@ import com.example.grupo_iot.alumno.activity.ListaActividadesActivity;
 import com.example.grupo_iot.alumno.activity.ListaDeChatsActivity;
 import com.example.grupo_iot.alumno.activity.ListaEventosApoyadosActivity;
 import com.example.grupo_iot.alumno.activity.NotificacionesActivity;
+import com.example.grupo_iot.alumno.activity.PerfilActivity;
 import com.example.grupo_iot.databinding.ActivityActualizarBinding;
 
 import com.example.grupo_iot.R;
@@ -314,7 +315,7 @@ public class ActualizarActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfildelact){
-                    Intent intent = new Intent(ActualizarActivity.this, EditarPerfilActivity.class);
+                        Intent intent = new Intent(ActualizarActivity.this, PerfilActivity.class);
                     startActivity(intent);
                 }
                 return true;
