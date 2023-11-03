@@ -1,41 +1,52 @@
 package com.example.grupo_iot.delactividad;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.TextView;
 
-import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
-import com.example.grupo_iot.databinding.ActivityActualizarBinding;
 import com.example.grupo_iot.databinding.ActivityNuevoEventoBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class NuevoEvento extends AppCompatActivity {
 
     private TextInputEditText etFecha;
+    private ImageView imageViewSelected;
+    private Uri selectedImageUri;
+    private Button seleccionarImagenButton;
+
+    private static final int GALLERY_REQUEST_CODE = 1;
+
 
     ActivityNuevoEventoBinding binding;
     private Spinner spinnerLugar;
-    FirebaseFirestore db;
+    private FirebaseFirestore db;
+    private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +54,9 @@ public class NuevoEvento extends AppCompatActivity {
         binding = ActivityNuevoEventoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         db = FirebaseFirestore.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
 
-        binding.guardarnuevoevento.setOnClickListener(new View.OnClickListener(){
+        binding.guardarnuevoevento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 guardarNuevoEvento();
@@ -62,7 +74,7 @@ public class NuevoEvento extends AppCompatActivity {
 
         spinnerLugar.setAdapter(adapter);
 
-        spinnerLugar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+        spinnerLugar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Obtén la opción seleccionada por el usuario
@@ -84,7 +96,15 @@ public class NuevoEvento extends AppCompatActivity {
             }
         });
 
+        imageViewSelected = findViewById(R.id.imageViewSelected);
+        seleccionarImagenButton = findViewById(R.id.seleccionarImagenButton);
 
+        seleccionarImagenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seleccionarImagenDesdeGaleria();
+            }
+        });
     }
 
     private void guardarNuevoEvento() {
@@ -94,10 +114,35 @@ public class NuevoEvento extends AppCompatActivity {
         String fecha = binding.fechanuevoevento.getText().toString();
         String lugar = spinnerLugar.getSelectedItem().toString();
 
-        String foto = binding.fotonuevoevento.getText().toString();
+        if (selectedImageUri != null) {
+            // Subir la imagen a Firebase Storage y obtener el enlace
+            StorageReference imageRef = storageReference.child("event_images/" + System.currentTimeMillis() + "." + getFileExtension(selectedImageUri));
+            imageRef.putFile(selectedImageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String imageUrl = uri.toString();
+                                    EventoList evento = new EventoList(titulo, fecha, imageUrl, descripcion, lugar);
+                                    guardarEventoEnFirestore(evento);
+                                }
+                            });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(NuevoEvento.this, "Error al subir la imagen", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } else {
+            Toast.makeText(NuevoEvento.this, "Selecciona una imagen primero", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-        EventoList evento = new EventoList(titulo, fecha, foto, descripcion, lugar);
-
+    private void guardarEventoEnFirestore(EventoList evento) {
         db.collection("listaeventos")
                 .add(evento)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -112,8 +157,6 @@ public class NuevoEvento extends AppCompatActivity {
                         Toast.makeText(NuevoEvento.this, "Error al guardar el evento", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
     }
 
     private void showDatePicker() {
@@ -132,6 +175,24 @@ public class NuevoEvento extends AppCompatActivity {
         datePicker.show(getSupportFragmentManager(), "DATE_PICKER_TAG");
     }
 
+    private void seleccionarImagenDesdeGaleria() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, GALLERY_REQUEST_CODE);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            selectedImageUri = data.getData();
+            imageViewSelected.setImageURI(selectedImageUri);
+        }
+    }
 
+    private String getFileExtension(Uri uri) {
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
 }
