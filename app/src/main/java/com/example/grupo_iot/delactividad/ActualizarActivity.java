@@ -14,16 +14,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.grupo_iot.LoginActivity;
-import com.example.grupo_iot.alumno.activity.ChatGrupalActivity;
 import com.example.grupo_iot.alumno.activity.DonacionesActivity;
-import com.example.grupo_iot.alumno.activity.EditarPerfilActivity;
 import com.example.grupo_iot.alumno.activity.ListaActividadesActivity;
 import com.example.grupo_iot.alumno.activity.ListaDeChatsActivity;
 import com.example.grupo_iot.alumno.activity.ListaEventosApoyadosActivity;
