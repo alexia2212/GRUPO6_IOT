@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -21,15 +22,25 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.net.Authenticator;
+import javax.mail.PasswordAuthentication;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
+import javax.mail.*;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 
 public class RegistrarseActivity extends AppCompatActivity {
 
     ActivityRegistroBinding binding;
     FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,10 +130,17 @@ public class RegistrarseActivity extends AppCompatActivity {
                                                 Log.e("msg-test", e.getMessage());
                                                 e.printStackTrace();
                                             });
+
+
                                 }
                             }
                         });
             }
         });
+
+
+
     }
+
+
 }
