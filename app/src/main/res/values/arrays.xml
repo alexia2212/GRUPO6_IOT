@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="simple_items">
+        <item>Cancha de Minas</item>
         <item>Cancha 1</item>
         <item>Cancha 2</item>
         <item>Polideportivo</item>
     </array>
+
 </resources>
