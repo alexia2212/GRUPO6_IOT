@@ -140,7 +140,6 @@ public class RegistrarseActivity extends AppCompatActivity {
                                     UsuarioPorRegistrar.put("email", email);
                                     UsuarioPorRegistrar.put("password", password);
                                     UsuarioPorRegistrar.put("rol", rol);
-
                                     db.collection("credenciales")
                                             .add(UsuarioPorRegistrar)
                                             .addOnSuccessListener(documentReference -> {
