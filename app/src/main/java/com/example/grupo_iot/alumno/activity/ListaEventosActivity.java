@@ -182,7 +182,7 @@ public class ListaEventosActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(ListaEventosActivity.this, VistaPreviaPerfil.class);
+                    Intent intent = new Intent(ListaEventosActivity.this, PerfilActivity.class);
                     intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }

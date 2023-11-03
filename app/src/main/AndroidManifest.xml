@@ -3,10 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 
     <application
         android:allowBackup="true"
@@ -18,7 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GRUPO_IOT"
         tools:targetApi="31">
-
+        <activity
+            android:name=".alumno.activity.CambiarContrasenaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".alumno.activity.PerfilActivity"
+            android:exported="false" />
         <activity
             android:name=".alumno.activity.EditarPerfilActivity"
             android:exported="false" />
@@ -61,17 +64,12 @@
         <activity
             android:name=".delactividad.ListaDeUsuarios"
             android:exported="false" />
-
         <activity
             android:name=".delactividad.NuevoEvento"
             android:exported="false" />
-
-
         <activity
             android:name=".delactividad.Delactprincipal"
-            android:exported="false" >
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".alumno.activity.ListaEventosApoyadosActivity"
             android:exported="false" />
@@ -92,10 +90,8 @@
             android:exported="false" />
         <activity
             android:name=".alumno.activity.ListaActividadesActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".delactividad.UsuariosInscritos"
             android:exported="true" />

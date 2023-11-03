@@ -130,7 +130,7 @@ public class ListaEventosApoyadosActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(ListaEventosApoyadosActivity.this, VistaPreviaPerfil.class);
+                    Intent intent = new Intent(ListaEventosApoyadosActivity.this, PerfilActivity.class);
                     startActivity(intent);
                 }
                 return true;

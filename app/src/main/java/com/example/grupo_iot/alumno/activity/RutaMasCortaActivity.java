@@ -134,7 +134,7 @@ public class RutaMasCortaActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(RutaMasCortaActivity.this, VistaPreviaPerfil.class);
+                    Intent intent = new Intent(RutaMasCortaActivity.this, PerfilActivity.class);
                     startActivity(intent);
                 }
                 return true;

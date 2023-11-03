@@ -129,7 +129,7 @@ public class NotificacionesActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(NotificacionesActivity.this, VistaPreviaPerfil.class);
+                    Intent intent = new Intent(NotificacionesActivity.this, PerfilActivity.class);
                     startActivity(intent);
                 }
                 return true;

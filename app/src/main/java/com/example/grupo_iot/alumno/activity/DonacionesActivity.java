@@ -135,7 +135,7 @@ public class DonacionesActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(DonacionesActivity.this, VistaPreviaPerfil.class);
+                    Intent intent = new Intent(DonacionesActivity.this, PerfilActivity.class);
                     startActivity(intent);
                 }
                 return true;

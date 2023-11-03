@@ -50,11 +50,7 @@ public class ListaActividadesActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         db = FirebaseFirestore.getInstance();
-/*
-        ArrayList<String> eventos = new ArrayList<>();
-        eventos.add("Evento");
 
- */
         Intent intent = getIntent();
         correoAlumno = intent.getStringExtra("correoAlumno");
         buscarDatosAlumnos(correoAlumno);
@@ -214,7 +210,7 @@ public class ListaActividadesActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(ListaActividadesActivity.this, VistaPreviaPerfil.class);
+                    Intent intent = new Intent(ListaActividadesActivity.this, PerfilActivity.class);
                     intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }

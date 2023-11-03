@@ -146,7 +146,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    Intent intent = new Intent(EditarPerfilActivity.this, VistaPreviaPerfil.class);
+                    Intent intent = new Intent(EditarPerfilActivity.this, PerfilActivity.class);
                     startActivity(intent);
                 }
                 return true;
