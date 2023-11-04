@@ -1,5 +1,6 @@
 package com.example.grupo_iot.delactividad;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -14,13 +15,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityVistaPreviaCreacionBinding;
 import com.example.grupo_iot.databinding.ActivityVistaPreviaEventoBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -61,12 +68,14 @@ public class VistaPreviaEvento extends AppCompatActivity {
             builder.setMessage("¿Estás seguro de que deseas eliminar este evento?")
                     .setTitle("Aviso")
                     .setPositiveButton("Eliminar", (dialog, which) -> {
-                        Intent intent1 = new Intent(this, LoginActivity.class);
+                        Intent intent1 = new Intent(this, Delactprincipal.class);
                         startActivity(intent1);
                     })
                     .setNegativeButton("Cancelar", null);
             AlertDialog dialog = builder.create();
             dialog.show();
+
+            eliminarDocumentoFirestore();
 
         });
 
@@ -151,25 +160,52 @@ public class VistaPreviaEvento extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
+    private void eliminarDocumentoFirestore() {
+        Intent intent = getIntent();
+        if (intent.hasExtra("listaData")) {
+            Lista selectedLista = (Lista) intent.getSerializableExtra("listaData");
+            String titulo = selectedLista.getTitulo();
+
+            // Obtén una referencia al documento que deseas eliminar
+            db.collection("listaeventos")
+                    .whereEqualTo("titulo", titulo)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    // Obtiene el ID del documento actual
+                                    String documentoActualId = document.getId();
+
+                                    // Elimina el documento
+                                    db.collection("listaeventos")
+                                            .document(documentoActualId)
+                                            .delete()
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    // El documento se eliminó con éxito
+                                                    Toast.makeText(getApplicationContext(), "Evento eliminado", Toast.LENGTH_SHORT).show();
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    // Manejo de errores en caso de que la eliminación falle
+                                                    Toast.makeText(getApplicationContext(), "Error al eliminar el documento", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }
+                            } else {
+                                // Manejo de errores
+                                Toast.makeText(getApplicationContext(), "Error al eliminar el documento", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+    }
+
 }
