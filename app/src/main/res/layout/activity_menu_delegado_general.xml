@@ -133,7 +133,7 @@
             app:layout_constraintTop_toBottomOf="@+id/button7" />
 
         <Button
-            android:id="@+id/button11"
+            android:id="@+id/ActividadesBoton"
             android:layout_width="210dp"
             android:layout_height="60dp"
             android:backgroundTint="#414141"

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_eventos_apoyados"
+        android:icon="@mipmap/chart"
+        android:title="Estadisticas" />
+    <item
+        android:id="@+id/navigation_lista_chats"
+        android:icon="@mipmap/usuario"
+        android:title="Validaciones" />
+    <item
+        android:id="@+id/navigation_lista_actividades"
+        android:icon="@mipmap/validaciones"
+        android:title="Usuarios" />
+    <item
+        android:id="@+id/navigation_donaciones"
+        android:icon="@mipmap/calendar"
+        android:title="Actividades" />
+
+
+</menu>

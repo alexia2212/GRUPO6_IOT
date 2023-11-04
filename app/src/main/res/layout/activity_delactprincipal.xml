@@ -42,10 +42,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
-
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="478dp"
