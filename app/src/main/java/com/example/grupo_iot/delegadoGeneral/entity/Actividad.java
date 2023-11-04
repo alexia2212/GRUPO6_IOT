@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 public class Actividad implements Serializable {
     public String nombreActividad;
+
     public String descripcionActividad;
+
     public String delegadoActividad;
     public Actividad(String nombreActividad, String descripcionActividad, String delegadoActividad) {
         this.nombreActividad = nombreActividad;

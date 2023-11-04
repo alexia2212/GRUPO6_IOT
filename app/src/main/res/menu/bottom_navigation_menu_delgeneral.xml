@@ -6,6 +6,7 @@
         android:icon="@mipmap/chart"
         android:title="Estadisticas" />
     <item
+
         android:id="@+id/navigation_lista_chats"
         android:icon="@mipmap/usuario"
         android:title="Validaciones" />
