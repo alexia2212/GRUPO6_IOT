@@ -27,9 +27,12 @@ public class DonacionesActivity extends AppCompatActivity {
 
     private  ImageView imageViewSelect;
     private Uri selectedImageUri;
+    Button guardarImagen = findViewById(R.id.guardarImagen);
+
     private TextView textView4;
     private StorageReference storageReference;
     private static final int GALLERY_REQUEST_CODE = 1;
+    private boolean imagenSeleccionada = false;
 
     ActivityDonacionesBinding binding;
     DrawerLayout drawerLayout;
@@ -61,6 +64,11 @@ public class DonacionesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 seleccionarImagenDesdeGaleria();
+                if (imagenSeleccionada) {
+                    guardarImagen.setVisibility(View.VISIBLE);
+                } else {
+                    guardarImagen.setVisibility(View.GONE);
+                }
             }
         });
     }
@@ -69,6 +77,8 @@ public class DonacionesActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent, GALLERY_REQUEST_CODE);
+        imagenSeleccionada = true;
+
     }
 
     private String getFileExtension(Uri uri) {

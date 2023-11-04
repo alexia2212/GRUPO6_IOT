@@ -147,7 +147,7 @@
             android:backgroundTint="#253CBD"
             android:text="Guardar Imagen"
             android:layout_marginTop="5.5dp"
-
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
