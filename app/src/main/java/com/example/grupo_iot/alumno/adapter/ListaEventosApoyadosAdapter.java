@@ -1,6 +1,7 @@
 package com.example.grupo_iot.alumno.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.alumno.activity.EventoApoyadoActivity;
 import com.example.grupo_iot.alumno.activity.ListaEventosApoyadosActivity;
 import com.example.grupo_iot.alumno.entity.Actividad;
 import com.example.grupo_iot.alumno.entity.Alumno;
@@ -43,6 +45,46 @@ public class ListaEventosApoyadosAdapter extends RecyclerView.Adapter<ListaEvent
             super(itemView);
 
             db = FirebaseFirestore.getInstance();
+
+            itemView.findViewById(R.id.btnVerEventoApoy).setOnClickListener(view -> {
+                CollectionReference actividadesCollection = db.collection("actividades");
+                DocumentReference actividadDocument = actividadesCollection.document(eventoApoyado.getActividad());
+                CollectionReference listaEventosCollection = actividadDocument.collection("listaEventos");
+                Query query = listaEventosCollection.whereEqualTo("nombre", eventoApoyado.getEvento());
+
+                query.get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Evento evento = document.toObject(Evento.class);
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM");
+                            String fechaStr = dateFormat.format(evento.getFechaHora()).toString();
+                            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                            String horaStr = timeFormat.format(evento.getFechaHora());
+
+                            db.collection("actividades")
+                                    .document(eventoApoyado.getActividad())
+                                    .get().addOnSuccessListener(documentSnapshot -> {
+                                        String nombreImagen = documentSnapshot.getString("idImagenActividad");
+                                        Intent intent = new Intent(context, EventoApoyadoActivity.class);
+                                        intent.putExtra("nombreActividad", eventoApoyado.getActividad());
+                                        intent.putExtra("nombreEvento", eventoApoyado.getEvento());
+                                        intent.putExtra("descripcionEvento", evento.getDescripcion());
+                                        intent.putExtra("lugarEvento", evento.getLugar());
+                                        intent.putExtra("idImagenEvento", nombreImagen);
+                                        intent.putExtra("fechaEvento", fechaStr);
+                                        intent.putExtra("horaEvento", horaStr);
+                                        intent.putExtra("alumno", alumno);
+                                        intent.putExtra("apoyo", eventoApoyado.getApoyo());
+                                        context.startActivity(intent);
+                                    });
+
+
+                        }
+                    }
+                });
+
+            });
+
         }
     }
 
@@ -61,6 +103,17 @@ public class ListaEventosApoyadosAdapter extends RecyclerView.Adapter<ListaEvent
         TextView nombreActividadEvento = holder.itemView.findViewById(R.id.textViewNombreActividadEvento);
         nombreActividadEvento.setText(eventoApoyado.getActividad()+" - "+eventoApoyado.getEvento());
 
+        db.collection("actividades")
+                .document(eventoApoyado.getActividad())
+                .get().addOnSuccessListener(documentSnapshot -> {
+                    String nombreImagen = documentSnapshot.getString("idImagenActividad");
+                    ImageView imageViewEvento = holder.itemView.findViewById(R.id.imgEventApoyado);
+                    int resourceId = context.getResources().getIdentifier(nombreImagen , "drawable", context.getPackageName());
+                    if (resourceId != 0) {
+                        imageViewEvento.setImageResource(resourceId);
+                    }
+                });
+
         CollectionReference actividadesCollection = db.collection("actividades");
         DocumentReference actividadDocument = actividadesCollection.document(eventoApoyado.getActividad());
         CollectionReference listaEventosCollection = actividadDocument.collection("listaEventos");
@@ -78,19 +131,6 @@ public class ListaEventosApoyadosAdapter extends RecyclerView.Adapter<ListaEvent
                     fechaHoraEvento.setText(fechaStr+" - "+horaStr+" Hrs.");
                     TextView lugarEvento = holder.itemView.findViewById(R.id.textViewLugarEvento);
                     lugarEvento.setText(evento.getLugar());
-
-                    db.collection("actividades")
-                            .document(eventoApoyado.getActividad())
-                            .get().addOnSuccessListener(documentSnapshot -> {
-                                String nombreImagen = documentSnapshot.getString("idImagenActividad");
-                                ImageView imageViewEvento = holder.itemView.findViewById(R.id.imgEventApoyado);
-                                int resourceId = context.getResources().getIdentifier(nombreImagen , "drawable", context.getPackageName());
-                                if (resourceId != 0) {
-                                    imageViewEvento.setImageResource(resourceId);
-                                }
-                            });
-
-
                 }
 
             }

@@ -103,6 +103,8 @@ public class ListaEventosApoyadosActivity extends AppCompatActivity {
                         }
                         eventoApoyadoParticipanteList = eventoApoyadoParticList;
 
+
+
                         ListaEventosApoyadosAdapter listaEventosApoyadosAdapter = new ListaEventosApoyadosAdapter();
                         listaEventosApoyadosAdapter.setEventoApoyadoList(eventoApoyadoParticList);
                         listaEventosApoyadosAdapter.setContext(ListaEventosApoyadosActivity.this);

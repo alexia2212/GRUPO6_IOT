@@ -33,6 +33,10 @@
             android:name=".alumno.activity.PerfilActivity"
             android:exported="false" />
 
+        <activity android:name=".alumno.activity.NotificacionesActivity"
+            android:exported="false">
+        </activity>
+
         <activity
             android:name=".delactividad.MenuActividadesActivity"
             android:exported="false" />
