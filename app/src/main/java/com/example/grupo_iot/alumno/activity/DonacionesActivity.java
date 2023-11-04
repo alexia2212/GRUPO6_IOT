@@ -5,19 +5,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityDonacionesBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.storage.StorageReference;
 
 public class DonacionesActivity extends AppCompatActivity {
+
+    private  ImageView imageViewSelect;
+    private Uri selectedImageUri;
+    private TextView textView4;
+    private StorageReference storageReference;
+    private static final int GALLERY_REQUEST_CODE = 1;
 
     ActivityDonacionesBinding binding;
     DrawerLayout drawerLayout;
@@ -43,8 +55,27 @@ public class DonacionesActivity extends AppCompatActivity {
             dialog.show();
 
         });
+        imageViewSelect = findViewById(R.id.imageView16);
+        textView4 = findViewById(R.id.textView4);
+        textView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seleccionarImagenDesdeGaleria();
+            }
+        });
     }
 
+    private void seleccionarImagenDesdeGaleria() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, GALLERY_REQUEST_CODE);
+    }
+
+    private String getFileExtension(Uri uri) {
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
     public void subirFoto(View view){
         Intent intent = new Intent(this, FotoTransferenciaActivity.class);
         startActivity(intent);

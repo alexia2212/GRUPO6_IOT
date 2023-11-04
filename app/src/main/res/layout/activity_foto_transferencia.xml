@@ -128,7 +128,7 @@
             android:text="Seleccionar imagen"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:backgroundTint="#2CABBC"
+            android:backgroundTint="#00BCD4"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/view"
