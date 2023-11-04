@@ -55,9 +55,9 @@ public class ListaActividadesActivity extends AppCompatActivity {
         correoAlumno = intent.getStringExtra("correoAlumno");
         buscarDatosAlumnos(correoAlumno);
 
-        cargarDataActividades();
-
         generarBottomNavigationMenu();
+
+        cargarDataActividades();
 
         binding.btnBuscarEvento.setOnClickListener(view -> {
             realizarBusquedaEvento();
@@ -89,12 +89,10 @@ public class ListaActividadesActivity extends AppCompatActivity {
                             actividadList.add(activ);
                         }
                         listaActividadesCompleta = actividadList;
-
                         ListaActividadesAdapter listaActividadesAdapter = new ListaActividadesAdapter();
                         listaActividadesAdapter.setActividadList(actividadList);
                         listaActividadesAdapter.setContext(ListaActividadesActivity.this);
                         listaActividadesAdapter.setAlumno(alumno);
-
                         binding.recyclerViewListaActividades.setAdapter(listaActividadesAdapter);
                         binding.recyclerViewListaActividades.setLayoutManager(new LinearLayoutManager(ListaActividadesActivity.this));
                     }
@@ -109,7 +107,6 @@ public class ListaActividadesActivity extends AppCompatActivity {
                 actividadesFiltradas.add(actividad);
             }
         }
-
         ListaActividadesAdapter listaActividadesFiltradasAdapter = new ListaActividadesAdapter();
         listaActividadesFiltradasAdapter.setActividadList(actividadesFiltradas);
         listaActividadesFiltradasAdapter.setContext(ListaActividadesActivity.this);
@@ -118,26 +115,18 @@ public class ListaActividadesActivity extends AppCompatActivity {
         binding.recyclerViewListaActividades.setLayoutManager(new LinearLayoutManager(ListaActividadesActivity.this));
         listaActividadesFiltradasAdapter.notifyDataSetChanged();
     }
-
-
-    public void irEvento(View view){
-        Intent intent = new Intent(this, ListaEventosActivity.class);
-        intent.putExtra("alumno", alumno);
-        startActivity(intent);
-    }
-
+/*
     public void irMensajeria(View view){
         Intent intent = new Intent(this, ListaDeChatsActivity.class);
         intent.putExtra("alumno", alumno);
         startActivity(intent);
     }
-
     public void abrirNotificaciones(View view){
         Intent intent = new Intent(this, NotificacionesActivity.class);
         intent.putExtra("alumno", alumno);
         startActivity(intent);
     }
-
+ */
     public void generarSidebar(){
         ImageView abrirSidebar = findViewById(R.id.imageView5);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -160,9 +149,13 @@ public class ListaActividadesActivity extends AppCompatActivity {
 
         //imageView12.setImageResource(R.mipmap.perfil1);
         usuario.setText(alumno.getNombre()+" "+alumno.getApellido());
-        //usuario.setText("####");
-        //Log.d("msg-test", alumno.getNombre());
         estado.setText(alumno.getCondicion());
+
+        binding.logoutContainer.setOnClickListener(view -> {
+            Intent intent = new Intent(this, NotificacionesActivity.class);
+            intent.putExtra("alumno", alumno);
+            startActivity(intent);
+        });
     }
 
     public void buscarDatosAlumnos(String correo){
@@ -173,7 +166,6 @@ public class ListaActividadesActivity extends AppCompatActivity {
                         for (QueryDocumentSnapshot user : task.getResult()) {
                             Alumno a = user.toObject(Alumno.class);
                             if(a.getEmail().equals(correo)){
-                                Log.d("msg-test", a.getNombre());
                                 alumno = a;
                                 generarSidebar();
                                 break;
@@ -188,7 +180,6 @@ public class ListaActividadesActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
                 if(menuItem.getItemId()==R.id.navigation_lista_actividades){
                     Intent intent = new Intent(ListaActividadesActivity.this, ListaActividadesActivity.class);
                     intent.putExtra("alumno", alumno);

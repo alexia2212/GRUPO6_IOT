@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background5">
+
+        <ImageView
+            android:id="@+id/imgEventApoyado"
+            android:layout_width="61dp"
+            android:layout_height="53dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:srcCompat="@mipmap/eventoa1" />
+
+        <TextView
+            android:id="@+id/textViewNombreActividadEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imgEventApoyado"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="50dp"
+            android:layout_toEndOf="@+id/imgEventApoyado"
+            android:text="Baile Cultural"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewFechaEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewNombreActividadEvento"
+            android:layout_alignStart="@+id/textViewNombreActividadEvento"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:text="09/10 - 20:00 Hrs."
+            android:textColor="#8A8A8A"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewLugarEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewNombreActividadEvento"
+            android:layout_alignStart="@+id/textViewFechaEvento"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/textViewFechaEvento"
+            android:text="Polideportivo"
+            android:textColor="#8A8A8A"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView24"
+            android:layout_width="38dp"
+            android:layout_height="34dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:rotationY="180"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
