@@ -41,6 +41,8 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -51,6 +53,12 @@ public class ActualizarActivity extends AppCompatActivity {
     private Spinner spinnerLugar;
     FirebaseFirestore db;
     private TextInputEditText etFecha;
+
+    private TextInputEditText etTitulo;
+
+    private TextInputEditText etDescripcion;
+
+    private Intent intent;
 
     DrawerLayout drawerLayout;
 
@@ -78,6 +86,9 @@ public class ActualizarActivity extends AppCompatActivity {
 
         spinnerLugar.setAdapter(adapter);
 
+        intent = getIntent();
+
+
 
         spinnerLugar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
@@ -93,6 +104,9 @@ public class ActualizarActivity extends AppCompatActivity {
             }
         });
         etFecha = findViewById(R.id.etInput3);
+        etDescripcion = findViewById(R.id.etInput2);
+        etTitulo = findViewById(R.id.etInput1);
+
         etFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,8 +130,54 @@ public class ActualizarActivity extends AppCompatActivity {
         miBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Muestra el Toast cuando se hace clic en el botón
-                Toast.makeText(getApplicationContext(), "Se actualizó", Toast.LENGTH_SHORT).show();
+                // Obtener los nuevos valores de los campos de entrada
+                String nuevoTitulo = etTitulo.getText().toString();
+                String nuevaDescripcion = etDescripcion.getText().toString();
+                String nuevaFecha = etFecha.getText().toString();
+                String nuevoLugar = spinnerLugar.getSelectedItem().toString();
+
+                // Actualizar los valores en la base de datos
+                if (intent.hasExtra("titulo")) {
+                    String tituloOriginal = intent.getStringExtra("titulo");
+                    db.collection("listaeventos")
+                            .whereEqualTo("titulo", tituloOriginal)
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            String documentoActualId = document.getId();
+                                            Map<String, Object> updates = new HashMap<>();
+                                            updates.put("titulo", nuevoTitulo);
+                                            updates.put("descripcion", nuevaDescripcion);
+                                            updates.put("fecha", nuevaFecha);
+                                            updates.put("lugar", nuevoLugar);
+                                            db.collection("listaeventos")
+                                                    .document(documentoActualId)
+                                                    .update(updates)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            // Los cambios se guardaron correctamente
+                                                            Toast.makeText(getApplicationContext(), "Cambios guardados", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            // Manejo de errores en caso de que la actualización falle
+                                                            Toast.makeText(getApplicationContext(), "Error al guardar los cambios", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                        }
+                                    } else {
+                                        // Manejo de errores
+                                        Toast.makeText(getApplicationContext(), "Error al guardar los cambios", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
             }
         });
 
@@ -322,6 +382,7 @@ public class ActualizarActivity extends AppCompatActivity {
             }
         });
     }
+    */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -334,11 +395,73 @@ public class ActualizarActivity extends AppCompatActivity {
             // Cargar la imagen seleccionada en el ImageView (imagenact)
             ImageView imagenAct = findViewById(R.id.imagenact);
             Picasso.get().load(imageUri).into(imagenAct);
+            guardarImagenEnFirebaseStorage(imageUri);
 
             // También puedes guardar la Uri de la imagen seleccionada en una variable o en Firebase Storage, si es necesario.
         }
     }
-*/
+    private void guardarImagenEnFirebaseStorage(Uri imageUri) {
+        // Crear una referencia al almacenamiento de Firebase donde se guardará la imagen
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+        // Crear una referencia única para la imagen (puedes utilizar el título o ID del evento)
+        StorageReference imageRef = storageRef.child("eventos/" + intent.getStringExtra("titulo") + ".jpg");
+
+        // Subir la imagen a Firebase Storage
+        imageRef.putFile(imageUri)
+                .addOnSuccessListener(taskSnapshot -> {
+                    // La imagen se ha subido correctamente, ahora obtén su URL
+                    imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        String imageUrl = uri.toString();
+
+                        // Ahora que tienes la URL de la imagen, guárdala en la base de datos
+                        actualizarImagenEnBaseDeDatos(imageUrl);
+                    });
+                })
+                .addOnFailureListener(e -> {
+                    // Manejo de errores en caso de que la carga de la imagen falle
+                    Toast.makeText(getApplicationContext(), "Error al cargar la imagen", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    private void actualizarImagenEnBaseDeDatos(String imageUrl) {
+        if (intent.hasExtra("titulo")) {
+            String tituloOriginal = intent.getStringExtra("titulo");
+            db.collection("listaeventos")
+                    .whereEqualTo("titulo", tituloOriginal)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    String documentoActualId = document.getId();
+                                    Map<String, Object> updates = new HashMap<>();
+                                    updates.put("imagen1", imageUrl); // Actualiza el campo "imagen1" con la URL
+                                    db.collection("listaeventos")
+                                            .document(documentoActualId)
+                                            .update(updates)
+                                            .addOnSuccessListener(aVoid -> {
+                                                // Los cambios se guardaron correctamente
+                                                Toast.makeText(getApplicationContext(), "Imagen guardada en la base de datos", Toast.LENGTH_SHORT).show();
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                // Manejo de errores en caso de que la actualización falle
+                                                Toast.makeText(getApplicationContext(), "Error al guardar la imagen en la base de datos", Toast.LENGTH_SHORT).show();
+                                            });
+                                }
+                            } else {
+                                // Manejo de errores
+                                Toast.makeText(getApplicationContext(), "Error al guardar la imagen en la base de datos", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+    }
+
+
+
+
 
 
 
