@@ -116,41 +116,40 @@
             app:layout_constraintTop_toTopOf="@+id/view3"
             app:srcCompat="@drawable/baseline_add_photo_alternate_24" />
 
+
+        <!-- Bottom Navigation -->
+
         <TextView
             android:id="@+id/textView4"
             style="@style/SpinnerStyle"
             android:layout_width="210dp"
             android:layout_height="51dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="52dp"
+            android:backgroundTint="#00BCD4"
             android:onClick="subirFoto"
             android:paddingStart="0dp"
             android:text="Seleccionar imagen"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:backgroundTint="#00BCD4"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/view3" />
-
-
-        <!-- Bottom Navigation -->
 
         <Button
             android:id="@+id/guardarImagen"
             android:layout_width="185dp"
             android:layout_height="52dp"
             android:layout_gravity="center"
-            android:textSize="18dp"
+            android:layout_marginTop="0.5dp"
             android:backgroundTint="#253CBD"
             android:text="Guardar Imagen"
-            android:layout_marginTop="5.5dp"
-            android:visibility="gone"
+            android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"

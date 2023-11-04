@@ -36,7 +36,7 @@ public class ConfirmacionTransferenciaActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         alumno = (Alumno) intent.getSerializableExtra("alumno");
-        buscarDatosAlumnos(alumno.getEmail());
+        //buscarDatosAlumnos(alumno.getEmail());
         generarBottomNavigationMenu();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navigation_donaciones);

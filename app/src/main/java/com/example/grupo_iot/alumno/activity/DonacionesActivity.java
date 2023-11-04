@@ -65,7 +65,14 @@ public class DonacionesActivity extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
 
-        });/*
+        });
+
+        binding.textView4.setOnClickListener(view -> {
+            Intent intent1 = new Intent(this, FotoTransferenciaActivity.class);
+            startActivity(intent1);
+
+        });
+        /*
         imageViewSelect = findViewById(R.id.imageView16);
         TextView textView4 = findViewById(R.id.textView4);
         textView4.setOnClickListener(new View.OnClickListener() {
