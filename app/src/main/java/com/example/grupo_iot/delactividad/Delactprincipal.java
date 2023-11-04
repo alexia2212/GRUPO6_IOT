@@ -10,14 +10,22 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.alumno.activity.ChatGrupalActivity;
+import com.example.grupo_iot.alumno.activity.DonacionesActivity;
+import com.example.grupo_iot.alumno.activity.ListaActividadesActivity;
+import com.example.grupo_iot.alumno.activity.ListaDeChatsActivity;
+import com.example.grupo_iot.alumno.activity.ListaEventosApoyadosActivity;
+import com.example.grupo_iot.alumno.activity.PerfilActivity;
 import com.example.grupo_iot.alumno.entity.Evento;
 import com.example.grupo_iot.databinding.ActivityCompartirfotosBinding;
 import com.example.grupo_iot.databinding.ActivityDelactprincipalBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -44,9 +52,12 @@ public class Delactprincipal extends AppCompatActivity {
         binding = ActivityDelactprincipalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         db = FirebaseFirestore.getInstance();
         dataList = new ArrayList<>();
         adapter = new Adaptador(dataList);
+
+        generarBottomNavigationMenu();
 
         RecyclerView recyclerView = findViewById(R.id.eventos);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
@@ -66,22 +77,16 @@ public class Delactprincipal extends AppCompatActivity {
             dialog.show();
         });
 
-        // Obtén una referencia a Firebase Storage
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        /*StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
-// Crea una referencia para la ubicación de la imagen que deseas obtener
-        StorageReference imagenRef = storageRef.child("imagenes/voley6.jpg");
+        StorageReference imagenRef = storageRef.child("imagenes/1659804554691.jpeg");
 
-// Obtiene el enlace de descarga de la imagen
         imagenRef.getDownloadUrl().addOnSuccessListener(uri -> {
             String imagenUrl = uri.toString();
-            // Imprime la URL de la imagen
             System.out.println("URL de la imagen: " + imagenUrl);
 
-            // También puedes mostrar la URL en un TextView o cualquier otro lugar necesario en tu aplicación
         }).addOnFailureListener(exception -> {
-            // Maneja errores si no se puede obtener el enlace de descarga
-        });
+        });*/
 
 
         TextInputEditText searchEditText = findViewById(R.id.searchEditText);
@@ -146,5 +151,28 @@ public class Delactprincipal extends AppCompatActivity {
         }
 
         adapter.setDataList(filteredList);
+    }
+
+    void generarBottomNavigationMenu(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                if(menuItem.getItemId()==R.id.navigation_lista_eventos){
+                    Intent intent = new Intent(Delactprincipal.this, Delactprincipal.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
+                    Intent intent = new Intent(Delactprincipal.this, Chatdelact.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_perfildelact){
+                    Intent intent = new Intent(Delactprincipal.this, Perfildelact.class);
+                    startActivity(intent);
+                }
+                return true;
+            }
+        });
     }
 }

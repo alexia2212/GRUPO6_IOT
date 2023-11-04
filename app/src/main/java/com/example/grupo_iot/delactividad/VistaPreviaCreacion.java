@@ -27,26 +27,6 @@ public class VistaPreviaCreacion extends AppCompatActivity {
         binding = ActivityVistaPreviaCreacionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.imageViewsalir.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
-                    .setTitle("Aviso")
-                    .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
-                        Intent intent1 = new Intent(this, LoginActivity.class);
-                        startActivity(intent1);
-                    })
-                    .setNegativeButton("Cancelar", null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
 
-        });
-
-        List<VistaPreviaCreacionLista> dataList = new ArrayList<>();
-        dataList.add(new VistaPreviaCreacionLista("Convocatoria", "15/09/2023", R.drawable.voley5, "Necesitamos gente que tenga experiencia, ganas y dedicación. Este es el comienzo de la elección para poder ganar Semana de Ingeniería", "Cancha de minas"));
-
-        RecyclerView recyclerView = findViewById(R.id.vistapreviadcreacion);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        AdaptadorVistaPreviaCreacion adapter = new AdaptadorVistaPreviaCreacion(dataList);
-        recyclerView.setAdapter(adapter);
     }
 }

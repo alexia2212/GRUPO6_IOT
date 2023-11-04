@@ -17,13 +17,19 @@
         android:theme="@style/Theme.GRUPO_IOT"
         tools:targetApi="31">
         <activity
+            android:name=".delactividad.Chatdelact"
+            android:exported="false" />
+        <activity
+            android:name=".delactividad.Perfildelact"
+            android:exported="false" />
+        <activity
+            android:name=".delactividad.VistaPreviaCreacion"
+            android:exported="false" />
+        <activity
             android:name=".alumno.activity.CambiarContrasenaActivity"
             android:exported="false" />
         <activity
             android:name=".alumno.activity.PerfilActivity"
-            android:exported="false" />
-        <activity
-            android:name=".alumno.activity.EditarPerfilActivity"
             android:exported="false" />
         <activity
             android:name=".delactividad.MenuActividadesActivity"
