@@ -95,6 +95,12 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
             }
         });
 
+        binding.guardarImagen.setOnClickListener(view -> {
+
+            Intent intent2 = new Intent(this, ConfirmacionTransferenciaActivity.class);
+            startActivity(intent2);
+
+        });
 
         /*imageViewSelect = findViewById(R.id.imageView16);
         TextView textView4 = findViewById(R.id.textView4);
