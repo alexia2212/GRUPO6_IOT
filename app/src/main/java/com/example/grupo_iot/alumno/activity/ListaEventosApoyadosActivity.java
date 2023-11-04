@@ -55,6 +55,8 @@ public class ListaEventosApoyadosActivity extends AppCompatActivity {
         alumno = (Alumno) intent.getSerializableExtra("alumno");
         buscarDatosAlumnos(alumno.getEmail());
         generarBottomNavigationMenu();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_eventos_apoyados);
 
         cargarEventosApoyados();
 
@@ -102,8 +104,6 @@ public class ListaEventosApoyadosActivity extends AppCompatActivity {
                             }
                         }
                         eventoApoyadoParticipanteList = eventoApoyadoParticList;
-
-
 
                         ListaEventosApoyadosAdapter listaEventosApoyadosAdapter = new ListaEventosApoyadosAdapter();
                         listaEventosApoyadosAdapter.setEventoApoyadoList(eventoApoyadoParticList);
@@ -212,9 +212,8 @@ public class ListaEventosApoyadosActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
-                    Intent intent = new Intent(ListaEventosApoyadosActivity.this, ListaEventosApoyadosActivity.class);
-                    intent.putExtra("alumno", alumno);
-                    startActivity(intent);
+                    menuItem.setEnabled(false);
+                    menuItem.setChecked(true);
                 }
                 if(menuItem.getItemId()==R.id.navigation_lista_chats){
                     Intent intent = new Intent(ListaEventosApoyadosActivity.this, ListaDeChatsActivity.class);

@@ -45,6 +45,7 @@ public class ListaEventosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityListaEventosAlumnoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         db = FirebaseFirestore.getInstance();
 
         Intent intent = getIntent();
@@ -52,6 +53,11 @@ public class ListaEventosActivity extends AppCompatActivity {
         descripcionActividad = intent.getStringExtra("descripcionActividad");
         nombreImagen  = intent.getStringExtra("imagenActividad");
         alumno = (Alumno) intent.getSerializableExtra("alumno");
+
+        buscarDatosAlumnos(alumno.getEmail());
+        generarBottomNavigationMenu();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_lista_actividades);
 
         TextView textViewNombreEvento = findViewById(R.id.textView2);
         ImageView imageViewEvento = findViewById(R.id.imageView2);
@@ -66,8 +72,6 @@ public class ListaEventosActivity extends AppCompatActivity {
         }
 
         cargarListaEventos();
-        generarSidebar();
-        generarBottomNavigationMenu();
 
         binding.imageView6.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -112,21 +116,25 @@ public class ListaEventosActivity extends AppCompatActivity {
 
     public void irMensajeria(View view){
         Intent intent = new Intent(this, ListaDeChatsActivity.class);
+        intent.putExtra("alumno",alumno);
         startActivity(intent);
     }
 
     public void abrirNotificaciones(View view){
         Intent intent = new Intent(this, NotificacionesActivity.class);
+        intent.putExtra("alumno",alumno);
         startActivity(intent);
     }
 
     public void confirmarApoyo(View view){
         Intent intent = new Intent(this, ConfirmacionApoyoActivity.class);
+        intent.putExtra("alumno",alumno);
         startActivity(intent);
     }
 
     public void verRutaMasCorta(View view){
         Intent intent = new Intent(this, RutaMasCortaActivity.class);
+        intent.putExtra("alumno",alumno);
         startActivity(intent);
     }
 
@@ -147,24 +155,45 @@ public class ListaEventosActivity extends AppCompatActivity {
 
         View headerView = navigationView.getHeaderView(0);
         //ImageView imageView12 = headerView.findViewById(R.id.imageView12);
-        TextView textView6 = headerView.findViewById(R.id.textView6);
+        TextView usuario = headerView.findViewById(R.id.textView6);
         TextView estado = headerView.findViewById(R.id.estado);
 
         //imageView12.setImageResource(R.mipmap.perfil1);
-        textView6.setText(alumno.getNombre()+" "+alumno.getApellido());
+        usuario.setText(alumno.getNombre()+" "+alumno.getApellido());
         estado.setText(alumno.getCondicion());
+
+        binding.logoutContainer.setOnClickListener(view -> {
+            Intent intent = new Intent(this, NotificacionesActivity.class);
+            intent.putExtra("alumno", alumno);
+            startActivity(intent);
+        });
     }
 
-    void generarBottomNavigationMenu(){
+    public void buscarDatosAlumnos(String correo){
+        db.collection("alumnos")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        for (QueryDocumentSnapshot user : task.getResult()) {
+                            Alumno a = user.toObject(Alumno.class);
+                            if(a.getEmail().equals(correo)){
+                                alumno = a;
+                                generarSidebar();
+                                break;
+                            }
+                        }
+                    }
+                });
+    }
+
+    public void generarBottomNavigationMenu(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
                 if(menuItem.getItemId()==R.id.navigation_lista_actividades){
-                    Intent intent = new Intent(ListaEventosActivity.this, ListaActividadesActivity.class);
-                    intent.putExtra("alumno", alumno);
-                    startActivity(intent);
+                    menuItem.setEnabled(false);
+                    menuItem.setChecked(true);
                 }
                 if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
                     Intent intent = new Intent(ListaEventosActivity.this, ListaEventosApoyadosActivity.class);

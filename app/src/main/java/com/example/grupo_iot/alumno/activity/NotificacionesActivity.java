@@ -53,17 +53,18 @@ public class NotificacionesActivity extends AppCompatActivity {
                     .setNegativeButton("Cancelar", null);
             AlertDialog dialog = builder.create();
             dialog.show();
-
         });
     }
 
     public void irMensajeria(View view){
         Intent intent = new Intent(this, ListaDeChatsActivity.class);
+        intent.putExtra("alumno",alumno);
         startActivity(intent);
     }
 
     public void abrirNotificaciones(View view){
         Intent intent = new Intent(this, NotificacionesActivity.class);
+        intent.putExtra("alumno",alumno);
         startActivity(intent);
     }
 
@@ -119,22 +120,27 @@ public class NotificacionesActivity extends AppCompatActivity {
 
                 if(menuItem.getItemId()==R.id.navigation_lista_actividades){
                     Intent intent = new Intent(NotificacionesActivity.this, ListaActividadesActivity.class);
+                    intent.putExtra("alumno",alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
                     Intent intent = new Intent(NotificacionesActivity.this, ListaEventosApoyadosActivity.class);
+                    intent.putExtra("alumno",alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_lista_chats){
                     Intent intent = new Intent(NotificacionesActivity.this, ListaDeChatsActivity.class);
+                    intent.putExtra("alumno",alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(NotificacionesActivity.this, DonacionesActivity.class);
+                    intent.putExtra("alumno",alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
                     Intent intent = new Intent(NotificacionesActivity.this, PerfilActivity.class);
+                    intent.putExtra("alumno",alumno);
                     startActivity(intent);
                 }
                 return true;

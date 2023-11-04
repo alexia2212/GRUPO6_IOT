@@ -56,6 +56,9 @@ public class ListaActividadesActivity extends AppCompatActivity {
         buscarDatosAlumnos(correoAlumno);
 
         generarBottomNavigationMenu();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_lista_actividades);
+
 
         cargarDataActividades();
 
@@ -115,18 +118,7 @@ public class ListaActividadesActivity extends AppCompatActivity {
         binding.recyclerViewListaActividades.setLayoutManager(new LinearLayoutManager(ListaActividadesActivity.this));
         listaActividadesFiltradasAdapter.notifyDataSetChanged();
     }
-/*
-    public void irMensajeria(View view){
-        Intent intent = new Intent(this, ListaDeChatsActivity.class);
-        intent.putExtra("alumno", alumno);
-        startActivity(intent);
-    }
-    public void abrirNotificaciones(View view){
-        Intent intent = new Intent(this, NotificacionesActivity.class);
-        intent.putExtra("alumno", alumno);
-        startActivity(intent);
-    }
- */
+
     public void generarSidebar(){
         ImageView abrirSidebar = findViewById(R.id.imageView5);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -181,9 +173,8 @@ public class ListaActividadesActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 if(menuItem.getItemId()==R.id.navigation_lista_actividades){
-                    Intent intent = new Intent(ListaActividadesActivity.this, ListaActividadesActivity.class);
-                    intent.putExtra("alumno", alumno);
-                    startActivity(intent);
+                    menuItem.setEnabled(false);
+                    menuItem.setChecked(true);
                 }
                 if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
                     Intent intent = new Intent(ListaActividadesActivity.this, ListaEventosApoyadosActivity.class);

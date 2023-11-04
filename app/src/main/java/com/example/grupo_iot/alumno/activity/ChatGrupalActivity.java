@@ -32,8 +32,15 @@ public class ChatGrupalActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         db = FirebaseFirestore.getInstance();
-        generarSidebar();
+
+        Intent intent = getIntent();
+        alumno = (Alumno) intent.getSerializableExtra("alumno");
+        buscarDatosAlumnos(alumno.getEmail());
+
         generarBottomNavigationMenu();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_lista_chats);
+
 
         binding.imageView6.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -90,6 +97,7 @@ public class ChatGrupalActivity extends AppCompatActivity {
                             Alumno a = user.toObject(Alumno.class);
                             if(a.getEmail().equals(correo)){
                                 alumno = a;
+                                generarSidebar();
                                 break;
                             }
                         }
@@ -112,8 +120,8 @@ public class ChatGrupalActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_lista_chats){
-                    Intent intent = new Intent(ChatGrupalActivity.this, ListaDeChatsActivity.class);
-                    startActivity(intent);
+                    menuItem.setEnabled(false);
+                    menuItem.setChecked(true);
                 }
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(ChatGrupalActivity.this, DonacionesActivity.class);

@@ -10,24 +10,36 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.databinding.ActivityListaDeChatsBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class ListaDeChatsActivity extends AppCompatActivity {
     ActivityListaDeChatsBinding binding;
     DrawerLayout drawerLayout;
+    Alumno alumno;
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityListaDeChatsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        generarSidebar();
+        db = FirebaseFirestore.getInstance();
+
+        Intent intent = getIntent();
+        alumno = (Alumno) intent.getSerializableExtra("alumno");
+        buscarDatosAlumnos(alumno.getEmail());
         generarBottomNavigationMenu();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_lista_chats);
 
         binding.imageView6.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -55,13 +67,14 @@ public class ListaDeChatsActivity extends AppCompatActivity {
     }
     public void abrirChatGrupal(View view){
         Intent intent = new Intent(this, ChatGrupalActivity.class);
+        intent.putExtra("alumno", alumno);
         startActivity(intent);
     }
 
     public void generarSidebar(){
         ImageView abrirSidebar = findViewById(R.id.imageView5);
-        //ImageView cerrarSidebar = findViewById(R.id.cerrarSidebar);
         drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         abrirSidebar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,68 +85,67 @@ public class ListaDeChatsActivity extends AppCompatActivity {
                 }
             }
         });
-        /*
-        cerrarSidebar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Cierra el sidebar al hacer clic en el botón "Cerrar Sidebar"
-                drawerLayout.closeDrawer(GravityCompat.START);
-            }
-        });*/
 
-        /*
-        //Opciones navigationView
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
+        View headerView = navigationView.getHeaderView(0);
+        //ImageView imageView12 = headerView.findViewById(R.id.imageView12);
+        TextView usuario = headerView.findViewById(R.id.textView6);
+        TextView estado = headerView.findViewById(R.id.estado);
 
-                if(menuItem.getItemId()==R.id.menu_notif){
+        //imageView12.setImageResource(R.mipmap.perfil1);
+        usuario.setText(alumno.getNombre()+" "+alumno.getApellido());
+        estado.setText(alumno.getCondicion());
 
-                }
-                if(menuItem.getItemId()==R.id.menu_option_1){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_2){
-
-                }
-                if(menuItem.getItemId()==R.id.menu_option_3){
-
-                }
-
-                //Cierra el sidebar después de la selección
-                drawerLayout.closeDrawer(GravityCompat.END);
-                return true;
-            }
+        binding.logoutContainer.setOnClickListener(view -> {
+            Intent intent = new Intent(this, NotificacionesActivity.class);
+            intent.putExtra("alumno", alumno);
+            startActivity(intent);
         });
-
-         */
     }
 
-    void generarBottomNavigationMenu(){
+    public void buscarDatosAlumnos(String correo){
+        db.collection("alumnos")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        for (QueryDocumentSnapshot user : task.getResult()) {
+                            Alumno a = user.toObject(Alumno.class);
+                            if(a.getEmail().equals(correo)){
+                                alumno = a;
+                                generarSidebar();
+                                break;
+                            }
+                        }
+                    }
+                });
+    }
+
+    public void generarBottomNavigationMenu(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
                 if(menuItem.getItemId()==R.id.navigation_lista_actividades){
                     Intent intent = new Intent(ListaDeChatsActivity.this, ListaActividadesActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
                     Intent intent = new Intent(ListaDeChatsActivity.this, ListaEventosApoyadosActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_lista_chats){
-                    Intent intent = new Intent(ListaDeChatsActivity.this, ListaDeChatsActivity.class);
-                    startActivity(intent);
+                    menuItem.setEnabled(false);
+                    menuItem.setChecked(true);
                 }
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(ListaDeChatsActivity.this, DonacionesActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
                     Intent intent = new Intent(ListaDeChatsActivity.this, PerfilActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 return true;

@@ -31,7 +31,6 @@
             android:layout_height="0dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
-            android:onClick="abrirNotificaciones"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/notifications" />
@@ -206,19 +205,18 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/logout_container"
+            android:id="@+id/logoutContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:gravity="center_horizontal"
-            android:onClick="abrirNotificaciones"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:paddingStart="90dp"
+                android:paddingStart="95dp"
                 android:text="Ver todo"
                 android:textColor="#02ADC5"
                 android:textSize="16sp"
@@ -229,7 +227,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:onClick="abrirNotificaciones"
                 android:rotationY="180"
                 android:src="@drawable/baseline_arrow_back_24" />
         </LinearLayout>

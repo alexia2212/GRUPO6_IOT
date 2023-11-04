@@ -2,10 +2,16 @@ package com.example.grupo_iot.alumno.activity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.grupo_iot.IniciarSesionActivity;
 import com.example.grupo_iot.LoginActivity;
@@ -15,6 +21,8 @@ import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.databinding.ActivityCambiarContrasenaBinding;
 import com.example.grupo_iot.delactividad.Delactprincipal;
 import com.example.grupo_iot.delegadoGeneral.MenuDelegadoGeneralActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -29,6 +37,7 @@ import java.util.Map;
 public class CambiarContrasenaActivity extends AppCompatActivity {
     ActivityCambiarContrasenaBinding binding;
     FirebaseFirestore db;
+    DrawerLayout drawerLayout;
     Alumno alumno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,10 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
         Intent intent = getIntent();
         //String password = intent.getStringExtra("password");
         alumno = (Alumno) intent.getSerializableExtra("alumno");
+        buscarDatosAlumnos(alumno.getEmail());
+        generarBottomNavigationMenu();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_perfil);
 
         binding.textView22.setOnClickListener(view -> {
             db.collection("alumnos")
@@ -147,5 +160,87 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
             }
         }
         return psswdValido;
+    }
+    public void generarSidebar(){
+        ImageView abrirSidebar = findViewById(R.id.imageView5);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        abrirSidebar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                    drawerLayout.closeDrawer(GravityCompat.END);
+                } else {
+                    drawerLayout.openDrawer(GravityCompat.END);
+                }
+            }
+        });
+
+        View headerView = navigationView.getHeaderView(0);
+        //ImageView imageView12 = headerView.findViewById(R.id.imageView12);
+        TextView usuario = headerView.findViewById(R.id.textView6);
+        TextView estado = headerView.findViewById(R.id.estado);
+
+        //imageView12.setImageResource(R.mipmap.perfil1);
+        usuario.setText(alumno.getNombre()+" "+alumno.getApellido());
+        estado.setText(alumno.getCondicion());
+
+        binding.logoutContainer.setOnClickListener(view -> {
+            Intent intent = new Intent(this, NotificacionesActivity.class);
+            intent.putExtra("alumno", alumno);
+            startActivity(intent);
+        });
+    }
+
+    public void buscarDatosAlumnos(String correo){
+        db.collection("alumnos")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        for (QueryDocumentSnapshot user : task.getResult()) {
+                            Alumno a = user.toObject(Alumno.class);
+                            if(a.getEmail().equals(correo)){
+                                alumno = a;
+                                generarSidebar();
+                                break;
+                            }
+                        }
+                    }
+                });
+    }
+
+    public void generarBottomNavigationMenu(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                if(menuItem.getItemId()==R.id.navigation_lista_actividades){
+                    Intent intent = new Intent(CambiarContrasenaActivity.this, ListaActividadesActivity.class);
+                    intent.putExtra("alumno", alumno);
+                    startActivity(intent);
+
+                }
+                if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
+                    Intent intent = new Intent(CambiarContrasenaActivity.this, ListaEventosApoyadosActivity.class);
+                    intent.putExtra("alumno", alumno);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_lista_chats){
+                    Intent intent = new Intent(CambiarContrasenaActivity.this, ListaDeChatsActivity.class);
+                    intent.putExtra("alumno", alumno);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_donaciones){
+                    Intent intent = new Intent(CambiarContrasenaActivity.this, DonacionesActivity.class);
+                    intent.putExtra("alumno", alumno);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_perfil){
+                    menuItem.setEnabled(false);
+                    menuItem.setChecked(true);
+                }
+                return true;
+            }
+        });
     }
 }

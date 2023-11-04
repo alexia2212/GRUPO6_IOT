@@ -193,7 +193,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/logout_container"
+            android:id="@+id/logoutContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -204,7 +204,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:paddingStart="90dp"
+                android:paddingStart="95dp"
                 android:text="Ver todo"
                 android:textColor="#02ADC5"
                 android:textSize="16sp"

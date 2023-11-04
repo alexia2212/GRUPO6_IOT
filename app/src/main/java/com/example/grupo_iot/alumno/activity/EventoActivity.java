@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
@@ -20,15 +21,16 @@ import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.alumno.entity.EventoApoyado;
 import com.example.grupo_iot.databinding.ActivityEventoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class EventoActivity extends AppCompatActivity {
     ActivityEventoBinding binding;
     private DrawerLayout drawerLayout;
     Alumno alumno;
-
     FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,10 @@ public class EventoActivity extends AppCompatActivity {
         String lugarEvento = intent.getStringExtra("lugarEvento");
         String nombreImagen  = intent.getStringExtra("idImagenEvento");
         alumno = (Alumno) intent.getSerializableExtra("alumno");
+        buscarDatosAlumnos(alumno.getEmail());
+        generarBottomNavigationMenu();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_lista_actividades);
 
         binding.textView40.setText(nombreActividad);
         binding.textView7.setText(nombreEvento);
@@ -61,9 +67,6 @@ public class EventoActivity extends AppCompatActivity {
         if (resourceId != 0) {
             imageViewEvento.setImageResource(resourceId);
         }
-
-        generarSidebar();
-        generarBottomNavigationMenu();
 
         //SECCION APOYAR EVENTO
         String[] listaOpciones = {"Apoyar evento", "Barra", "Participante"};
@@ -141,23 +144,26 @@ public class EventoActivity extends AppCompatActivity {
 
     public void confirmarApoyo(View view){
         Intent intent = new Intent(this, ConfirmacionApoyoActivity.class);
+        intent.putExtra("alumno",alumno);
         startActivity(intent);
     }
 
     public void verRutaMasCorta(View view){
         Intent intent = new Intent(this, RutaMasCortaActivity.class);
+        intent.putExtra("alumno",alumno);
         startActivity(intent);
     }
 
     public void guardarCambios(View view){
         Intent intent = new Intent(this, ConfirmacionApoyoActivity.class);
+        intent.putExtra("alumno",alumno);
         startActivity(intent);
     }
 
     public void generarSidebar(){
         ImageView abrirSidebar = findViewById(R.id.imageView5);
-        //ImageView cerrarSidebar = findViewById(R.id.cerrarSidebar);
         drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         abrirSidebar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,31 +174,67 @@ public class EventoActivity extends AppCompatActivity {
                 }
             }
         });
+
+        View headerView = navigationView.getHeaderView(0);
+        //ImageView imageView12 = headerView.findViewById(R.id.imageView12);
+        TextView usuario = headerView.findViewById(R.id.textView6);
+        TextView estado = headerView.findViewById(R.id.estado);
+
+        //imageView12.setImageResource(R.mipmap.perfil1);
+        usuario.setText(alumno.getNombre()+" "+alumno.getApellido());
+        estado.setText(alumno.getCondicion());
+
+        binding.logoutContainer.setOnClickListener(view -> {
+            Intent intent = new Intent(this, NotificacionesActivity.class);
+            intent.putExtra("alumno", alumno);
+            startActivity(intent);
+        });
     }
-    void generarBottomNavigationMenu(){
+
+    public void buscarDatosAlumnos(String correo){
+        db.collection("alumnos")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        for (QueryDocumentSnapshot user : task.getResult()) {
+                            Alumno a = user.toObject(Alumno.class);
+                            if(a.getEmail().equals(correo)){
+                                alumno = a;
+                                generarSidebar();
+                                break;
+                            }
+                        }
+                    }
+                });
+    }
+
+    public void generarBottomNavigationMenu(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
                 if(menuItem.getItemId()==R.id.navigation_lista_actividades){
-                    Intent intent = new Intent(EventoActivity.this, ListaActividadesActivity.class);
-                    startActivity(intent);
+                    menuItem.setEnabled(false);
+                    menuItem.setChecked(true);
                 }
                 if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
                     Intent intent = new Intent(EventoActivity.this, ListaEventosApoyadosActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_lista_chats){
                     Intent intent = new Intent(EventoActivity.this, ListaDeChatsActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(EventoActivity.this, DonacionesActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
                     Intent intent = new Intent(EventoActivity.this, PerfilActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 return true;

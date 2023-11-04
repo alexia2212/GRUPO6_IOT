@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
@@ -17,11 +18,13 @@ import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.databinding.ActivityEventoApoyadoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class EventoApoyadoActivity extends AppCompatActivity {
-
     ActivityEventoApoyadoBinding binding;
     DrawerLayout drawerLayout;
+    FirebaseFirestore db;
     Alumno alumno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +32,7 @@ public class EventoApoyadoActivity extends AppCompatActivity {
         binding = ActivityEventoApoyadoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        generarSidebar();
-        generarBottomNavigationMenu();
+        db = FirebaseFirestore.getInstance();
 
         Intent intent = getIntent();
         String nombreActividad = intent.getStringExtra("nombreActividad");
@@ -42,6 +44,11 @@ public class EventoApoyadoActivity extends AppCompatActivity {
         String nombreImagen  = intent.getStringExtra("idImagenEvento");
         String apoyo = intent.getStringExtra("apoyo");
         alumno = (Alumno) intent.getSerializableExtra("alumno");
+
+        buscarDatosAlumnos(alumno.getEmail());
+        generarBottomNavigationMenu();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_lista_actividades);
 
         binding.textView40.setText(nombreActividad);
         binding.textView7.setText(nombreEvento);
@@ -76,27 +83,31 @@ public class EventoApoyadoActivity extends AppCompatActivity {
 
     public void irMensajeria(View view){
         Intent intent = new Intent(this, ListaDeChatsActivity.class);
+        intent.putExtra("alumno",alumno);
         startActivity(intent);
     }
 
     public void abrirNotificaciones(View view){
         Intent intent = new Intent(this, NotificacionesActivity.class);
+        intent.putExtra("alumno",alumno);
         startActivity(intent);
     }
 
     public void verRutaMasCorta(View view){
         Intent intent = new Intent(this, RutaMasCortaActivity.class);
+        intent.putExtra("alumno",alumno);
         startActivity(intent);
     }
     public void abrirChatGrupal(View view){
         Intent intent = new Intent(this, ChatGrupalActivity.class);
+        intent.putExtra("alumno", alumno);
         startActivity(intent);
     }
 
     public void generarSidebar(){
         ImageView abrirSidebar = findViewById(R.id.imageView5);
-        //ImageView cerrarSidebar = findViewById(R.id.cerrarSidebar);
         drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         abrirSidebar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,32 +118,67 @@ public class EventoApoyadoActivity extends AppCompatActivity {
                 }
             }
         });
+
+        View headerView = navigationView.getHeaderView(0);
+        //ImageView imageView12 = headerView.findViewById(R.id.imageView12);
+        TextView usuario = headerView.findViewById(R.id.textView6);
+        TextView estado = headerView.findViewById(R.id.estado);
+
+        //imageView12.setImageResource(R.mipmap.perfil1);
+        usuario.setText(alumno.getNombre()+" "+alumno.getApellido());
+        estado.setText(alumno.getCondicion());
+
+        binding.logoutContainer.setOnClickListener(view -> {
+            Intent intent = new Intent(this, NotificacionesActivity.class);
+            intent.putExtra("alumno", alumno);
+            startActivity(intent);
+        });
     }
 
-    void generarBottomNavigationMenu(){
+    public void buscarDatosAlumnos(String correo){
+        db.collection("alumnos")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        for (QueryDocumentSnapshot user : task.getResult()) {
+                            Alumno a = user.toObject(Alumno.class);
+                            if(a.getEmail().equals(correo)){
+                                alumno = a;
+                                generarSidebar();
+                                break;
+                            }
+                        }
+                    }
+                });
+    }
+
+    public void generarBottomNavigationMenu(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
                 if(menuItem.getItemId()==R.id.navigation_lista_actividades){
-                    Intent intent = new Intent(EventoApoyadoActivity.this, ListaActividadesActivity.class);
-                    startActivity(intent);
+                    menuItem.setEnabled(false);
+                    menuItem.setChecked(true);
                 }
                 if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
                     Intent intent = new Intent(EventoApoyadoActivity.this, ListaEventosApoyadosActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_lista_chats){
                     Intent intent = new Intent(EventoApoyadoActivity.this, ListaDeChatsActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(EventoApoyadoActivity.this, DonacionesActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
                     Intent intent = new Intent(EventoApoyadoActivity.this, PerfilActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 return true;
