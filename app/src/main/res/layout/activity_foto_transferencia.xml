@@ -60,13 +60,13 @@
         <View
             android:id="@+id/view"
             android:layout_width="343dp"
-            android:layout_height="553dp"
+            android:layout_height="540dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:background="@drawable/background4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
@@ -120,21 +120,39 @@
         <TextView
             android:id="@+id/textView4"
             style="@style/SpinnerStyle"
-            android:layout_width="181dp"
+            android:layout_width="210dp"
             android:layout_height="51dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="25dp"
             android:onClick="subirFoto"
             android:paddingStart="0dp"
-            android:text="Subir imagen"
+            android:text="Seleccionar imagen"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:backgroundTint="#00BCD4"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/view3" />
 
+
         <!-- Bottom Navigation -->
+
+        <Button
+            android:id="@+id/guardarImagen"
+            android:layout_width="185dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center"
+            android:textSize="18dp"
+            android:backgroundTint="#253CBD"
+            android:text="Guardar Imagen"
+            android:layout_marginTop="5.5dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            />
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             style="@style/NoRippleStyle"

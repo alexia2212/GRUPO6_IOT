@@ -9,6 +9,16 @@ public class Usuario implements Serializable {
     private String apellido;
     private String rol;
 
+    private String imagen;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     public String getNombre() {
         return nombre;
     }

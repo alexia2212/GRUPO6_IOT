@@ -57,7 +57,6 @@ public class RegistrarseActivity extends AppCompatActivity {
                 R.layout.item_spinner_condicion_usuario, listaOpciones);
         Spinner spinner = binding.spinnerCondicionUsuario;
         spinner.setAdapter(adapter);
-
         binding.guardar.setOnClickListener(view ->{
             String selectedOption = spinner.getSelectedItem().toString();
             Log.d("sprinner", "a"+spinner.getSelectedItem().toString());
@@ -140,15 +139,17 @@ public class RegistrarseActivity extends AppCompatActivity {
                                     UsuarioPorRegistrar.put("email", email);
                                     UsuarioPorRegistrar.put("password", password);
                                     UsuarioPorRegistrar.put("rol", rol);
-                                    db.collection("credenciales")
+                                    db.collection("usuariosPorRegistrar")
                                             .add(UsuarioPorRegistrar)
                                             .addOnSuccessListener(documentReference -> {
+                                                //CorreoElectronico.enviarCorreo(email, "Registro Exitoso", "Gracias por registrarte en Techbat.");
                                                 Intent intent = new Intent(RegistrarseActivity.this, ConfirmacionRegistroActivity.class);
                                                 startActivity(intent);                        })
                                             .addOnFailureListener(e -> {
                                                 Log.e("msg-test", e.getMessage());
                                                 e.printStackTrace();
                                             });
+
                                 }
 
                             }
@@ -166,6 +167,4 @@ public class RegistrarseActivity extends AppCompatActivity {
         });
 
     }
-
-
 }

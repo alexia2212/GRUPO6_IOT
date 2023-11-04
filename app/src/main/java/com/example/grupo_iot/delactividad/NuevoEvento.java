@@ -105,6 +105,15 @@ public class NuevoEvento extends AppCompatActivity {
                 seleccionarImagenDesdeGaleria();
             }
         });
+
+        Button vistaprevia = findViewById(R.id.vervistaprevia);
+        vistaprevia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NuevoEvento.this, VistaPreviaCreacion.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void guardarNuevoEvento() {
@@ -127,6 +136,15 @@ public class NuevoEvento extends AppCompatActivity {
                                     String imageUrl = uri.toString();
                                     EventoList evento = new EventoList(titulo, fecha, imageUrl, descripcion, lugar);
                                     guardarEventoEnFirestore(evento);
+
+                                    // Ahora, inicia la actividad VistaPreviaCreacion y pasa los datos
+                                    Intent intent = new Intent(NuevoEvento.this, VistaPreviaCreacion.class);
+                                    intent.putExtra("titulo", titulo);
+                                    intent.putExtra("descripcion", descripcion);
+                                    intent.putExtra("fecha", fecha);
+                                    intent.putExtra("lugar", lugar);
+                                    intent.putExtra("imageUrl", imageUrl);
+                                    startActivity(intent);
                                 }
                             });
                         }
@@ -141,6 +159,7 @@ public class NuevoEvento extends AppCompatActivity {
             Toast.makeText(NuevoEvento.this, "Selecciona una imagen primero", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void guardarEventoEnFirestore(EventoList evento) {
         db.collection("listaeventos")
