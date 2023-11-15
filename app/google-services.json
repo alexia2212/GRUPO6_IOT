@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "44643182640",
-    "project_id": "proyecto-iot-7c425",
-    "storage_bucket": "proyecto-iot-7c425.appspot.com"
+    "project_number": "605319948233",
+    "project_id": "proyecto-iot-65516",
+    "storage_bucket": "proyecto-iot-65516.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:44643182640:android:64dc57a9ef1784434325f5",
+        "mobilesdk_app_id": "1:605319948233:android:4fa89181aee11a31d96a18",
         "android_client_info": {
           "package_name": "com.example.grupo_iot"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBnDk0jJgpz0qvQ1967dB4lxHPID8akYwc"
+          "current_key": "AIzaSyADFBZ9mJxYKiXsJf5XAEJPzMWBSqjhNxk"
         }
       ],
       "services": {
