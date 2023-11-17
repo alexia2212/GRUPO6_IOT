@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.grupo_iot.databinding.ActivityLoginBinding;
 import com.example.grupo_iot.delegadoGeneral.MenuDelegadoGeneralActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;

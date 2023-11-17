@@ -2,6 +2,7 @@ package com.example.grupo_iot.alumno.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.activity.ListaEventosActivity;
 import com.example.grupo_iot.alumno.entity.Actividad;
 import com.example.grupo_iot.alumno.entity.Alumno;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -43,11 +47,21 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
 
         String nombreImagen = actividad.getIdImagenActividad();
 
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference imgRef = firebaseStorage.getReference().child("img_actividades/"+actividad.getIdImagenActividad()+".png");
+
+        Log.d("test-msg","img_actividades/"+actividad.getIdImagenActividad());
+        Glide.with(context)
+                .load(imgRef)
+                .into(imagenActividad);
+        /*
         // Se carga la imagen basada en el nombre del archivo
         int resourceId = context.getResources().getIdentifier(nombreImagen, "drawable", context.getPackageName());
         if (resourceId != 0) {
             imagenActividad.setImageResource(resourceId);
         }
+
+         */
     }
 
     @Override
