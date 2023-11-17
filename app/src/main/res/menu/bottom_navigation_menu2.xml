@@ -13,10 +13,6 @@
         android:icon="@mipmap/chat"
         android:title="Chats" />
     <item
-        android:id="@+id/navigation_donacionesdelact"
-        android:icon="@mipmap/donacion"
-        android:title="Donación" />
-    <item
         android:id="@+id/navigation_perfildelact"
         android:icon="@drawable/baseline_account_circle_24"
         android:title="Perfil" />

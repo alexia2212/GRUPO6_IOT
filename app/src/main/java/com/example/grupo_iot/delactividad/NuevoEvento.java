@@ -9,6 +9,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
@@ -23,6 +24,7 @@ import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityNuevoEventoBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -55,6 +57,7 @@ public class NuevoEvento extends AppCompatActivity {
         setContentView(binding.getRoot());
         db = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
+        generarBottomNavigationMenu();
 
         binding.guardarnuevoevento.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,5 +216,28 @@ public class NuevoEvento extends AppCompatActivity {
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+    void generarBottomNavigationMenu(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                if(menuItem.getItemId()==R.id.navigation_lista_eventos){
+                    Intent intent = new Intent(NuevoEvento.this, Delactprincipal.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
+                    Intent intent = new Intent(NuevoEvento.this, Chatdelact.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_perfildelact){
+                    Intent intent = new Intent(NuevoEvento.this, Perfildelact.class);
+                    startActivity(intent);
+                }
+                return true;
+            }
+        });
     }
 }

@@ -77,6 +77,8 @@ public class ActualizarActivity extends AppCompatActivity {
 
         spinnerLugar = findViewById(R.id.spinnerLugar);
 
+        generarBottomNavigationMenu();
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.simple_items, // El array de opciones definido en strings.xml
@@ -457,6 +459,29 @@ public class ActualizarActivity extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    void generarBottomNavigationMenu(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                if(menuItem.getItemId()==R.id.navigation_lista_eventos){
+                    Intent intent = new Intent(ActualizarActivity.this, Delactprincipal.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
+                    Intent intent = new Intent(ActualizarActivity.this, Chatdelact.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_perfildelact){
+                    Intent intent = new Intent(ActualizarActivity.this, Perfildelact.class);
+                    startActivity(intent);
+                }
+                return true;
+            }
+        });
     }
 
 

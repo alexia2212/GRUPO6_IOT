@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityCompartirfotosBinding;
 import com.example.grupo_iot.databinding.ActivityEventoFinalizadoBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,7 @@ public class EventoFinalizadoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityEventoFinalizadoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        generarBottomNavigationMenu();
 
         binding.imageViewsalir.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -47,5 +50,28 @@ public class EventoFinalizadoActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         AdaptadorVistaFinalizadoLista adapter = new AdaptadorVistaFinalizadoLista(dataList);
         recyclerView.setAdapter(adapter);
+    }
+
+    void generarBottomNavigationMenu(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                if(menuItem.getItemId()==R.id.navigation_lista_eventos){
+                    Intent intent = new Intent(EventoFinalizadoActivity.this, Delactprincipal.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
+                    Intent intent = new Intent(EventoFinalizadoActivity.this, Chatdelact.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_perfildelact){
+                    Intent intent = new Intent(EventoFinalizadoActivity.this, Perfildelact.class);
+                    startActivity(intent);
+                }
+                return true;
+            }
+        });
     }
 }

@@ -145,13 +145,14 @@ public class Delactprincipal extends AppCompatActivity {
         List<Lista> filteredList = new ArrayList<>();
 
         for (Lista lista : dataList) {
-            if (lista.getTitulo().toLowerCase().contains(searchText)) {
+            if (lista.getTitulo() != null && lista.getTitulo().toLowerCase().contains(searchText)) {
                 filteredList.add(lista);
             }
         }
 
         adapter.setDataList(filteredList);
     }
+
 
     void generarBottomNavigationMenu(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);

@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityVistaPreviaEventoBinding;
 import com.example.grupo_iot.databinding.ActivityVistaUsuarioBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class VistaUsuarioActivity extends AppCompatActivity {
 
@@ -20,7 +22,7 @@ public class VistaUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityVistaUsuarioBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        generarBottomNavigationMenu();
         binding.imageViewsalir.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
@@ -33,6 +35,29 @@ public class VistaUsuarioActivity extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
 
+        });
+    }
+
+    void generarBottomNavigationMenu(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                if(menuItem.getItemId()==R.id.navigation_lista_eventos){
+                    Intent intent = new Intent(VistaUsuarioActivity.this, Delactprincipal.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
+                    Intent intent = new Intent(VistaUsuarioActivity.this, Chatdelact.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_perfildelact){
+                    Intent intent = new Intent(VistaUsuarioActivity.this, Perfildelact.class);
+                    startActivity(intent);
+                }
+                return true;
+            }
         });
     }
 }

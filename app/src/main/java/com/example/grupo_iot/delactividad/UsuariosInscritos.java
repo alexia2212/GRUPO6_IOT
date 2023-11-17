@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityActualizarBinding;
 import com.example.grupo_iot.databinding.ActivityUsuariosInscritosBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,7 @@ public class UsuariosInscritos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityUsuariosInscritosBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        generarBottomNavigationMenu();
 
         //recyclerView = findViewById(R.id.usuarios1);
         listaDatos = obtenerDatos(); // Obtén tus datos de algún lugar (por ejemplo, una base de datos o una lista)
@@ -51,5 +55,28 @@ public class UsuariosInscritos extends AppCompatActivity {
 
 
         return datos;
+    }
+
+    void generarBottomNavigationMenu(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                if(menuItem.getItemId()==R.id.navigation_lista_eventos){
+                    Intent intent = new Intent(UsuariosInscritos.this, Delactprincipal.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
+                    Intent intent = new Intent(UsuariosInscritos.this, Chatdelact.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_perfildelact){
+                    Intent intent = new Intent(UsuariosInscritos.this, Perfildelact.class);
+                    startActivity(intent);
+                }
+                return true;
+            }
+        });
     }
 }

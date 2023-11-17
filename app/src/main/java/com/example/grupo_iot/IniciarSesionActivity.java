@@ -14,6 +14,7 @@ import com.example.grupo_iot.databinding.ActivityIniciarSesionBinding;
 import com.example.grupo_iot.delactividad.Delactprincipal;
 import com.example.grupo_iot.delegadoGeneral.MenuDelegadoGeneralActivity;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,6 +36,9 @@ public class IniciarSesionActivity extends AppCompatActivity {
             String usuarioIngresado = ((TextInputEditText) binding.inputEmail.getEditText()).getText().toString();
             String contrasenaIngresada = ((TextInputEditText) binding.inputPasswd.getEditText()).getText().toString();
             validarUsuario(usuarioIngresado,contrasenaIngresada);
+            FirebaseAuth.getInstance()
+                    .createUserWithEmailAndPassword(usuarioIngresado,contrasenaIngresada);
+
         });
 
         binding.button4.setOnClickListener(view -> {
