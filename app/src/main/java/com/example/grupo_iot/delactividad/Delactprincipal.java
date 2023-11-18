@@ -149,13 +149,6 @@ public class Delactprincipal extends AppCompatActivity {
             }
         });
 
-        if (auth.getCurrentUser() != null) {
-            Intent intent = new Intent(Delactprincipal.this, NuevoEvento.class);
-            startActivity(intent);
-        } else {
-            Toast.makeText(getApplicationContext(), "Usuario no autenticadnno", Toast.LENGTH_SHORT).show();
-            // Redirige al usuario a la actividad de inicio de sesión si lo deseas.
-        }
     }
 
     private void filterData(String searchText) {
