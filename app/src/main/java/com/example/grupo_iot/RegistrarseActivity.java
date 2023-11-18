@@ -8,13 +8,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
+import javax.mail.Message;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.Toast;
-
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import com.example.grupo_iot.alumno.activity.ListaActividadesActivity;
 import com.example.grupo_iot.alumno.adapter.ListaActividadesAdapter;
 import com.example.grupo_iot.alumno.entity.Actividad;
@@ -142,14 +147,15 @@ public class RegistrarseActivity extends AppCompatActivity {
                                     db.collection("usuariosPorRegistrar")
                                             .add(UsuarioPorRegistrar)
                                             .addOnSuccessListener(documentReference -> {
-                                                //CorreoElectronico.enviarCorreo(email, "Registro Exitoso", "Gracias por registrarte en Techbat.");
+                                                EmailSender.sendEmail(email);
+
                                                 Intent intent = new Intent(RegistrarseActivity.this, ConfirmacionRegistroActivity.class);
-                                                startActivity(intent);                        })
+                                                startActivity(intent);
+                                            })
                                             .addOnFailureListener(e -> {
                                                 Log.e("msg-test", e.getMessage());
                                                 e.printStackTrace();
                                             });
-
                                 }
 
                             }
@@ -160,11 +166,13 @@ public class RegistrarseActivity extends AppCompatActivity {
             alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    // enviar a iniciar sesion
+                    Intent intent = new Intent(RegistrarseActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
             });
             alert.show();
         });
 
     }
+
 }

@@ -13,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 public class CorreoElectronico {
     public static void enviarCorreo(String destinatario, String asunto, String contenido) {
         final String usuario = "techbat2023@gmail.com";
-        final String contrasena = "nzkr vstx ucti dsfu";
+        final String contrasena = "nzkrvstxuctidsfu";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
