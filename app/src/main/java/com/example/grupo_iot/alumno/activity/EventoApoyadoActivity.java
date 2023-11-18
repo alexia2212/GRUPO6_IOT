@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.entity.Alumno;
@@ -20,6 +21,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class EventoApoyadoActivity extends AppCompatActivity {
     ActivityEventoApoyadoBinding binding;
@@ -59,25 +62,23 @@ public class EventoApoyadoActivity extends AppCompatActivity {
         binding.textView3.setText("Apoyo: "+apoyo);
 
         ImageView imageViewEvento = findViewById(R.id.imageView26);
-
+/*
         // Carga la imagen basada en el nombre del recurso
         int resourceId = getResources().getIdentifier(nombreImagen , "drawable", getPackageName());
         if (resourceId != 0) {
             imageViewEvento.setImageResource(resourceId);
         }
 
-        binding.imageView6.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
-                    .setTitle("Aviso")
-                    .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
-                        Intent intent1 = new Intent(this, LoginActivity.class);
-                        startActivity(intent1);
-                    })
-                    .setNegativeButton("Cancelar", null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
+ */
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference imgRef = firebaseStorage.getReference().child("img_actividades/"+nombreImagen+".png");
 
+        Glide.with(this)
+                .load(imgRef)
+                .into(imageViewEvento);
+
+        binding.imageView6.setOnClickListener(view -> {
+            cerrarSesion();
         });
     }
 
@@ -186,4 +187,16 @@ public class EventoApoyadoActivity extends AppCompatActivity {
         });
     }
 
+    public void cerrarSesion(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                .setTitle("Aviso")
+                .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                    Intent intent1 = new Intent(this, LoginActivity.class);
+                    startActivity(intent1);
+                })
+                .setNegativeButton("Cancelar", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }

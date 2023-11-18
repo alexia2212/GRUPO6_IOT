@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.adapter.ListaActividadesAdapter;
@@ -28,6 +29,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +67,13 @@ public class ListaEventosActivity extends AppCompatActivity {
 
         textViewNombreEvento.setText(nombreActividad);
 
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference imgRef = firebaseStorage.getReference().child("img_actividades/"+nombreImagen+".png");
+
+        Glide.with(this)
+                .load(imgRef)
+                .into(imageViewEvento);
+/*
         // Carga la imagen basada en el nombre del recurso
         int resourceId = getResources().getIdentifier(nombreImagen , "drawable", getPackageName());
 
@@ -71,20 +81,12 @@ public class ListaEventosActivity extends AppCompatActivity {
             imageViewEvento.setImageResource(resourceId);
         }
 
+ */
+
         cargarListaEventos();
 
         binding.imageView6.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
-                    .setTitle("Aviso")
-                    .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
-                        Intent intent1 = new Intent(this, LoginActivity.class);
-                        startActivity(intent1);
-                    })
-                    .setNegativeButton("Cancelar", null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-
+            cerrarSesion();
         });
     }
 
@@ -218,5 +220,18 @@ public class ListaEventosActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public void cerrarSesion(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                .setTitle("Aviso")
+                .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                    Intent intent1 = new Intent(this, LoginActivity.class);
+                    startActivity(intent1);
+                })
+                .setNegativeButton("Cancelar", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
