@@ -183,134 +183,61 @@
             android:typeface="sans"
             app:layout_constraintStart_toStartOf="@+id/view7"
             app:layout_constraintTop_toBottomOf="@+id/textView51" />
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView53">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewEventos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+        </ScrollView>
 
         <TextView
             android:id="@+id/textView54"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="88dp"
             android:fontFamily="sans-serif-black"
             android:text="Participantes"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textSize="22sp"
             android:typeface="sans"
             app:layout_constraintStart_toStartOf="@+id/view7"
-            app:layout_constraintTop_toBottomOf="@+id/textView56" />
-
-        <View
-            android:id="@+id/view12"
-            android:layout_width="140dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/background52"
-            app:layout_constraintStart_toStartOf="@+id/view7"
             app:layout_constraintTop_toBottomOf="@+id/textView53" />
 
-        <View
-            android:id="@+id/view13"
-            android:layout_width="140dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/background52"
-            app:layout_constraintStart_toStartOf="@+id/view7"
-            app:layout_constraintTop_toBottomOf="@+id/textView54" />
+        <HorizontalScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView54">
 
-        <View
-            android:id="@+id/view14"
-            android:layout_width="140dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/background52"
-            app:layout_constraintEnd_toEndOf="@+id/view7"
-            app:layout_constraintHorizontal_bias="0.616"
-            app:layout_constraintStart_toEndOf="@+id/view12"
-            app:layout_constraintTop_toBottomOf="@+id/textView53" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-        <View
-            android:id="@+id/view15"
-            android:layout_width="140dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="196dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/background52"
-            app:layout_constraintStart_toStartOf="@+id/view7"
-            app:layout_constraintTop_toBottomOf="@+id/textView54" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewParticipantes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        <TextView
-            android:id="@+id/textView55"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Convocatoria"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textSize="16sp"
-            android:typeface="sans"
-            app:layout_constraintEnd_toEndOf="@+id/view12"
-            app:layout_constraintHorizontal_bias="0.581"
-            app:layout_constraintStart_toStartOf="@+id/view12"
-            app:layout_constraintTop_toTopOf="@+id/view12" />
-
-        <TextView
-            android:id="@+id/textView56"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="20/08/2023"
-            app:layout_constraintBottom_toBottomOf="@+id/view12"
-            app:layout_constraintEnd_toEndOf="@+id/view12"
-            app:layout_constraintStart_toStartOf="@+id/view12"
-            app:layout_constraintTop_toBottomOf="@+id/textView55" />
-
-        <TextView
-            android:id="@+id/textView58"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
-            android:text="Primer Partido"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textSize="16sp"
-            android:typeface="sans"
-            app:layout_constraintEnd_toEndOf="@+id/view14"
-            app:layout_constraintStart_toStartOf="@+id/view14"
-            app:layout_constraintTop_toTopOf="@+id/view14" />
-
-        <TextView
-            android:id="@+id/textView59"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="30/09/2023"
-            app:layout_constraintEnd_toEndOf="@+id/view14"
-            app:layout_constraintStart_toStartOf="@+id/view14"
-            app:layout_constraintTop_toBottomOf="@+id/textView58" />
-
-        <TextView
-            android:id="@+id/textView60"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Angelo Ramos"
-            android:textSize="16sp"
-            android:fontFamily="sans-serif-medium"
-            app:layout_constraintBottom_toBottomOf="@+id/view13"
-            app:layout_constraintEnd_toEndOf="@+id/view13"
-            app:layout_constraintStart_toStartOf="@+id/view13"
-            app:layout_constraintTop_toTopOf="@+id/view13" />
-
-        <TextView
-            android:id="@+id/textView61"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Alexia Jauregui"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/view15"
-            app:layout_constraintHorizontal_bias="0.547"
-            app:layout_constraintStart_toStartOf="@+id/view15"
-            app:layout_constraintTop_toTopOf="@+id/view15" />
-
+            </LinearLayout>
+        </HorizontalScrollView>
         <Button
             android:id="@+id/button8"
             android:layout_width="wrap_content"

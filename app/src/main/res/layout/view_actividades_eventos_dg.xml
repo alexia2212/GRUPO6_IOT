@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/actividadesDel"
+    android:layout_width="140dp"
+    android:layout_height="50dp"
+    android:background="#D9D9D9"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
+    android:layout_marginStart="12dp"
+    app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:animateLayoutChanges="true"
+            android:background="#D9D9D9"
+            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/nombreEvento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Convocatoria"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textSize="13sp"
+                    android:typeface="sans"
+                    android:layout_marginStart="20dp"
+                    android:textColor="#000000" />
+                <TextView
+                    android:id="@+id/fechaEvento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20/08/2023"
+                    android:layout_marginStart="24dp"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/view12"
+                    app:layout_constraintEnd_toEndOf="@+id/view12"
+                    app:layout_constraintStart_toStartOf="@+id/view12"
+                    app:layout_constraintTop_toBottomOf="@+id/nombreEvento" />
+
+
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/masinfoactividad"
+            android:layout_width="96dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/descripcionContenido"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="170dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="155dp"
+            android:layout_marginBottom="334dp"
+            android:backgroundTint="#5BB4BE"
+            android:fontFamily="sans-serif-medium"
+            android:onClick="masinfo"
+            android:text="MasInfo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+</androidx.cardview.widget.CardView>

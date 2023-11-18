@@ -9,6 +9,7 @@ import com.example.grupo_iot.databinding.ActivityListaActividadesAlumnoBinding;
 import com.example.grupo_iot.delactividad.Chatdelact;
 import com.example.grupo_iot.delactividad.Delactprincipal;
 import com.example.grupo_iot.delactividad.Lista;
+import com.example.grupo_iot.delactividad.NuevoEvento;
 import com.example.grupo_iot.delactividad.Perfildelact;
 import com.example.grupo_iot.delegadoGeneral.adapter.ListaActividadesAdapter;
 import com.example.grupo_iot.delegadoGeneral.entity.Actividad;
@@ -28,6 +29,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -83,6 +86,23 @@ public class ActividadesActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     Log.e("ActividadesActivity", "Error al obtener los eventos", e);
                 });
+        ImageView addImage = findViewById(R.id.buttonAgregar);
+        addImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ActividadesActivity.this, CrearActividadActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button addButton = findViewById(R.id.masinfoactividad);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ActividadesActivity.this, EventosActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     void generarBottomNavigationMenu(){

@@ -1,16 +1,17 @@
 package com.example.grupo_iot.delegadoGeneral.entity;
 
 public class ActividadData {
-    public ActividadData() {
-    }
 
-    private String nombreActividad;
 
-    private String descripcionActividad;
+    public String nombreActividad;
+
+    public String descripcionActividad;
 
     public ActividadData(String nombreActividad, String descripcionActividad) {
         this.nombreActividad = nombreActividad;
         this.descripcionActividad = descripcionActividad;
+    }
+    public ActividadData() {
     }
 
     public String getNombreActividad() {
