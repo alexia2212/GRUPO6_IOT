@@ -21,7 +21,7 @@ public class MenuDelegadoGeneralActivity extends AppCompatActivity {
     }
 
     public void actividades(View view){
-        Intent intent=new Intent(this, ActividadesActivity.class);
+        Intent intent = new Intent(this, ActividadesActivity.class);
         startActivity(intent);
     }
 

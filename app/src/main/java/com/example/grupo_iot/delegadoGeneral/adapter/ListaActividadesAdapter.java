@@ -22,19 +22,15 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
     public ListaActividadesAdapter(List<Actividad> actividadLista) {
         this.actividadLista = actividadLista;
     }
-
-
     @NonNull
     @Override
-
-
     public ActividadViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_actividades_delgeneral, parent, false);
         return new ActividadViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ActividadViewHolder holder, int position){
+    public void onBindViewHolder(@NonNull ActividadViewHolder holder, final int position){
         Actividad actividad = actividadLista.get(position);
         holder.nombreDelegadoTextView.setText(actividad.delegadoActividad);
         holder.descripcionContenidoTextView.setText(actividad.descripcionActividad);

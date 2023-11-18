@@ -1,20 +1,16 @@
 package com.example.grupo_iot.delegadoGeneral.entity;
 
-import java.io.Serializable;
-
-public class Actividad implements Serializable {
-    public String nombreActividad;
-
-    public String descripcionActividad;
-
-    public String delegadoActividad;
-    public Actividad(String nombreActividad, String descripcionActividad, String delegadoActividad) {
-        this.nombreActividad = nombreActividad;
-        this.descripcionActividad = descripcionActividad;
-        this.delegadoActividad = delegadoActividad;
+public class ActividadData {
+    public ActividadData() {
     }
 
-    public Actividad() {
+    private String nombreActividad;
+
+    private String descripcionActividad;
+
+    public ActividadData(String nombreActividad, String descripcionActividad) {
+        this.nombreActividad = nombreActividad;
+        this.descripcionActividad = descripcionActividad;
     }
 
     public String getNombreActividad() {
@@ -31,13 +27,5 @@ public class Actividad implements Serializable {
 
     public void setDescripcionActividad(String descripcionActividad) {
         this.descripcionActividad = descripcionActividad;
-    }
-
-    public String getDelegadoActividad() {
-        return delegadoActividad;
-    }
-
-    public void setDelegadoActividad(String delegadoActividad) {
-        this.delegadoActividad = delegadoActividad;
     }
 }

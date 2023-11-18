@@ -6,16 +6,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.activity.ListaActividadesActivity;
 import com.example.grupo_iot.databinding.ActivityListaActividadesAlumnoBinding;
+import com.example.grupo_iot.delactividad.Chatdelact;
+import com.example.grupo_iot.delactividad.Delactprincipal;
 import com.example.grupo_iot.delactividad.Lista;
+import com.example.grupo_iot.delactividad.Perfildelact;
 import com.example.grupo_iot.delegadoGeneral.adapter.ListaActividadesAdapter;
 import com.example.grupo_iot.delegadoGeneral.entity.Actividad;
 import com.example.grupo_iot.databinding.ActivityMenuActividadesBinding;
-
+import com.example.grupo_iot.LoginActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import android.content.Context;
@@ -50,15 +54,16 @@ public class ActividadesActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         db = FirebaseFirestore.getInstance();
-
+        actividadLista= new ArrayList<>();
         // Inicializa el adaptador después de que la lista de actividades se haya cargado de Firebase
-        listaActividadesAdapter = new ListaActividadesAdapter(new ArrayList<>());
+        listaActividadesAdapter = new ListaActividadesAdapter(actividadLista);
+        generarBottomNavigationMenu();
         RecyclerView recyclerView = findViewById(R.id.actividadesDel);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(listaActividadesAdapter);
 
-        db.collection("actividadesG")
+        db.collection("actividades")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     actividadLista.clear();
@@ -78,6 +83,33 @@ public class ActividadesActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     Log.e("ActividadesActivity", "Error al obtener los eventos", e);
                 });
+    }
+
+    void generarBottomNavigationMenu(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation3);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                if(menuItem.getItemId()==R.id.navigation_estadistica){
+                    Intent intent = new Intent(ActividadesActivity.this, ActividadesActivity.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_validaciones){
+                    Intent intent = new Intent(ActividadesActivity.this, ActividadesActivity.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_usuarios){
+                    Intent intent = new Intent(ActividadesActivity.this, ActividadesActivity.class);
+                    startActivity(intent);
+                }
+                if(menuItem.getItemId()==R.id.navigation_actividades){
+                    Intent intent = new Intent(ActividadesActivity.this, ActividadesActivity.class);
+                    startActivity(intent);
+                }
+                return true;
+            }
+        });
     }
 }
 
