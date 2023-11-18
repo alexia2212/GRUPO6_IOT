@@ -30,6 +30,8 @@ import com.example.grupo_iot.alumno.entity.Evento;
 import com.example.grupo_iot.databinding.ActivityListaActividadesAlumnoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -46,12 +48,15 @@ public class ListaActividadesActivity extends AppCompatActivity {
     FirebaseFirestore db;
     String correoAlumno;
     Alumno alumno;
+    FirebaseAuth auth;
     List<Actividad> listaActividadesCompleta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityListaActividadesAlumnoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        auth = FirebaseAuth.getInstance();
 
         db = FirebaseFirestore.getInstance();
 
@@ -77,7 +82,10 @@ public class ListaActividadesActivity extends AppCompatActivity {
         binding.imageView6.setOnClickListener(view -> {
             cerrarSesion();
         });
+
+
     }
+
 
     public void cargarDataActividades (){
         db.collection("actividades")
