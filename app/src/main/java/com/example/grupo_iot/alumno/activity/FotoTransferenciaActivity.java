@@ -38,11 +38,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class FotoTransferenciaActivity extends AppCompatActivity {
@@ -51,7 +55,7 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
     FirebaseFirestore db;
     Alumno alumno;
     private Intent intent;
-
+    Uri imageUri;
     private  ImageView imageViewSelect;
     private Uri selectedImageUri;
     private StorageReference storageReference;
@@ -67,88 +71,87 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
         intent = getIntent();
 
         alumno = (Alumno) intent.getSerializableExtra("alumno");
-        //buscarDatosAlumnos(alumno.getEmail());
+        buscarDatosAlumnos(alumno.getEmail());
         generarBottomNavigationMenu();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navigation_donaciones);
 
         binding.imageView6.setOnClickListener(view -> {
-            cerrarSesion();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                    .setTitle("Aviso")
+                    .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                        Intent intent1 = new Intent(this, LoginActivity.class);
+                        startActivity(intent1);
+                    })
+                    .setNegativeButton("Cancelar", null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
         });
 
-        binding.textView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 1); // Usar un código de solicitud (puedes elegir cualquier número)
-                //guardarImagenFB();
-            }
+        binding.textView4.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, 1);
         });
 
         binding.guardarImagen.setOnClickListener(view -> {
-
-            Intent intent2 = new Intent(this, ConfirmacionTransferenciaActivity.class);
-            startActivity(intent2);
-
+            if(imageUri==null){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Debe seleccionar una imagen.")
+                        .setTitle("Aviso")
+                        .setPositiveButton("Aceptar", (dialog, which) -> {
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }else{
+                guardarImagenEnFirebaseStorage(imageUri);
+                Intent intent2 = new Intent(this, ConfirmacionTransferenciaActivity.class);
+                intent2.putExtra("alumno",alumno);
+                startActivity(intent2);
+            }
         });
 
-        /*imageViewSelect = findViewById(R.id.imageView16);
-        TextView textView4 = findViewById(R.id.textView4);
-        textView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                seleccionarImagenDesdeGaleria();
-                if (imagenSeleccionada) {
-                    guardarImagen.setVisibility(View.VISIBLE);
-                } else {
-                    guardarImagen.setVisibility(View.GONE);
-                }
-            }
-        });*/
-    }
-    private void seleccionarImagenDesdeGaleria() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        startActivityForResult(intent, GALLERY_REQUEST_CODE);
-        imagenSeleccionada = true;
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
-            // Obtener la Uri de la imagen seleccionada
-            Uri imageUri = data.getData();
-
-            // Cargar la imagen seleccionada en el ImageView (imagenact)
-            ImageView imageView16 = findViewById(R.id.imageView16);
-            Picasso.get().load(imageUri).into(imageView16);
-            guardarImagenEnFirebaseStorage(imageUri);
-
-            // También puedes guardar la Uri de la imagen seleccionada en una variable o en Firebase Storage, si es necesario.
+            imageUri = data.getData();
+            ImageView imageView16 = binding.imageView16;
+            ImageView imageView = binding.imageView24;
+            Picasso.get().load(imageUri).into(imageView);
+            imageView16.setVisibility(View.INVISIBLE);
+            imageView.setVisibility(View.VISIBLE);
         }
     }
 
     private void guardarImagenEnFirebaseStorage(Uri imageUri) {
-        // Crear una referencia al almacenamiento de Firebase donde se guardará la imagen
+        long timestamp = System.currentTimeMillis();
+        String fechaYHora = obtenerFechaYHora(timestamp);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imageRef = storageRef.child("capturas_transferencias/"+alumno.getNombre()+"_"+alumno.getApellido()+"-"+fechaYHora+".jpg");
+        //StorageReference imageRef = storageRef.child("capturas_transferencias/"+"Transferencia.jpg");
 
-        // Crear una referencia única para la imagen (puedes utilizar el título o ID del evento)
-        StorageReference imageRef = storageRef.child("eventos/" + intent.getStringExtra("titulo") + ".jpg");
+        StorageMetadata metadata = new StorageMetadata.Builder()
+                .setCustomMetadata("Autor", alumno.getNombre()+" "+alumno.getApellido())
+                .setCustomMetadata("Fecha-Hora", fechaYHora)
+                .build();
 
-        // Subir la imagen a Firebase Storage
-        imageRef.putFile(imageUri)
+        imageRef.putFile(imageUri, metadata)
                 .addOnSuccessListener(taskSnapshot -> {
+                    /*
                     // La imagen se ha subido correctamente, ahora obtén su URL
                     imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         String imageUrl = uri.toString();
 
                         actualizarImagenEnBaseDeDatos(imageUrl);
                     });
+                     */
                 })
                 .addOnFailureListener(e -> {
-                    // Manejo de errores en caso de que la carga de la imagen falle
                     Toast.makeText(getApplicationContext(), "Error al cargar la imagen", Toast.LENGTH_SHORT).show();
                 });
     }
@@ -344,17 +347,10 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
         });
     }
 
-    public void cerrarSesion(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
-                .setTitle("Aviso")
-                .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
-                    Intent intent1 = new Intent(this, LoginActivity.class);
-                    startActivity(intent1);
-                })
-                .setNegativeButton("Cancelar", null);
-        AlertDialog dialog = builder.create();
-        dialog.show();
+    private String obtenerFechaYHora(long timestamp) {
+        // Formatea la fecha y hora
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy", Locale.getDefault());
+        Date date = new Date(timestamp);
+        return sdf.format(date);
     }
-
 }

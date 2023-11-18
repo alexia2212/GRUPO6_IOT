@@ -36,48 +36,26 @@ public class ConfirmacionTransferenciaActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         alumno = (Alumno) intent.getSerializableExtra("alumno");
-        //buscarDatosAlumnos(alumno.getEmail());
+        buscarDatosAlumnos(alumno.getEmail());
         generarBottomNavigationMenu();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navigation_donaciones);
 
-        binding.imageView6.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
-                    .setTitle("Aviso")
-                    .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
-                        Intent intent1 = new Intent(this, LoginActivity.class);
-                        startActivity(intent1);
-                    })
-                    .setNegativeButton("Cancelar", null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-
+        binding.textView17.setOnClickListener(view -> {
+            Intent intent1 = new Intent(this, DonacionesActivity.class);
+            intent1.putExtra("alumno",alumno);
+            startActivity(intent1);
         });
-    }
 
-    public void volverDonar(View view){
-        Intent intent = new Intent(this, DonacionesActivity.class);
-        intent.putExtra("alumno",alumno);
-        startActivity(intent);
-    }
+        binding.textView22.setOnClickListener(view -> {
+            Intent intent2 = new Intent(this, ListaActividadesActivity.class);
+            intent2.putExtra("alumno",alumno);
+            startActivity(intent2);
+        });
 
-    public void irInicio(View view){
-        Intent intent = new Intent(this, ListaActividadesActivity.class);
-        intent.putExtra("alumno",alumno);
-        startActivity(intent);
-    }
-
-    public void irMensajeria(View view){
-        Intent intent = new Intent(this, ListaDeChatsActivity.class);
-        intent.putExtra("alumno",alumno);
-        startActivity(intent);
-    }
-
-    public void abrirNotificaciones(View view){
-        Intent intent = new Intent(this, NotificacionesActivity.class);
-        intent.putExtra("alumno",alumno);
-        startActivity(intent);
+        binding.imageView6.setOnClickListener(view -> {
+            cerrarSesion();
+        });
     }
 
     public void generarSidebar(){
@@ -162,4 +140,16 @@ public class ConfirmacionTransferenciaActivity extends AppCompatActivity {
         });
     }
 
+    private void cerrarSesion(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                .setTitle("Aviso")
+                .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                    Intent intent1 = new Intent(this, LoginActivity.class);
+                    startActivity(intent1);
+                })
+                .setNegativeButton("Cancelar", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }

@@ -54,21 +54,12 @@ public class DonacionesActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.navigation_donaciones);
 
         binding.imageView6.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
-                    .setTitle("Aviso")
-                    .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
-                        Intent intent1 = new Intent(this, LoginActivity.class);
-                        startActivity(intent1);
-                    })
-                    .setNegativeButton("Cancelar", null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-
+            cerrarSesion();
         });
 
         binding.textView4.setOnClickListener(view -> {
             Intent intent1 = new Intent(this, FotoTransferenciaActivity.class);
+            intent1.putExtra("alumno", alumno);
             startActivity(intent1);
 
         });
@@ -88,7 +79,7 @@ public class DonacionesActivity extends AppCompatActivity {
         });
         */
     }
-
+/*
     private void seleccionarImagenDesdeGaleria() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
@@ -106,6 +97,8 @@ public class DonacionesActivity extends AppCompatActivity {
         intent.putExtra("alumno", alumno);
         startActivity(intent);
     }
+
+ */
 
     public void irMensajeria(View view){
         Intent intent = new Intent(this, ListaDeChatsActivity.class);
@@ -200,4 +193,16 @@ public class DonacionesActivity extends AppCompatActivity {
         });
     }
 
+    private void cerrarSesion(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                .setTitle("Aviso")
+                .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                    Intent intent1 = new Intent(this, LoginActivity.class);
+                    startActivity(intent1);
+                })
+                .setNegativeButton("Cancelar", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }

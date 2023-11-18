@@ -118,15 +118,25 @@
 
         <!-- Bottom Navigation -->
 
+        <ImageView
+            android:id="@+id/imageView24"
+            android:layout_width="253dp"
+            android:layout_height="205dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/view3"
+            app:layout_constraintEnd_toEndOf="@+id/view3"
+            app:layout_constraintStart_toStartOf="@+id/view3"
+            app:layout_constraintTop_toTopOf="@+id/view3"
+            app:srcCompat="@drawable/baseline_add_photo_alternate_24" />
+
         <TextView
             android:id="@+id/textView4"
             style="@style/SpinnerStyle"
-            android:layout_width="210dp"
-            android:layout_height="51dp"
-            android:layout_marginTop="32dp"
+            android:layout_width="230dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="24dp"
             android:backgroundTint="#00BCD4"
             android:onClick="subirFoto"
-            android:paddingStart="0dp"
             android:text="Seleccionar imagen"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -142,7 +152,7 @@
             android:layout_width="185dp"
             android:layout_height="52dp"
             android:layout_gravity="center"
-            android:layout_marginTop="0.5dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="#253CBD"
             android:text="Guardar Imagen"
             android:textSize="18dp"

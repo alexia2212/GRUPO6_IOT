@@ -43,20 +43,10 @@ public class ChatGrupalActivity extends AppCompatActivity {
 
 
         binding.imageView6.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
-                    .setTitle("Aviso")
-                    .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
-                        Intent intent1 = new Intent(this, LoginActivity.class);
-                        startActivity(intent1);
-                    })
-                    .setNegativeButton("Cancelar", null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-
+            cerrarSesion();
         });
     }
-
+/*
     public void irMensajeria(View view){
         Intent intent = new Intent(this, ListaDeChatsActivity.class);
         startActivity(intent);
@@ -71,6 +61,8 @@ public class ChatGrupalActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListaDeChatsActivity.class);
         startActivity(intent);
     }
+
+ */
 
     public void generarSidebar(){
         ImageView abrirSidebar = findViewById(R.id.imageView5);
@@ -113,10 +105,12 @@ public class ChatGrupalActivity extends AppCompatActivity {
 
                 if(menuItem.getItemId()==R.id.navigation_lista_actividades){
                     Intent intent = new Intent(ChatGrupalActivity.this, ListaActividadesActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
                     Intent intent = new Intent(ChatGrupalActivity.this, ListaEventosApoyadosActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_lista_chats){
@@ -125,10 +119,12 @@ public class ChatGrupalActivity extends AppCompatActivity {
                 }
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(ChatGrupalActivity.this, DonacionesActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
                     Intent intent = new Intent(ChatGrupalActivity.this, PerfilActivity.class);
+                    intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
                 return true;
@@ -136,4 +132,16 @@ public class ChatGrupalActivity extends AppCompatActivity {
         });
     }
 
+    public void cerrarSesion(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                .setTitle("Aviso")
+                .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                    Intent intent1 = new Intent(this, LoginActivity.class);
+                    startActivity(intent1);
+                })
+                .setNegativeButton("Cancelar", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }
