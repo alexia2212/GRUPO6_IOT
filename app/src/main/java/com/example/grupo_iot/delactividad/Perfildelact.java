@@ -22,6 +22,8 @@ public class Perfildelact extends AppCompatActivity {
 
     ActivityPerfildelactBinding binding;
 
+    FirebaseAuth auth;
+
     FirebaseFirestore db;
     FirebaseUser currentUser;
 
@@ -31,6 +33,7 @@ public class Perfildelact extends AppCompatActivity {
         binding = ActivityPerfildelactBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
 
 
         generarBottomNavigationMenu();
@@ -40,8 +43,12 @@ public class Perfildelact extends AppCompatActivity {
             builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
                     .setTitle("Aviso")
                     .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                        auth = FirebaseAuth.getInstance();
+                        auth.signOut();
                         Intent intent1 = new Intent(this, LoginActivity.class);
+                        intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent1);
+                        finish();
                     })
                     .setNegativeButton("Cancelar", null);
             AlertDialog dialog = builder.create();

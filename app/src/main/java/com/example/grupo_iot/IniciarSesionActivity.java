@@ -24,20 +24,22 @@ public class IniciarSesionActivity extends AppCompatActivity {
     ActivityIniciarSesionBinding binding;
 
     FirebaseFirestore db;
+
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityIniciarSesionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        auth = FirebaseAuth.getInstance();
 
         db = FirebaseFirestore.getInstance();
 
         binding.btnIngresar.setOnClickListener(view -> {
             String usuarioIngresado = ((TextInputEditText) binding.inputEmail.getEditText()).getText().toString();
             String contrasenaIngresada = ((TextInputEditText) binding.inputPasswd.getEditText()).getText().toString();
-            validarUsuario(usuarioIngresado,contrasenaIngresada);
-            FirebaseAuth.getInstance()
-                    .createUserWithEmailAndPassword(usuarioIngresado,contrasenaIngresada);
+            validarUsuario(usuarioIngresado, contrasenaIngresada);
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(usuarioIngresado,contrasenaIngresada);
 
         });
 
@@ -53,6 +55,8 @@ public class IniciarSesionActivity extends AppCompatActivity {
     }
 
     public void validarUsuario(String usuario, String password){
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         db.collection("credenciales")
                 .get()
                 .addOnCompleteListener(task -> {

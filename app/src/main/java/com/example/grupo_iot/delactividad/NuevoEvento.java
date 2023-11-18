@@ -29,6 +29,7 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -48,6 +49,8 @@ public class NuevoEvento extends AppCompatActivity {
     ActivityNuevoEventoBinding binding;
     private Spinner spinnerLugar;
     private FirebaseFirestore db;
+
+    private FirebaseAuth auth;
     private StorageReference storageReference;
 
     @Override
@@ -58,6 +61,7 @@ public class NuevoEvento extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
         generarBottomNavigationMenu();
+        auth = FirebaseAuth.getInstance();
 
         binding.guardarnuevoevento.setOnClickListener(new View.OnClickListener() {
             @Override
