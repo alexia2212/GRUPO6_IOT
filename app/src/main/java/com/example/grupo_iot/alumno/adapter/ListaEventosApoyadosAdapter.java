@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.activity.EventoApoyadoActivity;
 import com.example.grupo_iot.alumno.activity.ListaEventosApoyadosActivity;
@@ -25,6 +26,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -102,17 +105,37 @@ public class ListaEventosApoyadosAdapter extends RecyclerView.Adapter<ListaEvent
 
         TextView nombreActividadEvento = holder.itemView.findViewById(R.id.textViewNombreActividadEvento);
         nombreActividadEvento.setText(eventoApoyado.getActividad()+" - "+eventoApoyado.getEvento());
+/*
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference imgRef = firebaseStorage.getReference().child("img_actividades/"+idImagenEvento+".png");
+        Log.d("msg-test", "img_actividades/"+idImagenEvento+".png");
+        ImageView imageViewEvento = holder.itemView.findViewById(R.id.imgEventApoyado);
+
+        Glide.with(context)
+                .load(imgRef)
+                .into(imageViewEvento);
+
+ */
 
         db.collection("actividades")
                 .document(eventoApoyado.getActividad())
                 .get().addOnSuccessListener(documentSnapshot -> {
                     String nombreImagen = documentSnapshot.getString("idImagenActividad");
                     ImageView imageViewEvento = holder.itemView.findViewById(R.id.imgEventApoyado);
+                    /*
                     int resourceId = context.getResources().getIdentifier(nombreImagen , "drawable", context.getPackageName());
                     if (resourceId != 0) {
                         imageViewEvento.setImageResource(resourceId);
                     }
+                     */
+                    FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+                    StorageReference imgRef = firebaseStorage.getReference().child("img_actividades/"+nombreImagen+".png");
+                    Glide.with(context)
+                            .load(imgRef)
+                            .into(imageViewEvento);
                 });
+
+
 
         CollectionReference actividadesCollection = db.collection("actividades");
         DocumentReference actividadDocument = actividadesCollection.document(eventoApoyado.getActividad());
