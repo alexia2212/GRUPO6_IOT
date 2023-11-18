@@ -45,23 +45,12 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
         nombreActividad.setText(actividad.getNombreActividad());
         descripcionActividad.setText(actividad.getDescripcionActividad());
 
-        String nombreImagen = actividad.getIdImagenActividad();
-
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference imgRef = firebaseStorage.getReference().child("img_actividades/"+actividad.getIdImagenActividad()+".png");
 
-        Log.d("test-msg","img_actividades/"+actividad.getIdImagenActividad());
         Glide.with(context)
                 .load(imgRef)
                 .into(imagenActividad);
-        /*
-        // Se carga la imagen basada en el nombre del archivo
-        int resourceId = context.getResources().getIdentifier(nombreImagen, "drawable", context.getPackageName());
-        if (resourceId != 0) {
-            imagenActividad.setImageResource(resourceId);
-        }
-
-         */
     }
 
     @Override
