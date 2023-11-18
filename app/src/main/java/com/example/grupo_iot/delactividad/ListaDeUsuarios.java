@@ -12,11 +12,17 @@ import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityCompartirfotosBinding;
 import com.example.grupo_iot.databinding.ActivityListaDeUsuariosBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListaDeUsuarios extends AppCompatActivity {
+
+    FirebaseAuth auth;
+
+    FirebaseFirestore db;
 
     ActivityListaDeUsuariosBinding binding;
     @Override
@@ -25,13 +31,20 @@ public class ListaDeUsuarios extends AppCompatActivity {
         binding = ActivityListaDeUsuariosBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+
         binding.imageViewsalir.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
                     .setTitle("Aviso")
                     .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                        auth = FirebaseAuth.getInstance();
+                        auth.signOut();
                         Intent intent1 = new Intent(this, LoginActivity.class);
+                        intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent1);
+                        finish();
                     })
                     .setNegativeButton("Cancelar", null);
             AlertDialog dialog = builder.create();

@@ -55,6 +55,7 @@ public class ListaEventosApoyadosActivity extends AppCompatActivity {
         alumno = (Alumno) intent.getSerializableExtra("alumno");
         buscarDatosAlumnos(alumno.getEmail());
         generarBottomNavigationMenu();
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navigation_eventos_apoyados);
 
@@ -69,16 +70,7 @@ public class ListaEventosApoyadosActivity extends AppCompatActivity {
         });
 
         binding.imageView6.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
-                    .setTitle("Aviso")
-                    .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
-                        Intent intent1 = new Intent(this, LoginActivity.class);
-                        startActivity(intent1);
-                    })
-                    .setNegativeButton("Cancelar", null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
+            cerrarSesion();
         });
     }
 
@@ -233,6 +225,18 @@ public class ListaEventosApoyadosActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+    public void cerrarSesion(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                .setTitle("Aviso")
+                .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                    Intent intent1 = new Intent(this, LoginActivity.class);
+                    startActivity(intent1);
+                })
+                .setNegativeButton("Cancelar", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }

@@ -12,6 +12,8 @@ import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityActualizarBinding;
 import com.example.grupo_iot.databinding.ActivityUsuariosInscritosBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,10 @@ public class UsuariosInscritos extends AppCompatActivity {
     private UsuariosInscritosAdaptador adapter;
     private List<UsuariosLista> listaDatos;
 
+    FirebaseAuth auth;
+
+    FirebaseFirestore db;
+
     ActivityUsuariosInscritosBinding binding;
 
     @Override
@@ -30,6 +36,8 @@ public class UsuariosInscritos extends AppCompatActivity {
         binding = ActivityUsuariosInscritosBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         generarBottomNavigationMenu();
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         //recyclerView = findViewById(R.id.usuarios1);
         listaDatos = obtenerDatos(); // Obtén tus datos de algún lugar (por ejemplo, una base de datos o una lista)

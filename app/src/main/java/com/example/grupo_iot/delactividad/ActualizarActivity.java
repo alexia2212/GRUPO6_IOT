@@ -37,6 +37,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -52,6 +53,8 @@ public class ActualizarActivity extends AppCompatActivity {
 
     private Spinner spinnerLugar;
     FirebaseFirestore db;
+
+    FirebaseAuth auth;
     private TextInputEditText etFecha;
 
     private TextInputEditText etTitulo;
@@ -74,6 +77,8 @@ public class ActualizarActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         db = FirebaseFirestore.getInstance();
+
+        auth = FirebaseAuth.getInstance();
 
         spinnerLugar = findViewById(R.id.spinnerLugar);
 
@@ -188,8 +193,12 @@ public class ActualizarActivity extends AppCompatActivity {
             builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
                     .setTitle("Aviso")
                     .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                        auth = FirebaseAuth.getInstance();
+                        auth.signOut();
                         Intent intent1 = new Intent(this, LoginActivity.class);
+                        intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent1);
+                        finish();
                     })
                     .setNegativeButton("Cancelar", null);
             AlertDialog dialog = builder.create();

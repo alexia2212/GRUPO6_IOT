@@ -52,7 +52,12 @@ public class ListaActividadesActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         Intent intent = getIntent();
-        correoAlumno = intent.getStringExtra("correoAlumno");
+        if(intent.getStringExtra("correoAlumno")==null){
+            alumno = (Alumno) intent.getSerializableExtra("alumno");
+        }else {
+            correoAlumno = intent.getStringExtra("correoAlumno");
+        }
+
         buscarDatosAlumnos(correoAlumno);
 
         generarBottomNavigationMenu();

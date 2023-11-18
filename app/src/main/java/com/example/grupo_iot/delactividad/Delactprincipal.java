@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
@@ -28,6 +29,7 @@ import com.example.grupo_iot.databinding.ActivityDelactprincipalBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -40,6 +42,7 @@ import java.util.List;
 public class Delactprincipal extends AppCompatActivity {
 
     FirebaseFirestore db;
+    FirebaseAuth auth;
 
     ActivityDelactprincipalBinding binding;
 
@@ -54,8 +57,10 @@ public class Delactprincipal extends AppCompatActivity {
 
 
         db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
         dataList = new ArrayList<>();
         adapter = new Adaptador(dataList);
+
 
         generarBottomNavigationMenu();
 
@@ -69,8 +74,12 @@ public class Delactprincipal extends AppCompatActivity {
             builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
                     .setTitle("Aviso")
                     .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                        auth = FirebaseAuth.getInstance();
+                        auth.signOut();
                         Intent intent1 = new Intent(this, LoginActivity.class);
+                        intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent1);
+                        finish();
                     })
                     .setNegativeButton("Cancelar", null);
             AlertDialog dialog = builder.create();
@@ -139,6 +148,14 @@ public class Delactprincipal extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        if (auth.getCurrentUser() != null) {
+            Intent intent = new Intent(Delactprincipal.this, NuevoEvento.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(getApplicationContext(), "Usuario no autenticadnno", Toast.LENGTH_SHORT).show();
+            // Redirige al usuario a la actividad de inicio de sesión si lo deseas.
+        }
     }
 
     private void filterData(String searchText) {
@@ -161,14 +178,22 @@ public class Delactprincipal extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 if(menuItem.getItemId()==R.id.navigation_lista_eventos){
+                    db = FirebaseFirestore.getInstance();
+                    auth = FirebaseAuth.getInstance();
                     Intent intent = new Intent(Delactprincipal.this, Delactprincipal.class);
                     startActivity(intent);
+
                 }
                 if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
+                    db = FirebaseFirestore.getInstance();
+                    auth = FirebaseAuth.getInstance();
                     Intent intent = new Intent(Delactprincipal.this, Chatdelact.class);
                     startActivity(intent);
+
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfildelact){
+                    db = FirebaseFirestore.getInstance();
+                    auth = FirebaseAuth.getInstance();
                     Intent intent = new Intent(Delactprincipal.this, Perfildelact.class);
                     startActivity(intent);
                 }
