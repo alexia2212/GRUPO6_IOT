@@ -28,8 +28,8 @@ public class EmailSender {
 
             final String subject = "Registro Exitoso";
             final String message = "Bienvenido a la familia Telebat, gracias por tu registro pronto estaremos enviando una confirmación para que puedas acceder a la aplicación.";
-            final String senderEmail = "techbat2023@gmail.com";
-            final String senderPassword = "nzkrvstxuctidsfu";
+            final String senderEmail = "techbatapp@gmail.com";
+            final String senderPassword = "dnfauxduwvblpzle";
 
             Properties props = new Properties();
             props.put("mail.smtp.auth", "true");
