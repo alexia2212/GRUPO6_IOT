@@ -84,7 +84,7 @@ public class EmailSender {
 
                 // Parte de la imagen desde el directorio "drawable"
                 MimeBodyPart imagePart = new MimeBodyPart();
-                int resourceId = context.getResources().getIdentifier("imagenlogo", "drawable", context.getPackageName());
+                int resourceId = context.getResources().getIdentifier("voley3", "drawable", context.getPackageName());
                 // Obtener la entrada del recurso
                 InputStream imageInputStream = context.getResources().openRawResource(resourceId);
 
