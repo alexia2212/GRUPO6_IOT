@@ -1,30 +1,45 @@
 package com.example.grupo_iot;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.google.android.gms.common.util.IOUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
 
 public class EmailSender {
 
-    public static void sendEmail(String userEmail) {
-        new SendEmailTask(userEmail).execute();
+    public static void sendEmail(String userEmail, Context context) {
+        new SendEmailTask(userEmail, context).execute();
     }
 
-
     private static class SendEmailTask extends AsyncTask<Void, Void, Void> {
-        private String userEmail;
 
-        public SendEmailTask(String userEmail) {
+        private String userEmail;
+        private Context context;
+        public SendEmailTask(String userEmail, Context context) {
             this.userEmail = userEmail;
+            this.context = context;
         }
         @Override
         protected Void doInBackground(Void... params) {
             Log.d("msg-test", "Ingreso al send email");
+
+            if (context == null) {
+                Log.e("msg-test", "Contexto nulo en SendEmailTask");
+                return null; // Evitar continuar si el contexto es nulo
+            }
 
             final String subject = "Registro Exitoso";
             final String message = "Bienvenido a la familia Telebat, gracias por tu registro pronto estaremos enviando una confirmación para que puedas acceder a la aplicación.";
@@ -51,20 +66,55 @@ public class EmailSender {
 
                 MimeMessage mimeMessage = new MimeMessage(session);
 
-                // Establecer dirección de correo electrónico del remitente
-                //mimeMessage.setFrom(new InternetAddress(senderEmail));
-                // Establecer dirección de correo electrónico del destinatario
-                mimeMessage.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(userEmail));
+                /*mimeMessage.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(userEmail));
                 mimeMessage.setSubject(subject);
                 mimeMessage.setText(message);
                 Log.d("msg-test", "Antes de envío de correo");
                 Transport.send(mimeMessage);
+                 */
+                mimeMessage.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(userEmail));
+                mimeMessage.setSubject(subject);
+
+                // Cuerpo del mensaje con formato HTML
+                MimeMultipart multipart = new MimeMultipart();
+
+                // Parte del texto
+                MimeBodyPart textPart = new MimeBodyPart();
+                textPart.setText(message, "utf-8", "html");
+
+                // Parte de la imagen desde el directorio "drawable"
+                MimeBodyPart imagePart = new MimeBodyPart();
+                int resourceId = context.getResources().getIdentifier("imagenlogo", "drawable", context.getPackageName());
+                // Obtener la entrada del recurso
+                InputStream imageInputStream = context.getResources().openRawResource(resourceId);
+
+                // Crear una fuente de datos a partir del InputStream
+                ByteArrayDataSource source = new ByteArrayDataSource(IOUtils.toByteArray(imageInputStream), "image/jpeg");
+
+                // Establecer la fuente de datos en la parte de la imagen
+                imagePart.setDataHandler(new javax.activation.DataHandler(source));
+                imagePart.setHeader("Content-ID", "<image>");
+
+                // Agregar las partes al cuerpo del mensaje
+                multipart.addBodyPart(textPart);
+                multipart.addBodyPart(imagePart);
+
+                // Establecer el contenido del mensaje
+                mimeMessage.setContent(multipart);
+
+                Log.d("msg-test", "Antes de envío de correo");
+                Transport.send(mimeMessage);
+
 
             } catch (MessagingException e) {
                 Log.d("msg-test", "Excepción en envío de correo: " + e);
                 throw new RuntimeException("Error al enviar el correo electrónico", e);
+            }catch (IOException e) {
+                Log.e("msg-test", "Error de entrada/salida al obtener la fuente de datos de la imagen", e);
             }
+
             return null;
         }
     }
+
 }

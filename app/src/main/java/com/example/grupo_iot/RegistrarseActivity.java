@@ -147,8 +147,7 @@ public class RegistrarseActivity extends AppCompatActivity {
                                     db.collection("usuariosPorRegistrar")
                                             .add(UsuarioPorRegistrar)
                                             .addOnSuccessListener(documentReference -> {
-                                                EmailSender.sendEmail(email);
-
+                                                EmailSender.sendEmail(email, RegistrarseActivity.this);
                                                 Intent intent = new Intent(RegistrarseActivity.this, ConfirmacionRegistroActivity.class);
                                                 startActivity(intent);
                                             })
