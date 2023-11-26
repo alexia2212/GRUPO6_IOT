@@ -9,11 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.grupo_iot.ChatFragment;
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.entity.Alumno;
@@ -30,12 +32,18 @@ public class ListaDeChatsActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     Alumno alumno;
     FirebaseFirestore db;
+    BottomNavigationView bottomNavigationView;
+    ImageButton searchButton;
+    ChatFragment chatFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityListaDeChatsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        chatFragment = new ChatFragment();
+        //bottomNavigationView = findViewById(R.id.bottom_navigation);
+        //searchButton =findViewById(R.id.);
         db = FirebaseFirestore.getInstance();
 
         Intent intent = getIntent();

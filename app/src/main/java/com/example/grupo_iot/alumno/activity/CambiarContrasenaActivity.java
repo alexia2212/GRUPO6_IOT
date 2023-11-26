@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.grupo_iot.EmailSender;
 import com.example.grupo_iot.IniciarSesionActivity;
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
@@ -73,6 +74,16 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
                                     builder.setMessage("Contraseña cambiada exitosamente.")
                                             .setTitle("Aviso")
                                             .setPositiveButton("Aceptar", (dialog, which) -> {
+                                                String subjectChangePwd = "Cambio de contraseña exitoso";
+                                                String resetPasswordMessage = "La contraseña de la cuenta se ha restablecido recientemente. " +
+                                                        "Si ha realizado este restablecimiento de contraseña, este mensaje es solo para su información.\n\n" +
+                                                        "Id. de usuario: " + alumno.getEmail() + "\n\n" +
+                                                        "Si no está seguro de si usted o su administrador ha realizado este restablecimiento de contraseña, " +
+                                                        "debe ponerse en contacto con su administrador inmediatamente.\n\n" +
+                                                        "Recuerde: asegúrese de actualizar todos sus dispositivos (teléfonos, tabletas y PC) con la nueva contraseña.\n\n" +
+                                                        "Atentamente,";
+                                                EmailSender.sendEmail(subjectChangePwd,alumno.getEmail(), resetPasswordMessage,this);
+
                                                 Intent intent1 = new Intent(this, PerfilActivity.class);
                                                 intent1.putExtra("alumno", alumno1);
                                                 startActivity(intent1);

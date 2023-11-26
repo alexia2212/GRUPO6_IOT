@@ -20,16 +20,18 @@ import javax.mail.util.ByteArrayDataSource;
 
 public class EmailSender {
 
-    public static void sendEmail(String userEmail, Context context) {
-        new SendEmailTask(userEmail, context).execute();
+    public static void sendEmail(String subject, String userEmail, String message, Context context) {
+        new SendEmailTask(subject, userEmail, message, context).execute();
     }
-
     private static class SendEmailTask extends AsyncTask<Void, Void, Void> {
-
+        private String subject;
         private String userEmail;
+        private String message;
         private Context context;
-        public SendEmailTask(String userEmail, Context context) {
+        public SendEmailTask(String subject, String userEmail, String message,Context context) {
+            this.subject = subject;
             this.userEmail = userEmail;
+            this.message = message;
             this.context = context;
         }
         @Override
@@ -38,11 +40,10 @@ public class EmailSender {
 
             if (context == null) {
                 Log.e("msg-test", "Contexto nulo en SendEmailTask");
-                return null; // Evitar continuar si el contexto es nulo
+                return null;
             }
-
-            final String subject = "Registro Exitoso";
-            final String message = "Bienvenido a la familia Telebat, gracias por tu registro pronto estaremos enviando una confirmación para que puedas acceder a la aplicación.";
+            //final String subject = "Registro Exitoso";
+            //final String message = "Bienvenido a la familia Telebat, gracias por tu registro pronto estaremos enviando una confirmación para que puedas acceder a la aplicación.";
             final String senderEmail = "techbatapp@gmail.com";
             final String senderPassword = "dnfauxduwvblpzle";
 
@@ -66,12 +67,6 @@ public class EmailSender {
 
                 MimeMessage mimeMessage = new MimeMessage(session);
 
-                /*mimeMessage.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(userEmail));
-                mimeMessage.setSubject(subject);
-                mimeMessage.setText(message);
-                Log.d("msg-test", "Antes de envío de correo");
-                Transport.send(mimeMessage);
-                 */
                 mimeMessage.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(userEmail));
                 mimeMessage.setSubject(subject);
 
@@ -82,22 +77,8 @@ public class EmailSender {
                 MimeBodyPart textPart = new MimeBodyPart();
                 textPart.setText(message, "utf-8", "html");
 
-                // Parte de la imagen desde el directorio "drawable"
-                MimeBodyPart imagePart = new MimeBodyPart();
-                int resourceId = context.getResources().getIdentifier("voley3", "drawable", context.getPackageName());
-                // Obtener la entrada del recurso
-                InputStream imageInputStream = context.getResources().openRawResource(resourceId);
-
-                // Crear una fuente de datos a partir del InputStream
-                ByteArrayDataSource source = new ByteArrayDataSource(IOUtils.toByteArray(imageInputStream), "image/jpeg");
-
-                // Establecer la fuente de datos en la parte de la imagen
-                imagePart.setDataHandler(new javax.activation.DataHandler(source));
-                imagePart.setHeader("Content-ID", "<image>");
-
                 // Agregar las partes al cuerpo del mensaje
                 multipart.addBodyPart(textPart);
-                multipart.addBodyPart(imagePart);
 
                 // Establecer el contenido del mensaje
                 mimeMessage.setContent(multipart);
@@ -105,14 +86,10 @@ public class EmailSender {
                 Log.d("msg-test", "Antes de envío de correo");
                 Transport.send(mimeMessage);
 
-
             } catch (MessagingException e) {
                 Log.d("msg-test", "Excepción en envío de correo: " + e);
                 throw new RuntimeException("Error al enviar el correo electrónico", e);
-            }catch (IOException e) {
-                Log.e("msg-test", "Error de entrada/salida al obtener la fuente de datos de la imagen", e);
             }
-
             return null;
         }
     }

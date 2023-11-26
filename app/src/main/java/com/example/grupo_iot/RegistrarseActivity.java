@@ -147,7 +147,15 @@ public class RegistrarseActivity extends AppCompatActivity {
                                     db.collection("usuariosPorRegistrar")
                                             .add(UsuarioPorRegistrar)
                                             .addOnSuccessListener(documentReference -> {
-                                                EmailSender.sendEmail(email, RegistrarseActivity.this);
+                                                String subject = "Registro exitoso";
+                                                String registroMessage = "<html><body style='font-family: Verdana; font-weight: bold; font-style: italic;'>" +
+                                                        "¡Bienvenido a Tech Bat!<br><br>" +
+                                                        "Nos complace informarte que tu registro en nuestra aplicación ha sido exitoso. Estamos emocionados de tenerte como parte de nuestra comunidad.<br><br>" +
+                                                        "Antes de que puedas comenzar a disfrutar de todas las funciones de Tech Bat, necesitas validar tu cuenta. Pronto recibirás otro correo electrónico con instrucciones sobre cómo completar el proceso de validación.<br><br>" +
+                                                        "Gracias por unirte a Tech Bat. Estamos ansiosos de proporcionarte una experiencia excepcional para Semana de Ingeniería.<br><br>" +
+                                                        "Saludos cordiales de parte de Tech-Bat</body></html>";
+
+                                                EmailSender.sendEmail(subject, email, registroMessage,RegistrarseActivity.this);
                                                 Intent intent = new Intent(RegistrarseActivity.this, ConfirmacionRegistroActivity.class);
                                                 startActivity(intent);
                                             })
