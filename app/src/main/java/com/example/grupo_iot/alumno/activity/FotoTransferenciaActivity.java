@@ -88,6 +88,17 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
         });
 
         binding.guardarImagen.setOnClickListener(view -> {
+            String inputText = binding.inputMonto.getText().toString().trim();
+            if (inputText.isEmpty()) {
+                binding.inputMonto.setError("El campo no puede estar vacío");
+                binding.inputMonto.requestFocus();
+                return;
+            }
+            if (!inputText.matches("[0-9]+")) {
+                binding.inputMonto.setError("El campo solo debe contener números");
+                binding.inputMonto.requestFocus();
+                return;
+            }
             if(imageUri==null){
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("Debe seleccionar una imagen.")
@@ -96,6 +107,7 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
                         });
                 AlertDialog dialog = builder.create();
                 dialog.show();
+
             }else{
                 guardarImagenEnFirebaseStorage(imageUri);
                 Intent intent2 = new Intent(this, ConfirmacionTransferenciaActivity.class);
