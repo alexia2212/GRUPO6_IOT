@@ -5,7 +5,8 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D9D9D9">
+    android:background="#D9D9D9"
+    tools:context=".delegadoGeneral.UsuariosActivity">>
 
     <!-- Contenido principal -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -102,12 +103,10 @@
             android:id="@+id/backgroundContainer5"
             android:layout_width="328dp"
             android:layout_height="32dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/background52"
-
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@+id/view26"
-            app:layout_constraintHorizontal_bias="0.542"
             app:layout_constraintStart_toStartOf="@+id/view26"
             app:layout_constraintTop_toTopOf="@+id/view26"> <!-- Puedes cambiar @color/colorAccent por el recurso de fondo que prefieras -->
 
@@ -153,129 +152,28 @@
                 android:typeface="sans" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/backgroundContainer6"
-            android:layout_width="326dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="28dp"
 
-            android:background="@drawable/background52"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@+id/view26"
-            app:layout_constraintStart_toStartOf="@+id/view26"
-            app:layout_constraintTop_toBottomOf="@+id/backgroundContainer5">
-
-            <TextView
-                android:id="@+id/textView75"
-                android:layout_width="8dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="Angelo Ramos"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="16sp"
-                android:typeface="sans" />
-
-            <TextView
-                android:id="@+id/textView76"
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="20201222"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="16sp"
-                android:typeface="sans" />
-
-            <Button
-                android:id="@+id/button16"
-                android:layout_width="47dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="5dp"
-                android:backgroundTint="#5BB4BE"
-                android:onClick="usuario"
-                android:text="" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/backgroundContainer3"
-            android:layout_width="326dp"
-            android:layout_height="47dp"
-
-            android:layout_marginTop="16dp"
-            android:background="@drawable/background52"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@+id/view26"
-            app:layout_constraintHorizontal_bias="0.513"
-            app:layout_constraintStart_toStartOf="@+id/view26"
-            app:layout_constraintTop_toBottomOf="@+id/backgroundContainer6">
-
-            <TextView
-                android:id="@+id/textView77"
-                android:layout_width="8dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="Alexia Jauregui"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="16sp"
-                android:typeface="sans" />
-
-            <TextView
-                android:id="@+id/textView78"
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="20191188"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="16sp"
-                android:typeface="sans" />
-
-            <ImageView
-                android:id="@+id/imageView36"
-                android:layout_width="30dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginRight="35dp"
-                android:layout_marginBottom="5dp"
-
-                app:srcCompat="@mipmap/ver" />
-
-        </LinearLayout>
-
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="361dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/round_background2"
-            app:layout_constraintBottom_toTopOf="@+id/view26"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="320dp"
+            android:layout_height="330dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.461"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/backgroundContainer5"
+            app:layout_constraintVertical_bias="0.0">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/usuariosLista"
+                android:layout_width="320dp"
+                android:layout_height="330dp" />
+        </androidx.core.widget.NestedScrollView>
 
         <View
             android:id="@+id/view26"
-            android:layout_width="365dp"
-            android:layout_height="275dp"
+            android:layout_width="351dp"
+            android:layout_height="429dp"
             android:background="@drawable/background22"
             android:elevation="-9dp"
             app:layout_constraintBottom_toBottomOf="parent"

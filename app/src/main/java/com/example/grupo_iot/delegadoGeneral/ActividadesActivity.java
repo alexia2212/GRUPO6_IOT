@@ -96,13 +96,7 @@ public class ActividadesActivity extends AppCompatActivity {
         });
 
         Button addButton = findViewById(R.id.masinfoactividad);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ActividadesActivity.this, EventosActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
     void generarBottomNavigationMenu(){
@@ -112,15 +106,15 @@ public class ActividadesActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 if(menuItem.getItemId()==R.id.navigation_estadistica){
-                    Intent intent = new Intent(ActividadesActivity.this, ActividadesActivity.class);
+                    Intent intent = new Intent(ActividadesActivity.this, EstadisticasActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_validaciones){
-                    Intent intent = new Intent(ActividadesActivity.this, ActividadesActivity.class);
+                    Intent intent = new Intent(ActividadesActivity.this, ValidacionesActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_usuarios){
-                    Intent intent = new Intent(ActividadesActivity.this, ActividadesActivity.class);
+                    Intent intent = new Intent(ActividadesActivity.this, UsuariosActivity.class);
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_actividades){

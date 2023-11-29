@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D9D9D9"
-    tools:context=".del.activity.ListaActividadesActivity">
+    tools:context=".delegadoGeneral.ValidacionActivity">
 
 
     <!-- Contenido principal -->
@@ -89,121 +89,185 @@
 
         <View
             android:id="@+id/view26"
-            android:layout_width="365dp"
-            android:layout_height="391dp"
+            android:layout_width="320dp"
+            android:layout_height="404dp"
             android:background="@drawable/round_background"
-            android:elevation="-9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.384" />
 
         <ImageView
             android:id="@+id/imageView38"
             android:layout_width="132dp"
             android:layout_height="119dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="@+id/view26"
-            app:layout_constraintHorizontal_bias="0.158"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="@+id/view26"
-            app:layout_constraintTop_toTopOf="@+id/view26"
+            app:layout_constraintTop_toBottomOf="@+id/nombreUser"
             app:srcCompat="@mipmap/angelo" />
 
         <TextView
-            android:id="@+id/textView29"
-            android:layout_width="134dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="44dp"
+            android:id="@+id/nombreUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
             android:text="Angelo Ramos"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:typeface="sans"
             app:layout_constraintEnd_toEndOf="@+id/view26"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView38"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="@+id/view26"
             app:layout_constraintTop_toTopOf="@+id/view26" />
 
-        <TextView
-            android:id="@+id/textView32"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="20dp"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:text="Condición: Alumno"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textSize="16sp"
-            android:typeface="sans"
-            app:layout_constraintEnd_toEndOf="@+id/view26"
-            app:layout_constraintHorizontal_bias="0.458"
-            app:layout_constraintStart_toEndOf="@+id/imageView38"
-            app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        <LinearLayout
 
-        <TextView
-            android:id="@+id/textView34"
+            android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:text="Código: 20201222"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textSize="16sp"
-            android:typeface="sans"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@+id/view26"
-            app:layout_constraintHorizontal_bias="0.343"
-            app:layout_constraintStart_toEndOf="@+id/imageView38"
-            app:layout_constraintTop_toBottomOf="@+id/textView32" />
-
-        <TextView
-            android:id="@+id/textView38"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:text="Correo: a20192258@pucp.edu.pe"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textSize="16sp"
-            android:typeface="sans"
-            app:layout_constraintEnd_toEndOf="@+id/view26"
-            app:layout_constraintHorizontal_bias="0.427"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="@+id/view26"
-            app:layout_constraintTop_toBottomOf="@+id/textView34" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView38">
 
-        <TextView
-            android:id="@+id/textView101"
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Condición:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="16sp"
+                android:typeface="sans"
+                app:layout_constraintEnd_toEndOf="@+id/view26"
+                app:layout_constraintHorizontal_bias="0.458"
+                app:layout_constraintStart_toEndOf="@+id/imageView38"
+                app:layout_constraintTop_toBottomOf="@+id/nombreUser" />
+
+            <TextView
+                android:id="@+id/rolUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Alumno"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="16sp"
+                android:typeface="sans"
+                app:layout_constraintEnd_toEndOf="@+id/view26"
+                app:layout_constraintHorizontal_bias="0.458" />
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="76dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Validacion Correcta"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textSize="25sp"
-            android:typeface="sans"
-            app:layout_constraintBottom_toTopOf="@+id/enviarCorreo"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@+id/view26"
-            app:layout_constraintTop_toBottomOf="@+id/textView38"
-            app:layout_constraintVertical_bias="0.027" />
+            app:layout_constraintStart_toStartOf="@+id/view26"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Código:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="16sp"
+                android:typeface="sans"
+                app:layout_constraintEnd_toEndOf="@+id/view26"
+                app:layout_constraintHorizontal_bias="0.458"
+                app:layout_constraintStart_toEndOf="@+id/imageView38"
+                app:layout_constraintTop_toBottomOf="@+id/nombreUser" />
+
+            <TextView
+                android:id="@+id/codigoUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="20201222"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="16sp"
+                android:typeface="sans"
+                app:layout_constraintEnd_toEndOf="@+id/view26"
+                app:layout_constraintHorizontal_bias="0.343"
+                app:layout_constraintStart_toEndOf="@+id/imageView38"
+                app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="94dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="96dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/view26"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="@+id/view26"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Correo:"
+                android:layout_marginEnd="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="16sp"
+                android:typeface="sans"
+                app:layout_constraintEnd_toEndOf="@+id/view26"
+                app:layout_constraintHorizontal_bias="0.458"
+                app:layout_constraintStart_toEndOf="@+id/imageView38"
+                app:layout_constraintTop_toBottomOf="@+id/nombreUser" />
+
+            <TextView
+                android:id="@+id/correoUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="a20192258@pucp.edu.pe"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="16sp"
+                android:typeface="sans"
+                app:layout_constraintEnd_toEndOf="@+id/view26"
+                app:layout_constraintStart_toStartOf="@+id/view26"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+
+        </LinearLayout>
 
         <Button
-            android:id="@+id/enviarCorreo"
+            android:id="@+id/botonValidar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="132dp"
-            android:layout_marginEnd="132dp"
-            android:layout_marginBottom="32dp"
             android:backgroundTint="#5BB4BE"
             android:fontFamily="sans-serif-medium"
-            android:onClick="editarActividad"
-            android:text="Enviar Correo"
+            android:text="Validar"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/view26"
             app:layout_constraintEnd_toEndOf="@+id/view26"
-            app:layout_constraintStart_toStartOf="@+id/view26" />
+            app:layout_constraintHorizontal_bias="0.517"
+            app:layout_constraintStart_toStartOf="@+id/view26"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

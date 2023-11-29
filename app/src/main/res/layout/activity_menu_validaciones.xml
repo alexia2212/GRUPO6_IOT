@@ -156,114 +156,6 @@
                 android:typeface="sans" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/backgroundContainer2"
-            android:layout_width="326dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="36dp"
-
-            android:background="@drawable/background52"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@+id/view20"
-            app:layout_constraintStart_toStartOf="@+id/view20"
-            app:layout_constraintTop_toBottomOf="@+id/backgroundContainer">
-
-            <TextView
-                android:id="@+id/textView70"
-                android:layout_width="8dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="Angelo Ramos"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="16sp"
-                android:typeface="sans" />
-
-            <TextView
-                android:id="@+id/textView71"
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="20201222"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="16sp"
-                android:typeface="sans" />
-
-            <Button
-                android:id="@+id/button15"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:onClick="validacion"
-                android:backgroundTint="#5BB4BE"
-                android:text="+"
-                android:layout_marginTop="7dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="5dp"
-                ></Button>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/backgroundContainer3"
-            android:layout_width="326dp"
-            android:layout_height="47dp"
-
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/background52"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@+id/view20"
-            app:layout_constraintTop_toBottomOf="@+id/backgroundContainer2">
-
-            <TextView
-                android:id="@+id/textView73"
-                android:layout_width="8dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="Stuardo Lucho"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="16sp"
-                android:typeface="sans" />
-
-            <TextView
-                android:id="@+id/textView72"
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="20191188"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="16sp"
-                android:typeface="sans" />
-
-            <ImageView
-                android:id="@+id/imageView33"
-                android:layout_width="30dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginRight="35dp"
-                android:layout_marginBottom="5dp"
-
-                app:srcCompat="@mipmap/usuario" />
-
-        </LinearLayout>
-
         <View
             android:id="@+id/view20"
             android:layout_width="360dp"
@@ -275,6 +167,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="330dp"
+            android:layout_height="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundContainer"
+            app:layout_constraintVertical_bias="0.066">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/validacionesDel"
+                android:layout_width="330dp"
+                android:layout_height="380dp" />
+
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,9 +1,11 @@
 package com.example.grupo_iot.delegadoGeneral.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,12 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.delactividad.Lista;
 import com.example.grupo_iot.delegadoGeneral.ActividadesActivity;
+import com.example.grupo_iot.delegadoGeneral.EventosActivity;
+import com.example.grupo_iot.delegadoGeneral.ValidacionActivity;
 import com.example.grupo_iot.delegadoGeneral.entity.Actividad;
+import com.example.grupo_iot.delegadoGeneral.entity.Evento;
 
 import java.util.List;
 
 public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividadesAdapter.ActividadViewHolder>{
      private List<Actividad> actividadLista;
+     private List<Evento> eventoList;
 
     public ListaActividadesAdapter(List<Actividad> actividadLista) {
         this.actividadLista = actividadLista;
@@ -35,6 +41,19 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
         holder.nombreDelegadoTextView.setText(actividad.delegadoActividad);
         holder.descripcionContenidoTextView.setText(actividad.descripcionActividad);
         holder.nombreActividadTextView.setText(actividad.nombreActividad);
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, EventosActivity.class);
+
+                // Agrega los datos que deseas conservar en el Intent
+                Actividad selectedLista = actividadLista.get(holder.getAdapterPosition());
+                intent.putExtra("listaData", selectedLista);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -48,12 +67,14 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
         TextView nombreDelegadoTextView;
         TextView descripcionContenidoTextView;
         TextView nombreActividadTextView;
+        Button button;
         public ActividadViewHolder(@NonNull View itemView){
             super(itemView);
             //ImageView ActividadesBoton = itemView.findViewById(R.id.ActividadesBoton);
             nombreDelegadoTextView = itemView.findViewById(R.id.delegadoActividad);
             descripcionContenidoTextView = itemView.findViewById(R.id.descripcionActividad);
             nombreActividadTextView = itemView.findViewById(R.id.nombreActividad);
+            button = itemView.findViewById(R.id.masinfoactividad);
 
            // ActividadesBoton.setOnClickListener(view -> {
             //    Intent intent = new Intent(context, ActividadesActivity.class);

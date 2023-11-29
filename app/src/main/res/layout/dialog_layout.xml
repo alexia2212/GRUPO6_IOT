@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="120dp"
+    android:gravity="center"
+    android:background="@drawable/background53"
+    android:layout_marginStart="10dp"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="1dp"
+        android:orientation="vertical"
+        android:animateLayoutChanges="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Validación Realizada"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textSize="20sp"
+            android:typeface="sans"/>
+
+        <Button
+            android:id="@+id/btnEnviarCorreoValidacion"
+            android:layout_width="150dp"
+            android:gravity="center"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#5BB4BE"
+            android:fontFamily="sans-serif-medium"
+            android:text="Enviar Correo" />
+
+
+    </LinearLayout>
+</LinearLayout>
