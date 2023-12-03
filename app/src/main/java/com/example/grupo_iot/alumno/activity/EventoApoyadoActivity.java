@@ -96,7 +96,7 @@ public class EventoApoyadoActivity extends AppCompatActivity {
     }
 
     public void verRutaMasCorta(View view){
-        Intent intent = new Intent(this, RutaMasCortaActivity.class);
+        Intent intent = new Intent(this, MapsActivity.class);
         intent.putExtra("alumno",alumno);
         startActivity(intent);
     }

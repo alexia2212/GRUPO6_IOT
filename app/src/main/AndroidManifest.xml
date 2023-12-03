@@ -5,10 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyB2c-zYtPwX6q8y8OfJb6lwEirYEjgwYNI" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GRUPO_IOT"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB2c-zYtPwX6q8y8OfJb6lwEirYEjgwYNI" />
+        <activity
+            android:name=".alumno.activity.MapsActivity"
+            android:exported="false" />
         <activity
             android:name=".SearchUserActivity"
             android:exported="false" />
