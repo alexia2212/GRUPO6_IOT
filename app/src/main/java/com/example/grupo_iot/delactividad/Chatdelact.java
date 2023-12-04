@@ -2,6 +2,7 @@ package com.example.grupo_iot.delactividad;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,9 +21,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Chatdelact extends AppCompatActivity {
@@ -31,6 +37,8 @@ public class Chatdelact extends AppCompatActivity {
     FirebaseFirestore db;
     FirebaseAuth auth;
 
+    List<ChatMessage> chatMessages;
+    ChatAdapter chatAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +46,12 @@ public class Chatdelact extends AppCompatActivity {
         setContentView(binding.getRoot());
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+        cargarMensajes();
+
+        chatMessages = new ArrayList<>();
+        chatAdapter = new ChatAdapter(chatMessages);
+        binding.recyclerViewChat.setLayoutManager(new LinearLayoutManager(this));
+        binding.recyclerViewChat.setAdapter(chatAdapter);
 
         generarBottomNavigationMenu();
 
@@ -99,6 +113,42 @@ public class Chatdelact extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Usuario no autenticado", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void cargarMensajes() {
+        auth.getCurrentUser();
+        // Obtén la sala a la que tiene acceso el usuario autenticado
+        String senderId = auth.getCurrentUser().getUid(); // Deberías tener tu propia lógica para obtener el ID del usuario actual
+        db.collection("credenciales").document(senderId).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String salaUsuario = documentSnapshot.getString("sala");
+
+                        db.collection("chatGrupal").document(salaUsuario).collection("mensajes")
+                                .orderBy("timestamp", Query.Direction.ASCENDING)
+                                .addSnapshotListener((value, error) -> {
+                                    if (error != null) {
+                                        return;
+                                    }
+
+                                    chatMessages.clear();
+
+                                    for (QueryDocumentSnapshot document : value) {
+                                        ChatMessage chatMessage = document.toObject(ChatMessage.class);
+                                        chatMessages.add(chatMessage);
+                                    }
+
+                                    chatAdapter.notifyDataSetChanged();
+                                });
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Chatdelact", "Error al obtener sala de usuario", e);
+                });
+    }
+
+
+
+
 
     void generarBottomNavigationMenu(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);
