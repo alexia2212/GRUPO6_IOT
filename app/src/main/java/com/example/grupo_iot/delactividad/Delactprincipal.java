@@ -173,6 +173,7 @@ public class Delactprincipal extends AppCompatActivity {
                 if(menuItem.getItemId()==R.id.navigation_lista_eventos){
                     db = FirebaseFirestore.getInstance();
                     auth = FirebaseAuth.getInstance();
+                    auth.getCurrentUser();
                     Intent intent = new Intent(Delactprincipal.this, Delactprincipal.class);
                     startActivity(intent);
 
@@ -180,6 +181,7 @@ public class Delactprincipal extends AppCompatActivity {
                 if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
                     db = FirebaseFirestore.getInstance();
                     auth = FirebaseAuth.getInstance();
+                    auth.getCurrentUser();
                     Intent intent = new Intent(Delactprincipal.this, Chatdelact.class);
                     startActivity(intent);
 
@@ -187,6 +189,7 @@ public class Delactprincipal extends AppCompatActivity {
                 if(menuItem.getItemId()==R.id.navigation_perfildelact){
                     db = FirebaseFirestore.getInstance();
                     auth = FirebaseAuth.getInstance();
+                    auth.getCurrentUser();
                     Intent intent = new Intent(Delactprincipal.this, Perfildelact.class);
                     startActivity(intent);
                 }

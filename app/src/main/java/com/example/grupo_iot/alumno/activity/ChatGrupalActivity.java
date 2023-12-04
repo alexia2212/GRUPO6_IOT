@@ -20,6 +20,7 @@ import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.databinding.ActivityChatGrupalBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -30,12 +31,14 @@ public class ChatGrupalActivity extends AppCompatActivity {
     ActivityChatGrupalBinding binding;
     DrawerLayout drawerLayout;
     Alumno alumno = new Alumno();
+
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityChatGrupalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
         Intent intent = getIntent();
@@ -55,6 +58,7 @@ public class ChatGrupalActivity extends AppCompatActivity {
         binding.imageView6.setOnClickListener(view -> {
             cerrarSesion();
         });
+
     }
 /*
     public void irMensajeria(View view){

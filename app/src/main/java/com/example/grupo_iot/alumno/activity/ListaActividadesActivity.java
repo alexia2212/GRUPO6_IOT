@@ -83,6 +83,7 @@ public class ListaActividadesActivity extends AppCompatActivity {
             cerrarSesion();
         });
 
+        String senderId = auth.getCurrentUser().getUid();
 
     }
 
