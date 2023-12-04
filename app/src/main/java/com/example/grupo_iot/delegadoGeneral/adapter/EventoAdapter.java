@@ -12,12 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grupo_iot.R;
-import com.example.grupo_iot.delegadoGeneral.ValidacionActivity;
-import com.example.grupo_iot.delegadoGeneral.adapter.EventoAdapter;
 import com.example.grupo_iot.delegadoGeneral.entity.Actividad;
 import com.example.grupo_iot.delegadoGeneral.entity.Evento;
-import com.example.grupo_iot.delegadoGeneral.EventosActivity;
-import com.example.grupo_iot.delegadoGeneral.entity.Validaciones;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -41,6 +37,7 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoView
     public void onBindViewHolder(@NonNull EventoAdapter.EventoViewHolder holder, int position) {
         Evento evento = eventoList.get(position);
         holder.nombreTextView.setText(evento.nombre);
+        holder.idTextView.setText(evento.id);
         holder.descripcionTextView.setText(evento.descripcion);
         holder.lugarTextView.setText(evento.lugar);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -68,6 +65,7 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoView
     public class EventoViewHolder extends RecyclerView.ViewHolder {
         Actividad actividad;
         TextView nombreTextView;
+        TextView idTextView;
         TextView descripcionTextView;
         TextView fechaHoraTextView;
         TextView lugarTextView;
@@ -77,6 +75,7 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoView
             //db = FirebaseFirestore.getInstance();
             //imageView = itemView.findViewById(R.id.btnValidar);
             nombreTextView = itemView.findViewById(R.id.nombreEvento);
+            idTextView = itemView.findViewById(R.id.idEventoAct);
             descripcionTextView = itemView.findViewById(R.id.descripcionEvento);
             fechaHoraTextView = itemView.findViewById(R.id.fechaEvento);
             lugarTextView = itemView.findViewById(R.id.lugarEvento);

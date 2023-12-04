@@ -1,5 +1,6 @@
 package com.example.grupo_iot.delegadoGeneral.adapter;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -15,15 +16,19 @@ import com.example.grupo_iot.R;
 import com.example.grupo_iot.delactividad.Lista;
 import com.example.grupo_iot.delegadoGeneral.ActividadesActivity;
 import com.example.grupo_iot.delegadoGeneral.EventosActivity;
+import com.example.grupo_iot.delegadoGeneral.ParticipantesActivity;
 import com.example.grupo_iot.delegadoGeneral.ValidacionActivity;
 import com.example.grupo_iot.delegadoGeneral.entity.Actividad;
 import com.example.grupo_iot.delegadoGeneral.entity.Evento;
+import com.example.grupo_iot.delegadoGeneral.entity.Participantes;
 
 import java.util.List;
 
 public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividadesAdapter.ActividadViewHolder>{
      private List<Actividad> actividadLista;
+    private List<Actividad> actividadLista1;
      private List<Evento> eventoList;
+     private List<Participantes> participantesList;
 
     public ListaActividadesAdapter(List<Actividad> actividadLista) {
         this.actividadLista = actividadLista;
@@ -45,12 +50,13 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
-                Intent intent = new Intent(context, EventosActivity.class);
-
-                // Agrega los datos que deseas conservar en el Intent
+                Intent eventosIntent = new Intent(context, EventosActivity.class);
                 Actividad selectedLista = actividadLista.get(holder.getAdapterPosition());
-                intent.putExtra("listaData", selectedLista);
-                context.startActivity(intent);
+                eventosIntent.putExtra("listaData", selectedLista);
+                Intent participantesIntent = new Intent(context, ParticipantesActivity.class);
+                Actividad selectedLista1 = actividadLista.get(holder.getAdapterPosition());
+                participantesIntent.putExtra("listaData1", selectedLista1);
+                context.startActivities(new Intent[]{eventosIntent, participantesIntent});
             }
         });
 

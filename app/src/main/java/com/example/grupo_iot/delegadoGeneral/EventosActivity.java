@@ -1,5 +1,6 @@
 package com.example.grupo_iot.delegadoGeneral;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,18 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.grupo_iot.R;
-import com.example.grupo_iot.alumno.activity.ListaEventosActivity;
-import com.example.grupo_iot.delactividad.Adaptador;
 import com.example.grupo_iot.delegadoGeneral.entity.Actividad;
 import com.example.grupo_iot.alumno.entity.Alumno;
-import com.example.grupo_iot.databinding.ActivityMenuActividadesBinding;
 import com.example.grupo_iot.databinding.ActivityMenuActividadesEventoBinding;
-import com.example.grupo_iot.databinding.ActivityMenuValidacionesUsuariosBinding;
 import com.example.grupo_iot.delegadoGeneral.adapter.EventoAdapter;
-import com.example.grupo_iot.delegadoGeneral.adapter.ListaActividadesAdapter;
 import com.example.grupo_iot.delegadoGeneral.entity.Evento;
-import com.example.grupo_iot.delegadoGeneral.entity.Validaciones;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,10 +35,14 @@ public class EventosActivity extends AppCompatActivity {
     ActivityMenuActividadesEventoBinding binding;
     private EventoAdapter eventoAdapter;
 
+
     FirebaseFirestore db;
     String nombre;
 
     private List<Evento> eventoList;
+    private RecyclerView.ViewHolder holder;
+    private Activity context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,9 +78,6 @@ public class EventosActivity extends AppCompatActivity {
         Log.e("EventosActivity", "nombre Actividad Final:" + nombreActi);
 
         cargarListaEventos();
-
-
-
     }
 
     public void cargarListaEventos(){

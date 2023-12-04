@@ -155,6 +155,9 @@
             android:name=".delegadoGeneral.CrearActividadActivity"
             android:exported="false" />
         <activity
+            android:name=".delegadoGeneral.ParticipantesActivity"
+            android:exported="false" />
+        <activity
             android:name=".delegadoGeneral.EditaUsuarioActivity"
             android:exported="false" />
         <activity

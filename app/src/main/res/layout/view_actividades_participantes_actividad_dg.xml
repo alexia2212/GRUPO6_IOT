@@ -18,49 +18,30 @@
     android:background="#D9D9D9"
     android:orientation="vertical">
         <TextView
-            android:id="@+id/nombreEvento"
+            android:id="@+id/nombreParticipante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:fontFamily="sans-serif-black"
-            android:text="Convocatoria"
+            android:text="Alexia Jauregui"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textSize="13sp"
             android:typeface="sans"
             android:layout_marginStart="20dp"
             android:textColor="#000000" />
+
         <TextView
-            android:id="@+id/fechaEvento"
+            android:id="@+id/codigoParticipante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="20/08/2023"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="35dp"
+            android:text="20191822"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="@+id/view12"
             app:layout_constraintEnd_toEndOf="@+id/view12"
             app:layout_constraintStart_toStartOf="@+id/view12"
             app:layout_constraintTop_toBottomOf="@+id/nombreEvento" />
-        <TextView
-            android:id="@+id/descripcionEvento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="descripcion"
-            android:layout_marginStart="24dp"
-            android:textSize="13sp" />
-        <TextView
-            android:id="@+id/lugarEvento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="lugar"
-            android:layout_marginStart="24dp"
-            android:textSize="13sp" />
-        <TextView
-            android:id="@+id/idEventoAct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="lugar"
-            android:layout_marginStart="24dp"
-            android:textSize="13sp" />
+
 </LinearLayout>
 
 </androidx.cardview.widget.CardView>

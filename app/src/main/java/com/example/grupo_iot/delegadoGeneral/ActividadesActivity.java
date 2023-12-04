@@ -35,6 +35,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -47,6 +48,7 @@ public class ActividadesActivity extends AppCompatActivity {
     private ListaActividadesAdapter listaActividadesAdapter;
 
     FirebaseFirestore db;
+    FirebaseAuth auth;
 
     private List<Actividad> actividadLista;
 
@@ -55,7 +57,7 @@ public class ActividadesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMenuActividadesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         actividadLista= new ArrayList<>();
         // Inicializa el adaptador después de que la lista de actividades se haya cargado de Firebase
