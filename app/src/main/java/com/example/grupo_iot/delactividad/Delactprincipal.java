@@ -88,7 +88,7 @@ public class Delactprincipal extends AppCompatActivity {
 
         /*StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
-        StorageReference imagenRef = storageRef.child("imagenes/1659804554691.jpeg");
+        StorageReference imagenRef = storageRef.child("img_perfiles/nuevo.png");
 
         imagenRef.getDownloadUrl().addOnSuccessListener(uri -> {
             String imagenUrl = uri.toString();

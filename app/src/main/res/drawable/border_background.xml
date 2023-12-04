@@ -1,0 +1,24 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Shape rectangle with the shade as background -->
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Shade color -->
+            <solid android:color="#EDE9E5" />
+            <!-- Optionally, you can set corner radii to make rounded corners -->
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+    <item
+        android:left="2dp"
+        android:right="2dp"
+        android:top="2dp"
+        android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/verde_mensajes" />
+            <!-- Border color -->
+            <stroke android:color="@color/verde_mensajes" android:width="1dp" />
+            <!-- Optionally, you can set corner radii to make rounded corners -->
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+</layer-list>

@@ -89,12 +89,19 @@ public class Chatdelact extends AppCompatActivity {
                                 .addOnSuccessListener(documentSnapshot -> {
                                     if (documentSnapshot.exists()) {
                                         String salaUsuario = documentSnapshot.getString("sala");
+                                        String senderName = documentSnapshot.getString("nombre");
+                                        String imagen = documentSnapshot.getString("imagen");
+
 
                                         // Crea un nuevo mensaje
                                         Map<String, Object> message = new HashMap<>();
                                         message.put("senderId", senderId);
                                         message.put("message", messageText);
                                         message.put("timestamp", FieldValue.serverTimestamp());
+                                        message.put("nombre", senderName);
+                                        message.put("imagen", imagen);
+
+
 
                                         // Agrega el mensaje a la colección de mensajes de la sala del usuario
                                         db.collection("chatGrupal").document(salaUsuario).collection("mensajes").add(message);
@@ -122,6 +129,8 @@ public class Chatdelact extends AppCompatActivity {
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String salaUsuario = documentSnapshot.getString("sala");
+                        String senderName = documentSnapshot.getString("nombre");
+
 
                         db.collection("chatGrupal").document(salaUsuario).collection("mensajes")
                                 .orderBy("timestamp", Query.Direction.ASCENDING)
