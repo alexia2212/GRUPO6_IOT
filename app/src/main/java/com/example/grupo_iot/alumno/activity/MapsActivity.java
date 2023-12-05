@@ -15,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.grupo_iot.R;
@@ -51,8 +52,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         generarBottomNavigationMenu();
 
+        Button btnMiUbicacion = findViewById(R.id.btnMiUbicacion);
+        btnMiUbicacion.setOnClickListener(view -> mostrarUbicacionActual());
     }
+    private void mostrarUbicacionActual() {
+        try {
+            // Verifica si los servicios de ubicación están habilitados
+            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            if (locationManager != null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
+                // Obtiene la última ubicación conocida
+                fusedLocationClient.getLastLocation()
+                        .addOnSuccessListener(this, location -> {
+                            if (location != null) {
+                                LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f));
+                            }
+                        });
+            } else {
+                // Si los servicios de ubicación no están habilitados, muestra un mensaje al usuario
+                Toast.makeText(this, "Habilita los servicios de ubicación", Toast.LENGTH_SHORT).show();
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -84,28 +108,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }
-    private void mostrarUbicacionActual() {
-        try {
-            // Verifica si los servicios de ubicación están habilitados
-            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            if (locationManager != null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
-                // Obtiene la última ubicación conocida
-                fusedLocationClient.getLastLocation()
-                        .addOnSuccessListener(this, location -> {
-                            if (location != null) {
-                                LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f));
-                            }
-                        });
-            } else {
-                // Si los servicios de ubicación no están habilitados, muestra un mensaje al usuario
-                Toast.makeText(this, "Habilita los servicios de ubicación", Toast.LENGTH_SHORT).show();
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
