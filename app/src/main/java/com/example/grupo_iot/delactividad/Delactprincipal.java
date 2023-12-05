@@ -130,8 +130,10 @@ public class Delactprincipal extends AppCompatActivity {
                         String imageUrl = lista.getImagen1();
                         String descripcion = lista.getDescripcion();
                         String lugar = lista.getLugar();
+                        String nombreActividad = lista.getNombreactividad();
 
-                        dataList.add(new Lista(titulo, fecha, imageUrl, descripcion, lugar));
+
+                        dataList.add(new Lista(titulo, fecha, imageUrl, descripcion, lugar, nombreActividad));
                     }
 
                     adapter.setDataList(dataList);
@@ -162,6 +164,7 @@ public class Delactprincipal extends AppCompatActivity {
 
         adapter.setDataList(filteredList);
     }
+
 
 
     void generarBottomNavigationMenu(){

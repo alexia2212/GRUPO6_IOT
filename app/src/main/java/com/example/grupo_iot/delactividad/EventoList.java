@@ -10,6 +10,17 @@ public class EventoList {
 
     public String ubicacion;
 
+    public String nombreactividad;
+
+
+    public String getNombreactividad() {
+        return nombreactividad;
+    }
+
+    public void setNombreactividad(String nombreactividad) {
+        this.nombreactividad = nombreactividad;
+    }
+
     public EventoList(String titulo, String fecha, String imagen1, String descripcion, String ubicacion) {
         this.titulo = titulo;
         this.fecha = fecha;

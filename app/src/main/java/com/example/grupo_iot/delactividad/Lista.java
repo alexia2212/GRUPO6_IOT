@@ -12,12 +12,24 @@ public class Lista implements Serializable {
 
     public String lugar;
 
-    public Lista(String titulo, String fecha, String imagen1, String descripcion, String lugar) {
+    public String nombreactividad;
+
+
+    public String getNombreactividad() {
+        return nombreactividad;
+    }
+
+    public void setNombreactividad(String nombreactividad) {
+        this.nombreactividad = nombreactividad;
+    }
+
+    public Lista(String titulo, String fecha, String imagen1, String descripcion, String lugar, String nombreactividad) {
         this.titulo = titulo;
         this.fecha = fecha;
         this.imagen1 = imagen1;
         this.descripcion = descripcion;
         this.lugar = lugar;
+        this.nombreactividad = nombreactividad;
     }
 
     public String getDescripcion() {
