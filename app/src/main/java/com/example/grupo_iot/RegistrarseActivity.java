@@ -9,8 +9,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import javax.mail.Message;
+
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -57,14 +62,27 @@ public class RegistrarseActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         //SECCION CONDICION USUARIO
-        String[] listaOpciones = {"Condición de Usuario", "Alumno", "Egresado"};
+        String[] listaOpciones = {"Condición de Usuario", "Estudiante", "Egresado"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.item_spinner_condicion_usuario, listaOpciones);
         Spinner spinner = binding.spinnerCondicionUsuario;
         spinner.setAdapter(adapter);
+
+        //SECCION ROL DE USUARIO
+        String[] opciones = {"Alumno", "Delegado Actividad"};
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, opciones);
+
+        Spinner spinner1 = binding.spinnerRolUsuario;
+        spinner1.setAdapter(adapter1);
+        spinner1.setSelection(adapter1.getPosition("Alumno"));
         binding.guardar.setOnClickListener(view ->{
             String selectedOption = spinner.getSelectedItem().toString();
-            Log.d("sprinner", "a"+spinner.getSelectedItem().toString());
+            Log.d("sprinner", "condicion"+spinner.getSelectedItem().toString());
+
+            String selectedRol = spinner1.getSelectedItem().toString();
+            Log.d("sprinner", "rol"+selectedRol);
+
             Toast.makeText(this, spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT);
 
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -77,9 +95,10 @@ public class RegistrarseActivity extends AppCompatActivity {
                     String nombre = ((TextInputEditText) binding.inputNombre.getEditText()).getText().toString();
                     String apellido = ((TextInputEditText) binding.inputApellido.getEditText()).getText().toString();
                     String codigo = ((TextInputEditText) binding.inputCodigo.getEditText()).getText().toString();
+                    String condicion = binding.spinnerCondicionUsuario.getSelectedItem().toString();
                     String email = ((TextInputEditText) binding.inputEmail.getEditText()).getText().toString();
                     String password = ((TextInputEditText) binding.inputPass.getEditText()).getText().toString();
-                    String rol= binding.spinnerCondicionUsuario.getSelectedItem().toString();
+                    String rol= binding.spinnerRolUsuario.getSelectedItem().toString();
                     CheckBox checkBox = binding.checkBoxTerminos;
 
                     if (nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || password.isEmpty() || codigo.isEmpty()) {
@@ -141,9 +160,10 @@ public class RegistrarseActivity extends AppCompatActivity {
                                     UsuarioPorRegistrar.put("nombre", nombre);
                                     UsuarioPorRegistrar.put("apellido", apellido);
                                     UsuarioPorRegistrar.put("codigo", codigo);
+                                    UsuarioPorRegistrar.put("condicion", condicion);
                                     UsuarioPorRegistrar.put("email", email);
                                     UsuarioPorRegistrar.put("password", password);
-                                    UsuarioPorRegistrar.put("rol", rol);
+                                    UsuarioPorRegistrar.put("rol", "Alumno");
                                     db.collection("usuariosPorRegistrar")
                                             .add(UsuarioPorRegistrar)
                                             .addOnSuccessListener(documentReference -> {
