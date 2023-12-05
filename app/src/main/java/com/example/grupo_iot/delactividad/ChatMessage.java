@@ -8,18 +8,32 @@ public class ChatMessage {
 
     public ChatMessage() {
     }
-    private String sender;
+    private String senderId;
     private String message;
     private Date timestamp;
 
-
-    public String getSender() {
-        return sender;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
+
+    private String imagen;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    private String nombre;
+
+
+
 
     public String getMessage() {
         return message;
@@ -29,6 +43,13 @@ public class ChatMessage {
         this.message = message;
     }
 
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
 
     public Date getTimestamp() {
         return timestamp;
