@@ -7,9 +7,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -134,6 +136,7 @@ public class ActualizarActivity extends AppCompatActivity {
         Button miBoton = findViewById(R.id.botonCorrecto);
 
         // Agrega un OnClickListener al botón
+
         miBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,50 +146,88 @@ public class ActualizarActivity extends AppCompatActivity {
                 String nuevaFecha = etFecha.getText().toString();
                 String nuevoLugar = spinnerLugar.getSelectedItem().toString();
 
+                // Verificar si la imagen actual es la imagen por defecto
+                boolean esImagenPorDefecto = isImagenPorDefecto();
+
                 // Actualizar los valores en la base de datos
                 if (intent.hasExtra("titulo")) {
-                    String tituloOriginal = intent.getStringExtra("titulo");
-                    db.collection("listaeventos")
-                            .whereEqualTo("titulo", tituloOriginal)
+                    String userID = auth.getCurrentUser().getUid();
+
+                    db.collection("credenciales")
+                            .document(userID)
                             .get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        for (QueryDocumentSnapshot document : task.getResult()) {
-                                            String documentoActualId = document.getId();
-                                            Map<String, Object> updates = new HashMap<>();
-                                            updates.put("titulo", nuevoTitulo);
-                                            updates.put("descripcion", nuevaDescripcion);
-                                            updates.put("fecha", nuevaFecha);
-                                            updates.put("lugar", nuevoLugar);
-                                            db.collection("listaeventos")
-                                                    .document(documentoActualId)
-                                                    .update(updates)
-                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                        @Override
-                                                        public void onSuccess(Void aVoid) {
-                                                            // Los cambios se guardaron correctamente
-                                                            Toast.makeText(getApplicationContext(), "Cambios guardados", Toast.LENGTH_SHORT).show();
+                            .addOnSuccessListener(documentSnapshot -> {
+                                if (documentSnapshot.exists()) {
+                                    String idActividad = documentSnapshot.getString("actividadDesignada");
+
+                                    db.collection("actividades")
+                                            .document(idActividad)
+                                            .collection("listaEventos")
+                                            .whereEqualTo("titulo", intent.getStringExtra("titulo"))
+                                            .get()
+                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                    if (task.isSuccessful()) {
+                                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                                            // Obtiene el ID del documento actual
+                                                            String documentoActualId = document.getId();
+
+                                                            // Crea un mapa con los campos que deseas actualizar
+                                                            Map<String, Object> updates = new HashMap<>();
+                                                            updates.put("titulo", nuevoTitulo);
+                                                            updates.put("descripcion", nuevaDescripcion);
+                                                            updates.put("fecha", nuevaFecha);
+                                                            updates.put("lugar", nuevoLugar);
+
+                                                            if (esImagenPorDefecto) {
+                                                                // Si es la imagen por defecto, guarda la URL de la imagen por defecto
+                                                                updates.put("imagen1", "https://firebasestorage.googleapis.com/v0/b/proyecto-iot-65516.appspot.com/o/imagenes%2Fimagenpordefecto.jpg?alt=media&token=3c4cde4f-096b-469b-9559-8ee080e43a45");
+                                                            } else {
+                                                                // Si no es la imagen por defecto, elimina el campo "imagen1"
+                                                                updates.put("imagen1", FieldValue.delete());
+                                                            }
+
+                                                            // Actualiza el documento en la base de datos
+                                                            db.collection("actividades")
+                                                                    .document(idActividad)
+                                                                    .collection("listaEventos")
+                                                                    .document(documentoActualId)
+                                                                    .update(updates)
+                                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                        @Override
+                                                                        public void onSuccess(Void aVoid) {
+                                                                            // Los cambios se guardaron correctamente
+                                                                            Toast.makeText(getApplicationContext(), "Cambios guardados", Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    })
+                                                                    .addOnFailureListener(new OnFailureListener() {
+                                                                        @Override
+                                                                        public void onFailure(@NonNull Exception e) {
+                                                                            // Manejo de errores en caso de que la actualización falle
+                                                                            Toast.makeText(getApplicationContext(), "Error al guardar los cambios", Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    });
                                                         }
-                                                    })
-                                                    .addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception e) {
-                                                            // Manejo de errores en caso de que la actualización falle
-                                                            Toast.makeText(getApplicationContext(), "Error al guardar los cambios", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
-                                        }
-                                    } else {
-                                        // Manejo de errores
-                                        Toast.makeText(getApplicationContext(), "Error al guardar los cambios", Toast.LENGTH_SHORT).show();
-                                    }
+                                                    } else {
+                                                        // Manejo de errores al obtener la colección de eventos
+                                                        Toast.makeText(getApplicationContext(), "Error al obtener la colección de eventos", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                } else {
+                                    // Manejo de errores si no se encuentra la actividad designada para el usuario
+                                    Log.e("Firestore", "No se encontró la actividad designada para el usuario");
                                 }
+                            })
+                            .addOnFailureListener(e -> {
+                                // Manejo de errores al obtener la credencial del usuario
+                                Log.e("Firestore", "Error al obtener la credencial del usuario", e);
                             });
                 }
             }
         });
+
 
         binding.imageViewsalir.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -245,59 +286,75 @@ public class ActualizarActivity extends AppCompatActivity {
         botonEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Restaura la imagen por defecto
+                actualizarVistaConImagenPorDefecto();
 
-                Lista selectedLista = (Lista) intent.getSerializableExtra("listaData");
+                // Verifica si la imagen actual es la imagen por defecto y guarda la URL correspondiente
+                boolean esImagenPorDefecto = isImagenPorDefecto();
 
-                String titulo = intent.getStringExtra("titulo");
-                String descripcion = intent.getStringExtra("descripcion");
-                String fecha = intent.getStringExtra("fecha");
-                String lugar = intent.getStringExtra("lugar");
-                String imageUrl = intent.getStringExtra("imagenUrl");
+                // ... el resto de tu lógica, por ejemplo, puedes llamar a actualizarImagenEnBaseDeDatos con la URL adecuada
+                if (intent.hasExtra("titulo")) {
+                    String userID = auth.getCurrentUser().getUid();
 
+                    db.collection("credenciales")
+                            .document(userID)
+                            .get()
+                            .addOnSuccessListener(documentSnapshot -> {
+                                if (documentSnapshot.exists()) {
+                                    String idActividad = documentSnapshot.getString("actividadDesignada");
 
-                db.collection("listaeventos")
-                        .whereEqualTo("titulo", titulo)
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        // Obtiene el ID del documento actual
-                                        String documentoActualId = document.getId();
+                                    db.collection("actividades")
+                                            .document(idActividad)
+                                            .collection("listaEventos")
+                                            .whereEqualTo("titulo", intent.getStringExtra("titulo"))
+                                            .get()
+                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                    if (task.isSuccessful()) {
+                                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                                            // Obtiene el ID del documento actual
+                                                            String documentoActualId = document.getId();
 
-                                        // Crea un mapa con los campos que deseas eliminar
-                                        Map<String, Object> updates = new HashMap<>();
-                                        updates.put("imagen1", FieldValue.delete());
+                                                            // Crea un mapa con los campos que deseas eliminar o actualizar
+                                                            Map<String, Object> updates = new HashMap<>();
+                                                            if (esImagenPorDefecto) {
+                                                                updates.put("imagen1", "URL_IMAGEN_POR_DEFECTO");
+                                                            } else {
+                                                                updates.put("imagen1", FieldValue.delete());
+                                                            }
 
-                                        // Actualiza el documento para eliminar el campo "imagen1"
-                                        db.collection("listaeventos")
-                                                .document(documentoActualId)
-                                                .update(updates)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        // El campo "imagen1" se eliminó con éxito
-                                                        // Puedes realizar cualquier otra operación después de la eliminación
-                                                        actualizarVistaConImagenPorDefecto();
-
+                                                            // Actualiza el documento para eliminar o actualizar el campo "imagen1"
+                                                            db.collection("actividades")
+                                                                    .document(idActividad)
+                                                                    .collection("listaEventos")
+                                                                    .document(documentoActualId)
+                                                                    .update(updates)
+                                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                        @Override
+                                                                        public void onSuccess(Void aVoid) {
+                                                                            // Realiza cualquier operación adicional después de la eliminación o actualización
+                                                                        }
+                                                                    })
+                                                                    .addOnFailureListener(new OnFailureListener() {
+                                                                        @Override
+                                                                        public void onFailure(@NonNull Exception e) {
+                                                                            // Manejo de errores en caso de que la actualización falle
+                                                                        }
+                                                                    });
+                                                        }
+                                                    } else {
+                                                        // Manejo de errores
                                                     }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        // Manejo de errores en caso de que la actualización falle
-                                                    }
-                                                });
-                                    }
-                                } else {
-                                    // Manejo de errores
+                                                }
+                                            });
                                 }
-                            }
-                        });
-
+                            });
+                }
             }
         });
+
+
 
 
     }
@@ -307,7 +364,7 @@ public class ActualizarActivity extends AppCompatActivity {
         ImageView imagenAct = findViewById(R.id.imagenact);
 
         // Obtén la ID de la imagen por defecto desde los recursos
-        int imagenPorDefectoId = R.drawable.baseline_add_photo_alternate_24; // Reemplaza con la ID correcta
+        int imagenPorDefectoId = R.drawable.imagenpordefecto; // Reemplaza con la ID correcta
 
         // Establece la imagen por defecto en el ImageView
         imagenAct.setImageResource(imagenPorDefectoId);
@@ -436,38 +493,51 @@ public class ActualizarActivity extends AppCompatActivity {
     }
 
     private void actualizarImagenEnBaseDeDatos(String imageUrl) {
-        if (intent.hasExtra("titulo")) {
-            String tituloOriginal = intent.getStringExtra("titulo");
-            db.collection("listaeventos")
-                    .whereEqualTo("titulo", tituloOriginal)
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    String documentoActualId = document.getId();
-                                    Map<String, Object> updates = new HashMap<>();
-                                    updates.put("imagen1", imageUrl); // Actualiza el campo "imagen1" con la URL
-                                    db.collection("listaeventos")
-                                            .document(documentoActualId)
-                                            .update(updates)
-                                            .addOnSuccessListener(aVoid -> {
-                                                // Los cambios se guardaron correctamente
-                                                Toast.makeText(getApplicationContext(), "Imagen guardada en la base de datos", Toast.LENGTH_SHORT).show();
-                                            })
-                                            .addOnFailureListener(e -> {
-                                                // Manejo de errores en caso de que la actualización falle
-                                                Toast.makeText(getApplicationContext(), "Error al guardar la imagen en la base de datos", Toast.LENGTH_SHORT).show();
-                                            });
-                                }
-                            } else {
-                                // Manejo de errores
-                                Toast.makeText(getApplicationContext(), "Error al guardar la imagen en la base de datos", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-        }
+        String userID = auth.getCurrentUser().getUid();
+
+        db.collection("credenciales")
+                .document(userID)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String idActividad = documentSnapshot.getString("actividadDesignada");
+
+                        db.collection("actividades")
+                                .document(idActividad)
+                                .collection("listaEventos")
+                                .whereEqualTo("titulo", intent.getStringExtra("titulo"))
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                                String documentoActualId = document.getId();
+                                                Map<String, Object> updates = new HashMap<>();
+                                                updates.put("imagen1", imageUrl); // Actualiza el campo "imagen1" con la URL
+
+                                                db.collection("actividades")
+                                                        .document(idActividad)
+                                                        .collection("listaEventos")
+                                                        .document(documentoActualId)
+                                                        .update(updates)
+                                                        .addOnSuccessListener(aVoid -> {
+                                                            // Los cambios se guardaron correctamente
+                                                            Toast.makeText(getApplicationContext(), "Imagen guardada", Toast.LENGTH_SHORT).show();
+                                                        })
+                                                        .addOnFailureListener(e -> {
+                                                            // Manejo de errores en caso de que la actualización falle
+                                                            Toast.makeText(getApplicationContext(), "Error al guardar la imagen", Toast.LENGTH_SHORT).show();
+                                                        });
+                                            }
+                                        } else {
+                                            // Manejo de errores
+                                            Toast.makeText(getApplicationContext(), "Error al guardar la imagen", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                    }
+                });
     }
 
     void generarBottomNavigationMenu(){
@@ -492,6 +562,19 @@ public class ActualizarActivity extends AppCompatActivity {
             }
         });
     }
+
+    private boolean isImagenPorDefecto() {
+        ImageView imagenAct = findViewById(R.id.imagenact);
+        Drawable imagenActual = imagenAct.getDrawable();
+
+        // Obtén la ID de la imagen por defecto desde los recursos
+        int imagenPorDefectoId = R.drawable.imagenpordefecto; // Reemplaza con la ID correcta
+
+        // Compara la ID de la imagen actual con la ID de la imagen por defecto
+        return (imagenActual != null && imagenActual.getConstantState() != null &&
+                imagenActual.getConstantState().equals(getResources().getDrawable(imagenPorDefectoId).getConstantState()));
+    }
+
 
 
 

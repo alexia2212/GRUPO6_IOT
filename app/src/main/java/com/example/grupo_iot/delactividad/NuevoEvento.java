@@ -169,21 +169,35 @@ public class NuevoEvento extends AppCompatActivity {
 
 
     private void guardarEventoEnFirestore(EventoList evento) {
-        db.collection("listaeventos")
-                .add(evento)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(NuevoEvento.this, "Evento guardado con éxito", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(NuevoEvento.this, "Error al guardar el evento", Toast.LENGTH_SHORT).show();
+        String userID = auth.getCurrentUser().getUid();
+
+        db.collection("credenciales")
+                .document(userID)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String idActividad = documentSnapshot.getString("actividadDesignada");
+
+                        db.collection("actividades")
+                                .document(idActividad)
+                                .collection("listaEventos")
+                                .add(evento)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        Toast.makeText(NuevoEvento.this, "Evento guardado con éxito", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(NuevoEvento.this, "Error al guardar el evento", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                     }
                 });
     }
+
 
     private void showDatePicker() {
         MaterialDatePicker<Long> datePicker =

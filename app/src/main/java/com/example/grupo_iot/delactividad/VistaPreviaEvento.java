@@ -179,45 +179,60 @@ public class VistaPreviaEvento extends AppCompatActivity {
             Lista selectedLista = (Lista) intent.getSerializableExtra("listaData");
             String titulo = selectedLista.getTitulo();
 
-            // Obtén una referencia al documento que deseas eliminar
-            db.collection("listaeventos")
-                    .whereEqualTo("titulo", titulo)
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    // Obtiene el ID del documento actual
-                                    String documentoActualId = document.getId();
+            String userID = auth.getCurrentUser().getUid();
 
-                                    // Elimina el documento
-                                    db.collection("listaeventos")
-                                            .document(documentoActualId)
-                                            .delete()
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    // El documento se eliminó con éxito
-                                                    Toast.makeText(getApplicationContext(), "Evento eliminado", Toast.LENGTH_SHORT).show();
+            db.collection("credenciales")
+                    .document(userID)
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String idActividad = documentSnapshot.getString("actividadDesignada");
+
+                            db.collection("actividades")
+                                    .document(idActividad)
+                                    .collection("listaEventos")
+                                    .whereEqualTo("titulo", titulo)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                                    // Obtiene el ID del documento actual
+                                                    String documentoActualId = document.getId();
+
+                                                    // Elimina el documento
+                                                    db.collection("actividades")
+                                                            .document(idActividad)
+                                                            .collection("listaEventos")
+                                                            .document(documentoActualId)
+                                                            .delete()
+                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void aVoid) {
+                                                                    // El documento se eliminó con éxito
+                                                                    Toast.makeText(getApplicationContext(), "Evento eliminado", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            })
+                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    // Manejo de errores en caso de que la eliminación falle
+                                                                    Toast.makeText(getApplicationContext(), "Error al eliminar el documento", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            });
                                                 }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    // Manejo de errores en caso de que la eliminación falle
-                                                    Toast.makeText(getApplicationContext(), "Error al eliminar el documento", Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
-                                }
-                            } else {
-                                // Manejo de errores
-                                Toast.makeText(getApplicationContext(), "Error al eliminar el documento", Toast.LENGTH_SHORT).show();
-                            }
+                                            } else {
+                                                // Manejo de errores
+                                                Toast.makeText(getApplicationContext(), "Error al eliminar el documento", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                         }
                     });
         }
     }
+
 
     void generarBottomNavigationMenu(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);

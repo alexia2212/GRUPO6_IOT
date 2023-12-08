@@ -58,7 +58,6 @@ public class ListaDeUsuarios extends AppCompatActivity {
         dataList.add(new Usuario(R.drawable.stuardo3, "Stuardo Lucho", "Condición: Egresado", "Barra"));
         dataList.add(new Usuario(R.drawable.angeloramos, "Angelo Ramos", "Condición: Alumno", "Barra"));
         dataList.add(new Usuario(R.drawable.carlos, "Carlos Ayala", "Condición: Alumno", "Barra"));
-        dataList.add(new Usuario(R.drawable.stefhaniejaramillo, "Stefhanie Jaramillo", "Condición: Alumno", "Barra"));
 
         AdaptadorUsuario adapter = new AdaptadorUsuario(dataList);
 

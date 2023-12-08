@@ -86,16 +86,16 @@ public class Delactprincipal extends AppCompatActivity {
             dialog.show();
         });
 
-        /*StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
-        StorageReference imagenRef = storageRef.child("img_perfiles/nuevo.png");
+        StorageReference imagenRef = storageRef.child("imagenes/imagenpordefecto.jpg");
 
         imagenRef.getDownloadUrl().addOnSuccessListener(uri -> {
             String imagenUrl = uri.toString();
             System.out.println("URL de la imagen: " + imagenUrl);
 
         }).addOnFailureListener(exception -> {
-        });*/
+        });
 
 
         TextInputEditText searchEditText = findViewById(R.id.searchEditText);
@@ -118,28 +118,47 @@ public class Delactprincipal extends AppCompatActivity {
             });
         }
 
-        db.collection("listaeventos")
+        String userID = auth.getCurrentUser().getUid();
+
+
+        db.collection("credenciales")
+                .document(userID)
                 .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    dataList.clear();
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String idActividad = documentSnapshot.getString("actividadDesignada");
 
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        Lista lista = document.toObject(Lista.class);
-                        String titulo = lista.getTitulo();
-                        String fecha = lista.getFecha();
-                        String imageUrl = lista.getImagen1();
-                        String descripcion = lista.getDescripcion();
-                        String lugar = lista.getLugar();
-                        String nombreActividad = lista.getNombreactividad();
+                        db.collection("actividades")
+                                .document(idActividad)
+                                .collection("listaEventos")
+                                .get()
+                                .addOnSuccessListener(queryDocumentSnapshots -> {
+                                    dataList.clear();
 
+                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                        Lista lista = document.toObject(Lista.class);
+                                        String titulo = lista.getTitulo();
+                                        String fecha = lista.getFecha();
+                                        String imageUrl = lista.getImagen1();
+                                        String descripcion = lista.getDescripcion();
+                                        String lugar = lista.getLugar();
+                                        String nombreActividad = lista.getNombreactividad();
 
-                        dataList.add(new Lista(titulo, fecha, imageUrl, descripcion, lugar, nombreActividad));
+                                        dataList.add(new Lista(titulo, fecha, imageUrl, descripcion, lugar, nombreActividad));
+                                    }
+
+                                    adapter.setDataList(dataList);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("Delactprincipal", "Error al obtener los eventos", e);
+                                });
+                    } else {
+                        // El documento no existe, manejar según sea necesario
+                        Log.e("Delactprincipal", "El documento de credenciales no existe para el usuario " + userID);
                     }
-
-                    adapter.setDataList(dataList);
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("Delactprincipal", "Error al obtener los eventos", e);
+                    Log.e("Delactprincipal", "Error al obtener las credenciales", e);
                 });
 
         ImageView addImage = findViewById(R.id.imageView21);
