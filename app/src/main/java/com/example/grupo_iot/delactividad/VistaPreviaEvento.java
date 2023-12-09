@@ -293,6 +293,10 @@ public class VistaPreviaEvento extends AppCompatActivity {
                     Intent intent = new Intent(VistaPreviaEvento.this, Delactprincipal.class);
                     startActivity(intent);
                 }
+                if(menuItem.getItemId()==R.id.navigation_eventos_finalizados){
+                    Intent intent = new Intent(VistaPreviaEvento.this, EventoFinalizadoActivity.class);
+                    startActivity(intent);
+                }
                 if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
                     Intent intent = new Intent(VistaPreviaEvento.this, Chatdelact.class);
                     startActivity(intent);

@@ -169,6 +169,12 @@
             android:name=".delegadoGeneral.InfoUsuarioActivity"
             android:exported="false" />
         <activity
+            android:name=".delactividad.EventoFinalizadoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".delactividad.EventoFinalizadoExcedeFotos"
+            android:exported="false" />
+        <activity
             android:name=".delegadoGeneral.ValidacionActivity"
             android:exported="false" />
         <activity

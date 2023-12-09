@@ -82,8 +82,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/vistapreviadcreacion"
-            android:layout_width="404dp"
-            android:layout_height="563dp"
+            android:layout_width="402dp"
+            android:layout_height="593dp"
             android:layout_marginTop="-20dp"
             android:animateLayoutChanges="true"
             app:cardCornerRadius="10dp"
@@ -116,14 +116,14 @@
                 <GridLayout
                     android:id="@+id/grid_fotos"
                     android:layout_width="368dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_height="367dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:columnCount="3">
 
                     <!-- Define 9 cuadros para fotos, puedes personalizarlos según tus necesidades -->
 
-                    <ImageView
+                    <com.example.grupo_iot.delactividad.RoundedImageView
                         android:id="@+id/cuadro_foto_1"
                         android:layout_width="0dp"
                         android:layout_height="85dp"
@@ -133,7 +133,7 @@
                         android:scaleType="fitXY"
                         android:src="@drawable/rounded_background2" />
 
-                    <ImageView
+                    <com.example.grupo_iot.delactividad.RoundedImageView
                         android:id="@+id/cuadro_foto_2"
                         android:layout_width="0dp"
                         android:layout_height="85dp"
@@ -141,9 +141,9 @@
                         android:layout_margin="5dp"
                         android:layout_marginTop="50dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/rounded_background2" />
+                        android:src="@drawable/imagenpordefecto" />
 
-                    <ImageView
+                    <com.example.grupo_iot.delactividad.RoundedImageView
                         android:id="@+id/cuadro_foto_3"
                         android:layout_width="0dp"
                         android:layout_height="85dp"
@@ -151,9 +151,9 @@
                         android:layout_margin="5dp"
                         android:layout_marginTop="50dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/rounded_background2" />
+                        android:src="@drawable/imagenpordefecto" />
 
-                    <ImageView
+                    <com.example.grupo_iot.delactividad.RoundedImageView
                         android:id="@+id/cuadro_foto_4"
                         android:layout_width="0dp"
                         android:layout_height="85dp"
@@ -161,9 +161,9 @@
                         android:layout_margin="5dp"
                         android:layout_marginTop="20dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/rounded_background2" />
+                        android:src="@drawable/imagenpordefecto" />
 
-                    <ImageView
+                    <com.example.grupo_iot.delactividad.RoundedImageView
                         android:id="@+id/cuadro_foto_5"
                         android:layout_width="0dp"
                         android:layout_height="85dp"
@@ -171,9 +171,9 @@
                         android:layout_margin="5dp"
                         android:layout_marginTop="20dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/rounded_background2" />
+                        android:src="@drawable/imagenpordefecto" />
 
-                    <ImageView
+                    <com.example.grupo_iot.delactividad.RoundedImageView
                         android:id="@+id/cuadro_foto_6"
                         android:layout_width="0dp"
                         android:layout_height="85dp"
@@ -181,9 +181,9 @@
                         android:layout_margin="5dp"
                         android:layout_marginTop="20dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/rounded_background2" />
+                        android:src="@drawable/imagenpordefecto" />
 
-                    <ImageView
+                    <com.example.grupo_iot.delactividad.RoundedImageView
                         android:id="@+id/cuadro_foto_7"
                         android:layout_width="0dp"
                         android:layout_height="85dp"
@@ -191,9 +191,9 @@
                         android:layout_margin="5dp"
                         android:layout_marginTop="20dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/rounded_background2" />
+                        android:src="@drawable/imagenpordefecto" />
 
-                    <ImageView
+                    <com.example.grupo_iot.delactividad.RoundedImageView
                         android:id="@+id/cuadro_foto_8"
                         android:layout_width="0dp"
                         android:layout_height="85dp"
@@ -201,9 +201,9 @@
                         android:layout_margin="5dp"
                         android:layout_marginTop="20dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/rounded_background2" />
+                        android:src="@drawable/imagenpordefecto" />
 
-                    <ImageView
+                    <com.example.grupo_iot.delactividad.RoundedImageView
                         android:id="@+id/cuadro_foto_9"
                         android:layout_width="0dp"
                         android:layout_height="85dp"
@@ -211,38 +211,44 @@
                         android:layout_margin="5dp"
                         android:layout_marginTop="20dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/rounded_background2" />
+                        android:src="@drawable/imagenpordefecto" />
 
                 </GridLayout>
 
                 <TextView
+                    android:id="@+id/titulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/grid_fotos"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="214dp"
-                    android:layout_marginBottom="-38dp"
+                    android:layout_marginEnd="120dp"
+                    android:layout_marginBottom="-45dp"
                     android:text="1er partido"
                     android:textSize="30dp"
                     android:textStyle="bold" />
 
+
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/descripcion"
+                    android:layout_width="243dp"
+                    android:layout_height="0dp"
+                    android:layout_below="@+id/titulo"
                     android:layout_alignBottom="@+id/grid_fotos"
+                    android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="109dp"
-                    android:layout_marginBottom="-76dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="41dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="-85dp"
                     android:gravity="center"
                     android:text="Descripción del evento"
                     android:textSize="14sp" />
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="460dp"
+                    android:layout_marginTop="470dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -265,17 +271,35 @@
 
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/boton_subir_fotos"
-                    android:layout_width="300dp"
-                    android:layout_height="65dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/grid_fotos"
+                    android:layout_marginTop="120dp"
+                    android:layout_marginBottom="402dp"
+                    android:orientation="horizontal">
 
-                    android:layout_below="@+id/texto_central"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="428dp"
-                    android:layout_marginEnd="29dp"
-                    android:backgroundTint="@color/gris"
-                    android:text="Eliminar Fotos" />
+                    <Button
+                        android:id="@+id/botonEliminar"
+                        android:layout_width="160dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="20dp"
+                        android:backgroundTint="@color/gris"
+                        android:gravity="center"
+                        android:text="Eliminar Foto"
+                        android:textSize="10dp" />
+
+                    <Button
+                        android:id="@+id/botonsubirfoto"
+                        android:layout_width="160dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="40dp"
+                        android:backgroundTint="@color/turquesa"
+                        android:gravity="center"
+                        android:text="Subir Foto"
+                        android:textSize="13dp" />
+                </LinearLayout>
+
 
 
             </RelativeLayout>
