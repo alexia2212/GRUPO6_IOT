@@ -58,7 +58,6 @@ public class RegistrarseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityRegistroBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         db = FirebaseFirestore.getInstance();
 
         //SECCION CONDICION USUARIO
