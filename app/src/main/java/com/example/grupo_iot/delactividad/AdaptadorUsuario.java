@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grupo_iot.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -33,16 +34,21 @@ public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Usuario usuario = dataList.get(position);
 
-        holder.imagen1.setImageResource(usuario.getImagenResId());
-        holder.nombre.setText(usuario.getNombre());
+        holder.nombre.setText(usuario.getNombre() + " " + usuario.getApellido());
         holder.condicion.setText(usuario.getCondicion());
         holder.funcion.setText(usuario.getFuncion());
+        Picasso.get().load(usuario.getFoto()).into(holder.foto);
 
-        holder.imagen1.setOnClickListener(new View.OnClickListener() {
+        holder.foto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, UsuariosInscritos.class);
+
+                // Agrega los datos que deseas conservar en el Intent
+                Usuario selectedLista = dataList.get(holder.getAdapterPosition());
+                intent.putExtra("listaData", selectedLista);
+
                 context.startActivity(intent);
             }
         });
@@ -56,18 +62,25 @@ public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imagen1;
+
         TextView nombre;
         TextView condicion;
         TextView funcion;
+        ImageView foto;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imagen1 = itemView.findViewById(R.id.imagen1);
             nombre = itemView.findViewById(R.id.nombre);
             condicion = itemView.findViewById(R.id.condicion);
             funcion = itemView.findViewById(R.id.funcion);
+            foto = itemView.findViewById(R.id.imagen1);
+
         }
+    }
+
+    public void setDataList(List<Usuario> dataList) {
+        this.dataList = dataList;
+        notifyDataSetChanged();
     }
 }
 

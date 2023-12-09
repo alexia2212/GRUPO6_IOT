@@ -91,9 +91,48 @@ public class VistaPreviaEvento extends AppCompatActivity {
         });
 
         binding.boton1.setOnClickListener(view -> {
-            Intent intent = new Intent(VistaPreviaEvento.this, ListaDeUsuarios.class);
-            startActivity(intent);
+            Intent intent = getIntent();
+            if (intent.hasExtra("listaData")) {
+                Lista selectedLista = (Lista) intent.getSerializableExtra("listaData");
+                String titulo = selectedLista.getTitulo();
 
+                String userID = auth.getCurrentUser().getUid();
+
+                db.collection("credenciales")
+                        .document(userID)
+                        .get()
+                        .addOnSuccessListener(documentSnapshot -> {
+                            if (documentSnapshot.exists()) {
+                                String idActividad = documentSnapshot.getString("actividadDesignada");
+
+                                db.collection("actividades")
+                                        .document(idActividad)
+                                        .collection("listaEventos")
+                                        .whereEqualTo("titulo", titulo)
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                        // Obtiene el ID del documento actual
+                                                        String documentoActualId = document.getId();
+                                                        System.out.println(documentoActualId + "holaa");
+
+                                                        // Pasa el ID del documento a la siguiente actividad
+                                                        Intent siguienteIntent = new Intent(VistaPreviaEvento.this, ListaDeUsuarios.class);
+                                                        siguienteIntent.putExtra("documentoActualId", documentoActualId);
+                                                        startActivity(siguienteIntent);
+                                                    }
+                                                } else {
+                                                    // Manejo de errores
+                                                    Toast.makeText(getApplicationContext(), "Error al obtener el documento", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                            }
+                        });
+            }
         });
 
         binding.boton2.setOnClickListener(view -> {

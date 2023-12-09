@@ -18,9 +18,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GRUPO_IOT"
         tools:targetApi="31">
+        <activity
+            android:name=".delactividad.SinFuncionActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB2c-zYtPwX6q8y8OfJb6lwEirYEjgwYNI" />
+
         <activity
             android:name=".alumno.activity.MapsActivity"
             android:exported="false" />

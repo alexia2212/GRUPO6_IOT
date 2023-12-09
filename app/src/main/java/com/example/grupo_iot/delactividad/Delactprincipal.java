@@ -86,7 +86,7 @@ public class Delactprincipal extends AppCompatActivity {
             dialog.show();
         });
 
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        /*StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
         StorageReference imagenRef = storageRef.child("imagenes/imagenpordefecto.jpg");
 
@@ -95,7 +95,7 @@ public class Delactprincipal extends AppCompatActivity {
             System.out.println("URL de la imagen: " + imagenUrl);
 
         }).addOnFailureListener(exception -> {
-        });
+        });*/
 
 
         TextInputEditText searchEditText = findViewById(R.id.searchEditText);

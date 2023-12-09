@@ -3,9 +3,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gris">#332F2F</color>
-    <color name="turquesa">#00BCD4</color>
+    <color name="turquesa">#219BCC</color>
     <color name="lightGrey">#979797</color>
     <color name="verde_mensajes">#E7EDEE</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryInverse">#FF4081</color>
+    <color name="colorAccentInverse">#3F51B5</color>
+
+
 
 
 </resources>

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D9D9D9"
-    tools:context=".delactividad.ListaDeUsuarios">
+    tools:context=".delactividad.SinFuncionActivity">
 
     <!-- Contenido principal -->
 
@@ -97,7 +97,7 @@
             android:layout_height="59dp"
             android:layout_marginEnd="132dp"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/material_dynamic_primary60"
+            android:backgroundTint="@color/material_dynamic_neutral70"
             android:elevation="38dp"
             android:text="Todos    "
             android:textSize="15dp"
@@ -112,7 +112,7 @@
             android:layout_height="59dp"
             android:layout_marginStart="-100dp"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/material_dynamic_neutral70"
+            android:backgroundTint="@color/material_dynamic_primary60"
             android:elevation="-10dp"
             android:text="Sin función"
             app:layout_constraintBottom_toTopOf="@+id/listauser"
