@@ -10,23 +10,25 @@ public class EventoList {
 
     public String ubicacion;
 
-    public String nombreactividad;
 
+    public String estado;
 
-    public String getNombreactividad() {
-        return nombreactividad;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setNombreactividad(String nombreactividad) {
-        this.nombreactividad = nombreactividad;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    public EventoList(String titulo, String fecha, String imagen1, String descripcion, String ubicacion) {
+
+    public EventoList(String titulo, String fecha, String imagen1, String descripcion, String ubicacion, String estado) {
         this.titulo = titulo;
         this.fecha = fecha;
         this.imagen1 = imagen1;
         this.descripcion = descripcion;
         this.ubicacion = ubicacion;
+        this.estado = estado;
     }
 
     public String getTitulo() {
