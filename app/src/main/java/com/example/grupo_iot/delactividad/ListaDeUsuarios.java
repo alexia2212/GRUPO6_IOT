@@ -50,7 +50,12 @@ public class ListaDeUsuarios extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         dataList = new ArrayList<>();
-        adapter = new AdaptadorUsuario(dataList);
+
+        Intent intent = getIntent();
+        String documentoActualId = intent.getStringExtra("documentoActualId");
+        System.out.println(documentoActualId + "pueda que si");
+
+        adapter = new AdaptadorUsuario(dataList, documentoActualId);
 
         generarBottomNavigationMenu();
 
@@ -76,9 +81,7 @@ public class ListaDeUsuarios extends AppCompatActivity {
             dialog.show();
         });
 
-        Intent intent = getIntent();
         if (intent.hasExtra("documentoActualId")) {
-            String documentoActualId = intent.getStringExtra("documentoActualId");
 
             String userID = auth.getCurrentUser().getUid();
 
@@ -105,8 +108,10 @@ public class ListaDeUsuarios extends AppCompatActivity {
                                             String condicion = lista.getCondicion();
                                             String funcion = lista.getFuncion();
                                             String foto = lista.getFoto();
-
-                                            dataList.add(new Usuario(nombre, apellido, condicion, funcion, foto));
+                                            String codigo = lista.getCodigo();
+                                            String correo = lista.getCorreo();
+                                            String idintegrante = lista.getIdintegrante();
+                                            dataList.add(new Usuario(nombre, apellido, condicion, funcion, foto, codigo, correo, idintegrante));
                                         }
 
                                         adapter.setDataList(dataList);

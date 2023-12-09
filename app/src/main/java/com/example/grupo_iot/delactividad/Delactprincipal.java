@@ -143,8 +143,9 @@ public class Delactprincipal extends AppCompatActivity {
                                         String descripcion = lista.getDescripcion();
                                         String lugar = lista.getLugar();
                                         String nombreActividad = lista.getNombreactividad();
+                                        String estado = lista.getEstado();
 
-                                        dataList.add(new Lista(titulo, fecha, imageUrl, descripcion, lugar, nombreActividad));
+                                        dataList.add(new Lista(titulo, fecha, imageUrl, descripcion, lugar, nombreActividad, estado));
                                     }
 
                                     adapter.setDataList(dataList);
