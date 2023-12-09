@@ -171,6 +171,12 @@
         <activity
             android:name=".delegadoGeneral.ValidacionActivity"
             android:exported="false" />
+        <activity
+            android:name=".delegadoGeneral.DelegadoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".delegadoGeneral.AsignarDelegadoActivity"
+            android:exported="false" />
 
         <service
             android:name=".services.MessagingService"

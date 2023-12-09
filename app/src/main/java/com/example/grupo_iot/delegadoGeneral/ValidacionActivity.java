@@ -74,7 +74,7 @@ public class ValidacionActivity extends AppCompatActivity  {
             String codigo = selectedLista.getCodigo();
             String apellido = selectedLista.getApellido();
             email = selectedLista.getEmail();
-            String rol = selectedLista.getRol();
+            String condicion = selectedLista.getCondicion();
             id = selectedLista.getId();
 
             String nombreCompleto = nombre + " " + apellido;
@@ -82,12 +82,12 @@ public class ValidacionActivity extends AppCompatActivity  {
             TextView codigoTextView = findViewById(R.id.codigoUser);
             TextView correoTextView = findViewById(R.id.correoUser);
             //TextView apellidoTextView = findViewById(R.id.apellido);
-            TextView rolTextView = findViewById(R.id.rolUser);
+            TextView condicionTextView = findViewById(R.id.condicionUser);
 
             nombreTextView.setText(nombreCompleto);
             codigoTextView.setText(codigo);
             correoTextView.setText(email);
-            rolTextView.setText(rol);
+            condicionTextView.setText(condicion);
 
         }
 

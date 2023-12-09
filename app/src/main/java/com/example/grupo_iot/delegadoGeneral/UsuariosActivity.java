@@ -59,8 +59,9 @@ public class UsuariosActivity extends AppCompatActivity {
                         String codigo = user.getCodigo();
                         String email = user.getEmail();
                         String rol = user.getRol();
+                        String condicion = user.getCondicion();
 
-                        usuariosList.add(new Usuarios(nombre, codigo, documentoId, apellido, email, rol));
+                        usuariosList.add(new Usuarios(nombre, codigo, documentoId, apellido, email, rol, condicion));
                     }
 
                     // Asigna la lista de actividades al adaptador después de que se haya cargado de Firebase

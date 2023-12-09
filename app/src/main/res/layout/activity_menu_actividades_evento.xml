@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="sans-serif-black"
             android:text="Voley Mixto"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#000000"
@@ -134,7 +134,7 @@
             app:layout_constraintTop_toBottomOf="@+id/nombreActiEvento" />
 
         <TextView
-            android:id="@+id/textView50"
+            android:id="@+id/nombreDelegado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -150,7 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-black"
             android:text="Descripcion:"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -164,12 +164,12 @@
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="17dp"
             android:text="descripcion"
             app:layout_constraintEnd_toEndOf="@+id/view7"
             app:layout_constraintHorizontal_bias="0.022"
             app:layout_constraintStart_toEndOf="@+id/textView51"
-            app:layout_constraintTop_toBottomOf="@+id/textView50" />
+            app:layout_constraintTop_toBottomOf="@+id/nombreDelegado" />
 
         <TextView
             android:id="@+id/textView53"
@@ -184,9 +184,11 @@
             android:typeface="sans"
             app:layout_constraintStart_toStartOf="@+id/view7"
             app:layout_constraintTop_toBottomOf="@+id/textView51" />
+
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="200dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView53">
@@ -194,7 +196,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewEventos"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </androidx.core.widget.NestedScrollView>
 
@@ -202,8 +204,8 @@
             android:id="@+id/textView54"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="60dp"
             android:fontFamily="sans-serif-black"
             android:text="Participantes"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -211,9 +213,10 @@
             android:typeface="sans"
             app:layout_constraintStart_toStartOf="@+id/view7"
             app:layout_constraintTop_toBottomOf="@+id/textView53" />
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="200dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView54">
@@ -226,14 +229,13 @@
         </androidx.core.widget.NestedScrollView>
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/btnEditarActividad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginBottom="40dp"
             android:backgroundTint="#5BB4BE"
             android:fontFamily="sans-serif-medium"
-            android:onClick="editarActividad"
             android:text="Editar"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#FFFFFF"
@@ -242,44 +244,56 @@
             app:layout_constraintStart_toStartOf="@+id/view7" />
 
         <Button
-            android:id="@+id/button9"
+            android:id="@+id/btnBorrarActividad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
             android:backgroundTint="#5BB4BE"
             android:fontFamily="sans-serif-medium"
-            android:onClick="borrarActividad"
+            android:layout_marginBottom="40dp"
             android:text="Borrar"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/view7"
             app:layout_constraintEnd_toEndOf="@+id/view7"
-            app:layout_constraintHorizontal_bias="0.518"
-            app:layout_constraintStart_toEndOf="@+id/button8"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintStart_toEndOf="@+id/btnEditarActividad" />
 
         <ImageView
-            android:id="@+id/imageView27"
+            android:id="@+id/btnverEvento"
             android:layout_width="50dp"
             android:layout_height="29dp"
-            android:layout_marginTop="148dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="180dp"
             app:layout_constraintEnd_toEndOf="@+id/view7"
-            app:layout_constraintHorizontal_bias="0.89"
             app:layout_constraintStart_toEndOf="@+id/textView53"
-            app:layout_constraintTop_toTopOf="@+id/view7"
+            app:layout_constraintTop_toBottomOf="@+id/textView51"
             app:srcCompat="@mipmap/ver" />
 
         <ImageView
-            android:id="@+id/imageView28"
+            android:id="@+id/btnverParticipante"
             android:layout_width="50dp"
             android:layout_height="29dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="122dp"
             app:layout_constraintEnd_toEndOf="@+id/view7"
-            app:layout_constraintHorizontal_bias="0.877"
-
             app:layout_constraintStart_toEndOf="@+id/textView54"
-            app:layout_constraintTop_toBottomOf="@+id/imageView27"
+            app:layout_constraintTop_toBottomOf="@+id/btnverEvento"
             app:srcCompat="@mipmap/ver" />
+
+        <Button
+            android:id="@+id/buttonAsignar"
+            android:layout_width="104dp"
+            android:layout_height="43dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="#5BB4BE"
+            android:fontFamily="sans-serif-medium"
+            android:text="Asignar"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/descriActiEvento"
+            app:layout_constraintEnd_toEndOf="@+id/view7"
+            app:layout_constraintTop_toBottomOf="@+id/nombreActiEvento"
+            app:layout_constraintVertical_bias="0.777" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -11,16 +11,27 @@ public class Usuarios implements Serializable {
     public String password;
     public String id;
     public String rol;
+    public String condicion;
+
 
     public Usuarios() {
     }
-    public Usuarios(String nombre, String codigo, String id, String apellido, String email, String rol) {
+    public Usuarios(String nombre, String codigo, String id, String apellido, String email, String rol, String condicion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.codigo = codigo;
         this.email = email;
         this.rol = rol;
         this.id = id;
+        this.condicion = condicion;
+    }
+
+    public String getCondicion() {
+        return condicion;
+    }
+
+    public void setCondicion(String condicion) {
+        this.condicion = condicion;
     }
 
     public String getPassword() {

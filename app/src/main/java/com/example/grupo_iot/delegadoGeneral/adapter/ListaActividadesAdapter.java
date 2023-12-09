@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.delactividad.Lista;
 import com.example.grupo_iot.delegadoGeneral.ActividadesActivity;
+import com.example.grupo_iot.delegadoGeneral.AsignarDelegadoActivity;
+import com.example.grupo_iot.delegadoGeneral.EditarActivity;
 import com.example.grupo_iot.delegadoGeneral.EventosActivity;
 import com.example.grupo_iot.delegadoGeneral.ParticipantesActivity;
 import com.example.grupo_iot.delegadoGeneral.ValidacionActivity;
@@ -46,17 +48,19 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
         holder.nombreDelegadoTextView.setText(actividad.delegadoActividad);
         holder.descripcionContenidoTextView.setText(actividad.descripcionActividad);
         holder.nombreActividadTextView.setText(actividad.nombreActividad);
+        holder.idTextView.setText(actividad.id);
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
-                Intent eventosIntent = new Intent(context, EventosActivity.class);
+                Intent intent = new Intent(context, EventosActivity.class);
                 Actividad selectedLista = actividadLista.get(holder.getAdapterPosition());
-                eventosIntent.putExtra("listaData", selectedLista);
-                Intent participantesIntent = new Intent(context, ParticipantesActivity.class);
-                Actividad selectedLista1 = actividadLista.get(holder.getAdapterPosition());
-                participantesIntent.putExtra("listaData1", selectedLista1);
-                context.startActivities(new Intent[]{eventosIntent, participantesIntent});
+                intent.putExtra("listaData", selectedLista);
+                context.startActivity(intent);
+                Context context1 = view.getContext();
+                Intent intent1 = new Intent(context1, EditarActivity.class);
+                intent1.putExtra("listaData", selectedLista);
+                context1.startActivity(intent1);
             }
         });
 
@@ -73,6 +77,7 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
         TextView nombreDelegadoTextView;
         TextView descripcionContenidoTextView;
         TextView nombreActividadTextView;
+        TextView idTextView;
         Button button;
         public ActividadViewHolder(@NonNull View itemView){
             super(itemView);
@@ -80,6 +85,7 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
             nombreDelegadoTextView = itemView.findViewById(R.id.delegadoActividad);
             descripcionContenidoTextView = itemView.findViewById(R.id.descripcionActividad);
             nombreActividadTextView = itemView.findViewById(R.id.nombreActividad);
+            idTextView = itemView.findViewById(R.id.idActividad);
             button = itemView.findViewById(R.id.masinfoactividad);
 
            // ActividadesBoton.setOnClickListener(view -> {
@@ -98,5 +104,6 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
         notifyDataSetChanged();
 
     }
+
 
 }

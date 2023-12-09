@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="330dp"
+    android:layout_height="63dp"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="315dp"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/backgroundContainer2">
+        <LinearLayout
+            android:layout_width="315dp"
+            android:layout_height="50dp"
+            android:background="@drawable/background52"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundContainer2">
+
+            <TextView
+                android:id="@+id/nombreDeleLista"
+                android:layout_width="8dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Stuardo Lucho"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="16sp"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/codigoDeleLista"
+                android:layout_width="70dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="20191188"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="16sp"
+                android:typeface="sans" />
+            <ImageView
+                android:id="@+id/btnAsignarDele"
+                android:layout_width="30dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="40dp"
+                app:srcCompat="@mipmap/check"/>
+
+            <TextView
+                android:id="@+id/idDeleLista"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:visibility="invisible"
+                android:text="TextView" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="1dp"
+            android:background="@drawable/background52"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundContainer2">
+
+            <TextView
+                android:id="@+id/emailDeleLista"
+                android:layout_width="8dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Stuardo Lucho"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="16sp"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/apellidoDeleLista"
+                android:layout_width="70dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="20191188"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="16sp"
+                android:typeface="sans" />
+            <TextView
+                android:id="@+id/rolDeleLista"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:visibility="invisible"
+                android:text="TextView" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

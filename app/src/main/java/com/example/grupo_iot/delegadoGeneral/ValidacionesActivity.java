@@ -54,7 +54,6 @@ public class ValidacionesActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     validacionesList.clear();
-
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         String documentoId = document.getId();
                         Validaciones val = document.toObject(Validaciones.class);
@@ -63,8 +62,9 @@ public class ValidacionesActivity extends AppCompatActivity {
                         String codigo = val.getCodigo();
                         String email = val.getEmail();
                         String rol = val.getRol();
+                        String condicion = val.getCondicion();
 
-                        validacionesList.add(new Validaciones(nombre, codigo, documentoId, apellido, email, rol));
+                        validacionesList.add(new Validaciones(nombre, codigo, documentoId, apellido, email, rol, condicion));
                     }
 
                     // Asigna la lista de actividades al adaptador después de que se haya cargado de Firebase
