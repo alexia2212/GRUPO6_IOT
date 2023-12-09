@@ -76,12 +76,26 @@ public class RegistrarseActivity extends AppCompatActivity {
         Spinner spinner1 = binding.spinnerRolUsuario;
         spinner1.setAdapter(adapter1);
         spinner1.setSelection(adapter1.getPosition("Alumno"));
+
+        //SECCION ACTIVIDAD DESIGNADA
+        String[] actividadDesig = {"Actividad"};
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, actividadDesig);
+
+        Spinner spinner2 = binding.spinnerRolUsuario;
+        spinner2.setAdapter(adapter2);
+        spinner2.setSelection(adapter2.getPosition(""));
+
+
         binding.guardar.setOnClickListener(view ->{
             String selectedOption = spinner.getSelectedItem().toString();
             Log.d("sprinner", "condicion"+spinner.getSelectedItem().toString());
 
             String selectedRol = spinner1.getSelectedItem().toString();
             Log.d("sprinner", "rol"+selectedRol);
+
+            String selectedActividad = spinner1.getSelectedItem().toString();
+            Log.d("actividad seleccionada", "rol"+selectedActividad);
 
             Toast.makeText(this, spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT);
 
@@ -164,6 +178,7 @@ public class RegistrarseActivity extends AppCompatActivity {
                                     UsuarioPorRegistrar.put("email", email);
                                     UsuarioPorRegistrar.put("password", password);
                                     UsuarioPorRegistrar.put("rol", "Alumno");
+                                    UsuarioPorRegistrar.put("actividadDesignada", "");
                                     db.collection("usuariosPorRegistrar")
                                             .add(UsuarioPorRegistrar)
                                             .addOnSuccessListener(documentReference -> {
