@@ -18,10 +18,17 @@ import java.util.List;
 
 public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.ViewHolder> {
     private List<Usuario> dataList;
+    private String documentoActualId; // Nuevo campo
 
-    public AdaptadorUsuario(List<Usuario> dataList) {
+
+
+
+    public AdaptadorUsuario(List<Usuario> dataList, String documentoActualId) {
         this.dataList = dataList;
+        this.documentoActualId = documentoActualId;
     }
+
+
 
     @NonNull
     @Override
@@ -45,13 +52,16 @@ public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.View
                 Context context = view.getContext();
                 Intent intent = new Intent(context, UsuariosInscritos.class);
 
+
                 // Agrega los datos que deseas conservar en el Intent
                 Usuario selectedLista = dataList.get(holder.getAdapterPosition());
                 intent.putExtra("listaData", selectedLista);
+                intent.putExtra("documentoActualId", documentoActualId);
 
                 context.startActivity(intent);
             }
         });
+
 
 
     }

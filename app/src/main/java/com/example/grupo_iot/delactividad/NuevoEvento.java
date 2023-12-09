@@ -129,6 +129,7 @@ public class NuevoEvento extends AppCompatActivity {
         String descripcion = binding.descripcionuevoevento.getText().toString();
         String fecha = binding.fechanuevoevento.getText().toString();
         String lugar = spinnerLugar.getSelectedItem().toString();
+        String estado = "activo";
 
         if (selectedImageUri != null) {
             // Subir la imagen a Firebase Storage y obtener el enlace
@@ -141,7 +142,7 @@ public class NuevoEvento extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     String imageUrl = uri.toString();
-                                    EventoList evento = new EventoList(titulo, fecha, imageUrl, descripcion, lugar);
+                                    EventoList evento = new EventoList(titulo, fecha, imageUrl, descripcion, lugar, estado);
                                     guardarEventoEnFirestore(evento);
 
                                     // Ahora, inicia la actividad VistaPreviaCreacion y pasa los datos
@@ -178,13 +179,15 @@ public class NuevoEvento extends AppCompatActivity {
                     if (documentSnapshot.exists()) {
                         String idActividad = documentSnapshot.getString("actividadDesignada");
 
+                        String tituloEvento = evento.getTitulo();
                         db.collection("actividades")
                                 .document(idActividad)
                                 .collection("listaEventos")
-                                .add(evento)
-                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                .document(tituloEvento)
+                                .set(evento)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
-                                    public void onSuccess(DocumentReference documentReference) {
+                                    public void onSuccess(Void aVoid) {
                                         Toast.makeText(NuevoEvento.this, "Evento guardado con éxito", Toast.LENGTH_SHORT).show();
                                     }
                                 })

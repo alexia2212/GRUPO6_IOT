@@ -68,11 +68,12 @@
         <androidx.cardview.widget.CardView
 
             android:id="@+id/vistaprevia"
-            android:layout_width="389dp"
-            android:layout_height="578dp"
+            android:layout_width="385dp"
+            android:layout_height="471dp"
             android:animateLayoutChanges="true"
             app:cardCornerRadius="10dp"
             app:cardElevation="2dp"
+            android:layout_marginTop="-30dp"
             app:cardUseCompatPadding="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -85,15 +86,16 @@
                 android:layout_marginTop="10dp" />
 
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="370dp"
                 android:layout_height="wrap_content"
                 android:animateLayoutChanges="true">
 
                 <!-- Imagen arriba -->
                 <ImageView
-                    android:id="@+id/imagen1"
+                    android:id="@+id/foto"
                     android:layout_width="116dp"
                     android:layout_height="126dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="58dp"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/angeloramos" />
@@ -103,72 +105,77 @@
                 <!-- Botón "Guardar Funcionalidad" debajo de la imagen -->
 
                 <TextView
+                    android:id="@+id/nombre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="36dp"
                     android:layout_marginTop="70dp"
                     android:layout_marginBottom="89dp"
-                    android:layout_toRightOf="@id/imagen1"
+                    android:layout_toRightOf="@id/foto"
                     android:text="Angelo Ramos"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/condicion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="36dp"
                     android:layout_marginTop="120dp"
                     android:layout_marginBottom="141dp"
-                    android:layout_toRightOf="@id/imagen1"
+                    android:layout_toRightOf="@id/foto"
                     android:text="Condición: Alumno" />
 
                 <TextView
+                    android:id="@+id/codigo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/boton1"
+                    android:layout_above="@+id/guardar"
                     android:layout_marginLeft="38dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_toRightOf="@id/imagen1"
+                    android:layout_toRightOf="@id/foto"
                     android:text="Código: 20192258" />
 
                 <TextView
+                    android:id="@+id/correo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/boton1"
+                    android:layout_above="@+id/guardar"
                     android:layout_marginLeft="-30dp"
                     android:layout_marginBottom="-40dp"
-                    android:layout_toRightOf="@id/imagen1"
+                    android:layout_toRightOf="@id/foto"
                     android:text="Correo: a20192258@pucp.edu.pe" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/boton1"
+                    android:layout_above="@+id/guardar"
                     android:layout_marginLeft="-100dp"
                     android:layout_marginBottom="-100dp"
-                    android:layout_toRightOf="@id/imagen1"
+                    android:layout_toRightOf="@id/foto"
                     android:text="Seleccionar Función: "
                     android:textSize="18dp" />
 
 
                 <Button
-                    android:id="@+id/boton1"
+                    android:id="@+id/guardar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/imagen1"
-                    android:layout_marginLeft="-110dp"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/foto"
+                    android:layout_marginLeft="-130dp"
                     android:layout_marginTop="197dp"
-                    android:layout_toRightOf="@id/imagen1"
+                    android:layout_toRightOf="@id/foto"
                     android:backgroundTint="@color/turquesa"
                     android:text="Guardar Funcionalidad" />
 
                 <RadioGroup
-                    android:layout_width="350dp"
+                    android:id="@+id/radiogrupo"
+                    android:layout_width="300dp"
                     android:layout_height="60dp"
-                    android:layout_above="@+id/boton1"
+                    android:layout_above="@+id/guardar"
                     android:layout_alignParentEnd="true"
                     android:layout_marginLeft="100dp"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="110dp"
                     android:layout_marginEnd="0dp"
                     android:layout_marginBottom="-170dp"
 
@@ -177,7 +184,8 @@
 
                     <RadioButton
                         android:id="@+id/radioButton1"
-                        android:layout_width="match_parent"
+                        android:layout_width="318dp"
+                        android:layout_marginTop="20dp"
                         android:layout_height="wrap_content"
                         android:text="Barra" />
 
@@ -186,7 +194,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="170dp"
-                        android:layout_marginTop="-50dp"
+                        android:layout_marginTop="-41dp"
                         android:text="Equipo" />
                 </RadioGroup>
             </RelativeLayout>

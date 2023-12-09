@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -35,6 +36,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -50,6 +52,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class FotoTransferenciaActivity extends AppCompatActivity {
     ActivityFotoTransferenciaBinding binding;
@@ -110,6 +113,7 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
 
             }else{
                 guardarImagenEnFirebaseStorage(imageUri);
+                guardarMontoEnFirestore(inputText);
                 Intent intent2 = new Intent(this, ConfirmacionTransferenciaActivity.class);
                 intent2.putExtra("alumno",alumno);
                 startActivity(intent2);
@@ -130,11 +134,27 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
         }
     }
 
+    private void guardarMontoEnFirestore(String monto){
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy HH:mm 'Hrs.'", Locale.getDefault());
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String fechaHoraActual = dateFormat.format(new Date());
+
+        CollectionReference donacionesCollection = db.collection("donaciones");
+        DocumentReference condicionDocument = donacionesCollection.document(alumno.getCondicion());
+        CollectionReference donacionCollection = condicionDocument.collection(alumno.getCodigo());
+        DocumentReference donacionDocument = donacionCollection.document(fechaHoraActual);
+
+        Map<String, Object> datosDonacion = new HashMap<>();
+        datosDonacion.put("monto", "S/. "+monto);
+
+        donacionDocument.set(datosDonacion);
+    }
     private void guardarImagenEnFirebaseStorage(Uri imageUri) {
         long timestamp = System.currentTimeMillis();
         String fechaYHora = obtenerFechaYHora(timestamp);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference imageRef = storageRef.child("capturas_transferencias/"+alumno.getNombre()+"_"+alumno.getApellido()+" - "+fechaYHora+".jpg");
+        StorageReference imageRef = storageRef.child("capturas_transferencias/"+alumno.getNombre()+"_"+alumno.getApellido()+"   "+fechaYHora+".jpg");
 
         StorageMetadata metadata = new StorageMetadata.Builder()
                 .setCustomMetadata("Autor", alumno.getNombre()+" "+alumno.getApellido())
@@ -344,7 +364,8 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
         });
     }
     private String obtenerFechaYHora(long timestamp) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy HH:mm 'Hrs'", Locale.getDefault());
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date date = new Date(timestamp);
         return sdf.format(date);
     }

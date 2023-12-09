@@ -55,6 +55,7 @@ public class VistaPreviaEvento extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         generarBottomNavigationMenu();
+        isEventoFinalizado();
 
         binding.imageViewsalir.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -136,17 +137,22 @@ public class VistaPreviaEvento extends AppCompatActivity {
         });
 
         binding.boton2.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Estás seguro de que deseas finalizar este evento?")
-                    .setTitle("Aviso")
-                    .setPositiveButton("Finalizar", (dialog, which) -> {
-                        Intent intent1 = new Intent(this, LoginActivity.class);
-                        startActivity(intent1);
-                    })
-                    .setNegativeButton("Cancelar", null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-
+            // Check if the event is already finished
+            if (!isEventoFinalizado()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("¿Estás seguro de que deseas finalizar este evento?")
+                        .setTitle("Aviso")
+                        .setPositiveButton("Finalizar", (dialog, which) -> {
+                            // Update the estado field in Firestore
+                            updateEstadoInFirestore();
+                        })
+                        .setNegativeButton("Cancelar", null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                // Event already finished, show a message or handle accordingly
+                Toast.makeText(getApplicationContext(), "El evento ya está finalizado", Toast.LENGTH_SHORT).show();
+            }
         });
 
 
@@ -199,6 +205,7 @@ public class VistaPreviaEvento extends AppCompatActivity {
                 String imageUrl = selectedLista.getImagen1();
                 String descripcion = selectedLista.getDescripcion();
                 String lugar = selectedLista.getLugar();
+                String estado = selectedLista.getEstado();
 
                 Intent intent = new Intent(VistaPreviaEvento.this, ActualizarActivity.class);
                 intent.putExtra("titulo", titulo); // Pasa el título como extra
@@ -206,6 +213,9 @@ public class VistaPreviaEvento extends AppCompatActivity {
                 intent.putExtra("fecha", fecha); // Pasa la fecha como extra
                 intent.putExtra("lugar", lugar); // Pasa el lugar como extra
                 intent.putExtra("imagenUrl", imageUrl);
+                intent.putExtra("estado", estado);
+
+
                 startActivity(intent);
             }
         });
@@ -294,6 +304,85 @@ public class VistaPreviaEvento extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    private boolean isEventoFinalizado() {
+        Intent intent = getIntent();
+        if (intent.hasExtra("listaData")) {
+            Lista selectedLista = (Lista) intent.getSerializableExtra("listaData");
+
+            // Dynamically set the button color based on the estado
+            if ("finalizado".equals(selectedLista.getEstado())) {
+                binding.boton2.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+                binding.boton2.setEnabled(false); // Disable the button
+                return true;
+            } else {
+                // Set the button color to its default color
+                binding.boton2.setBackgroundColor(getResources().getColor(android.R.color.holo_blue_dark));
+                return false;
+            }
+        }
+        return false;
+    }
+
+    private void updateEstadoInFirestore() {
+        Intent intent = getIntent();
+        if (intent.hasExtra("listaData")) {
+            Lista selectedLista = (Lista) intent.getSerializableExtra("listaData");
+            String titulo = selectedLista.getTitulo();
+
+            String userID = auth.getCurrentUser().getUid();
+
+            db.collection("credenciales")
+                    .document(userID)
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String idActividad = documentSnapshot.getString("actividadDesignada");
+
+                            db.collection("actividades")
+                                    .document(idActividad)
+                                    .collection("listaEventos")
+                                    .whereEqualTo("titulo", titulo)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                                    // Obtiene el ID del documento actual
+                                                    String documentoActualId = document.getId();
+
+                                                    // Update the estado field to "finalizado"
+                                                    db.collection("actividades")
+                                                            .document(idActividad)
+                                                            .collection("listaEventos")
+                                                            .document(documentoActualId)
+                                                            .update("estado", "finalizado")
+                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void aVoid) {
+                                                                    // El campo "estado" se actualizó con éxito
+                                                                    Toast.makeText(getApplicationContext(), "Evento finalizado", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            })
+                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    // Manejo de errores en caso de que la actualización falle
+                                                                    Toast.makeText(getApplicationContext(), "Error al actualizar el estado del evento", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            });
+                                                }
+                                            } else {
+                                                // Manejo de errores
+                                                Toast.makeText(getApplicationContext(), "Error al obtener el documento", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                        }
+                    });
+        }
     }
 
 }

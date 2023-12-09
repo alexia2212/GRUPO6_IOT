@@ -99,73 +99,62 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView15"
+        <EditText
+            android:id="@+id/editarTitulo"
             android:layout_width="300dp"
-            android:layout_height="80dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="110dp"
-            android:layout_marginTop="110dp"
-            android:backgroundTint="#D6D4D4"
-            app:cardCornerRadius="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.513"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/view6">
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/border"
+            android:gravity="start|center_vertical"
+            android:padding="15dp"
+            android:textColor="@android:color/black"            app:layout_constraintEnd_toEndOf="@+id/view6"
+            app:layout_constraintStart_toStartOf="@+id/view6"
+            app:layout_constraintTop_toBottomOf="@+id/tituloEditar" />
 
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView16"
+        <EditText
+            android:id="@+id/editarDescripcion"
             android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="50dp"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/background3"
-            android:backgroundTint="#D6D4D4"
-            app:cardCornerRadius="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView15">
-
-
-        </androidx.cardview.widget.CardView>
+            android:layout_height="70dp"
+            android:background="@drawable/border"
+            android:gravity="start|center_vertical"
+            android:layout_marginTop="15dp"
+            android:padding="15dp"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="@+id/view6"
+            app:layout_constraintStart_toStartOf="@+id/view6"
+            app:layout_constraintTop_toBottomOf="@+id/DescripEditar" />
 
         <TextView
             android:id="@+id/DescripEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="sans-serif-medium"
             android:text="Descripcion"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#000000"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/cardView16"
-            app:layout_constraintEnd_toEndOf="@+id/cardView16"
-            app:layout_constraintHorizontal_bias="0.01"
-            app:layout_constraintStart_toStartOf="@+id/cardView16"
-            app:layout_constraintTop_toBottomOf="@+id/cardView15"
-            app:layout_constraintVertical_bias="0.695" />
+            app:layout_constraintEnd_toEndOf="@+id/view6"
+            app:layout_constraintHorizontal_bias="0.115"
+            app:layout_constraintStart_toStartOf="@+id/view6"
+            app:layout_constraintTop_toBottomOf="@+id/editarTitulo" />
 
         <TextView
             android:id="@+id/tituloEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="sans-serif-medium"
             android:text="Titulo"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#000000"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/cardView15"
-            app:layout_constraintEnd_toEndOf="@+id/cardView15"
-            app:layout_constraintHorizontal_bias="0.012"
-            app:layout_constraintStart_toStartOf="@+id/cardView15"
-            app:layout_constraintTop_toTopOf="@+id/view6"
-            app:layout_constraintVertical_bias="0.903" />
+            app:layout_constraintEnd_toEndOf="@+id/view6"
+            app:layout_constraintHorizontal_bias="0.094"
+            app:layout_constraintStart_toStartOf="@+id/view6"
+            app:layout_constraintTop_toBottomOf="@+id/editarActividad" />
 
         <TextView
             android:id="@+id/editarActividad"
@@ -183,7 +172,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/buttonEditar"
+            android:id="@+id/buttonActualizar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#5BB4BE"
@@ -196,7 +185,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/view6"
             app:layout_constraintEnd_toEndOf="@+id/view6"
             app:layout_constraintStart_toStartOf="@+id/view6"
-            app:layout_constraintTop_toBottomOf="@+id/cardView16" />
+            app:layout_constraintTop_toBottomOf="@+id/editarDescripcion" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

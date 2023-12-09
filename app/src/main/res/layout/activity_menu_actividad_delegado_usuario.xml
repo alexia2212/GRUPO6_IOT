@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D9D9D9"
-    tools:context=".delegadoGeneral.ValidacionActivity">
+    tools:context=".delegadoGeneral.AsignarDelegadoActivity">
 
 
     <!-- Contenido principal -->
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-black"
-            android:text="Validaciones"
+            android:text="Actividades"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="34sp"
@@ -107,11 +107,11 @@
             app:layout_constraintEnd_toEndOf="@+id/view26"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="@+id/view26"
-            app:layout_constraintTop_toBottomOf="@+id/nombreUser"
+            app:layout_constraintTop_toBottomOf="@+id/nombreDeleUser"
             app:srcCompat="@mipmap/angelo" />
 
         <TextView
-            android:id="@+id/nombreUser"
+            android:id="@+id/nombreDeleUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -150,10 +150,10 @@
                 app:layout_constraintEnd_toEndOf="@+id/view26"
                 app:layout_constraintHorizontal_bias="0.458"
                 app:layout_constraintStart_toEndOf="@+id/imageView38"
-                app:layout_constraintTop_toBottomOf="@+id/nombreUser" />
+                app:layout_constraintTop_toBottomOf="@+id/nombreDeleUser" />
 
             <TextView
-                android:id="@+id/condicionUser"
+                android:id="@+id/condicionDeleUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed-medium"
@@ -193,7 +193,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/nombreUser" />
 
             <TextView
-                android:id="@+id/codigoUser"
+                android:id="@+id/codigoDeleUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed-medium"
@@ -238,7 +238,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/nombreUser" />
 
             <TextView
-                android:id="@+id/correoUser"
+                android:id="@+id/correoDeleUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed-medium"
@@ -259,15 +259,15 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#5BB4BE"
             android:fontFamily="sans-serif-medium"
-            android:text="Validar"
+            android:text="Asignar"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/view26"
             app:layout_constraintEnd_toEndOf="@+id/view26"
-            app:layout_constraintHorizontal_bias="0.517"
             app:layout_constraintStart_toStartOf="@+id/view26"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+            app:layout_constraintVertical_bias="0.488" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
