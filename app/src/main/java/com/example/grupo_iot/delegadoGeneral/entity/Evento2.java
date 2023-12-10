@@ -3,33 +3,33 @@ package com.example.grupo_iot.delegadoGeneral.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Evento implements Serializable {
+public class Evento2 implements Serializable {
 
     public String descripcion;
     public Date fechaHora;
     public String lugar;
     public String nombre;
-    public String id;
     public String imagen;
 
-    public Evento() {
+    public Evento2() {
     }
 
-    public Evento(String descripcion, Date fechaHora, String lugar,  String nombre, String id) {
+    public Evento2(String nombre, String descripcion, Date fechaHora, String lugar, String imagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaHora = fechaHora;
         this.lugar = lugar;
-        this.id = id;
+        this.imagen = imagen;
     }
 
-    public String getId() {
-        return id;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
+
 
     public String getDescripcion() {
         return descripcion;

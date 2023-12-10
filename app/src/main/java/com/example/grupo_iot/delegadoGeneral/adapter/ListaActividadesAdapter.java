@@ -28,7 +28,7 @@ import java.util.List;
 
 public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividadesAdapter.ActividadViewHolder>{
      private List<Actividad> actividadLista;
-    private List<Actividad> actividadLista1;
+     private List<Actividad> actividadLista1;
      private List<Evento> eventoList;
      private List<Participantes> participantesList;
 

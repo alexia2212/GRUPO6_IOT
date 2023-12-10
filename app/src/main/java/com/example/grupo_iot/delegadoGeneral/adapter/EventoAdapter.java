@@ -43,19 +43,6 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoView
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String fechaStr = dateFormat.format(evento.getFechaHora()).toString();
         holder.fechaHoraTextView.setText(fechaStr);
-       /* holder.imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Context context = view.getContext();
-                Intent intent = new Intent(context, ValidacionActivity.class);
-
-                // Agrega los datos que deseas conservar en el Intent
-                Validaciones selectedLista = validacionesList.get(holder.getAdapterPosition());
-                intent.putExtra("listaData", selectedLista);
-
-                context.startActivity(intent);
-            }
-        });*/
     }
 
     @Override

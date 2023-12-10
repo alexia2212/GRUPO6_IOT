@@ -140,8 +140,9 @@ public class EventosActivity extends AppCompatActivity {
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EventosActivity.this, DelegadoActivity.class);
+                Intent intent = new Intent(EventosActivity.this, EventosActividadActivity.class);
                 intent.putExtra("nombreActividad", nombre);
+                intent.putExtra("idActividad", id);
                 startActivity(intent);
             }
         });

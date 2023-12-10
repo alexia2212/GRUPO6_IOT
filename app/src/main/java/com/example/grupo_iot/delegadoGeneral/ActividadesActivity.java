@@ -60,7 +60,6 @@ public class ActividadesActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         actividadLista= new ArrayList<>();
-        // Inicializa el adaptador después de que la lista de actividades se haya cargado de Firebase
         listaActividadesAdapter = new ListaActividadesAdapter(actividadLista);
         generarBottomNavigationMenu();
         RecyclerView recyclerView = findViewById(R.id.actividadesDel);
@@ -80,7 +79,7 @@ public class ActividadesActivity extends AppCompatActivity {
                         String delegado = activ.getDelegadoActividad();
                         String id = document.getId();
                         String email = activ.getEmailDelegado();
-                        Log.e("ActiidadesActivity", "Nombre id: " + id);
+                        Log.e("ActidadesActivity", "Nombre id: " + id);
 
                         actividadLista.add(new Actividad(nombre, descripcion, delegado, email, id));
                     }

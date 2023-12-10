@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="150dp"
+    android:layout_height="180dp"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="140dp"
+        android:layout_height="170dp"
+        android:animateLayoutChanges="true"
+        android:background="#D9D9D9"
+        android:orientation="vertical">
+
+        <!-- Imagen en la parte superior -->
+        <ImageView
+            android:id="@+id/imagenEventoActi"
+            android:layout_width="110dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/voley1" />
+
+        <!-- Contenedor de texto -->
+        <LinearLayout
+            android:id="@+id/linearlayout1"
+            android:layout_width="135dp"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Texto -->
+            <LinearLayout
+                android:layout_width="108dp"
+                android:layout_height="40dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tituloEventoActi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Convocatoria"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fechaEventoActi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="14/09/2023"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+                <TextView
+                    android:id="@+id/lugarEventoActi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="14/09/2023"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+                <TextView
+                    android:id="@+id/descriEventoActi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="14/09/2023"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <!-- ImageView al costado de los textos -->
+            <ImageView
+                android:id="@+id/btnverEventoEspecifico"
+                android:layout_width="28dp"
+                android:layout_height="25dp"
+                app:srcCompat="@mipmap/ver" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
