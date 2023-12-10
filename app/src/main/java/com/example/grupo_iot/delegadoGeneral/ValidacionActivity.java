@@ -139,6 +139,7 @@ public class ValidacionActivity extends AppCompatActivity  {
                         Map<String, Object> userData = documentSnapshot.getData(); //Obtener datos del colletion
                         String email = (String) userData.get("email"); //extraccion
                         String password = (String) userData.get("password");
+                        String codigo = (String) userData.get("codigo");
                         auth.createUserWithEmailAndPassword(email, password) //crear en la tabla de auth
                                 .addOnCompleteListener(task -> {
                                     if (task.isSuccessful()) {
@@ -151,18 +152,27 @@ public class ValidacionActivity extends AppCompatActivity  {
                                                 .addOnSuccessListener(aVoid -> {
                                                     Log.e("ValidacionActivity", "Exito de transferencia");
                                                     //Para eliminar
-                                                    db.collection("usuariosPorRegistrar")
-                                                            .document(id)
-                                                            .delete()
+                                                    db.collection("alumnos")
+                                                            .document(codigo)
+                                                            .set(userData)
                                                             .addOnSuccessListener(aVoid1 -> {
-                                                                Log.e("ValidacionActivity", "Usuario eliminado de usuariosPorRegistrar");
+                                                                Log.e("ValidacionActivity", "Éxito de transferencia a alumnos");
+                                                                db.collection("usuariosPorRegistrar")
+                                                                        .document(id)
+                                                                        .delete()
+                                                                        .addOnSuccessListener(aVoid2 -> {
+                                                                            Log.e("ValidacionActivity", "Usuario eliminado de usuariosPorRegistrar");
+                                                                        })
+                                                                        .addOnFailureListener(e -> {
+                                                                            Log.e("ValidacionActivity", "Error al eliminar documento de usuariosPorRegistrar", e);
+                                                                        });
                                                             })
                                                             .addOnFailureListener(e -> {
-                                                                Log.e("ValidacionActivity", "Error al eliminar documento de usuariosPorRegistrar", e);
+                                                                Log.e("ValidacionActivity", "Error al transferir a la colección de alumnos", e);
                                                             });
                                                 })
                                                 .addOnFailureListener(e -> {
-                                                    Log.e("ValidacionActivity", "Error tranferencia", e);
+                                                    Log.e("ValidacionActivity", "Error en la transferencia a credenciales", e);
                                                 });
                                     } else {
                                         Log.e("ValidacionActivity", "Error al crear usuario en Firebase Authentication", task.getException());

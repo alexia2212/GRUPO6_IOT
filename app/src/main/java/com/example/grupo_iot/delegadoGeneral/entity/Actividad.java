@@ -7,16 +7,26 @@ public class Actividad implements Serializable {
 
     public String descripcionActividad;
     public String delegadoActividad;
+    public String emailDelegado;
 
     public String id;
-    public Actividad(String nombreActividad, String descripcionActividad, String delegadoActividad, String id) {
+    public Actividad(String nombreActividad, String descripcionActividad, String delegadoActividad, String emailDelegado, String id) {
         this.nombreActividad = nombreActividad;
         this.descripcionActividad = descripcionActividad;
         this.delegadoActividad = delegadoActividad;
+        this.emailDelegado = emailDelegado;
         this.id = id;
     }
 
     public Actividad() {
+    }
+
+    public String getEmailDelegado() {
+        return emailDelegado;
+    }
+
+    public void setEmailDelegado(String emailDelegado) {
+        this.emailDelegado = emailDelegado;
     }
 
     public String getId() {

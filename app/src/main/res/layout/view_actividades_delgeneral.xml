@@ -93,6 +93,11 @@
                         android:layout_marginEnd="1dp"
                         android:layout_toEndOf="@+id/descripcionG"
                         android:text="Entrenamientos para semana y campeonatos" />
+                    <TextView
+                        android:id="@+id/emailDele"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A" />
                 </LinearLayout>
         </LinearLayout>
         <Button

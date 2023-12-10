@@ -85,7 +85,7 @@ public class AsignarDelegadoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cambiarDato(finalId, nombreAct);
-                agregarDato(nombreAct, nombreCompleto);
+                agregarDato(nombreAct, nombreCompleto, finalEmail);
                 AlertDialog.Builder alert = new AlertDialog.Builder(AsignarDelegadoActivity.this); // Corregir aquí
                 alert.setTitle("Confirmacion");
                 alert.setMessage("Asignar como Delegado de Actividad");
@@ -123,10 +123,11 @@ public class AsignarDelegadoActivity extends AppCompatActivity {
                 });
 
     }
-    private void agregarDato(String nombreAct, String nombreCompleto) {
+    private void agregarDato(String nombreAct, String nombreCompleto, String emailDelegado) {
         DocumentReference docRef = db.collection("actividades").document(nombreAct);
         Map<String, Object> nuevoCampo  = new HashMap<>();
         nuevoCampo.put("delegadoActividad", nombreCompleto);
+        nuevoCampo.put("emailDelegado", emailDelegado);
         docRef.set(nuevoCampo, SetOptions.merge() )
                 .addOnSuccessListener(aVoid -> {
                     Log.d("Firestore", "Documento agregado correctamente");

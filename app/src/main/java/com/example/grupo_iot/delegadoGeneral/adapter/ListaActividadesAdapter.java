@@ -49,6 +49,7 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
         holder.descripcionContenidoTextView.setText(actividad.descripcionActividad);
         holder.nombreActividadTextView.setText(actividad.nombreActividad);
         holder.idTextView.setText(actividad.id);
+        holder.emailDeleTextView.setText(actividad.emailDelegado);
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,10 +58,6 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
                 Actividad selectedLista = actividadLista.get(holder.getAdapterPosition());
                 intent.putExtra("listaData", selectedLista);
                 context.startActivity(intent);
-                Context context1 = view.getContext();
-                Intent intent1 = new Intent(context1, EditarActivity.class);
-                intent1.putExtra("listaData", selectedLista);
-                context1.startActivity(intent1);
             }
         });
 
@@ -77,33 +74,22 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
         TextView nombreDelegadoTextView;
         TextView descripcionContenidoTextView;
         TextView nombreActividadTextView;
+        TextView emailDeleTextView;
         TextView idTextView;
         Button button;
         public ActividadViewHolder(@NonNull View itemView){
             super(itemView);
-            //ImageView ActividadesBoton = itemView.findViewById(R.id.ActividadesBoton);
             nombreDelegadoTextView = itemView.findViewById(R.id.delegadoActividad);
             descripcionContenidoTextView = itemView.findViewById(R.id.descripcionActividad);
             nombreActividadTextView = itemView.findViewById(R.id.nombreActividad);
             idTextView = itemView.findViewById(R.id.idActividad);
+            emailDeleTextView = itemView.findViewById(R.id.emailDele);
             button = itemView.findViewById(R.id.masinfoactividad);
-
-           // ActividadesBoton.setOnClickListener(view -> {
-            //    Intent intent = new Intent(context, ActividadesActivity.class);
-            //    intent.putExtra("nombreActividad", nombreActividad.getText().toString());
-            //    intent.putExtra("descripcionActividad", descripcionActividad.getText().toString());
-            //    intent.putExtra("delegadoActividad", delegadoActividad.getText().toString());
-            //    context.startActivity(intent);
-            //});
-
         }
     }
 
     public void setActividadLista(List<Actividad> actividadLista){
         this.actividadLista = actividadLista;
         notifyDataSetChanged();
-
     }
-
-
 }

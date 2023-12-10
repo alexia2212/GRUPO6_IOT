@@ -79,9 +79,10 @@ public class ActividadesActivity extends AppCompatActivity {
                         String descripcion = activ.getDescripcionActividad();
                         String delegado = activ.getDelegadoActividad();
                         String id = document.getId();
+                        String email = activ.getEmailDelegado();
                         Log.e("ActiidadesActivity", "Nombre id: " + id);
 
-                        actividadLista.add(new Actividad(nombre, descripcion, delegado, id));
+                        actividadLista.add(new Actividad(nombre, descripcion, delegado, email, id));
                     }
 
                     // Asigna la lista de actividades al adaptador después de que se haya cargado de Firebase
