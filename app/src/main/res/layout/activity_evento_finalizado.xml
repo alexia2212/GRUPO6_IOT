@@ -15,6 +15,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/buscarEvento2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="10dp"
+            android:hint="Buscar evento"
+            android:layout_marginTop="30dp"
+            app:boxBackgroundColor="@color/white"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView27"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <ImageView
             android:id="@+id/imageView"
@@ -28,21 +54,28 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/cab" />
 
+        <ImageView
+            android:id="@+id/imageViewsalir"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="27dp"
+            android:rotation="180"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_exit_to_app_24" />
+
         <!-- Primera CardView -->
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="76dp"
-            android:layout_height="57dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="168dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-
+            android:layout_width="88dp"
+            android:layout_height="71dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView21"
+            app:layout_constraintHorizontal_bias="0.547"
             app:layout_constraintStart_toEndOf="@+id/imageViewsalir"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.046"
             app:srcCompat="@mipmap/logo" />
 
         <androidx.cardview.widget.CardView
@@ -71,26 +104,43 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <ImageView
-            android:id="@+id/imageViewsalir"
+            android:id="@+id/imageView21"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="27dp"
-            android:rotation="180"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="24dp"
+            android:onClick="crear"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_exit_to_app_24" />
+            app:srcCompat="@drawable/baseline_add_24" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/vistapreviadfinalizado"
-            android:layout_width="375dp"
-            android:layout_height="561dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/cardView3"
-            app:layout_constraintHorizontal_bias="0.722"
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Eventos Finalizados"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.101"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="399dp"
+            android:layout_height="457dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView27"
+            app:layout_constraintVertical_bias="0.066">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/eventos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation2"
@@ -121,8 +171,6 @@
 
 
     <!-- Fin Contenido principal -->
-
-
 
 
 

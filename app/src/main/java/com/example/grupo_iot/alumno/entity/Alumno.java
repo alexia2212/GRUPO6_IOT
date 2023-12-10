@@ -9,6 +9,7 @@ public class Alumno implements Serializable {
     private String email;
     private String password;
     private String condicion;
+    private String actividadDesignada;
 
     public String getNombre() {
         return nombre;
@@ -56,5 +57,13 @@ public class Alumno implements Serializable {
 
     public void setCondicion(String condicion) {
         this.condicion = condicion;
+    }
+
+    public String getActividadDesignada() {
+        return actividadDesignada;
+    }
+
+    public void setActividadDesignada(String actividadDesignada) {
+        this.actividadDesignada = actividadDesignada;
     }
 }

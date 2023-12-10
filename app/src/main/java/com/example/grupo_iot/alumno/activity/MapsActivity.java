@@ -148,8 +148,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_perfil){
-                    menuItem.setEnabled(false);
-                    menuItem.setChecked(true);
+                    Intent intent = new Intent(MapsActivity.this, PerfilActivity.class);
+                    intent.putExtra("alumno", alumnoIngresado);
+                    startActivity(intent);
                 }
                 return true;
             }

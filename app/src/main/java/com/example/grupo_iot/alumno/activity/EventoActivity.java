@@ -20,6 +20,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.entity.Alumno;
+import com.example.grupo_iot.alumno.entity.Evento;
 import com.example.grupo_iot.alumno.entity.EventoApoyado;
 import com.example.grupo_iot.databinding.ActivityEventoBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -116,6 +117,42 @@ public class EventoActivity extends AppCompatActivity {
                         })
                         .addOnFailureListener(e -> e.printStackTrace());
 
+                CollectionReference actividadesCollection = db.collection("actividades");
+                DocumentReference actDocument = actividadesCollection.document(nombreActividad);
+                CollectionReference integrantesPorActividadCollection = actDocument.collection("integrantesActividad");
+
+                integrantesPorActividadCollection
+                        .document(alumno.getCodigo())
+                        .set(alumno)
+                        .addOnSuccessListener(unused -> {
+                            Log.d("msg-test","Data guardada exitosamente");
+                        })
+                        .addOnFailureListener(e -> e.printStackTrace());
+
+                CollectionReference listaEventosCollection = actDocument.collection("listaEventos");
+
+                listaEventosCollection
+                        .get()
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot evento : task.getResult()){
+                                    Evento evento1 = evento.toObject(Evento.class);
+                                    if (evento1.getNombre().equals(nombreEvento)){
+                                        DocumentReference doc = listaEventosCollection.document(evento.getId());
+                                        CollectionReference integrantesPorEventoCollection = doc.collection("integrantes");
+
+                                        integrantesPorEventoCollection
+                                                .document(alumno.getCodigo())
+                                                .set(alumno)
+                                                .addOnSuccessListener(unused -> {
+                                                    Log.d("msg-test","Data guardada exitosamente");
+                                                })
+                                                .addOnFailureListener(e -> e.printStackTrace());
+                                    }
+                                }
+                            }
+                        });
+
                 Intent intent1 = new Intent(this, ConfirmacionApoyoActivity.class);
                 intent1.putExtra("nombreActividad", nombreActividad);
                 intent1.putExtra("nombreEvento", nombreEvento);
@@ -152,7 +189,7 @@ public class EventoActivity extends AppCompatActivity {
     }
 
     public void verRutaMasCorta(View view){
-        Intent intent = new Intent(this, RutaMasCortaActivity.class);
+        Intent intent = new Intent(this, MapsActivity.class);
         intent.putExtra("alumno",alumno);
         startActivity(intent);
     }

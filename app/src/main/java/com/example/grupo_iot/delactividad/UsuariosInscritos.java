@@ -123,6 +123,10 @@ public class UsuariosInscritos extends AppCompatActivity {
                     Intent intent = new Intent(UsuariosInscritos.this, Delactprincipal.class);
                     startActivity(intent);
                 }
+                if (menuItem.getItemId() == R.id.navigation_eventos_finalizados) {
+                    Intent intent = new Intent(UsuariosInscritos.this, EventoFinalizadoActivity.class);
+                    startActivity(intent);
+                }
                 if (menuItem.getItemId() == R.id.navigation_lista_chatsdelact) {
                     Intent intent = new Intent(UsuariosInscritos.this, Chatdelact.class);
                     startActivity(intent);

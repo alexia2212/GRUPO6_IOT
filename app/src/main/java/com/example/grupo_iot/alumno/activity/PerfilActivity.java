@@ -77,6 +77,11 @@ public class PerfilActivity extends AppCompatActivity {
             intent2.putExtra("alumno", alumnoIngresado);
             startActivity(intent2);
         });
+
+        if (alumnoIngresado.getActividadDesignada() != null && !alumnoIngresado.getActividadDesignada().equals("")) {
+            binding.btnCambiarRol.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override

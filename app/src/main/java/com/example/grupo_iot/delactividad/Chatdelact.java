@@ -169,6 +169,10 @@ public class Chatdelact extends AppCompatActivity {
                     Intent intent = new Intent(Chatdelact.this, Delactprincipal.class);
                     startActivity(intent);
                 }
+                if(menuItem.getItemId()==R.id.navigation_eventos_finalizados){
+                    Intent intent = new Intent(Chatdelact.this, EventoFinalizadoActivity.class);
+                    startActivity(intent);
+                }
                 if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
                     Intent intent = new Intent(Chatdelact.this, Chatdelact.class);
                     startActivity(intent);

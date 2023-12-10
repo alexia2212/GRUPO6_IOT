@@ -161,6 +161,8 @@ public class Perfildelact extends AppCompatActivity {
                 });
     }
 
+
+
     void generarBottomNavigationMenu() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -169,6 +171,10 @@ public class Perfildelact extends AppCompatActivity {
 
                 if (menuItem.getItemId() == R.id.navigation_lista_eventos) {
                     Intent intent = new Intent(Perfildelact.this, Delactprincipal.class);
+                    startActivity(intent);
+                }
+                if (menuItem.getItemId() == R.id.navigation_eventos_finalizados) {
+                    Intent intent = new Intent(Perfildelact.this, EventoFinalizadoActivity.class);
                     startActivity(intent);
                 }
                 if (menuItem.getItemId() == R.id.navigation_lista_chatsdelact) {

@@ -106,6 +106,7 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
         String contra = ((TextInputEditText) binding.inputContra.getEditText()).getText().toString();
         String nuevaContra = ((TextInputEditText) binding.inputNuevaContra.getEditText()).getText().toString();
         String repeNuevaContra = ((TextInputEditText) binding.inputRepeatContra.getEditText()).getText().toString();
+        Log.d("msg-test", "Iniciando cambio de contraseña");
 
         if(contra.isEmpty()){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);

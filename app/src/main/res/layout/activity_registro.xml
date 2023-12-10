@@ -135,6 +135,19 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.13" />
 
+    <Spinner
+        android:id="@+id/spinnerActividadDesginada"
+        style="@style/SpinnerStyleCondicionUsuario"
+        android:layout_width="257dp"
+        android:layout_height="45dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.13" />
+
     <!--
         <Button
             android:id="@+id/botonAlumno"
@@ -190,7 +203,7 @@
             android:id="@+id/inputNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
+            android:hint="Nombres"
             app:boxBackgroundColor="@color/white"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
@@ -211,7 +224,7 @@
             android:id="@+id/inputApellido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Apellido"
+            android:hint="Apellidos"
             app:boxBackgroundColor="@color/white"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"

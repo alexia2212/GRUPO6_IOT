@@ -72,6 +72,16 @@ public class SinFuncionActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 }
+
+                if(menuItem.getItemId()==R.id.navigation_eventos_finalizados){
+                    db = FirebaseFirestore.getInstance();
+                    auth = FirebaseAuth.getInstance();
+                    auth.getCurrentUser();
+                    Intent intent = new Intent(SinFuncionActivity.this, EventoFinalizadoActivity.class);
+                    startActivity(intent);
+
+                }
+
                 if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
                     db = FirebaseFirestore.getInstance();
                     auth = FirebaseAuth.getInstance();

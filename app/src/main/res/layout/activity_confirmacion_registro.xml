@@ -22,11 +22,12 @@
 
     <TextView
         android:id="@+id/textoConfirma"
-        android:layout_width="268dp"
+        android:layout_width="240dp"
         android:layout_height="121dp"
         android:elevation="13dp"
         android:gravity="center"
 
+        android:justificationMode="inter_word"
         android:text="Gracias por registrarte. Antes de iniciar sesión debemos corroborar los datos que ingresaste. Para activar tu cuenta te enviaremos un email a tu correo electrónico registrado. ¡No olvides revisarlo!"
         app:layout_constraintBottom_toBottomOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="@+id/view4"

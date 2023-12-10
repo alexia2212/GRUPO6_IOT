@@ -550,6 +550,10 @@ public class ActualizarActivity extends AppCompatActivity {
                     Intent intent = new Intent(ActualizarActivity.this, Delactprincipal.class);
                     startActivity(intent);
                 }
+                if(menuItem.getItemId()==R.id.navigation_eventos_finalizados){
+                    Intent intent = new Intent(ActualizarActivity.this, EventoFinalizadoActivity.class);
+                    startActivity(intent);
+                }
                 if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
                     Intent intent = new Intent(ActualizarActivity.this, Chatdelact.class);
                     startActivity(intent);
