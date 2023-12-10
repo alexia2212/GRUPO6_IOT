@@ -195,7 +195,7 @@ public class RegistrarseActivity extends AppCompatActivity {
                                         UsuarioPorRegistrar.put("condicion", condicion);
                                         UsuarioPorRegistrar.put("email", email);
                                         UsuarioPorRegistrar.put("password", password);
-                                        UsuarioPorRegistrar.put("rol", "Alumno");
+                                        UsuarioPorRegistrar.put("rol", "alumno");
                                         UsuarioPorRegistrar.put("actividadDesignada", "");
                                         db.collection("usuariosPorRegistrar")
                                                 .add(UsuarioPorRegistrar)
