@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdaptadorFinalizado extends RecyclerView.Adapter<AdaptadorFinalizado.ViewHolder> {
@@ -54,7 +55,11 @@ public class AdaptadorFinalizado extends RecyclerView.Adapter<AdaptadorFinalizad
 
                 // Agrega los datos que deseas conservar en el Intent
                 Lista selectedLista = dataList.get(holder.getAdapterPosition());
+                intent.putExtra("idDelDocumentoActual", lista.getTitulo());
                 intent.putExtra("listaData", selectedLista);
+                intent.putStringArrayListExtra("urlsImagenes", new ArrayList<>(lista.getUrlsImagenes()));
+                System.out.println(lista.getUrlsImagenes() + "pssssss");
+
 
                 context.startActivity(intent);
             }

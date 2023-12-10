@@ -34,7 +34,7 @@
             android:id="@+id/imageView7"
             android:layout_width="99dp"
             android:layout_height="68dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="7dp"
             android:layout_marginEnd="156dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +83,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/vistapreviadcreacion"
             android:layout_width="402dp"
-            android:layout_height="593dp"
+            android:layout_height="620dp"
             android:layout_marginTop="-20dp"
             android:animateLayoutChanges="true"
             app:cardCornerRadius="10dp"
@@ -106,7 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="5dp"
                     android:text="Evento Finalizado"
                     android:textSize="26sp"
                     android:textStyle="bold" />
@@ -118,7 +118,6 @@
                     android:layout_width="368dp"
                     android:layout_height="367dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
                     android:columnCount="3">
 
                     <!-- Define 9 cuadros para fotos, puedes personalizarlos según tus necesidades -->
@@ -297,6 +296,17 @@
                         android:backgroundTint="@color/turquesa"
                         android:gravity="center"
                         android:text="Subir Foto"
+                        android:textSize="13dp" />
+
+                    <Button
+                        android:id="@+id/botonGuardarFotos"
+                        android:layout_width="140dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginLeft="-250dp"
+                        android:backgroundTint="@color/lightGrey"
+                        android:gravity="center"
+                        android:text="Guardar Fotos"
                         android:textSize="13dp" />
                 </LinearLayout>
 

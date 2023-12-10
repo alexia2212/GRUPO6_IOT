@@ -144,8 +144,17 @@ public class Delactprincipal extends AppCompatActivity {
                                         String lugar = lista.getLugar();
                                         String nombreActividad = lista.getNombreactividad();
                                         String estado = lista.getEstado();
+                                        List<String> urlsCuadros = new ArrayList<>();
+                                        for (int i = 2; i <= 9; i++) {
+                                            String campo = "cuadrofoto" + i;
+                                            String url = documentSnapshot.getString(campo);
+                                            if (url != null && !url.isEmpty()) {
+                                                urlsCuadros.add(url);
+                                            }
+                                        }
 
-                                        dataList.add(new Lista(titulo, fecha, imageUrl, descripcion, lugar, nombreActividad, estado));
+                                        dataList.add(new Lista(titulo, fecha, imageUrl, descripcion, lugar, nombreActividad, urlsCuadros, estado));
+
                                     }
 
                                     adapter.setDataList(dataList);

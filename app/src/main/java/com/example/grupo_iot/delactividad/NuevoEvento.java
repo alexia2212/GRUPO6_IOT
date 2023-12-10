@@ -249,6 +249,10 @@ public class NuevoEvento extends AppCompatActivity {
                     Intent intent = new Intent(NuevoEvento.this, Delactprincipal.class);
                     startActivity(intent);
                 }
+                if(menuItem.getItemId()==R.id.navigation_eventos_finalizados){
+                    Intent intent = new Intent(NuevoEvento.this, EventoFinalizadoActivity.class);
+                    startActivity(intent);
+                }
                 if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
                     Intent intent = new Intent(NuevoEvento.this, Chatdelact.class);
                     startActivity(intent);

@@ -61,6 +61,10 @@ public class VistaUsuarioActivity extends AppCompatActivity {
                     Intent intent = new Intent(VistaUsuarioActivity.this, Delactprincipal.class);
                     startActivity(intent);
                 }
+                if(menuItem.getItemId()==R.id.navigation_eventos_finalizados){
+                    Intent intent = new Intent(VistaUsuarioActivity.this, EventoFinalizadoActivity.class);
+                    startActivity(intent);
+                }
                 if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
                     Intent intent = new Intent(VistaUsuarioActivity.this, Chatdelact.class);
                     startActivity(intent);

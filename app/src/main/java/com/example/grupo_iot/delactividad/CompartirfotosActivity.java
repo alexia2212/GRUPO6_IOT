@@ -56,6 +56,10 @@ public class CompartirfotosActivity extends AppCompatActivity {
                     Intent intent = new Intent(CompartirfotosActivity.this, Delactprincipal.class);
                     startActivity(intent);
                 }
+                if(menuItem.getItemId()==R.id.navigation_eventos_finalizados){
+                    Intent intent = new Intent(CompartirfotosActivity.this, EventoFinalizadoActivity.class);
+                    startActivity(intent);
+                }
                 if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
                     Intent intent = new Intent(CompartirfotosActivity.this, Chatdelact.class);
                     startActivity(intent);

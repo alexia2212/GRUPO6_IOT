@@ -60,10 +60,15 @@ public class EventoFinalizadoActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         dataList = new ArrayList<>();
+
+        Intent intent = getIntent();
+        String documentoActualId = intent.getStringExtra("documentoActualId");
+        System.out.println(documentoActualId + "pueda que si2");
         adapter = new AdaptadorFinalizado(dataList);
 
 
         generarBottomNavigationMenu();
+
 
         RecyclerView recyclerView = findViewById(R.id.eventos);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
@@ -138,6 +143,9 @@ public class EventoFinalizadoActivity extends AppCompatActivity {
                                     dataList.clear();
 
                                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                        String idDelDocumentoActual = document.getId();
+                                        System.out.println("probando" + idDelDocumentoActual);
+
                                         Lista lista = document.toObject(Lista.class);
                                         String titulo = lista.getTitulo();
                                         String fecha = lista.getFecha();
@@ -146,9 +154,19 @@ public class EventoFinalizadoActivity extends AppCompatActivity {
                                         String lugar = lista.getLugar();
                                         String nombreActividad = lista.getNombreactividad();
                                         String estado = lista.getEstado();
+                                        List<String> urlsCuadros = new ArrayList<>();
+                                        for (int i = 2; i <= 9; i++) {
+                                            String campo = "cuadrofoto" + i;
+                                            String url = document.getString(campo); // Corregir aquí
+                                            if (url != null && !url.isEmpty()) {
+                                                urlsCuadros.add(url);
+                                            }
+                                        }
 
-                                        dataList.add(new Lista(titulo, fecha, imageUrl, descripcion, lugar, nombreActividad, estado));
+                                        dataList.add(new Lista(titulo, fecha, imageUrl, descripcion, lugar, nombreActividad, urlsCuadros, estado));
                                     }
+
+                                    adapter.setDataList(dataList);
 
                                     adapter.setDataList(dataList);
                                 })
@@ -200,6 +218,14 @@ public class EventoFinalizadoActivity extends AppCompatActivity {
                     auth = FirebaseAuth.getInstance();
                     auth.getCurrentUser();
                     Intent intent = new Intent(EventoFinalizadoActivity.this, Delactprincipal.class);
+                    startActivity(intent);
+
+                }
+                if(menuItem.getItemId()==R.id.navigation_eventos_finalizados){
+                    db = FirebaseFirestore.getInstance();
+                    auth = FirebaseAuth.getInstance();
+                    auth.getCurrentUser();
+                    Intent intent = new Intent(EventoFinalizadoActivity.this, EventoFinalizadoActivity.class);
                     startActivity(intent);
 
                 }

@@ -1,6 +1,7 @@
 package com.example.grupo_iot.delactividad;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Lista implements Serializable {
     public String titulo;
@@ -14,13 +15,24 @@ public class Lista implements Serializable {
 
     public String nombreactividad;
 
-    public Lista(String titulo, String fecha, String imagen1, String descripcion, String lugar, String nombreactividad, String estado) {
+    private List<String> urlsImagenes;
+
+    public List<String> getUrlsImagenes() {
+        return urlsImagenes;
+    }
+
+    public void setUrlsImagenes(List<String> urlsImagenes) {
+        this.urlsImagenes = urlsImagenes;
+    }
+
+    public Lista(String titulo, String fecha, String imagen1, String descripcion, String lugar, String nombreactividad, List<String> urlsImagenes, String estado) {
         this.titulo = titulo;
         this.fecha = fecha;
         this.imagen1 = imagen1;
         this.descripcion = descripcion;
         this.lugar = lugar;
         this.nombreactividad = nombreactividad;
+        this.urlsImagenes = urlsImagenes;
         this.estado = estado;
     }
 
