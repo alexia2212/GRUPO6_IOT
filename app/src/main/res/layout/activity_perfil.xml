@@ -224,6 +224,23 @@
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/textViewCondicion" />
 
+        <TextView
+            android:id="@+id/btnCambiarRol"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="88dp"
+            android:background="@drawable/backgroud6"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:text="Cambiar Rol"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.879"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- Fin Contenido principal -->
 
