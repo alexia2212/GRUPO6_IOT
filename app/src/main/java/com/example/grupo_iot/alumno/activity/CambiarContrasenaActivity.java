@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -27,6 +28,10 @@ import com.example.grupo_iot.delegadoGeneral.MenuDelegadoGeneralActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -44,6 +49,7 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
     FirebaseFirestore db;
     DrawerLayout drawerLayout;
     Alumno alumno;
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +57,7 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
         Intent intent = getIntent();
         //String password = intent.getStringExtra("password");
         alumno = (Alumno) intent.getSerializableExtra("alumno");
@@ -103,12 +110,12 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
 
     public boolean cambiarContrasena(String passw){
         boolean psswdValido = false;
-        String contra = ((TextInputEditText) binding.inputContra.getEditText()).getText().toString();
+        String contraAntigua = ((TextInputEditText) binding.inputContra.getEditText()).getText().toString();
         String nuevaContra = ((TextInputEditText) binding.inputNuevaContra.getEditText()).getText().toString();
         String repeNuevaContra = ((TextInputEditText) binding.inputRepeatContra.getEditText()).getText().toString();
         Log.d("msg-test", "Iniciando cambio de contraseña");
 
-        if(contra.isEmpty()){
+        if(contraAntigua.isEmpty()){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Debe ingresar la contraseña actual.")
                     .setTitle("Aviso")
@@ -117,7 +124,7 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
         }else{
-            if(!contra.equals(passw)){
+            if(!contraAntigua.equals(passw)){
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("La contraseña actual ingresada es incorrecta.")
                         .setTitle("Aviso")
@@ -171,6 +178,8 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
                                                 });
                                     }
                                 });
+
+                        updatePassword(alumno.getEmail(), contraAntigua, nuevaContra);
                     }
                 }
             }
@@ -228,6 +237,34 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    public void updatePassword(String email, String oldPassword, String newPassword) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null) {
+            AuthCredential credential = EmailAuthProvider.getCredential(email, oldPassword);
+
+            user.reauthenticate(credential)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            user.updatePassword(newPassword)
+                                    .addOnCompleteListener(updateTask -> {
+                                        if (updateTask.isSuccessful()) {
+                                            // Contraseña actualizada con éxito
+                                            Toast.makeText(this, "Contraseña actualizada correctamente", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            // Error al actualizar la contraseña
+                                            Toast.makeText(this, "Error al actualizar la contraseña", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        } else {
+                            // Error en la reautenticación
+                            Toast.makeText(this, "Error al reautenticar al usuario", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
 
     public void generarBottomNavigationMenu(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
