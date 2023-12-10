@@ -64,14 +64,12 @@ public class RegistrarseActivity extends AppCompatActivity {
         binding = ActivityRegistroBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         db = FirebaseFirestore.getInstance();
-
         //SECCION CONDICION USUARIO
         String[] listaOpciones = {"Condición de Usuario", "Estudiante", "Egresado"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.item_spinner_condicion_usuario, listaOpciones);
         Spinner spinner = binding.spinnerCondicionUsuario;
         spinner.setAdapter(adapter);
-
         //SECCION ROL DE USUARIO
         String[] opciones = {"Alumno", "Delegado Actividad"};
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this,
