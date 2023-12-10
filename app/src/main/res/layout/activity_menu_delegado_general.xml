@@ -136,6 +136,7 @@
             android:id="@+id/ActividadesBoton"
             android:layout_width="210dp"
             android:layout_height="60dp"
+            android:layout_marginTop="28dp"
             android:backgroundTint="#414141"
             android:fontFamily="sans-serif-medium"
             android:onClick="actividades"
@@ -148,7 +149,7 @@
             app:layout_constraintHorizontal_bias="0.512"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button10"
-            app:layout_constraintVertical_bias="0.284" />
+            app:layout_constraintVertical_bias="0.0" />
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation3"
             android:elevation="30dp"
