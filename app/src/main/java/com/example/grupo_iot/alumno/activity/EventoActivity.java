@@ -292,6 +292,7 @@ public class EventoActivity extends AppCompatActivity {
                 .setTitle("Aviso")
                 .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
                     Intent intent1 = new Intent(this, LoginActivity.class);
+                    intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent1);
                 })
                 .setNegativeButton("Cancelar", null);

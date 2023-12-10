@@ -1,5 +1,6 @@
 package com.example.grupo_iot.alumno.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.databinding.ActivityPerfilBinding;
@@ -81,6 +83,10 @@ public class PerfilActivity extends AppCompatActivity {
         if (alumnoIngresado.getActividadDesignada() != null && !alumnoIngresado.getActividadDesignada().equals("")) {
             binding.btnCambiarRol.setVisibility(View.VISIBLE);
         }
+
+        binding.imageView6.setOnClickListener(view -> {
+            cerrarSesion();
+        });
 
     }
 
@@ -189,5 +195,19 @@ public class PerfilActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public void cerrarSesion(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                .setTitle("Aviso")
+                .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                    Intent intent1 = new Intent(this, LoginActivity.class);
+                    intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent1);
+                })
+                .setNegativeButton("Cancelar", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

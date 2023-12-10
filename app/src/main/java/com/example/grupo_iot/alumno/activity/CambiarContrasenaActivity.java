@@ -106,6 +106,10 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
                         }
                     });
         });
+
+        binding.imageView6.setOnClickListener(view -> {
+            cerrarSesion();
+        });
     }
 
     public boolean cambiarContrasena(String passw){
@@ -299,5 +303,19 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public void cerrarSesion(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                .setTitle("Aviso")
+                .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
+                    Intent intent1 = new Intent(this, LoginActivity.class);
+                    intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent1);
+                })
+                .setNegativeButton("Cancelar", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
