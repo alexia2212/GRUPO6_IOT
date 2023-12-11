@@ -31,7 +31,7 @@ public class AdaptadorNuevoEvento extends RecyclerView.Adapter<AdaptadorNuevoEve
     public void onBindViewHolder(@NonNull AdaptadorNuevoEvento.ViewHolder holder, int position) {
         NuevoEventoLista lista4 = dataList.get(position);
 
-        holder.tituloTextView.setText(lista4.titulo);
+        holder.tituloTextView.setText(lista4.nombre);
         holder.fechaTextView.setText(lista4.fecha);
 
 

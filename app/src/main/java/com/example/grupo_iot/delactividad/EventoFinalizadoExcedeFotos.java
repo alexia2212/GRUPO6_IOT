@@ -101,7 +101,7 @@ public class EventoFinalizadoExcedeFotos extends AppCompatActivity {
             System.out.println(documentoActualId + "veamos");
 
             // Accede a los datos recibidos
-            String titulo = selectedLista.getTitulo();
+            String titulo = selectedLista.getNombre();
             String fecha = selectedLista.getFecha();
             String imageUrl = selectedLista.getImagen1();
             String descripcion = selectedLista.getDescripcion();

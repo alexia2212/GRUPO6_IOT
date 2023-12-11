@@ -2,7 +2,7 @@ package com.example.grupo_iot.delactividad;
 
 public class VistaFinalizadoLista {
 
-    public String titulo;
+    public String nombre;
     public String fecha;
 
     public int imagen1;
@@ -10,20 +10,20 @@ public class VistaFinalizadoLista {
 
     public String lugar;
 
-    public VistaFinalizadoLista(String titulo, String fecha, int imagen1, String descripcion, String lugar) {
-        this.titulo = titulo;
+    public VistaFinalizadoLista(String nombre, String fecha, int imagen1, String descripcion, String lugar) {
+        this.nombre = nombre;
         this.fecha = fecha;
         this.imagen1 = imagen1;
         this.descripcion = descripcion;
         this.lugar = lugar;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getFecha() {

@@ -95,7 +95,7 @@ public class VistaPreviaEvento extends AppCompatActivity {
             Intent intent = getIntent();
             if (intent.hasExtra("listaData")) {
                 Lista selectedLista = (Lista) intent.getSerializableExtra("listaData");
-                String titulo = selectedLista.getTitulo();
+                String nombre = selectedLista.getNombre();
 
                 String userID = auth.getCurrentUser().getUid();
 
@@ -109,7 +109,7 @@ public class VistaPreviaEvento extends AppCompatActivity {
                                 db.collection("actividades")
                                         .document(idActividad)
                                         .collection("listaEventos")
-                                        .whereEqualTo("titulo", titulo)
+                                        .whereEqualTo("nombre", nombre)
                                         .get()
                                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                             @Override
@@ -171,20 +171,20 @@ public class VistaPreviaEvento extends AppCompatActivity {
             Lista selectedLista = (Lista) intent.getSerializableExtra("listaData");
 
             // Accede a los datos recibidos
-            String titulo = selectedLista.getTitulo();
+            String nombre = selectedLista.getNombre();
             String fecha = selectedLista.getFecha();
             String imageUrl = selectedLista.getImagen1();
             String descripcion = selectedLista.getDescripcion();
             String lugar = selectedLista.getLugar();
 
             // Muestra los datos en la actividad VistaPreviaEvento
-            TextView tituloTextView = findViewById(R.id.titulo);
+            TextView nombreTextView = findViewById(R.id.titulo);
             TextView fechaTextView = findViewById(R.id.fecha);
             ImageView imagen1ImageView = findViewById(R.id.imagen1);
             TextView descripcionTextView = findViewById(R.id.descripcion);
             TextView lugarTextView = findViewById(R.id.ubicacion);
 
-            tituloTextView.setText(titulo);
+            nombreTextView.setText(nombre);
             fechaTextView.setText(fecha);
             lugarTextView.setText(lugar);
             descripcionTextView.setText(descripcion);
@@ -200,7 +200,7 @@ public class VistaPreviaEvento extends AppCompatActivity {
                 Lista selectedLista = (Lista) intent.getSerializableExtra("listaData");
 
                 // Accede a los datos recibidos
-                String titulo = selectedLista.getTitulo();
+                String nombre = selectedLista.getNombre();
                 String fecha = selectedLista.getFecha();
                 String imageUrl = selectedLista.getImagen1();
                 String descripcion = selectedLista.getDescripcion();
@@ -209,7 +209,7 @@ public class VistaPreviaEvento extends AppCompatActivity {
 
 
                 Intent intent = new Intent(VistaPreviaEvento.this, ActualizarActivity.class);
-                intent.putExtra("titulo", titulo); // Pasa el título como extra
+                intent.putExtra("nombre", nombre); // Pasa el título como extra
                 intent.putExtra("descripcion", descripcion); // Pasa la descripción como extra
                 intent.putExtra("fecha", fecha); // Pasa la fecha como extra
                 intent.putExtra("lugar", lugar); // Pasa el lugar como extra
@@ -227,7 +227,7 @@ public class VistaPreviaEvento extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.hasExtra("listaData")) {
             Lista selectedLista = (Lista) intent.getSerializableExtra("listaData");
-            String titulo = selectedLista.getTitulo();
+            String titulo = selectedLista.getNombre();
 
             String userID = auth.getCurrentUser().getUid();
 
@@ -241,7 +241,7 @@ public class VistaPreviaEvento extends AppCompatActivity {
                             db.collection("actividades")
                                     .document(idActividad)
                                     .collection("listaEventos")
-                                    .whereEqualTo("titulo", titulo)
+                                    .whereEqualTo("nombre", titulo)
                                     .get()
                                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                         @Override
@@ -334,7 +334,7 @@ public class VistaPreviaEvento extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.hasExtra("listaData")) {
             Lista selectedLista = (Lista) intent.getSerializableExtra("listaData");
-            String titulo = selectedLista.getTitulo();
+            String titulo = selectedLista.getNombre();
 
             String userID = auth.getCurrentUser().getUid();
 
@@ -348,7 +348,7 @@ public class VistaPreviaEvento extends AppCompatActivity {
                             db.collection("actividades")
                                     .document(idActividad)
                                     .collection("listaEventos")
-                                    .whereEqualTo("titulo", titulo)
+                                    .whereEqualTo("nombre", titulo)
                                     .get()
                                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                         @Override

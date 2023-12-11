@@ -118,7 +118,7 @@ public class NuevoEvento extends AppCompatActivity {
 
     private void guardarNuevoEvento() {
         // Obtén los valores de los campos de entrada
-        String titulo = binding.titulonuevoevento.getText().toString();
+        String nombre = binding.titulonuevoevento.getText().toString();
         String descripcion = binding.descripcionuevoevento.getText().toString();
         String fecha = binding.fechanuevoevento.getText().toString();
         String lugar = spinnerLugar.getSelectedItem().toString();
@@ -135,12 +135,12 @@ public class NuevoEvento extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     String imageUrl = uri.toString();
-                                    EventoList evento = new EventoList(titulo, fecha, imageUrl, descripcion, lugar, estado);
+                                    EventoList evento = new EventoList(nombre, fecha, imageUrl, descripcion, lugar, estado);
                                     guardarEventoEnFirestore(evento);
 
                                     // Ahora, inicia la actividad VistaPreviaCreacion y pasa los datos
                                     Intent intent = new Intent(NuevoEvento.this, VistaPreviaCreacion.class);
-                                    intent.putExtra("titulo", titulo);
+                                    intent.putExtra("nombre", nombre);
                                     intent.putExtra("descripcion", descripcion);
                                     intent.putExtra("fecha", fecha);
                                     intent.putExtra("lugar", lugar);
@@ -172,11 +172,11 @@ public class NuevoEvento extends AppCompatActivity {
                     if (documentSnapshot.exists()) {
                         String idActividad = documentSnapshot.getString("actividadDesignada");
 
-                        String tituloEvento = evento.getTitulo();
+                        String nombreEvento = evento.getNombre();
                         db.collection("actividades")
                                 .document(idActividad)
                                 .collection("listaEventos")
-                                .document(tituloEvento)
+                                .document(nombreEvento)
                                 .set(evento)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

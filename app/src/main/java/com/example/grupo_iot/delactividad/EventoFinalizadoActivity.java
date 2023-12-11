@@ -147,7 +147,7 @@ public class EventoFinalizadoActivity extends AppCompatActivity {
                                         System.out.println("probando" + idDelDocumentoActual);
 
                                         Lista lista = document.toObject(Lista.class);
-                                        String titulo = lista.getTitulo();
+                                        String titulo = lista.getNombre();
                                         String fecha = lista.getFecha();
                                         String imageUrl = lista.getImagen1();
                                         String descripcion = lista.getDescripcion();
@@ -197,7 +197,7 @@ public class EventoFinalizadoActivity extends AppCompatActivity {
         List<Lista> filteredList = new ArrayList<>();
 
         for (Lista lista : dataList) {
-            if (lista.getTitulo() != null && lista.getTitulo().toLowerCase().contains(searchText)) {
+            if (lista.getNombre() != null && lista.getNombre().toLowerCase().contains(searchText)) {
                 filteredList.add(lista);
             }
         }

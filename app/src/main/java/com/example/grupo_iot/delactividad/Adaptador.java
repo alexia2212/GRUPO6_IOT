@@ -42,7 +42,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Lista lista = dataList.get(position);
 
-        holder.tituloTextView.setText(lista.titulo);
+        holder.nombreTextView.setText(lista.nombre);
         holder.fechaTextView.setText(lista.fecha);
         Picasso.get().load(lista.getImagen1()).into(holder.imagen1ImageView);
 
@@ -73,11 +73,11 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
                 if ("activo".equals(lista.estado)) {
                     holder.imagen2ImageView.setImageResource(R.drawable.baseline_check_circle_24);
                     lista.estado = "finalizado";
-                    actualizarEstadoEnFirestore(lista.titulo, "finalizado"); // Actualizar el estado en Firestore
+                    actualizarEstadoEnFirestore(lista.nombre, "finalizado"); // Actualizar el estado en Firestore
                 } else {
                     holder.imagen2ImageView.setImageResource(R.drawable.baseline_check_circle_outline_24);
                     lista.estado = "activo";
-                    actualizarEstadoEnFirestore(lista.titulo, "activo"); // Actualizar el estado en Firestore
+                    actualizarEstadoEnFirestore(lista.nombre, "activo"); // Actualizar el estado en Firestore
                 }
             }
         });
@@ -90,14 +90,14 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tituloTextView;
+        TextView nombreTextView;
         TextView fechaTextView;
         ImageView imagen1ImageView;
         ImageView imagen2ImageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tituloTextView = itemView.findViewById(R.id.titulo);
+            nombreTextView = itemView.findViewById(R.id.titulo);
             fechaTextView = itemView.findViewById(R.id.fecha);
             imagen1ImageView = itemView.findViewById(R.id.imagen1);
             imagen2ImageView = itemView.findViewById(R.id.imagen2);

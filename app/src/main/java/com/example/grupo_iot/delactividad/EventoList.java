@@ -1,7 +1,7 @@
 package com.example.grupo_iot.delactividad;
 
 public class EventoList {
-    public String titulo;
+    public String nombre;
     public String fecha;
 
     public String imagen1;
@@ -22,8 +22,8 @@ public class EventoList {
     }
 
 
-    public EventoList(String titulo, String fecha, String imagen1, String descripcion, String lugar, String estado) {
-        this.titulo = titulo;
+    public EventoList(String nombre, String fecha, String imagen1, String descripcion, String lugar, String estado) {
+        this.nombre = nombre;
         this.fecha = fecha;
         this.imagen1 = imagen1;
         this.descripcion = descripcion;
@@ -31,12 +31,12 @@ public class EventoList {
         this.estado = estado;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getFecha() {

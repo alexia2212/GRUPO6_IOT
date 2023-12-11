@@ -43,7 +43,7 @@ public class AdaptadorFinalizado extends RecyclerView.Adapter<AdaptadorFinalizad
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Lista lista = dataList.get(position);
 
-        holder.tituloTextView.setText(lista.titulo);
+        holder.tituloTextView.setText(lista.nombre);
         holder.fechaTextView.setText(lista.fecha);
         Picasso.get().load(lista.getImagen1()).into(holder.imagen1ImageView);
 
@@ -55,7 +55,7 @@ public class AdaptadorFinalizado extends RecyclerView.Adapter<AdaptadorFinalizad
 
                 // Agrega los datos que deseas conservar en el Intent
                 Lista selectedLista = dataList.get(holder.getAdapterPosition());
-                intent.putExtra("idDelDocumentoActual", lista.getTitulo());
+                intent.putExtra("idDelDocumentoActual", lista.getNombre());
                 intent.putExtra("listaData", selectedLista);
                 intent.putStringArrayListExtra("urlsImagenes", new ArrayList<>(lista.getUrlsImagenes()));
                 System.out.println(lista.getUrlsImagenes() + "pssssss");

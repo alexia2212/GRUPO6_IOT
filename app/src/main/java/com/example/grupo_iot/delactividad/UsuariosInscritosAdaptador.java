@@ -65,7 +65,7 @@ public class UsuariosInscritosAdaptador extends RecyclerView.Adapter<UsuariosIns
         public ViewHolder(View itemView) {
             super(itemView);
             imagen1 = itemView.findViewById(R.id.imagen1);
-            nombre = itemView.findViewById(R.id.nombre);
+            nombre = itemView.findViewById(R.id.titulo);
             condicion = itemView.findViewById(R.id.condicion);
             funcion = itemView.findViewById(R.id.funcion);
 

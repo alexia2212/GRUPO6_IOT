@@ -31,7 +31,7 @@ public class AdaptadorVistaFinalizadoLista extends RecyclerView.Adapter<Adaptado
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         VistaFinalizadoLista lista3 = dataList.get(position);
 
-        holder.tituloTextView.setText(lista3.titulo);
+        holder.tituloTextView.setText(lista3.nombre);
         holder.fechaTextView.setText(lista3.fecha);
         holder.imagen1ImageView.setImageResource(lista3.imagen1);
         holder.descripcionTextView.setText(lista3.descripcion);

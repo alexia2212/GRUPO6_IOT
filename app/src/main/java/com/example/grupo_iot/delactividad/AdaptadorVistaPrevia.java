@@ -35,7 +35,7 @@ public class AdaptadorVistaPrevia extends RecyclerView.Adapter<AdaptadorVistaPre
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         VistaPrevia lista2 = dataList.get(position);
 
-        holder.tituloTextView.setText(lista2.titulo);
+        holder.nombreTextView.setText(lista2.nombre);
         holder.fechaTextView.setText(lista2.fecha);
         holder.imagen1ImageView.setImageResource(lista2.imagen1);
         holder.descripcionTextView.setText(lista2.descripcion);
@@ -146,7 +146,7 @@ public class AdaptadorVistaPrevia extends RecyclerView.Adapter<AdaptadorVistaPre
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tituloTextView;
+        TextView nombreTextView;
         TextView fechaTextView;
         ImageView imagen1ImageView;
 
@@ -166,7 +166,7 @@ public class AdaptadorVistaPrevia extends RecyclerView.Adapter<AdaptadorVistaPre
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tituloTextView = itemView.findViewById(R.id.titulo);
+            nombreTextView = itemView.findViewById(R.id.titulo);
             fechaTextView = itemView.findViewById(R.id.fecha);
             imagen1ImageView = itemView.findViewById(R.id.imagen1);
             descripcionTextView = itemView.findViewById(R.id.descripcion);

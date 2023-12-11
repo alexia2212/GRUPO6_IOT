@@ -31,7 +31,7 @@ public class AdaptadorVistaPreviaActualizacion extends RecyclerView.Adapter<Adap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         VistaPreviaActualizacionLista lista2 = dataList.get(position);
 
-        holder.tituloTextView.setText(lista2.titulo);
+        holder.tituloTextView.setText(lista2.nombre);
         holder.fechaTextView.setText(lista2.fecha);
         holder.imagen1ImageView.setImageResource(lista2.imagen1);
         holder.descripcionTextView.setText(lista2.descripcion);

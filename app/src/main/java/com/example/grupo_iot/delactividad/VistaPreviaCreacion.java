@@ -19,7 +19,7 @@ public class VistaPreviaCreacion extends AppCompatActivity {
         // Recuperar datos del intent
         Intent intent = getIntent();
         if (intent != null) {
-            String titulo = intent.getStringExtra("titulo");
+            String titulo = intent.getStringExtra("nombre");
             String descripcion = intent.getStringExtra("descripcion");
             String fecha = intent.getStringExtra("fecha");
             String lugar = intent.getStringExtra("lugar");

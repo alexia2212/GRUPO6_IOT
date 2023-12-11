@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Lista implements Serializable {
-    public String titulo;
+    public String nombre;
     public String fecha;
 
     public String imagen1;
@@ -25,8 +25,8 @@ public class Lista implements Serializable {
         this.urlsImagenes = urlsImagenes;
     }
 
-    public Lista(String titulo, String fecha, String imagen1, String descripcion, String lugar, String nombreactividad, List<String> urlsImagenes, String estado) {
-        this.titulo = titulo;
+    public Lista(String nombre, String fecha, String imagen1, String descripcion, String lugar, String nombreactividad, List<String> urlsImagenes, String estado) {
+        this.nombre = nombre;
         this.fecha = fecha;
         this.imagen1 = imagen1;
         this.descripcion = descripcion;
@@ -77,12 +77,13 @@ public class Lista implements Serializable {
         // Constructor sin argumentos
     }
 
-    public String getTitulo() {
-        return titulo;
+
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getFecha() {

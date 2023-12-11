@@ -119,6 +119,15 @@ public class ActualizarActivity extends AppCompatActivity {
         etFecha = findViewById(R.id.etInput3);
         etDescripcion = findViewById(R.id.etInput2);
         etTitulo = findViewById(R.id.etInput1);
+        etTitulo.setFocusable(false); // Hace que el campo de texto no sea editable
+        etTitulo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Puedes agregar algún código aquí si necesitas manejar clics en el título
+                // o simplemente dejarlo vacío si no es necesario.
+            }
+        });
+
 
         etFecha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,7 +163,7 @@ public class ActualizarActivity extends AppCompatActivity {
                 boolean esImagenPorDefecto = isImagenPorDefecto();
 
                 // Actualizar los valores en la base de datos
-                if (intent.hasExtra("titulo")) {
+                if (intent.hasExtra("nombre")) {
                     String userID = auth.getCurrentUser().getUid();
 
                     db.collection("credenciales")
@@ -167,7 +176,7 @@ public class ActualizarActivity extends AppCompatActivity {
                                     db.collection("actividades")
                                             .document(idActividad)
                                             .collection("listaEventos")
-                                            .whereEqualTo("titulo", intent.getStringExtra("titulo"))
+                                            .whereEqualTo("nombre", intent.getStringExtra("nombre"))
                                             .get()
                                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                                 @Override
@@ -179,7 +188,7 @@ public class ActualizarActivity extends AppCompatActivity {
 
                                                             // Crea un mapa con los campos que deseas actualizar
                                                             Map<String, Object> updates = new HashMap<>();
-                                                            updates.put("titulo", nuevoTitulo);
+                                                            updates.put("nombre", nuevoTitulo);
                                                             updates.put("descripcion", nuevaDescripcion);
                                                             updates.put("fecha", nuevaFecha);
                                                             updates.put("lugar", nuevoLugar);
@@ -252,8 +261,8 @@ public class ActualizarActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        if (intent.hasExtra("titulo")) {
-            String titulo = intent.getStringExtra("titulo");
+        if (intent.hasExtra("nombre")) {
+            String titulo = intent.getStringExtra("nombre");
             String descripcion = intent.getStringExtra("descripcion");
             String fecha = intent.getStringExtra("fecha");
             String lugar = intent.getStringExtra("lugar");
@@ -296,7 +305,7 @@ public class ActualizarActivity extends AppCompatActivity {
                 boolean esImagenPorDefecto = isImagenPorDefecto();
 
                 // ... el resto de tu lógica, por ejemplo, puedes llamar a actualizarImagenEnBaseDeDatos con la URL adecuada
-                if (intent.hasExtra("titulo")) {
+                if (intent.hasExtra("nombre")) {
                     String userID = auth.getCurrentUser().getUid();
 
                     db.collection("credenciales")
@@ -309,7 +318,7 @@ public class ActualizarActivity extends AppCompatActivity {
                                     db.collection("actividades")
                                             .document(idActividad)
                                             .collection("listaEventos")
-                                            .whereEqualTo("titulo", intent.getStringExtra("titulo"))
+                                            .whereEqualTo("nombre", intent.getStringExtra("nombre"))
                                             .get()
                                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                                 @Override
@@ -474,7 +483,7 @@ public class ActualizarActivity extends AppCompatActivity {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
         // Crear una referencia única para la imagen (puedes utilizar el título o ID del evento)
-        StorageReference imageRef = storageRef.child("eventos/" + intent.getStringExtra("titulo") + ".jpg");
+        StorageReference imageRef = storageRef.child("eventos/" + intent.getStringExtra("nombre") + ".jpg");
 
         // Subir la imagen a Firebase Storage
         imageRef.putFile(imageUri)
@@ -506,7 +515,7 @@ public class ActualizarActivity extends AppCompatActivity {
                         db.collection("actividades")
                                 .document(idActividad)
                                 .collection("listaEventos")
-                                .whereEqualTo("titulo", intent.getStringExtra("titulo"))
+                                .whereEqualTo("nombre", intent.getStringExtra("nombre"))
                                 .get()
                                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                     @Override
