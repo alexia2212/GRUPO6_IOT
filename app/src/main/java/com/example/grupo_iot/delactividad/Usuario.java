@@ -15,7 +15,7 @@ public class Usuario implements Serializable {
 
     private String codigo;
 
-    private String correo;
+    private String email;
 
     public String getCodigo() {
         return codigo;
@@ -25,19 +25,20 @@ public class Usuario implements Serializable {
         this.codigo = codigo;
     }
 
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
 
     public Usuario() {
         // Deja el cuerpo del constructor vacío o inicializa cualquier campo necesario aquí
     }
 
-    public Usuario(String nombre, String apellido, String condicion, String funcion, String foto, String codigo, String correo, String idintegrante) {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Usuario(String nombre, String apellido, String condicion, String funcion, String foto, String codigo, String email, String idintegrante) {
         this.nombre = nombre;
         this.idintegrante = idintegrante;
         this.apellido = apellido;
@@ -45,7 +46,7 @@ public class Usuario implements Serializable {
         this.funcion = funcion;
         this.foto = foto;
         this.codigo = codigo;
-        this.correo = correo;
+        this.email = email;
     }
 
     public String getIdintegrante() {

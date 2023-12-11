@@ -37,6 +37,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -148,8 +149,8 @@ public class EventoFinalizadoActivity extends AppCompatActivity {
 
                                         Lista lista = document.toObject(Lista.class);
                                         String titulo = lista.getNombre();
-                                        String fecha = lista.getFecha();
-                                        String imageUrl = lista.getImagen1();
+                                        Date fecha = lista.getFechaHora();
+                                        String imageUrl = lista.getImagen();
                                         String descripcion = lista.getDescripcion();
                                         String lugar = lista.getLugar();
                                         String nombreActividad = lista.getNombreactividad();
@@ -163,7 +164,7 @@ public class EventoFinalizadoActivity extends AppCompatActivity {
                                             }
                                         }
 
-                                        dataList.add(new Lista(titulo, fecha, imageUrl, descripcion, lugar, nombreActividad, urlsCuadros, estado));
+                                        dataList.add(new Lista(titulo, imageUrl, descripcion, lugar, nombreActividad, fecha, urlsCuadros, estado));
                                     }
 
                                     adapter.setDataList(dataList);

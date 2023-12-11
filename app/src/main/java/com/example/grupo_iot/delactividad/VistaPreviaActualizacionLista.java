@@ -5,15 +5,15 @@ public class VistaPreviaActualizacionLista {
     public String nombre;
     public String fecha;
 
-    public int imagen1;
+    public int imagen;
     public String descripcion;
 
     public String lugar;
 
-    public VistaPreviaActualizacionLista(String nombre, String fecha, int imagen1, String descripcion, String lugar) {
+    public VistaPreviaActualizacionLista(String nombre, String fecha, int imagen, String descripcion, String lugar) {
         this.nombre = nombre;
         this.fecha = fecha;
-        this.imagen1 = imagen1;
+        this.imagen = imagen;
         this.descripcion = descripcion;
         this.lugar = lugar;
     }
@@ -34,12 +34,13 @@ public class VistaPreviaActualizacionLista {
         this.fecha = fecha;
     }
 
-    public int getImagen1() {
-        return imagen1;
+
+    public int getImagen() {
+        return imagen;
     }
 
-    public void setImagen1(int imagen1) {
-        this.imagen1 = imagen1;
+    public void setImagen(int imagen) {
+        this.imagen = imagen;
     }
 
     public String getDescripcion() {

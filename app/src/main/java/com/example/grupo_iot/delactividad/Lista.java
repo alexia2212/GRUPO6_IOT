@@ -1,19 +1,21 @@
 package com.example.grupo_iot.delactividad;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 public class Lista implements Serializable {
     public String nombre;
-    public String fecha;
 
-    public String imagen1;
+    public String imagen;
 
     public String descripcion;
 
     public String lugar;
 
     public String nombreactividad;
+
+    private Date fechaHora;
 
     private List<String> urlsImagenes;
 
@@ -25,15 +27,23 @@ public class Lista implements Serializable {
         this.urlsImagenes = urlsImagenes;
     }
 
-    public Lista(String nombre, String fecha, String imagen1, String descripcion, String lugar, String nombreactividad, List<String> urlsImagenes, String estado) {
+    public Lista(String nombre, String imagen, String descripcion, String lugar, String nombreactividad, Date fechaHora, List<String> urlsImagenes, String estado) {
         this.nombre = nombre;
-        this.fecha = fecha;
-        this.imagen1 = imagen1;
+        this.imagen = imagen;
         this.descripcion = descripcion;
         this.lugar = lugar;
         this.nombreactividad = nombreactividad;
+        this.fechaHora = fechaHora;
         this.urlsImagenes = urlsImagenes;
         this.estado = estado;
+    }
+
+    public Date getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(Date fechaHora) {
+        this.fechaHora = fechaHora;
     }
 
     public String estado;
@@ -86,19 +96,11 @@ public class Lista implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getFecha() {
-        return fecha;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getImagen1() {
-        return imagen1;
-    }
-
-    public void setImagen1(String imagen1) {
-        this.imagen1 = imagen1;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

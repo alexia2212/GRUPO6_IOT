@@ -1,10 +1,12 @@
 package com.example.grupo_iot.delactividad;
 
+import java.util.Date;
+
 public class EventoList {
     public String nombre;
-    public String fecha;
+    public Date fechaHora;
 
-    public String imagen1;
+    public String imagen;
 
     public String descripcion;
 
@@ -21,14 +23,21 @@ public class EventoList {
         this.estado = estado;
     }
 
-
-    public EventoList(String nombre, String fecha, String imagen1, String descripcion, String lugar, String estado) {
+    public EventoList(String nombre, Date fechaHora, String imagen, String descripcion, String lugar, String estado) {
         this.nombre = nombre;
-        this.fecha = fecha;
-        this.imagen1 = imagen1;
+        this.fechaHora = fechaHora;
+        this.imagen = imagen;
         this.descripcion = descripcion;
         this.lugar = lugar;
         this.estado = estado;
+    }
+
+    public Date getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(Date fechaHora) {
+        this.fechaHora = fechaHora;
     }
 
     public String getNombre() {
@@ -39,20 +48,12 @@ public class EventoList {
         this.nombre = nombre;
     }
 
-    public String getFecha() {
-        return fecha;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getImagen1() {
-        return imagen1;
-    }
-
-    public void setImagen1(String imagen1) {
-        this.imagen1 = imagen1;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public String getDescripcion() {

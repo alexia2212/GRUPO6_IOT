@@ -24,9 +24,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class EventoFinalizadoExcedeFotos extends AppCompatActivity {
 
@@ -102,8 +105,8 @@ public class EventoFinalizadoExcedeFotos extends AppCompatActivity {
 
             // Accede a los datos recibidos
             String titulo = selectedLista.getNombre();
-            String fecha = selectedLista.getFecha();
-            String imageUrl = selectedLista.getImagen1();
+            Date fecha = selectedLista.getFechaHora();
+            String imageUrl = selectedLista.getImagen();
             String descripcion = selectedLista.getDescripcion();
             String lugar = selectedLista.getLugar();
 
@@ -115,7 +118,9 @@ public class EventoFinalizadoExcedeFotos extends AppCompatActivity {
             TextView lugarTextView = findViewById(R.id.ubicacion);
 
             tituloTextView.setText(titulo);
-            fechaTextView.setText(fecha);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy (HH:mm)", Locale.getDefault());
+            String fechaFormateada = dateFormat.format(fecha);
+            fechaTextView.setText(fechaFormateada);
             lugarTextView.setText(lugar);
             descripcionTextView.setText(descripcion);
             Picasso.get().load(imageUrl).into(imagen1ImageView);

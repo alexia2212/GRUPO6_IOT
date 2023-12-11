@@ -29,12 +29,20 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class NuevoEvento extends AppCompatActivity {
 
@@ -135,14 +143,17 @@ public class NuevoEvento extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     String imageUrl = uri.toString();
-                                    EventoList evento = new EventoList(nombre, fecha, imageUrl, descripcion, lugar, estado);
+                                    Date timestamp = convertirFechaYHoraATimestamp(fecha);
+                                    EventoList evento = new EventoList(nombre, timestamp, imageUrl, descripcion, lugar, estado);
                                     guardarEventoEnFirestore(evento);
+
+
 
                                     // Ahora, inicia la actividad VistaPreviaCreacion y pasa los datos
                                     Intent intent = new Intent(NuevoEvento.this, VistaPreviaCreacion.class);
                                     intent.putExtra("nombre", nombre);
                                     intent.putExtra("descripcion", descripcion);
-                                    intent.putExtra("fecha", fecha);
+                                    intent.putExtra("fechaHora", fecha);
                                     intent.putExtra("lugar", lugar);
                                     intent.putExtra("imageUrl", imageUrl);
                                     startActivity(intent);
@@ -160,6 +171,21 @@ public class NuevoEvento extends AppCompatActivity {
             Toast.makeText(NuevoEvento.this, "Selecciona una imagen primero", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private Date convertirFechaYHoraATimestamp(String fecha) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy (HH:mm)", Locale.getDefault());
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        try {
+            Date date = sdf.parse(fecha);
+            return date;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // O maneja el error de alguna manera apropiada para tu aplicación
+        }
+    }
+
+
+
 
 
     private void guardarEventoEnFirestore(EventoList evento) {
@@ -204,12 +230,50 @@ public class NuevoEvento extends AppCompatActivity {
         datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
             public void onPositiveButtonClick(Long selection) {
-                // Actualiza el contenido del TextInputEditText de fecha con la fecha seleccionada
-                etFecha.setText(datePicker.getHeaderText());
+                showTimePicker(selection); // After selecting the date, show the time picker
             }
         });
         datePicker.show(getSupportFragmentManager(), "DATE_PICKER_TAG");
     }
+
+    private void showTimePicker(Long selectedDate) {
+        MaterialTimePicker.Builder builder = new MaterialTimePicker.Builder();
+        builder.setTitleText("Select time");
+        builder.setHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+        builder.setMinute(Calendar.getInstance().get(Calendar.MINUTE));
+        builder.setTimeFormat(TimeFormat.CLOCK_24H);
+
+        MaterialTimePicker timePicker = builder.build();
+
+        timePicker.addOnPositiveButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Use selectedDate and timePicker.getHour(), timePicker.getMinute() to create a timestamp
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(selectedDate);
+                calendar.set(Calendar.HOUR_OF_DAY, timePicker.getHour());
+                calendar.set(Calendar.MINUTE, timePicker.getMinute());
+
+                long timestamp = calendar.getTimeInMillis();
+                String fechaYHora = obtenerFechaYHora(timestamp);
+
+                // Now 'timestamp' contains the selected date and time in milliseconds
+                etFecha.setText(fechaYHora); // Update your TextInputEditText
+            }
+        });
+
+        timePicker.show(getSupportFragmentManager(), "TIME_PICKER_TAG");
+    }
+
+    private String obtenerFechaYHora(long timestamp) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy (HH:mm)", Locale.getDefault());
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date date = new Date(timestamp);
+        return sdf.format(date);
+    }
+
+
+
 
     private void seleccionarImagenDesdeGaleria() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);

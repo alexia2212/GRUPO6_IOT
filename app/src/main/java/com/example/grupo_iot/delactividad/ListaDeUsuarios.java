@@ -112,7 +112,7 @@ public class ListaDeUsuarios extends AppCompatActivity {
                                             String funcion = lista.getFuncion();
                                             String foto = lista.getFoto();
                                             String codigo = lista.getCodigo();
-                                            String correo = lista.getCorreo();
+                                            String correo = lista.getEmail();
                                             String idintegrante = lista.getIdintegrante();
                                             dataList.add(new Usuario(nombre, apellido, condicion, funcion, foto, codigo, correo, idintegrante));
                                         }

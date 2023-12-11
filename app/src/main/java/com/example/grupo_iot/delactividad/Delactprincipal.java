@@ -35,8 +35,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 public class Delactprincipal extends AppCompatActivity {
@@ -138,8 +141,8 @@ public class Delactprincipal extends AppCompatActivity {
                                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                         Lista lista = document.toObject(Lista.class);
                                         String nombre = lista.getNombre();
-                                        String fecha = lista.getFecha();
-                                        String imageUrl = lista.getImagen1();
+                                        Date fecha = lista.getFechaHora();
+                                        String imageUrl = lista.getImagen();
                                         String descripcion = lista.getDescripcion();
                                         String lugar = lista.getLugar();
                                         String nombreActividad = lista.getNombreactividad();
@@ -153,7 +156,7 @@ public class Delactprincipal extends AppCompatActivity {
                                             }
                                         }
 
-                                        dataList.add(new Lista(nombre, fecha, imageUrl, descripcion, lugar, nombreActividad, urlsCuadros, estado));
+                                        dataList.add(new Lista(nombre, imageUrl, descripcion, lugar, nombreActividad, fecha, urlsCuadros, estado));
 
                                     }
 

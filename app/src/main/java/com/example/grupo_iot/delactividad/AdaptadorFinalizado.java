@@ -17,8 +17,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class AdaptadorFinalizado extends RecyclerView.Adapter<AdaptadorFinalizado.ViewHolder> {
     private List<Lista> dataList;
@@ -44,8 +47,9 @@ public class AdaptadorFinalizado extends RecyclerView.Adapter<AdaptadorFinalizad
         Lista lista = dataList.get(position);
 
         holder.tituloTextView.setText(lista.nombre);
-        holder.fechaTextView.setText(lista.fecha);
-        Picasso.get().load(lista.getImagen1()).into(holder.imagen1ImageView);
+        String fechaHoraStr = obtenerFechaYHora(lista.getFechaHora());
+        holder.fechaTextView.setText(fechaHoraStr);
+        Picasso.get().load(lista.getImagen()).into(holder.imagen1ImageView);
 
         holder.imagen1ImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +91,11 @@ public class AdaptadorFinalizado extends RecyclerView.Adapter<AdaptadorFinalizad
     public void setDataList(List<Lista> dataList) {
         this.dataList = dataList;
         notifyDataSetChanged();
+    }
+
+    private String obtenerFechaYHora(Date fechaHora) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy (HH:mm)", Locale.getDefault());
+        return sdf.format(fechaHora);
     }
 
 

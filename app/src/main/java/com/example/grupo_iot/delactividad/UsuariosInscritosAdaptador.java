@@ -39,9 +39,9 @@ public class UsuariosInscritosAdaptador extends RecyclerView.Adapter<UsuariosIns
         holder.nombre.setText(dato.getNombre());
         holder.funcion.setText(dato.getFuncion());
         holder.condicion.setText(dato.getCondicion());
-        holder.imagen1.setImageResource(dato.img1);
+        holder.imagen.setImageResource(dato.img1);
 
-        holder.imagen1.setOnClickListener(new View.OnClickListener() {
+        holder.imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
@@ -57,14 +57,14 @@ public class UsuariosInscritosAdaptador extends RecyclerView.Adapter<UsuariosIns
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imagen1;
+        ImageView imagen;
         TextView nombre;
         TextView condicion;
         TextView funcion;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            imagen1 = itemView.findViewById(R.id.imagen1);
+            imagen = itemView.findViewById(R.id.imagen1);
             nombre = itemView.findViewById(R.id.titulo);
             condicion = itemView.findViewById(R.id.condicion);
             funcion = itemView.findViewById(R.id.funcion);

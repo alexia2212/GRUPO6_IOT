@@ -77,7 +77,7 @@ public class UsuariosInscritos extends AppCompatActivity {
             String foto = selectedLista.getFoto();
             String apellido = selectedLista.getApellido();
             String codigo = selectedLista.getCodigo();
-            String correo = selectedLista.getCorreo();
+            String correo = selectedLista.getEmail();
             String funcion = selectedLista.getFuncion();
             String idintegrante = selectedLista.getIdintegrante();
 

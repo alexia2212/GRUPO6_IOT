@@ -17,7 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
     private List<Lista> dataList;
@@ -43,8 +46,9 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
         Lista lista = dataList.get(position);
 
         holder.nombreTextView.setText(lista.nombre);
-        holder.fechaTextView.setText(lista.fecha);
-        Picasso.get().load(lista.getImagen1()).into(holder.imagen1ImageView);
+        String fechaHoraStr = obtenerFechaYHora(lista.getFechaHora());
+        holder.fechaTextView.setText(fechaHoraStr);
+        Picasso.get().load(lista.getImagen()).into(holder.imagen1ImageView);
 
         if ("activo".equals(lista.estado)) {
             holder.imagen2ImageView.setImageResource(R.drawable.baseline_check_circle_outline_24);
@@ -107,6 +111,16 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
     public void setDataList(List<Lista> dataList) {
         this.dataList = dataList;
         notifyDataSetChanged();
+    }
+
+    private String obtenerFechaYHora(Date fecha) {
+        if (fecha != null) {
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy (HH:mm)", Locale.getDefault());
+            System.out.println(formatoFecha + "bueno");
+            return formatoFecha.format(fecha);
+        } else {
+            return "Fecha no disponible";
+        }
     }
 
     private void actualizarEstadoEnFirestore(String eventId, String nuevoEstado) {

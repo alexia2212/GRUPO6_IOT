@@ -39,6 +39,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -48,8 +50,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class ActualizarActivity extends AppCompatActivity {
 
@@ -148,16 +155,20 @@ public class ActualizarActivity extends AppCompatActivity {
 
         Button miBoton = findViewById(R.id.botonCorrecto);
 
-        // Agrega un OnClickListener al botón
-
         miBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Obtener los nuevos valores de los campos de entrada
                 String nuevoTitulo = etTitulo.getText().toString();
                 String nuevaDescripcion = etDescripcion.getText().toString();
+
+
                 String nuevaFecha = etFecha.getText().toString();
+                Date timestamp = convertirFechaYHoraATimestamp(nuevaFecha);
+                System.out.println("nueva fecha " + timestamp);
+
                 String nuevoLugar = spinnerLugar.getSelectedItem().toString();
+
 
                 // Verificar si la imagen actual es la imagen por defecto
                 boolean esImagenPorDefecto = isImagenPorDefecto();
@@ -190,56 +201,58 @@ public class ActualizarActivity extends AppCompatActivity {
                                                             Map<String, Object> updates = new HashMap<>();
                                                             updates.put("nombre", nuevoTitulo);
                                                             updates.put("descripcion", nuevaDescripcion);
-                                                            updates.put("fecha", nuevaFecha);
+                                                            updates.put("fechaHora", timestamp);
                                                             updates.put("lugar", nuevoLugar);
 
                                                             if (esImagenPorDefecto) {
                                                                 // Si es la imagen por defecto, guarda la URL de la imagen por defecto
-                                                                updates.put("imagen1", "https://firebasestorage.googleapis.com/v0/b/proyecto-iot-65516.appspot.com/o/imagenes%2Fimagenpordefecto.jpg?alt=media&token=3c4cde4f-096b-469b-9559-8ee080e43a45");
+                                                                updates.put("imagen", "https://firebasestorage.googleapis.com/v0/b/proyecto-iot-65516.appspot.com/o/imagenes%2Fimagenpordefecto.jpg?alt=media&token=3c4cde4f-096b-469b-9559-8ee080e43a45");
                                                             } else {
                                                                 // Si no es la imagen por defecto, elimina el campo "imagen1"
-                                                                updates.put("imagen1", imageUrl);
-                                                            }
+                                                                updates.put("imagen", imageUrl);
 
-                                                            // Actualiza el documento en la base de datos
-                                                            db.collection("actividades")
-                                                                    .document(idActividad)
-                                                                    .collection("listaEventos")
-                                                                    .document(documentoActualId)
-                                                                    .update(updates)
-                                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                        @Override
-                                                                        public void onSuccess(Void aVoid) {
-                                                                            // Los cambios se guardaron correctamente
-                                                                            Toast.makeText(getApplicationContext(), "Cambios guardados", Toast.LENGTH_SHORT).show();
-                                                                        }
-                                                                    })
-                                                                    .addOnFailureListener(new OnFailureListener() {
-                                                                        @Override
-                                                                        public void onFailure(@NonNull Exception e) {
-                                                                            // Manejo de errores en caso de que la actualización falle
-                                                                            Toast.makeText(getApplicationContext(), "Error al guardar los cambios", Toast.LENGTH_SHORT).show();
-                                                                        }
-                                                                    });
+
+                                                                // Actualiza el documento en la base de datos
+                                                                db.collection("actividades")
+                                                                        .document(idActividad)
+                                                                        .collection("listaEventos")
+                                                                        .document(documentoActualId)
+                                                                        .update(updates)
+                                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                            @Override
+                                                                            public void onSuccess(Void aVoid) {
+                                                                                // Los cambios se guardaron correctamente
+                                                                                Toast.makeText(getApplicationContext(), "Cambios guardados", Toast.LENGTH_SHORT).show();
+                                                                            }
+                                                                        })
+                                                                        .addOnFailureListener(new OnFailureListener() {
+                                                                            @Override
+                                                                            public void onFailure(@NonNull Exception e) {
+                                                                                // Manejo de errores en caso de que la actualización falle
+                                                                                Toast.makeText(getApplicationContext(), "Error al guardar los cambios", Toast.LENGTH_SHORT).show();
+                                                                            }
+                                                                        });
+                                                            }
                                                         }
-                                                    } else {
-                                                        // Manejo de errores al obtener la colección de eventos
-                                                        Toast.makeText(getApplicationContext(), "Error al obtener la colección de eventos", Toast.LENGTH_SHORT).show();
+                                                        } else {
+                                                            // Manejo de errores al obtener la colección de eventos
+                                                            Toast.makeText(getApplicationContext(), "Error al obtener la colección de eventos", Toast.LENGTH_SHORT).show();
+                                                        }
                                                     }
-                                                }
-                                            });
-                                } else {
-                                    // Manejo de errores si no se encuentra la actividad designada para el usuario
-                                    Log.e("Firestore", "No se encontró la actividad designada para el usuario");
-                                }
-                            })
-                            .addOnFailureListener(e -> {
-                                // Manejo de errores al obtener la credencial del usuario
-                                Log.e("Firestore", "Error al obtener la credencial del usuario", e);
-                            });
+                                                });
+                                    } else {
+                                        // Manejo de errores si no se encuentra la actividad designada para el usuario
+                                        Log.e("Firestore", "No se encontró la actividad designada para el usuario");
+                                    }
+                                })
+                                .addOnFailureListener(e -> {
+                                    // Manejo de errores al obtener la credencial del usuario
+                                    Log.e("Firestore", "Error al obtener la credencial del usuario", e);
+                                });
+                    }
                 }
-            }
-        });
+            });
+
 
 
         binding.imageViewsalir.setOnClickListener(view -> {
@@ -264,9 +277,11 @@ public class ActualizarActivity extends AppCompatActivity {
         if (intent.hasExtra("nombre")) {
             String titulo = intent.getStringExtra("nombre");
             String descripcion = intent.getStringExtra("descripcion");
-            String fecha = intent.getStringExtra("fecha");
+            String fechaString = intent.getStringExtra("fechaHora");
             String lugar = intent.getStringExtra("lugar");
             String imageUrl = intent.getStringExtra("imagenUrl");
+
+
 
             // Configurar los campos de entrada con los datos recibidos
             TextInputEditText etTitulo = findViewById(R.id.etInput1);
@@ -277,7 +292,7 @@ public class ActualizarActivity extends AppCompatActivity {
 
             etTitulo.setText(titulo);
             etDescripcion.setText(descripcion);
-            etFecha.setText(fecha);
+            etFecha.setText(fechaString);
             // Configurar el spinner de lugar si es aplicable
 
             // Utiliza una biblioteca como Picasso para cargar la imagen desde la URL
@@ -331,9 +346,9 @@ public class ActualizarActivity extends AppCompatActivity {
                                                             // Crea un mapa con los campos que deseas eliminar o actualizar
                                                             Map<String, Object> updates = new HashMap<>();
                                                             if (esImagenPorDefecto) {
-                                                                updates.put("imagen1", "URL_IMAGEN_POR_DEFECTO");
+                                                                updates.put("imagen", "URL_IMAGEN_POR_DEFECTO");
                                                             } else {
-                                                                updates.put("imagen1", FieldValue.delete());
+                                                                updates.put("imagen", FieldValue.delete());
                                                             }
 
                                                             // Actualiza el documento para eliminar o actualizar el campo "imagen1"
@@ -416,53 +431,8 @@ public class ActualizarActivity extends AppCompatActivity {
 
 
 
-    private void showDatePicker() {
-        MaterialDatePicker<Long> datePicker =
-                MaterialDatePicker.Builder.datePicker()
-                        .setTitleText("Select date")
-                        .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-                        .build();
-        datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
-            @Override
-            public void onPositiveButtonClick(Long selection) {
-                // Actualiza el contenido del TextInputEditText de fecha con la fecha seleccionada
-                etFecha.setText(datePicker.getHeaderText());
-            }
-        });
-        datePicker.show(getSupportFragmentManager(), "DATE_PICKER_TAG");
-    }
 
-    /*void generarBottomNavigationMenu(){
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
 
-                if(menuItem.getItemId()==R.id.navigation_lista_eventos){
-                    Intent intent = new Intent(ActualizarActivity.this, ListaActividadesActivity.class);
-                    startActivity(intent);
-                }
-                if(menuItem.getItemId()==R.id.navigation_eventos_finalizados){
-                    Intent intent = new Intent(ActualizarActivity.this, ListaEventosApoyadosActivity.class);
-                    startActivity(intent);
-                }
-                if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
-                    Intent intent = new Intent(ActualizarActivity.this, ListaDeChatsActivity.class);
-                    startActivity(intent);
-                }
-                if(menuItem.getItemId()==R.id.navigation_donacionesdelact){
-                    Intent intent = new Intent(ActualizarActivity.this, DonacionesActivity.class);
-                    startActivity(intent);
-                }
-                if(menuItem.getItemId()==R.id.navigation_perfildelact){
-                        Intent intent = new Intent(ActualizarActivity.this, PerfilActivity.class);
-                    startActivity(intent);
-                }
-                return true;
-            }
-        });
-    }
-    */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -524,7 +494,7 @@ public class ActualizarActivity extends AppCompatActivity {
                                             for (QueryDocumentSnapshot document : task.getResult()) {
                                                 String documentoActualId = document.getId();
                                                 Map<String, Object> updates = new HashMap<>();
-                                                updates.put("imagen1", imageUrl); // Actualiza el campo "imagen1" con la URL
+                                                updates.put("imagen", imageUrl); // Actualiza el campo "imagen1" con la URL
 
                                                 db.collection("actividades")
                                                         .document(idActividad)
@@ -589,11 +559,68 @@ public class ActualizarActivity extends AppCompatActivity {
                 imagenActual.getConstantState().equals(getResources().getDrawable(imagenPorDefectoId).getConstantState()));
     }
 
+    private void showDatePicker() {
+        MaterialDatePicker<Long> datePicker =
+                MaterialDatePicker.Builder.datePicker()
+                        .setTitleText("Select date")
+                        .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                        .build();
+        datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+            @Override
+            public void onPositiveButtonClick(Long selection) {
+                showTimePicker(selection); // After selecting the date, show the time picker
+            }
+        });
+        datePicker.show(getSupportFragmentManager(), "DATE_PICKER_TAG");
+    }
 
+    private void showTimePicker(Long selectedDate) {
+        MaterialTimePicker.Builder builder = new MaterialTimePicker.Builder();
+        builder.setTitleText("Select time");
+        builder.setHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+        builder.setMinute(Calendar.getInstance().get(Calendar.MINUTE));
+        builder.setTimeFormat(TimeFormat.CLOCK_24H);
 
+        MaterialTimePicker timePicker = builder.build();
 
+        timePicker.addOnPositiveButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Use selectedDate and timePicker.getHour(), timePicker.getMinute() to create a timestamp
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(selectedDate);
+                calendar.set(Calendar.HOUR_OF_DAY, timePicker.getHour());
+                calendar.set(Calendar.MINUTE, timePicker.getMinute());
 
+                long timestamp = calendar.getTimeInMillis();
+                String fechaYHora = obtenerFechaYHora(timestamp);
 
+                // Now 'timestamp' contains the selected date and time in milliseconds
+                etFecha.setText(fechaYHora); // Update your TextInputEditText
+            }
+        });
+
+        timePicker.show(getSupportFragmentManager(), "TIME_PICKER_TAG");
+    }
+
+    private String obtenerFechaYHora(long timestamp) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy (HH:mm)", Locale.getDefault());
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date date = new Date(timestamp);
+        return sdf.format(date);
+    }
+
+    private Date convertirFechaYHoraATimestamp(String fecha) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy (HH:mm)", Locale.getDefault());
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        try {
+            Date date = sdf.parse(fecha);
+            return date;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // O maneja el error de alguna manera apropiada para tu aplicación
+        }
+    }
 
 
 }

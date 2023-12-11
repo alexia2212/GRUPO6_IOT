@@ -190,7 +190,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="17dp"
                         android:layout_marginTop="8dp"
-                        android:hint="Fecha">
+                        android:hint="Fecha y Hora">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etInput3"

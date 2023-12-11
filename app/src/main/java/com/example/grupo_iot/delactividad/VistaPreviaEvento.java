@@ -35,8 +35,11 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class VistaPreviaEvento extends AppCompatActivity {
 
@@ -172,8 +175,8 @@ public class VistaPreviaEvento extends AppCompatActivity {
 
             // Accede a los datos recibidos
             String nombre = selectedLista.getNombre();
-            String fecha = selectedLista.getFecha();
-            String imageUrl = selectedLista.getImagen1();
+            Date fecha = selectedLista.getFechaHora();
+            String imageUrl = selectedLista.getImagen();
             String descripcion = selectedLista.getDescripcion();
             String lugar = selectedLista.getLugar();
 
@@ -185,7 +188,9 @@ public class VistaPreviaEvento extends AppCompatActivity {
             TextView lugarTextView = findViewById(R.id.ubicacion);
 
             nombreTextView.setText(nombre);
-            fechaTextView.setText(fecha);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy (HH:mm)", Locale.getDefault());
+            String fechaFormateada = dateFormat.format(fecha);
+            fechaTextView.setText(fechaFormateada);
             lugarTextView.setText(lugar);
             descripcionTextView.setText(descripcion);
             Picasso.get().load(imageUrl).into(imagen1ImageView);
@@ -201,17 +206,21 @@ public class VistaPreviaEvento extends AppCompatActivity {
 
                 // Accede a los datos recibidos
                 String nombre = selectedLista.getNombre();
-                String fecha = selectedLista.getFecha();
-                String imageUrl = selectedLista.getImagen1();
+                Date fecha = selectedLista.getFechaHora();
+                String imageUrl = selectedLista.getImagen();
                 String descripcion = selectedLista.getDescripcion();
                 String lugar = selectedLista.getLugar();
                 String estado = selectedLista.getEstado();
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy (HH:mm)", Locale.getDefault());
+                String fechaFormateada = dateFormat.format(fecha);
+
 
 
                 Intent intent = new Intent(VistaPreviaEvento.this, ActualizarActivity.class);
                 intent.putExtra("nombre", nombre); // Pasa el título como extra
                 intent.putExtra("descripcion", descripcion); // Pasa la descripción como extra
-                intent.putExtra("fecha", fecha); // Pasa la fecha como extra
+                intent.putExtra("fechaHora", fechaFormateada);// Pasa la fecha como extra
                 intent.putExtra("lugar", lugar); // Pasa el lugar como extra
                 intent.putExtra("imagenUrl", imageUrl);
                 intent.putExtra("estado", estado);
