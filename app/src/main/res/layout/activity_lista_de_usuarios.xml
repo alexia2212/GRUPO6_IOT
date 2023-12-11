@@ -91,44 +91,44 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_exit_to_app_24" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="165dp"
-            android:layout_height="59dp"
-            android:layout_marginEnd="132dp"
-            android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/material_dynamic_primary60"
-            android:elevation="38dp"
-            android:text="Todos    "
-            android:textSize="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/listauser"
-            app:layout_constraintEnd_toEndOf="@+id/button4"
-            app:layout_constraintHorizontal_bias="0.17"
-            app:layout_constraintVertical_bias="0.22" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="163dp"
-            android:layout_height="59dp"
-            android:layout_marginStart="-100dp"
-            android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/material_dynamic_neutral70"
-            android:elevation="-10dp"
-            android:text="Sin función"
-            app:layout_constraintBottom_toTopOf="@+id/listauser"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/buscarAlumno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="10dp"
+            android:hint="Buscar Alumno"
+            android:layout_marginTop="30dp"
+            app:boxBackgroundColor="@color/white"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.88"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listauser"
             android:layout_width="354dp"
             android:layout_height="452dp"
-            android:layout_marginBottom="28dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="64dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/cardView3"
-            app:layout_constraintHorizontal_bias="0.755"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buscarAlumno"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView42"

@@ -9,6 +9,8 @@ import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +23,7 @@ import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityCompartirfotosBinding;
 import com.example.grupo_iot.databinding.ActivityListaDeUsuariosBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -138,20 +141,6 @@ public class ListaDeUsuarios extends AppCompatActivity {
             }
         });
 
-        Button sinFuncionButton = findViewById(R.id.button4);
-        Button todosButton = findViewById(R.id.button3);
-
-        sinFuncionButton.setOnClickListener(view -> {
-            // Cambiar los colores con animación
-            animateColorChange(sinFuncionButton, R.color.lightGrey);
-            animateColorChange(todosButton, R.color.turquesa);
-        });
-
-        todosButton.setOnClickListener(view -> {
-            // Cambiar los colores con animación
-            animateColorChange(sinFuncionButton, R.color.turquesa);
-            animateColorChange(todosButton, R.color.lightGrey);
-        });
 
 
 
@@ -173,6 +162,26 @@ public class ListaDeUsuarios extends AppCompatActivity {
             dialog.show();
 
         });
+
+        TextInputEditText searchEditText = findViewById(R.id.searchEditText);
+
+        if (searchEditText != null) {
+            searchEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    String searchText = charSequence.toString().toLowerCase().trim();
+                    filterData(searchText);
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                }
+            });
+        }
 
 
 
@@ -234,6 +243,19 @@ public class ListaDeUsuarios extends AppCompatActivity {
         });
 
         colorAnimator.start();
+    }
+
+    private void filterData(String searchText) {
+        List<Usuario> filteredList = new ArrayList<>();
+
+        for (Usuario lista : dataList) {
+            if (lista.getNombre() != null && (lista.getNombre().toLowerCase().contains(searchText) ||
+                    (lista.getApellido() != null && lista.getApellido().toLowerCase().contains(searchText)) || (lista.getFuncion() != null && lista.getFuncion().toLowerCase().contains(searchText)) )) {
+                filteredList.add(lista);
+            }
+        }
+
+        adapter.setDataList(filteredList);
     }
 
 

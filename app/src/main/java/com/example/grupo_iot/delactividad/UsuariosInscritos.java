@@ -88,7 +88,11 @@ public class UsuariosInscritos extends AppCompatActivity {
                 radioButtonBarra.setChecked(true);
             } else if ("Equipo".equals(funcion)) {
                 radioButtonEquipo.setChecked(true);
+            } else if ("Sin Funcion".equals(funcion)) {
+                radioButtonBarra.setChecked(false);
+                radioButtonEquipo.setChecked(false);
             }
+
 
             // Muestra los datos en la actividad
             TextView nombreTextView = binding.nombre;
