@@ -7,6 +7,8 @@ public class Notificacion implements Serializable {
 
     private String contenido;
     private Date fechaHora;
+    private String titulo;
+    private String imagen;
     public String getContenido() {
         return contenido;
     }
@@ -21,5 +23,21 @@ public class Notificacion implements Serializable {
 
     public void setFechaHora(Date fechaHora) {
         this.fechaHora = fechaHora;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }
