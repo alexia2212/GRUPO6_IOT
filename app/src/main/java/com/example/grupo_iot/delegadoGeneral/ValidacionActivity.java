@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -140,6 +141,8 @@ public class ValidacionActivity extends AppCompatActivity  {
                         String email = (String) userData.get("email"); //extraccion
                         String password = (String) userData.get("password");
                         String codigo = (String) userData.get("codigo");
+                        String nombre = (String) userData.get("nombre");
+                        String apellido = (String) userData.get("apellido");
                         auth.createUserWithEmailAndPassword(email, password) //crear en la tabla de auth
                                 .addOnCompleteListener(task -> {
                                     if (task.isSuccessful()) {
@@ -162,6 +165,7 @@ public class ValidacionActivity extends AppCompatActivity  {
                                                                         .delete()
                                                                         .addOnSuccessListener(aVoid2 -> {
                                                                             Log.e("ValidacionActivity", "Usuario eliminado de usuariosPorRegistrar");
+                                                                            subirFotoDefault(nombre, apellido);
                                                                         })
                                                                         .addOnFailureListener(e -> {
                                                                             Log.e("ValidacionActivity", "Error al eliminar documento de usuariosPorRegistrar", e);
@@ -185,6 +189,29 @@ public class ValidacionActivity extends AppCompatActivity  {
                 .addOnFailureListener(e -> {
                     Log.e("ValidacionActivity", "Error al obtener datos del documento de usuariosPorRegistrar", e);
                 });
+    }
+    private void subirFotoDefault(String nombre, String apellido){
+        // Obtén el ID del recurso drawable
+        int drawableId = R.drawable.foto_default;
+
+// Crea un objeto Uri con el ID del recurso drawable
+        Uri imageUri = Uri.parse("android.resource://com.example.grupo_iot/drawable/" + drawableId);
+
+// Obtén una referencia al storage y establece el nombre del archivo
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imageRef = storageRef.child("img_perfiles/" + nombre+" "+apellido+".jpg");
+
+// Sube el archivo al storage
+        imageRef.putFile(imageUri)
+                .addOnSuccessListener(taskSnapshot -> {
+                    // Maneja el éxito si es necesario
+                    Log.d("msg-test", "Imagen subida exitosamente");
+                })
+                .addOnFailureListener(exception -> {
+                    // Maneja la falla si es necesario
+                    exception.printStackTrace();
+                });
+
     }
 
 }

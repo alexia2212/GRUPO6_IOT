@@ -10,6 +10,8 @@ public class Evento implements Serializable {
     private String descripcion;
     private Date fechaHora;
     private String lugar;
+    private String imagen;
+    private String estado;
 
     public String getNombre() {
         return nombre;
@@ -39,5 +41,21 @@ public class Evento implements Serializable {
     }
     public void setLugar(String lugar) {
         this.lugar = lugar;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
