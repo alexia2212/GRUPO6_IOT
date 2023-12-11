@@ -61,7 +61,7 @@
             android:layout_width="340dp"
             android:layout_height="558dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:background="@drawable/background4"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="alexia.jauregui@pucp.edu.pe"
             android:textColor="@color/lightGrey"
@@ -99,7 +98,7 @@
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="Mi Perfil"
             android:textColor="@color/black"
             android:textSize="24sp"
@@ -111,9 +110,9 @@
 
         <ImageView
             android:id="@+id/imageView12"
-            android:layout_width="149dp"
-            android:layout_height="149dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="137dp"
+            android:layout_height="143dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:cropToPadding="true"
             app:layout_constraintEnd_toEndOf="@+id/textView7"
@@ -217,7 +216,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="Código:"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -226,20 +225,19 @@
 
         <TextView
             android:id="@+id/btnCambiarRol"
-            android:layout_width="120dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="88dp"
+            android:layout_width="150dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/backgroud6"
-            android:visibility="invisible"
             android:gravity="center"
             android:text="Cambiar Rol"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.879"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/btnCambiarContrasena"
+            app:layout_constraintStart_toStartOf="@+id/btnCambiarContrasena"
+            app:layout_constraintTop_toBottomOf="@+id/btnCambiarContrasena" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- Fin Contenido principal -->

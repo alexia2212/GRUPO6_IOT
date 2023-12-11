@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.grupo_iot.alumno.activity.ListaActividadesActivity;
+import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.alumno.entity.EventoApoyado;
 import com.example.grupo_iot.databinding.ActivityIniciarSesionBinding;
 import com.example.grupo_iot.delactividad.Delactprincipal;
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class IniciarSesionActivity extends AppCompatActivity {
@@ -59,7 +61,9 @@ public class IniciarSesionActivity extends AppCompatActivity {
                         if (user != null) {
                             // Usuario autenticado con éxito
                             // Aquí puedes redirigir a la actividad correspondiente según el rol
-                            redirigirSegunRol(user.getEmail());
+                            //redirigirSegunRol(user.getEmail());
+                            // Ahora ya no se redirige según rol, se redirige dependiendo si tiene una actividad designada o no
+                            redirigirVistaCorrrespondiente(user.getEmail());
                         }
                     } else {
                         // Fallo de autenticación, muestra un mensaje de error
@@ -82,6 +86,49 @@ public class IniciarSesionActivity extends AppCompatActivity {
                                 Intent intent = new Intent(IniciarSesionActivity.this, ListaActividadesActivity.class);
                                 intent.putExtra("correoAlumno", email);
                                 startActivity(intent);
+                            } else if (rol.equals("delegado general")) {
+                                Intent intent = new Intent(IniciarSesionActivity.this, MenuDelegadoGeneralActivity.class);
+                                startActivity(intent);
+                            } else if (rol.equals("delegado actividad")) {
+                                Intent intent = new Intent(IniciarSesionActivity.this, Delactprincipal.class);
+                                startActivity(intent);
+                            }
+                        }
+                    } else {
+                        Log.w("IniciarSesionActivity", "Error al obtener el rol del usuario", task.getException());
+                    }
+                });
+    }
+
+    private void redirigirVistaCorrrespondiente(String email) {
+        db.collection("credenciales")
+                .whereEqualTo("email", email)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Usuario user = document.toObject(Usuario.class);
+                            String rol = user.getRol();
+
+                            if (rol.equals("alumno")) {
+                                db.collection("alumnos")
+                                        .whereEqualTo("email", email)
+                                        .get()
+                                        .addOnCompleteListener(t-> {
+                                            if(t.isSuccessful()){
+                                                for (QueryDocumentSnapshot doc : t.getResult()){
+                                                    Alumno alumno = doc.toObject(Alumno.class);
+                                                    if(alumno.getActividadDesignada().equals("")){
+                                                        Intent intent = new Intent(IniciarSesionActivity.this, ListaActividadesActivity.class);
+                                                        intent.putExtra("correoAlumno", email);
+                                                        startActivity(intent);
+                                                    }else{
+                                                        Intent intent = new Intent(IniciarSesionActivity.this, Delactprincipal.class);
+                                                        startActivity(intent);
+                                                    }
+                                                }
+                                            }
+                                        });
                             } else if (rol.equals("delegado general")) {
                                 Intent intent = new Intent(IniciarSesionActivity.this, MenuDelegadoGeneralActivity.class);
                                 startActivity(intent);
