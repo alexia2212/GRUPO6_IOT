@@ -128,13 +128,11 @@ public class DonacionesActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         TextView usuario = headerView.findViewById(R.id.textView6);
         TextView estado = headerView.findViewById(R.id.estado);
-
+        ImageView fotoPerfil = headerView.findViewById(R.id.imageViewFotoPerfil);
 
         usuario.setText(alumno.getNombre()+" "+alumno.getApellido());
         estado.setText(alumno.getCondicion());
 
-        ImageView fotoPerfil = headerView.findViewById(R.id.imageViewFotoPerfil);
-        
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference imgRef = firebaseStorage.getReference().child("img_perfiles/"+alumno.getNombre()+" "+alumno.getApellido()+".jpg");
         Glide.with(this)
@@ -208,7 +206,7 @@ public class DonacionesActivity extends AppCompatActivity {
                 .setTitle("Aviso")
                 .setPositiveButton("Cerrar Sesión", (dialog, which) -> {
                     Intent intent1 = new Intent(this, LoginActivity.class);
-                    intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent1);
                 })
                 .setNegativeButton("Cancelar", null);
