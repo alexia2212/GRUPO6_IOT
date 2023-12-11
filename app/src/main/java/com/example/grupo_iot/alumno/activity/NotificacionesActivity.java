@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,14 +19,21 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
+import com.example.grupo_iot.alumno.adapter.NotificacionesAdapter;
 import com.example.grupo_iot.alumno.entity.Alumno;
+import com.example.grupo_iot.alumno.entity.Notificacion;
 import com.example.grupo_iot.databinding.ActivityNotificacionesBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NotificacionesActivity extends AppCompatActivity {
     ActivityNotificacionesBinding binding;
@@ -44,6 +52,7 @@ public class NotificacionesActivity extends AppCompatActivity {
         alumno = (Alumno) intent.getSerializableExtra("alumno");
 
         buscarDatosAlumnos(alumno.getEmail());
+        cargarNotificaciones();
         generarBottomNavigationMenu();
 
         binding.imageView6.setOnClickListener(view -> {
@@ -71,6 +80,30 @@ public class NotificacionesActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NotificacionesActivity.class);
         intent.putExtra("alumno",alumno);
         startActivity(intent);
+    }
+
+    private void cargarNotificaciones(){
+        CollectionReference alumnosCollection = db.collection("alumnos");
+        DocumentReference alumnoDocument = alumnosCollection.document(alumno.getCodigo());
+        CollectionReference notificacionesCollection = alumnoDocument.collection("notificaciones");
+
+        notificacionesCollection
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        List<Notificacion> notificacionList = new ArrayList<>();
+                        for (QueryDocumentSnapshot notif : task.getResult()){
+                            Notificacion notificacion = notif.toObject(Notificacion.class);
+                            notificacionList.add(notificacion);
+                        }
+                        NotificacionesAdapter notificacionesAdapter = new NotificacionesAdapter();
+                        notificacionesAdapter.setNotificacionList(notificacionList);
+                        notificacionesAdapter.setContext(NotificacionesActivity.this);
+                        notificacionesAdapter.setAlumno(alumno);
+                        binding.recyclerViewNotificaciones.setAdapter(notificacionesAdapter);
+                        binding.recyclerViewNotificaciones.setLayoutManager(new LinearLayoutManager(NotificacionesActivity.this));
+                    }
+                });
     }
 
     public void generarSidebar(){

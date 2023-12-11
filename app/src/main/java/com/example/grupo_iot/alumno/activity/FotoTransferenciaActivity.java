@@ -198,7 +198,7 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
         DocumentReference donacionDocument = donacionCollection.document(fechaHoraActual);
 
         Map<String, Object> datosDonacion = new HashMap<>();
-        datosDonacion.put("monto", "S/. "+monto);
+        datosDonacion.put("monto", monto);
 
         donacionDocument.set(datosDonacion);
     }
