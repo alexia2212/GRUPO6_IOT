@@ -95,9 +95,7 @@ public class ChatGrupalActivity extends AppCompatActivity {
         TextView estado = headerView.findViewById(R.id.estado);
         ImageView fotoPerfil = headerView.findViewById(R.id.imageViewFotoPerfil);
 
-        String primerNombreApellido = alumno.getNombre().split("\\s+")[0] + " "+ alumno.getApellido().split("\\s+")[0];
-
-        usuario.setText(primerNombreApellido);
+        usuario.setText(alumno.getNombre()+" "+alumno.getApellido());
         estado.setText(alumno.getCondicion());
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();

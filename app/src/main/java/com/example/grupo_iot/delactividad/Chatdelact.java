@@ -15,18 +15,17 @@ import android.widget.Toast;
 import com.example.grupo_iot.LoginActivity;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityChatdelactBinding;
-import com.example.grupo_iot.databinding.ActivityDelactprincipalBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,11 +38,13 @@ public class Chatdelact extends AppCompatActivity {
 
     List<ChatMessage> chatMessages;
     ChatAdapter chatAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityChatdelactBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         cargarMensajes();
@@ -73,48 +74,45 @@ public class Chatdelact extends AppCompatActivity {
         });
 
         if (auth.getCurrentUser() != null) {
-
             String senderId = auth.getCurrentUser().getUid();
-            System.out.println(senderId + "acá esta el id");
 
+            // Obtener el nombre de la actividad desde "credenciales"
+            DocumentReference credencialesRef = db.collection("credenciales").document(senderId);
+            credencialesRef.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    String nombreActividad = documentSnapshot.getString("actividadDesignada");
 
-            binding.enviarchat.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String messageText = binding.inputenviar.getText().toString().trim();
+                    binding.enviarchat.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String messageText = binding.inputenviar.getText().toString().trim();
 
-                    if (!TextUtils.isEmpty(messageText)) {
-                        // Obtén la sala a la que tiene acceso el usuario autenticado
-                        db.collection("credenciales").document(senderId).get()
-                                .addOnSuccessListener(documentSnapshot -> {
-                                    if (documentSnapshot.exists()) {
-                                        String salaUsuario = documentSnapshot.getString("sala");
-                                        String senderName = documentSnapshot.getString("nombre");
-                                        String imagen = documentSnapshot.getString("imagen");
+                            if (!TextUtils.isEmpty(messageText)) {
+                                // Obtener la sala de chat grupal
+                                DocumentReference salaRef = db.collection("chatGrupal").document(nombreActividad);
 
+                                String senderName = documentSnapshot.getString("nombre");
+                                String imagen = documentSnapshot.getString("imagen");
 
-                                        // Crea un nuevo mensaje
-                                        Map<String, Object> message = new HashMap<>();
-                                        message.put("senderId", senderId);
-                                        message.put("message", messageText);
-                                        message.put("timestamp", FieldValue.serverTimestamp());
-                                        message.put("nombre", senderName);
-                                        message.put("imagen", imagen);
+                                // Crear un nuevo mensaje
+                                Map<String, Object> message = new HashMap<>();
+                                message.put("senderId", senderId);
+                                message.put("message", messageText);
+                                message.put("timestamp", FieldValue.serverTimestamp());
+                                message.put("nombre", senderName);
+                                message.put("imagen", imagen);
 
+                                // Agregar el mensaje a la colección de mensajes de la sala del usuario
+                                salaRef.collection("mensajes").add(message);
 
-
-                                        // Agrega el mensaje a la colección de mensajes de la sala del usuario
-                                        db.collection("chatGrupal").document(salaUsuario).collection("mensajes").add(message);
-
-                                        // Borra el texto del campo de entrada después de enviar el mensaje
-                                        binding.inputenviar.setText("");
-                                    }
-                                })
-                                .addOnFailureListener(e -> {
-                                    // Manejar el error al obtener la sala del usuario
-                                });
-                    }
+                                // Borrar el texto del campo de entrada después de enviar el mensaje
+                                binding.inputenviar.setText("");
+                            }
+                        }
+                    });
                 }
+            }).addOnFailureListener(e -> {
+                Log.e("Chatdelact", "Error al obtener credenciales", e);
             });
         } else {
             Toast.makeText(getApplicationContext(), "Usuario no autenticado", Toast.LENGTH_SHORT).show();
@@ -123,61 +121,59 @@ public class Chatdelact extends AppCompatActivity {
 
     private void cargarMensajes() {
         auth.getCurrentUser();
-        // Obtén la sala a la que tiene acceso el usuario autenticado
-        String senderId = auth.getCurrentUser().getUid(); // Deberías tener tu propia lógica para obtener el ID del usuario actual
-        db.collection("credenciales").document(senderId).get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        String salaUsuario = documentSnapshot.getString("sala");
-                        String senderName = documentSnapshot.getString("nombre");
 
+        String senderId = auth.getCurrentUser().getUid();
 
-                        db.collection("chatGrupal").document(salaUsuario).collection("mensajes")
-                                .orderBy("timestamp", Query.Direction.ASCENDING)
-                                .addSnapshotListener((value, error) -> {
-                                    if (error != null) {
-                                        return;
-                                    }
+        // Obtener el nombre de la actividad desde "credenciales"
+        DocumentReference credencialesRef = db.collection("credenciales").document(senderId);
+        credencialesRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                String nombreActividad = documentSnapshot.getString("actividadDesignada");
 
-                                    chatMessages.clear();
+                // Obtener la sala de chat grupal
+                DocumentReference salaRef = db.collection("chatGrupal").document(nombreActividad);
 
-                                    for (QueryDocumentSnapshot document : value) {
-                                        ChatMessage chatMessage = document.toObject(ChatMessage.class);
-                                        chatMessages.add(chatMessage);
-                                    }
+                salaRef.collection("mensajes")
+                        .orderBy("timestamp", Query.Direction.ASCENDING)
+                        .addSnapshotListener((value, error) -> {
+                            if (error != null) {
+                                return;
+                            }
 
-                                    chatAdapter.notifyDataSetChanged();
-                                });
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    Log.e("Chatdelact", "Error al obtener sala de usuario", e);
-                });
+                            chatMessages.clear();
+
+                            for (QueryDocumentSnapshot document : value) {
+                                ChatMessage chatMessage = document.toObject(ChatMessage.class);
+                                chatMessages.add(chatMessage);
+                            }
+
+                            chatAdapter.notifyDataSetChanged();
+                        });
+            }
+        }).addOnFailureListener(e -> {
+            Log.e("Chatdelact", "Error al obtener credenciales", e);
+        });
     }
 
-
-
-
-
-    void generarBottomNavigationMenu(){
+    void generarBottomNavigationMenu() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
-                if(menuItem.getItemId()==R.id.navigation_lista_eventos){
+                if (menuItem.getItemId() == R.id.navigation_lista_eventos) {
                     Intent intent = new Intent(Chatdelact.this, Delactprincipal.class);
                     startActivity(intent);
                 }
-                if(menuItem.getItemId()==R.id.navigation_eventos_finalizados){
+                if (menuItem.getItemId() == R.id.navigation_eventos_finalizados) {
                     Intent intent = new Intent(Chatdelact.this, EventoFinalizadoActivity.class);
                     startActivity(intent);
                 }
-                if(menuItem.getItemId()==R.id.navigation_lista_chatsdelact){
+                if (menuItem.getItemId() == R.id.navigation_lista_chatsdelact) {
                     Intent intent = new Intent(Chatdelact.this, Chatdelact.class);
                     startActivity(intent);
                 }
-                if(menuItem.getItemId()==R.id.navigation_perfildelact){
+                if (menuItem.getItemId() == R.id.navigation_perfildelact) {
                     Intent intent = new Intent(Chatdelact.this, Perfildelact.class);
                     startActivity(intent);
                 }

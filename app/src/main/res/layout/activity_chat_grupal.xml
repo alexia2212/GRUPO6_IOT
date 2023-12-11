@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D9D9D9"
-    tools:context=".alumno.activity.ChatGrupalActivity">
+    tools:context=".delactividad.Chatdelact">
 
     <!-- Contenido principal -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/logo" />
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Grupo Barra Futsal"
+            android:text="Grupo Voley Mixto"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/view5"
@@ -114,317 +114,24 @@
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/view"
+            android:layout_gravity="end"
             app:layout_constraintTop_toBottomOf="@+id/view5">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewChat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                app:layout_constraintTop_toBottomOf="@+id/scrollview"
+                app:layout_constraintBottom_toTopOf="@+id/buscarEvento"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="79dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="297dp"
-                        app:srcCompat="@mipmap/maria" />
-
-                    <TextView
-                        android:layout_width="222dp"
-                        android:layout_height="51dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="70dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="84dp"
-                        android:background="@drawable/background5"
-                        android:paddingStart="20dp"
-                        android:paddingTop="5dp"
-                        android:text="María"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="217dp"
-                        android:layout_height="29dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="90dp"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="cuando es el siguiente ensayo?"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="231dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginEnd="49dp"
-                        android:text="2:12 pm"
-                        android:textColor="#8A8A8A"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="62dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="309dp"
-                        app:srcCompat="@mipmap/angelo" />
-
-                    <TextView
-                        android:layout_width="224dp"
-                        android:layout_height="52dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="70dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="73dp"
-                        android:background="@drawable/background5"
-                        android:paddingStart="20dp"
-                        android:paddingTop="5dp"
-                        android:text="Angelo"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="217dp"
-                        android:layout_height="29dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="90dp"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="Yo puedo este miercoles a las 7pm"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="225dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginEnd="55dp"
-                        android:text="2:15 pm"
-                        android:textColor="#8A8A8A"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="59dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="312dp"
-                        app:srcCompat="@mipmap/hiro" />
-
-                    <TextView
-                        android:layout_width="222dp"
-                        android:layout_height="95dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="70dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="84dp"
-                        android:background="@drawable/background5"
-                        android:paddingStart="20dp"
-                        android:paddingTop="5dp"
-                        android:text="Hiro"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="185dp"
-                        android:layout_height="59dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="90dp"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginEnd="101dp"
-                        android:justificationMode="inter_word"
-                        android:text="Chicos seria mejor que se vayan aprendiendo
-la coreografia antes de ir al ensayo para que
-no se vea muy desorganizado"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="224dp"
-                        android:layout_marginTop="17dp"
-                        android:layout_marginEnd="56dp"
-                        android:text="2:19 pm"
-                        android:textColor="#8A8A8A"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="194dp"
-                        android:layout_height="47dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="150dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="23dp"
-                        android:background="@drawable/background5"
-                        android:paddingStart="20dp"
-                        android:paddingTop="5dp"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="217dp"
-                        android:layout_height="29dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="160dp"
-                        android:layout_marginTop="35dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="Yo puedo los sabado  a las 6 pm"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="283dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginEnd="-3dp"
-                        android:text="2:12 pm"
-                        android:textColor="#8A8A8A"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="59dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="312dp"
-                        app:srcCompat="@mipmap/maria" />
-
-                    <TextView
-                        android:layout_width="220dp"
-                        android:layout_height="54dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="70dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="77dp"
-                        android:background="@drawable/background5"
-                        android:paddingStart="20dp"
-                        android:paddingTop="5dp"
-                        android:text="María"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="217dp"
-                        android:layout_height="29dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="90dp"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="¿Cuántos podrán asistir al evento?"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="227dp"
-                        android:layout_marginTop="19dp"
-                        android:layout_marginEnd="53dp"
-                        android:text="2:12 pm"
-                        android:textColor="#8A8A8A"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
         </ScrollView>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/buscarEvento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="337dp"
+            android:layout_height="52dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -440,29 +147,30 @@ no se vea muy desorganizado"
             app:layout_constraintTop_toBottomOf="@+id/scrollview">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
+                android:id="@+id/inputenviar"
+                android:layout_width="282dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:paddingStart="24dp"/>
+                android:paddingStart="24dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
-            android:id="@+id/imageView20"
+            android:id="@+id/enviarchat"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="16dp"
             android:layout_marginStart="310dp"
             app:layout_constraintEnd_toEndOf="@+id/buscarEvento"
             app:layout_constraintStart_toStartOf="@+id/buscarEvento"
             app:layout_constraintTop_toTopOf="@+id/buscarEvento"
             app:srcCompat="@mipmap/send_message" />
 
-        <!-- Bottom Navigation -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             style="@style/NoRippleStyle"
+            android:elevation="30dp"
             android:layout_width="wrap_content"
             android:layout_height="55dp"
             android:layout_gravity="bottom"
@@ -513,18 +221,19 @@ no se vea muy desorganizado"
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/logoutContainer"
+            android:id="@+id/logout_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:gravity="center_horizontal"
+            android:onClick="abrirNotificaciones"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:paddingStart="95dp"
+                android:paddingStart="90dp"
                 android:text="Ver todo"
                 android:textColor="#02ADC5"
                 android:textSize="16sp"
@@ -535,6 +244,7 @@ no se vea muy desorganizado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:onClick="abrirNotificaciones"
                 android:rotationY="180"
                 android:src="@drawable/baseline_arrow_back_24" />
         </LinearLayout>
