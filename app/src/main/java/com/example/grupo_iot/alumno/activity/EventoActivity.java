@@ -32,6 +32,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class EventoActivity extends AppCompatActivity {
     ActivityEventoBinding binding;
     private DrawerLayout drawerLayout;
@@ -141,9 +144,19 @@ public class EventoActivity extends AppCompatActivity {
                                         DocumentReference doc = listaEventosCollection.document(evento.getId());
                                         CollectionReference integrantesPorEventoCollection = doc.collection("integrantes");
 
+                                        Map<String, Object> datosAlumno = new HashMap<>();
+                                        datosAlumno.put("nombre", alumno.getNombre());
+                                        datosAlumno.put("apellido", alumno.getApellido());
+                                        datosAlumno.put("codigo", alumno.getCodigo());
+                                        datosAlumno.put("condicion", alumno.getCondicion());
+                                        datosAlumno.put("email", alumno.getEmail());
+                                        datosAlumno.put("password", alumno.getPassword());
+                                        //datosAlumno.put("funcion", "Sin Funcion");
+                                        //datosAlumno.put("foto", "https://firebasestorage.googleapis.com/v0/b/proyecto-iot-7c425.appspot.com/o/imagenes%2Fvoley6.jpg?alt=media&token=76591671-8212-4f9c-8e00-9b5da8f29a2a");
+
                                         integrantesPorEventoCollection
                                                 .document(alumno.getCodigo())
-                                                .set(alumno)
+                                                .set(datosAlumno)
                                                 .addOnSuccessListener(unused -> {
                                                     Log.d("msg-test","Data guardada exitosamente");
                                                 })

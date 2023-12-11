@@ -128,11 +128,13 @@ public class DonacionesActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         TextView usuario = headerView.findViewById(R.id.textView6);
         TextView estado = headerView.findViewById(R.id.estado);
-        ImageView fotoPerfil = headerView.findViewById(R.id.imageViewFotoPerfil);
+
 
         usuario.setText(alumno.getNombre()+" "+alumno.getApellido());
         estado.setText(alumno.getCondicion());
 
+        ImageView fotoPerfil = headerView.findViewById(R.id.imageViewFotoPerfil);
+        
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference imgRef = firebaseStorage.getReference().child("img_perfiles/"+alumno.getNombre()+" "+alumno.getApellido()+".jpg");
         Glide.with(this)

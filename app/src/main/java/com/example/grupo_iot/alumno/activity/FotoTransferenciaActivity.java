@@ -93,13 +93,27 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
         binding.guardarImagen.setOnClickListener(view -> {
             String inputText = binding.inputMonto.getText().toString().trim();
             if (inputText.isEmpty()) {
-                binding.inputMonto.setError("El campo no puede estar vacío");
-                binding.inputMonto.requestFocus();
+                //binding.inputMonto.setError("El campo no puede estar vacío");
+                //binding.inputMonto.requestFocus();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("El campo no puede estar vacío")
+                        .setTitle("Aviso")
+                        .setPositiveButton("Aceptar", (dialog, which) -> {
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 return;
             }
             if (!inputText.matches("[0-9]+")) {
-                binding.inputMonto.setError("El campo solo debe contener números");
-                binding.inputMonto.requestFocus();
+                //binding.inputMonto.setError("El campo solo debe contener números");
+                //binding.inputMonto.requestFocus();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("El campo solo debe contener números")
+                        .setTitle("Aviso")
+                        .setPositiveButton("Aceptar", (dialog, which) -> {
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 return;
             }
             if(imageUri==null){
@@ -112,11 +126,49 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
                 dialog.show();
 
             }else{
-                guardarImagenEnFirebaseStorage(imageUri);
-                guardarMontoEnFirestore(inputText);
-                Intent intent2 = new Intent(this, ConfirmacionTransferenciaActivity.class);
-                intent2.putExtra("alumno",alumno);
-                startActivity(intent2);
+                if(alumno.getCondicion().equals("Egresado")){
+                    if(Integer.parseInt(inputText)<100){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setMessage("El monto mínimo a donar debe ser S/. 100")
+                                .setTitle("Aviso")
+                                .setPositiveButton("Aceptar", (dialog, which) -> {
+                                });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setMessage("Recuerde que el monto ingresado se validará con su captura de pantalla. ¿Estás seguro de enviar tu donación?")
+                                .setTitle("Aviso")
+                                .setPositiveButton("Confirmar", (dialog, which) -> {
+                                    guardarImagenEnFirebaseStorage(imageUri);
+                                    guardarMontoEnFirestore(inputText);
+                                    Intent intent2 = new Intent(this, ConfirmacionTransferenciaActivity.class);
+                                    intent2.putExtra("alumno",alumno);
+                                    startActivity(intent2);
+                                })
+                                .setNegativeButton("Cancelar", (dialog, which) ->{
+                                    dialog.dismiss();
+                                });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                }else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("Recuerde que el monto ingresado se validará con su captura de pantalla. ¿Estás seguro de enviar tu donación?")
+                            .setTitle("Aviso")
+                            .setPositiveButton("Confirmar", (dialog, which) -> {
+                                guardarImagenEnFirebaseStorage(imageUri);
+                                guardarMontoEnFirestore(inputText);
+                                Intent intent2 = new Intent(this, ConfirmacionTransferenciaActivity.class);
+                                intent2.putExtra("alumno",alumno);
+                                startActivity(intent2);
+                            })
+                            .setNegativeButton("Cancelar", (dialog, which) ->{
+                                dialog.dismiss();
+                            });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
             }
         });
     }

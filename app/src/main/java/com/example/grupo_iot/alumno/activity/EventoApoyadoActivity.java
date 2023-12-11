@@ -51,8 +51,8 @@ public class EventoApoyadoActivity extends AppCompatActivity {
 
         buscarDatosAlumnos(alumno.getEmail());
         generarBottomNavigationMenu();
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.navigation_lista_actividades);
+        //BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        //bottomNavigationView.setSelectedItemId(R.id.navigation_eventos_apoyados);
 
         binding.textView40.setText(nombreActividad);
         binding.textView7.setText(nombreEvento);
@@ -164,8 +164,9 @@ public class EventoApoyadoActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 if(menuItem.getItemId()==R.id.navigation_lista_actividades){
-                    menuItem.setEnabled(false);
-                    menuItem.setChecked(true);
+                    Intent intent = new Intent(EventoApoyadoActivity.this, ListaActividadesActivity.class);
+                    intent.putExtra("alumno", alumno);
+                    startActivity(intent);
                 }
                 if(menuItem.getItemId()==R.id.navigation_eventos_apoyados){
                     Intent intent = new Intent(EventoApoyadoActivity.this, ListaEventosApoyadosActivity.class);
