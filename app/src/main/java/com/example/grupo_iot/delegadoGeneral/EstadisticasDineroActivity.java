@@ -11,9 +11,11 @@ import com.anychart.AnyChartView;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityEstadisticasDineroBinding;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -21,8 +23,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class EstadisticasDineroActivity extends AppCompatActivity {
     BarChart barChartView;
@@ -38,52 +47,61 @@ public class EstadisticasDineroActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         barChartView = findViewById(R.id.barChartView);
         db.collection("donaciones")
-                .document("Estudiante")
-                .collection("subcollections") // This collection references all subcollections
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    ArrayList<BarEntry> barEntries = new ArrayList<>();
-                    Log.e("Dinero", "True");
-
+                    // Mapa para almacenar donaciones agrupadas por mes
+                    Map<String, Float> monthlyDonations = new HashMap<>();
 
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        String subcollectionName = document.getId(); // Get the subcollection name
-                        Log.e("Dinero", "True" + subcollectionName);
-                        // Get the documents within each subcollection
-                        db.collection("donaciones")
-                                .document("Estudiante")
-                                .collection(subcollectionName)
-                                .get()
-                                .addOnSuccessListener(innerQueryDocumentSnapshots -> {
-                                    Log.e("Dinero", "True" + subcollectionName);
-                                    for (QueryDocumentSnapshot innerDocument : innerQueryDocumentSnapshots) {
-                                        // Get the "monto" field and convert it to float
-                                        String montoStr = innerDocument.getString("monto");
-                                        if (montoStr != null) {
-                                            try {
-                                                float monto = Float.parseFloat(montoStr);
-                                                // Create a bar entry for each document
-                                                BarEntry barEntry = new BarEntry(barEntries.size() + 1, monto);
-                                                barEntries.add(barEntry);
-                                            } catch (NumberFormatException e) {
-                                                // Handle invalid "monto" value
-                                                Log.e("EstadisticasDineroActivity", "Error parsing monto: " + e.getMessage());
-                                            }
-                                        }
+                        if (document.contains("monto") && document.get("monto") instanceof String) {
+                            String fechaStr = document.getId();
+                            if (fechaStr != null) {
+                                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy HH:mm 'Hrs.'", Locale.getDefault());
+                                Date fecha;
+                                try {
+                                    fecha = sdf.parse(fechaStr);
+                                    String monthYear = new SimpleDateFormat("MMMM yyyy", Locale.getDefault()).format(fecha);
+                                    String montoStr = document.getString("monto");
+                                    try {
+                                        Float monto = Float.parseFloat(montoStr);
+                                        monthlyDonations.put(monthYear, monthlyDonations.getOrDefault(monthYear, 0f) + monto);
+                                    } catch (NumberFormatException e) {
+                                        // Manejar errores al convertir el monto a número
+                                        Log.e("EstadisticasDineroActivity", "Error al convertir monto a número: " + e.getMessage());
                                     }
-
-                                    createAndDisplayBarData(barEntries);
-                                })
-                                .addOnFailureListener(e -> {
-                                    // Handle subcollection document read errors
-                                    Toast.makeText(EstadisticasDineroActivity.this, "Error al obtener datos de Firestore", Toast.LENGTH_SHORT).show();
-                                });
+                                } catch (ParseException e) {
+                                    // Manejar errores al parsear la fecha
+                                    Log.e("EstadisticasDineroActivity", "Error parsing fecha: " + e.getMessage());
+                                }
+                            }
+                        } else {
+                            Log.e("EstadisticasDineroActivity", "El documento no contiene el campo 'monto' o no es un String");
+                        }
                     }
+
+                    List<String> monthsList = new ArrayList<>(monthlyDonations.keySet());
+                    Collections.sort(monthsList, (month1, month2) -> {
+                        try {
+                            Date date1 = new SimpleDateFormat("MMMM yyyy", Locale.getDefault()).parse(month1);
+                            Date date2 = new SimpleDateFormat("MMMM yyyy", Locale.getDefault()).parse(month2);
+                            return date1.compareTo(date2);
+                        } catch (ParseException e) {
+                            // Manejar errores al parsear la fecha
+                            Log.e("EstadisticasDineroActivity", "Error parsing fecha: " + e.getMessage());
+                            return 0; // Devuelve 0 en caso de error
+                        }
+                    });
+
+                    // Ahora, `monthsList` contiene los meses ordenados y `monthlyDonations` contiene los montos totales agrupados por mes
+                    // Continúa con la creación y visualización del gráfico
+                    createAndDisplayMonthlyBarChart(monthsList, new ArrayList<>(monthlyDonations.values()));
                 })
                 .addOnFailureListener(e -> {
-                    // Handle "subcollections" collection read errors
+                    // Manejar errores de lectura de Firestore
                     Toast.makeText(EstadisticasDineroActivity.this, "Error al obtener datos de Firestore", Toast.LENGTH_SHORT).show();
                 });
+
+
     }
     private void createAndDisplayBarData(List<BarEntry> barEntries) {
         // Create bar data set and configure the chart
@@ -99,5 +117,29 @@ public class EstadisticasDineroActivity extends AppCompatActivity {
         barChartView.getDescription().setText("Monto de Donaciones");
         barChartView.getDescription().setTextColor(Color.BLUE);
     }
+    private void createAndDisplayMonthlyBarChart(List<String> months, List<Float> amounts) {
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+
+        // Crear entradas de gráfico para cada mes
+        for (int i = 0; i < months.size(); i++) {
+            BarEntry barEntry = new BarEntry(i + 1, amounts.get(i));
+            barEntries.add(barEntry);
+        }
+
+        // Crear conjunto de datos y configurar el gráfico
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Monto de Donaciones por Mes");
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        barDataSet.setDrawValues(false);
+
+        BarData barData = new BarData(barDataSet);
+        barChartView.setData(barData);
+        barChartView.animateY(5000);
+        barChartView.getDescription().setTextColor(Color.BLUE);
+        XAxis xAxis = barChartView.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(months));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setGranularity(1f);
+    }
+
 }
 
