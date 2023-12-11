@@ -75,7 +75,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="angi@pucp.edu.pe"
+            android:text=""
             android:textColor="@color/lightGrey"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -119,7 +119,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textView7"
             app:layout_constraintStart_toStartOf="@+id/textView7"
             app:layout_constraintTop_toBottomOf="@+id/textView7"
-            app:srcCompat="@drawable/descarga" />
+             />
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -176,7 +176,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:gravity="center"
-            android:text="2092"
+            android:text=""
             android:textColor="@color/lightGrey"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -185,19 +185,6 @@
             app:layout_constraintStart_toStartOf="@+id/textView43"
             app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
-        <Button
-            android:id="@+id/btnCambiarContrasena"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="#117F8E"
-            android:text="Cambiar Contraseña"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/btnCambiarFoto"
-            app:layout_constraintStart_toStartOf="@+id/btnCambiarFoto"
-            app:layout_constraintTop_toBottomOf="@+id/btnCambiarFoto" />
 
         <Button
             android:id="@+id/btnCambiarFoto"

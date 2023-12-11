@@ -208,17 +208,11 @@
                     android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="30dp"
                     android:backgroundTint="@color/turquesa"
                     android:text="Guardar Nuevo Evento" />
 
-                <Button
-                    android:id="@+id/vervistaprevia"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/gris"
-                    android:text="Ver vista previa" />
+
 
                 <!-- Botón -->
 

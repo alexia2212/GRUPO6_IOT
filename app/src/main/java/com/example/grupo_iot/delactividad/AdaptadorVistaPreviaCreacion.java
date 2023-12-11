@@ -35,7 +35,7 @@ public class AdaptadorVistaPreviaCreacion extends RecyclerView.Adapter<Adaptador
         holder.fechaTextView.setText(lista3.fecha);
         holder.imagen1ImageView.setImageResource(lista3.imagen1);
         holder.descripcionTextView.setText(lista3.descripcion);
-        holder.ubicacionTextView.setText(lista3.ubicacion);
+        holder.ubicacionTextView.setText(lista3.lugar);
 
 
     }

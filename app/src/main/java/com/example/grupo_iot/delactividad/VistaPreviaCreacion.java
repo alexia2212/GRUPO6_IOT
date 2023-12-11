@@ -1,21 +1,10 @@
 package com.example.grupo_iot.delactividad;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.grupo_iot.LoginActivity;
-import com.example.grupo_iot.R;
-import com.example.grupo_iot.databinding.ActivityUsuariosInscritosBinding;
 import com.example.grupo_iot.databinding.ActivityVistaPreviaCreacionBinding;
-import com.example.grupo_iot.databinding.ActivityVistaPreviaEventoBinding;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.squareup.picasso.Picasso;
 
 public class VistaPreviaCreacion extends AppCompatActivity {
 
@@ -27,6 +16,23 @@ public class VistaPreviaCreacion extends AppCompatActivity {
         binding = ActivityVistaPreviaCreacionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Recuperar datos del intent
+        Intent intent = getIntent();
+        if (intent != null) {
+            String titulo = intent.getStringExtra("titulo");
+            String descripcion = intent.getStringExtra("descripcion");
+            String fecha = intent.getStringExtra("fecha");
+            String lugar = intent.getStringExtra("lugar");
+            String imageUrl = intent.getStringExtra("imageUrl");
 
+            // Actualizar elementos de la interfaz de usuario
+            binding.titulo.setText(titulo);
+            binding.descripcion.setText(descripcion);
+            binding.fecha.setText(fecha);
+            binding.ubicacion.setText(lugar);
+
+            // Cargar la imagen con Picasso
+            Picasso.get().load(imageUrl).into(binding.imagen1);
+        }
     }
 }

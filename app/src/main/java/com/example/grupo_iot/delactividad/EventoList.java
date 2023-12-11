@@ -8,7 +8,7 @@ public class EventoList {
 
     public String descripcion;
 
-    public String ubicacion;
+    public String lugar;
 
 
     public String estado;
@@ -22,12 +22,12 @@ public class EventoList {
     }
 
 
-    public EventoList(String titulo, String fecha, String imagen1, String descripcion, String ubicacion, String estado) {
+    public EventoList(String titulo, String fecha, String imagen1, String descripcion, String lugar, String estado) {
         this.titulo = titulo;
         this.fecha = fecha;
         this.imagen1 = imagen1;
         this.descripcion = descripcion;
-        this.ubicacion = ubicacion;
+        this.lugar = lugar;
         this.estado = estado;
     }
 
@@ -63,11 +63,11 @@ public class EventoList {
         this.descripcion = descripcion;
     }
 
-    public String getUbicacion() {
-        return ubicacion;
+    public String getLugar() {
+        return lugar;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
     }
 }

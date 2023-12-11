@@ -113,14 +113,7 @@ public class NuevoEvento extends AppCompatActivity {
             }
         });
 
-        Button vistaprevia = findViewById(R.id.vervistaprevia);
-        vistaprevia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(NuevoEvento.this, VistaPreviaCreacion.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
     private void guardarNuevoEvento() {

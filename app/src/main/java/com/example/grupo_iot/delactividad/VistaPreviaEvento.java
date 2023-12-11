@@ -207,6 +207,7 @@ public class VistaPreviaEvento extends AppCompatActivity {
                 String lugar = selectedLista.getLugar();
                 String estado = selectedLista.getEstado();
 
+
                 Intent intent = new Intent(VistaPreviaEvento.this, ActualizarActivity.class);
                 intent.putExtra("titulo", titulo); // Pasa el título como extra
                 intent.putExtra("descripcion", descripcion); // Pasa la descripción como extra

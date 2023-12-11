@@ -35,7 +35,7 @@ public class AdaptadorVistaPreviaActualizacion extends RecyclerView.Adapter<Adap
         holder.fechaTextView.setText(lista2.fecha);
         holder.imagen1ImageView.setImageResource(lista2.imagen1);
         holder.descripcionTextView.setText(lista2.descripcion);
-        holder.ubicacionTextView.setText(lista2.ubicacion);
+        holder.ubicacionTextView.setText(lista2.lugar);
 
 
     }

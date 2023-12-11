@@ -63,11 +63,15 @@ public class ActualizarActivity extends AppCompatActivity {
 
     private TextInputEditText etDescripcion;
 
+    private String imageUrl;
+
     private Intent intent;
 
     DrawerLayout drawerLayout;
 
     ActivityActualizarBinding binding;
+
+
 
 
 
@@ -185,7 +189,7 @@ public class ActualizarActivity extends AppCompatActivity {
                                                                 updates.put("imagen1", "https://firebasestorage.googleapis.com/v0/b/proyecto-iot-65516.appspot.com/o/imagenes%2Fimagenpordefecto.jpg?alt=media&token=3c4cde4f-096b-469b-9559-8ee080e43a45");
                                                             } else {
                                                                 // Si no es la imagen por defecto, elimina el campo "imagen1"
-                                                                updates.put("imagen1", FieldValue.delete());
+                                                                updates.put("imagen1", imageUrl);
                                                             }
 
                                                             // Actualiza el documento en la base de datos
@@ -279,7 +283,6 @@ public class ActualizarActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, 1); // Usar un código de solicitud (puedes elegir cualquier número)
-
             }
         });
 
@@ -464,8 +467,6 @@ public class ActualizarActivity extends AppCompatActivity {
             ImageView imagenAct = findViewById(R.id.imagenact);
             Picasso.get().load(imageUri).into(imagenAct);
             guardarImagenEnFirebaseStorage(imageUri);
-
-            // También puedes guardar la Uri de la imagen seleccionada en una variable o en Firebase Storage, si es necesario.
         }
     }
     private void guardarImagenEnFirebaseStorage(Uri imageUri) {
@@ -480,9 +481,9 @@ public class ActualizarActivity extends AppCompatActivity {
                 .addOnSuccessListener(taskSnapshot -> {
                     // La imagen se ha subido correctamente, ahora obtén su URL
                     imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                        String imageUrl = uri.toString();
+                        imageUrl = uri.toString(); // Update imageUrl here
 
-                        // Ahora que tienes la URL de la imagen, guárdala en la base de datos
+                        // Now that you have the URL of the image, save it in the database
                         actualizarImagenEnBaseDeDatos(imageUrl);
                     });
                 })

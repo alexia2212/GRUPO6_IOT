@@ -8,14 +8,14 @@ public class VistaPreviaCreacionLista {
     public int imagen1;
     public String descripcion;
 
-    public String ubicacion;
+    public String lugar;
 
-    public VistaPreviaCreacionLista(String titulo, String fecha, int imagen1, String descripcion, String ubicacion) {
+    public VistaPreviaCreacionLista(String titulo, String fecha, int imagen1, String descripcion, String lugar) {
         this.titulo = titulo;
         this.fecha = fecha;
         this.imagen1 = imagen1;
         this.descripcion = descripcion;
-        this.ubicacion = ubicacion;
+        this.lugar = lugar;
     }
 
     public String getTitulo() {
@@ -50,11 +50,11 @@ public class VistaPreviaCreacionLista {
         this.descripcion = descripcion;
     }
 
-    public String getUbicacion() {
-        return ubicacion;
+    public String getLugar() {
+        return lugar;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
     }
 }
