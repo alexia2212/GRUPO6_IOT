@@ -26,7 +26,7 @@ public class MenuDelegadoGeneralActivity extends AppCompatActivity {
     }
 
     public void estadisticas(View view){
-        Intent intent=new Intent(this, EstadisticasActivity.class);
+        Intent intent=new Intent(this, EstadisticasPrincipalActivity.class);
         startActivity(intent);
     }
     public void usuarios(View view){

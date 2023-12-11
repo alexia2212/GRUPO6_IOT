@@ -16,7 +16,9 @@
         android:label="Tech-Bat"
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
+        android:name="androidx.multidex.MultiDexApplication"
         android:theme="@style/Theme.GRUPO_IOT"
+        tools:replace="android:label"
         tools:targetApi="31" >
         <activity
             android:name=".delactividad.CambiarContrasenaAct"
@@ -149,6 +151,7 @@
             android:exported="false" />
         <activity
             android:name=".delegadoGeneral.EstadisticasActivity"
+            android:autofillHints="no"
             android:exported="false" />
         <activity
             android:name=".delegadoGeneral.EventosActivity"
@@ -188,6 +191,15 @@
             android:exported="false" />
         <activity
             android:name=".delegadoGeneral.ParticipantesActividadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".delegadoGeneral.EstadisticasPrincipalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".delegadoGeneral.EstadisticasDineroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".delegadoGeneral.EstadisticasApoyoActivity"
             android:exported="false" />
         <service
             android:name=".services.MessagingService"
