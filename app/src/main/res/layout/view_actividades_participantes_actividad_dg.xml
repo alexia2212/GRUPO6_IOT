@@ -8,7 +8,7 @@
     android:animateLayoutChanges="true"
     app:cardCornerRadius="10dp"
     app:cardElevation="2dp"
-    android:layout_marginStart="12dp"
+    android:layout_marginStart="6dp"
     app:cardUseCompatPadding="true">
 
 <LinearLayout

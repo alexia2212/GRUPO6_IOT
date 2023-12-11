@@ -187,9 +187,11 @@
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
-            android:layout_width="200dp"
+            android:layout_width="290dp"
             android:layout_height="50dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.351"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView53">
 
@@ -215,16 +217,17 @@
             app:layout_constraintTop_toBottomOf="@+id/textView53" />
 
         <androidx.core.widget.NestedScrollView
-            android:layout_width="200dp"
+            android:layout_width="290dp"
             android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.355"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView54">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewParticipantes"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </androidx.core.widget.NestedScrollView>
 

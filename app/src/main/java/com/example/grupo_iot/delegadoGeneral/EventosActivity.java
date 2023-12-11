@@ -147,6 +147,15 @@ public class EventosActivity extends AppCompatActivity {
             }
         });
         ImageView imageView = findViewById(R.id.btnverParticipante);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EventosActivity.this, ParticipantesActividadActivity.class);
+                intent.putExtra("nombreActividad", nombre);
+                intent.putExtra("idActividad", id);
+                startActivity(intent);
+            }
+        });
     }
     private void confirmarEliminacion() {
         AlertDialog.Builder alert = new AlertDialog.Builder(EventosActivity.this);
@@ -223,9 +232,7 @@ public class EventosActivity extends AppCompatActivity {
                         eventosAdapter.setEventoList(eventoList);
                         eventosAdapter.setContext(EventosActivity.this);
                         eventosAdapter.setActividad(nombreActi);
-                        binding.recyclerViewEventos.setAdapter(eventosAdapter);
-                        binding.recyclerViewEventos.setLayoutManager(new LinearLayoutManager(EventosActivity.this));
-                    }
+                        binding.recyclerViewEventos.setAdapter(eventosAdapter);}
                 });
     }
 
@@ -271,8 +278,6 @@ public class EventosActivity extends AppCompatActivity {
                     participantesAdapter1.setParticipantesList(participantesList);
                     participantesAdapter1.setContext(EventosActivity.this);
                     binding.recyclerViewParticipantes.setAdapter(participantesAdapter1);
-                    binding.recyclerViewParticipantes.setLayoutManager(new LinearLayoutManager(EventosActivity.this));
-
                 })
                 .addOnFailureListener(e -> {
                     Log.e("ParticipantesActivity", "Error al obtener datos del documento", e);

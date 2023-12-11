@@ -40,6 +40,7 @@ public class AsignarDelegadoActivity extends AppCompatActivity {
     FirebaseAuth auth;
     String nombreAct;
     String nombreCompleto;
+    String codigo;
     private List<Evento> eventoList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +54,11 @@ public class AsignarDelegadoActivity extends AppCompatActivity {
         String email;
         email = null ;
         id = null;
-
+        codigo = null;
         if (intent1.hasExtra("listaData2")) {
                 Usuarios selectedLista = (Usuarios) intent1.getSerializableExtra("listaData2");
                 String nombre = selectedLista.getNombre();
-                String codigo = selectedLista.getCodigo();
+                codigo = selectedLista.getCodigo();
                 String apellido = selectedLista.getApellido();
                 email = selectedLista.getEmail();
                 String condicion = selectedLista.getCondicion();
@@ -81,10 +82,11 @@ public class AsignarDelegadoActivity extends AppCompatActivity {
         Log.e("AsignarDelegadoActivity", "id:" + finalId);
         String finalEmail = email;
         Log.e("AsignarDelegadoActivity", "email: " + email);
+        String finalCodigo = codigo;
         btnAsignar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cambiarDato(finalId, nombreAct);
+                cambiarDato(finalId, nombreAct, finalCodigo);
                 agregarDato(nombreAct, nombreCompleto, finalEmail);
                 AlertDialog.Builder alert = new AlertDialog.Builder(AsignarDelegadoActivity.this); // Corregir aquí
                 alert.setTitle("Confirmacion");
@@ -110,7 +112,7 @@ public class AsignarDelegadoActivity extends AppCompatActivity {
             }
         });
     }
-    private void cambiarDato(String id, String nombreAct) {
+    private void cambiarDato(String id, String nombreAct, String codigo) {
         DocumentReference docRef = db.collection("credenciales").document(id);
         Map<String, Object> updates = new HashMap<>();
         updates.put("actividadDesignada", nombreAct);
@@ -121,7 +123,17 @@ public class AsignarDelegadoActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     Log.e("Firestore", "Error al actualizar documento", e);
                 });
+        DocumentReference usuariosRef = db.collection("alumnos").document(codigo);
+        Map<String, Object> updatesUsuarios = new HashMap<>();
+        updatesUsuarios.put("actividadDesignada", nombreAct);
 
+        usuariosRef.update(updatesUsuarios)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("Firestore", "Documento en Usuarios actualizado correctamente");
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore", "Error al actualizar documento en Usuarios", e);
+                });
     }
     private void agregarDato(String nombreAct, String nombreCompleto, String emailDelegado) {
         DocumentReference docRef = db.collection("actividades").document(nombreAct);
