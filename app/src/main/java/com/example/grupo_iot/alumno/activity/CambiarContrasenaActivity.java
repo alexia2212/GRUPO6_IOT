@@ -66,6 +66,18 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navigation_perfil);
 
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference imgRef = firebaseStorage.getReference().child("img_perfiles/"+alumno.getNombre()+" "+alumno.getApellido()+".jpg");
+        Glide.with(this)
+                .load(imgRef)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(binding.imageView12);
+
+        String primerNombreApellido = alumno.getNombre().split("\\s+")[0] + " "+ alumno.getApellido().split("\\s+")[0];
+        binding.textViewNombre.setText(primerNombreApellido);
+        binding.textViewCondicion.setText(alumno.getCondicion());
+
         binding.textView22.setOnClickListener(view -> {
             db.collection("alumnos")
                     .document(alumno.getCodigo())
@@ -207,7 +219,9 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
         TextView estado = headerView.findViewById(R.id.estado);
         ImageView fotoPerfil = headerView.findViewById(R.id.imageViewFotoPerfil);
 
-        usuario.setText(alumno.getNombre()+" "+alumno.getApellido());
+        String primerNombreApellido = alumno.getNombre().split("\\s+")[0] + " "+ alumno.getApellido().split("\\s+")[0];
+
+        usuario.setText(primerNombreApellido);
         estado.setText(alumno.getCondicion());
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();

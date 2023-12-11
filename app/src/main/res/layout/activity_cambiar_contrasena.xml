@@ -96,6 +96,33 @@
             app:layout_constraintTop_toBottomOf="@+id/textView7"
             app:srcCompat="@mipmap/perfil1" />
 
+        <TextView
+            android:id="@+id/textViewNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Don Ramon"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/imageView12"
+            app:layout_constraintStart_toStartOf="@+id/imageView12"
+            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+
+        <TextView
+            android:id="@+id/textViewCondicion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Egresado"
+            android:textColor="@color/lightGrey"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textViewNombre"
+            app:layout_constraintStart_toStartOf="@+id/textViewNombre"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNombre" />
+
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -105,7 +132,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/imageView12">
+            app:layout_constraintTop_toBottomOf="@+id/textViewCondicion">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputContra"
@@ -155,9 +182,9 @@
                 android:id="@+id/inputRepeatContra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:hint="Repetir nueva contraseña"
                 app:boxBackgroundColor="@color/white"
-                android:layout_marginTop="5dp"
                 app:boxCornerRadiusBottomEnd="20dp"
                 app:boxCornerRadiusBottomStart="20dp"
                 app:boxCornerRadiusTopEnd="20dp"
@@ -169,8 +196,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="24dp"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:paddingStart="24dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

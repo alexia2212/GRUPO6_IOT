@@ -166,7 +166,9 @@ public class ListaEventosApoyadosActivity extends AppCompatActivity {
         TextView estado = headerView.findViewById(R.id.estado);
         ImageView fotoPerfil = headerView.findViewById(R.id.imageViewFotoPerfil);
 
-        usuario.setText(alumno.getNombre()+" "+alumno.getApellido());
+        String primerNombreApellido = alumno.getNombre().split("\\s+")[0] + " "+ alumno.getApellido().split("\\s+")[0];
+
+        usuario.setText(primerNombreApellido);
         estado.setText(alumno.getCondicion());
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();

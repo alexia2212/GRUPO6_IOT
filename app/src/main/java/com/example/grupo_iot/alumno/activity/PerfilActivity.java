@@ -51,7 +51,9 @@ public class PerfilActivity extends AppCompatActivity {
         String condicionAlumno = alumnoIngresado.getCondicion();
         String correoAlumno = alumnoIngresado.getEmail();
 
-        binding.textViewNombre.setText(nombreAlumno+" "+apellidoAlumno);
+        String primerNombreApellido = alumnoIngresado.getNombre().split("\\s+")[0] + " "+ alumnoIngresado.getApellido().split("\\s+")[0];
+
+        binding.textViewNombre.setText(primerNombreApellido);
         binding.textViewCodigoPUCP.setText(codigoAlumno);
         binding.textViewCondicion.setText(condicionAlumno);
         binding.textViewCorreo.setText(correoAlumno);
@@ -127,7 +129,9 @@ public class PerfilActivity extends AppCompatActivity {
         TextView estado = headerView.findViewById(R.id.estado);
         ImageView fotoPerfil = headerView.findViewById(R.id.imageViewFotoPerfil);
 
-        usuario.setText(alumnoIngresado.getNombre()+" "+alumnoIngresado.getApellido());
+        String primerNombreApellido = alumnoIngresado.getNombre().split("\\s+")[0] + " "+ alumnoIngresado.getApellido().split("\\s+")[0];
+
+        usuario.setText(primerNombreApellido);
         estado.setText(alumnoIngresado.getCondicion());
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();

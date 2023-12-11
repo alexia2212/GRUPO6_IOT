@@ -90,7 +90,9 @@ public class NotificacionesActivity extends AppCompatActivity {
         TextView estado = headerView.findViewById(R.id.estado);
         ImageView fotoPerfil = headerView.findViewById(R.id.imageViewFotoPerfil);
 
-        usuario.setText(alumno.getNombre()+" "+alumno.getApellido());
+        String primerNombreApellido = alumno.getNombre().split("\\s+")[0] + " "+ alumno.getApellido().split("\\s+")[0];
+
+        usuario.setText(primerNombreApellido);
         estado.setText(alumno.getCondicion());
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
@@ -115,7 +117,7 @@ public class NotificacionesActivity extends AppCompatActivity {
                         for (QueryDocumentSnapshot user : task.getResult()) {
                             Alumno a = user.toObject(Alumno.class);
                             if(a.getEmail().equals(correo)){
-                                Log.d("msg-test", a.getNombre());
+                                //Log.d("msg-test", a.getNombre());
                                 alumno = a;
                                 generarSidebar();
                                 break;
