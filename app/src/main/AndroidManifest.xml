@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
+        android:name="androidx.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,14 +17,17 @@
         android:label="Tech-Bat"
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
-        android:name="androidx.multidex.MultiDexApplication"
         android:theme="@style/Theme.GRUPO_IOT"
         tools:replace="android:label"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".alumno.activity.MapaaaaActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/icono_notificacion" />
+
         <activity
             android:name=".delactividad.CambiarContrasenaAct"
             android:exported="false" />
@@ -33,7 +37,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB2c-zYtPwX6q8y8OfJb6lwEirYEjgwYNI" />
+            android:value="AIzaSyCMS3c0KkEHWS4qE3nIV-8RLzQOYgzNqAQ" />
 
         <activity
             android:name=".alumno.activity.MapsActivity"
@@ -76,7 +80,7 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -209,9 +213,10 @@
         <activity
             android:name=".delegadoGeneral.EstadisticasApoyoActivity"
             android:exported="false" />
+
         <service
             android:name=".services.MessagingService"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -223,7 +228,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>
