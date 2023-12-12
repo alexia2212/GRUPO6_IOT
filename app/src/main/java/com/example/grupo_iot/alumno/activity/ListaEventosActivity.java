@@ -43,6 +43,8 @@ public class ListaEventosActivity extends AppCompatActivity {
     String nombreActividad;
     String nombreImagen;
     String descripcionActividad;
+
+
     Alumno alumno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

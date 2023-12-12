@@ -30,6 +30,10 @@ public class EventoApoyadoActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     FirebaseFirestore db;
     Alumno alumno;
+
+    String nombreActividad;
+
+    String nombreEvento;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +43,8 @@ public class EventoApoyadoActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         Intent intent = getIntent();
-        String nombreActividad = intent.getStringExtra("nombreActividad");
-        String nombreEvento = intent.getStringExtra("nombreEvento");
+        nombreActividad = intent.getStringExtra("nombreActividad");
+        nombreEvento = intent.getStringExtra("nombreEvento");
         String descripcionEvento = intent.getStringExtra("descripcionEvento");
         String fechaEvento = intent.getStringExtra("fechaEvento");
         String horaEvento = intent.getStringExtra("horaEvento");
@@ -103,8 +107,11 @@ public class EventoApoyadoActivity extends AppCompatActivity {
     public void abrirChatGrupal(View view){
         Intent intent = new Intent(this, ChatGrupalActivity.class);
         intent.putExtra("alumno", alumno);
+        intent.putExtra("nombreActividad", nombreActividad);
+        intent.putExtra("nombreEvento", nombreEvento);// Agrega esta línea para pasar el valor
         startActivity(intent);
     }
+
 
     public void generarSidebar(){
         ImageView abrirSidebar = findViewById(R.id.imageView5);
