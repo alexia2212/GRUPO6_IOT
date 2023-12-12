@@ -182,11 +182,6 @@ public class PerfilActivity extends AppCompatActivity {
                     intent.putExtra("alumno", alumnoIngresado);
                     startActivity(intent);
                 }
-                if(menuItem.getItemId()==R.id.navigation_lista_chats){
-                    Intent intent = new Intent(PerfilActivity.this, ListaDeChatsActivity.class);
-                    intent.putExtra("alumno", alumnoIngresado);
-                    startActivity(intent);
-                }
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(PerfilActivity.this, DonacionesActivity.class);
                     intent.putExtra("alumno", alumnoIngresado);

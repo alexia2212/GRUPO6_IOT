@@ -217,11 +217,7 @@ public class ListaEventosApoyadosActivity extends AppCompatActivity {
                     menuItem.setEnabled(false);
                     menuItem.setChecked(true);
                 }
-                if(menuItem.getItemId()==R.id.navigation_lista_chats){
-                    Intent intent = new Intent(ListaEventosApoyadosActivity.this, ListaDeChatsActivity.class);
-                    intent.putExtra("alumno", alumno);
-                    startActivity(intent);
-                }
+
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(ListaEventosApoyadosActivity.this, DonacionesActivity.class);
                     intent.putExtra("alumno", alumno);

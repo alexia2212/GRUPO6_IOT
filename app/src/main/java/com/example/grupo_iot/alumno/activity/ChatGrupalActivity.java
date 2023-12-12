@@ -93,7 +93,6 @@ public class ChatGrupalActivity extends AppCompatActivity {
 
         generarBottomNavigationMenu();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.navigation_lista_chats);
 
         binding.imageView19.setOnClickListener(view -> {
             Intent intent1 = new Intent(this, ListaDeChatsActivity.class);
@@ -322,10 +321,7 @@ public class ChatGrupalActivity extends AppCompatActivity {
                     intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
-                if(menuItem.getItemId()==R.id.navigation_lista_chats){
-                    menuItem.setEnabled(false);
-                    menuItem.setChecked(true);
-                }
+
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(ChatGrupalActivity.this, DonacionesActivity.class);
                     intent.putExtra("alumno", alumno);
