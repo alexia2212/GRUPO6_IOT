@@ -162,6 +162,9 @@
             android:name=".delegadoGeneral.EventosActivity"
             android:exported="false" />
         <activity
+            android:name=".delegadoGeneral.DonacionesActivity"
+            android:exported="false" />
+        <activity
             android:name=".delegadoGeneral.EditarActivity"
             android:exported="false" />
         <activity

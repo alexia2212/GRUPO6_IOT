@@ -26,9 +26,9 @@
             app:srcCompat="@mipmap/menu" />
 
         <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/imageViewsalir"
+            android:layout_width="24dp"
+            android:layout_height="22dp"
             android:layout_marginTop="72dp"
             android:layout_marginEnd="32dp"
             android:onClick="abrirNotificaciones"
@@ -150,25 +150,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button10"
             app:layout_constraintVertical_bias="0.0" />
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation3"
-            android:elevation="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:layout_gravity="bottom"
-            android:background="#F6F5F5"
-            android:paddingStart="10dp"
-            app:itemIconTint="@color/selector_btn_color"
-            app:itemPaddingBottom="10dp"
-            app:itemPaddingTop="2dp"
-            app:itemTextAppearanceActive="@style/BottomNavigationViewLabel"
-            app:itemTextAppearanceInactive="@style/BottomNavigationViewLabel"
-            app:itemTextColor="@color/selector_text_color"
-            app:labelVisibilityMode="labeled"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_navigation_menu_delgeneral" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

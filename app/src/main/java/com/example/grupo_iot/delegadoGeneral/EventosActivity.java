@@ -125,6 +125,7 @@ public class EventosActivity extends AppCompatActivity {
             }
         });
         Button button3 = findViewById(R.id.btnBorrarActividad);
+
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -186,14 +187,14 @@ public class EventosActivity extends AppCompatActivity {
     private void mostrarDialogoDeAviso() {
         AlertDialog.Builder alert = new AlertDialog.Builder(EventosActivity.this);
         alert.setTitle("Aviso");
-        alert.setMessage("Hay un delegado asignado. Se enviará un correo de aviso que la actividad se eliminará en 1 minuto.");
+        alert.setMessage("Hay un delegado asignado. Se enviará un correo de aviso que la actividad se eliminará en 5 días.");
         alert.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String subject = "Proxima eliminación de Actividad";
                 String registroMessage = "<html><body style='font-family: sans-serif-medium; '>" +
                         "¡Seprocedera a eliminar la actividad!<br><br>" +
-                        "Lamentamos anunciarle que esta actividad se eliminará en 1 minuto.<br><br>" +
+                        "Lamentamos anunciarle que esta actividad se eliminará en 5 días.<br><br>" +
                         "Saludos cordiales de parte de Tech-Bat</body></html>";
 
                 Log.e("AsignarDelegadoActivity", "email final: " + emailDele);

@@ -99,52 +99,72 @@
             android:id="@+id/textView64"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="sans-serif-black"
-            android:text="Ingreso de Donaciones"
+            android:text="Donaciones"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textSize="25sp"
             android:typeface="sans"
             app:layout_constraintEnd_toEndOf="@+id/view6"
-            app:layout_constraintHorizontal_bias="0.247"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="@+id/view6"
             app:layout_constraintTop_toTopOf="@+id/view6" />
 
-        <ImageView
-            android:id="@+id/infoDonacion"
-            android:layout_width="60dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="@+id/view6"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView64"
-            app:layout_constraintTop_toTopOf="@+id/view6"
-            app:srcCompat="@mipmap/ver" />
-
         <LinearLayout
-            android:id="@+id/linearlayout1"
-            android:layout_width="340dp"
-            android:layout_height="290dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/view6"
+            android:id="@+id/backgroundContainer"
+            android:layout_width="328dp"
+            android:layout_height="32dp"
+            android:background="@drawable/background52"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@+id/view6"
-            app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="@+id/view6"
-            app:layout_constraintTop_toBottomOf="@+id/textView64"
-            app:layout_constraintVertical_bias="0.3">
+            app:layout_constraintTop_toBottomOf="@+id/textView64"> <!-- Puedes cambiar @color/colorAccent por el recurso de fondo que prefieras -->
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/barChartView"
-                android:layout_width="330dp"
-                android:layout_height="280dp"
-                android:layout_marginVertical="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.491"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.714" />
+            <!-- Contenido del contenedor aquí -->
+
+            <TextView
+                android:id="@+id/textView67"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginRight="150dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Condicion"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="16sp"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/textView69"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="100dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Monto"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="16sp"
+                android:typeface="sans" />
         </LinearLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="330dp"
+            android:layout_height="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backgroundContainer"
+            app:layout_constraintVertical_bias="0.066">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/donaciones"
+                android:layout_width="330dp"
+                android:layout_height="380dp" />
+
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

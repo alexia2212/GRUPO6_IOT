@@ -1,8 +1,11 @@
 package com.example.grupo_iot.delegadoGeneral;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -116,6 +119,14 @@ public class EstadisticasDineroActivity extends AppCompatActivity {
                     Toast.makeText(EstadisticasDineroActivity.this, "Error al obtener datos de Firestore", Toast.LENGTH_SHORT).show();
                 });
 
+        ImageView addImage = findViewById(R.id.infoDonacion);
+        addImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EstadisticasDineroActivity.this, DonacionesActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
     private void createAndDisplayBarData(List<BarEntry> barEntries) {
