@@ -96,7 +96,7 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
                 //binding.inputMonto.setError("El campo no puede estar vacío");
                 //binding.inputMonto.requestFocus();
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("El campo no puede estar vacío")
+                builder.setMessage("Debe indicar el monto a domar en soles")
                         .setTitle("Aviso")
                         .setPositiveButton("Aceptar", (dialog, which) -> {
                         });
@@ -193,15 +193,19 @@ public class FotoTransferenciaActivity extends AppCompatActivity {
         String fechaHoraActual = dateFormat.format(new Date());
 
         CollectionReference donacionesCollection = db.collection("donaciones");
-        DocumentReference condicionDocument = donacionesCollection.document(alumno.getCondicion());
+        DocumentReference documentReference = donacionesCollection.document(fechaHoraActual);
+        /*DocumentReference condicionDocument = donacionesCollection.document(alumno.getCondicion());
         CollectionReference donacionCollection = condicionDocument.collection(alumno.getCodigo());
         DocumentReference donacionDocument = donacionCollection.document(fechaHoraActual);
-
+*/
         Map<String, Object> datosDonacion = new HashMap<>();
         datosDonacion.put("monto", monto);
+        datosDonacion.put("condicion", alumno.getCondicion());
+        datosDonacion.put("nombre", alumno.getNombre());
 
-        donacionDocument.set(datosDonacion);
+        documentReference.set(datosDonacion);
     }
+
     private void guardarImagenEnFirebaseStorage(Uri imageUri) {
         long timestamp = System.currentTimeMillis();
         String fechaYHora = obtenerFechaYHora(timestamp);

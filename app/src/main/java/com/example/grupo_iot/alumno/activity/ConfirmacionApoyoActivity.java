@@ -54,6 +54,11 @@ public class ConfirmacionApoyoActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navigation_lista_actividades);
 
+        binding.textView22.setOnClickListener(view -> {
+            Intent intentIni = new Intent(ConfirmacionApoyoActivity.this, ListaActividadesActivity.class);
+            intentIni.putExtra("alumno", alumno);
+            startActivity(intentIni);
+        });
         binding.imageView6.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")

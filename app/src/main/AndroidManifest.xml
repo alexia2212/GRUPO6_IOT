@@ -109,7 +109,8 @@
             android:exported="false" />
         <activity
             android:name=".alumno.activity.ChatGrupalActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".alumno.activity.ConfirmacionTransferenciaActivity"
             android:exported="false" />

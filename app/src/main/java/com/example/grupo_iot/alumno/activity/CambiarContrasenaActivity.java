@@ -269,7 +269,7 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
                                     .addOnCompleteListener(updateTask -> {
                                         if (updateTask.isSuccessful()) {
                                             // Contraseña actualizada con éxito
-                                            Toast.makeText(this, "Contraseña actualizada correctamente", Toast.LENGTH_SHORT).show();
+                                            //Toast.makeText(this, "Contraseña actualizada correctamente", Toast.LENGTH_SHORT).show();
                                         } else {
                                             // Error al actualizar la contraseña
                                             Toast.makeText(this, "Error al actualizar la contraseña", Toast.LENGTH_SHORT).show();
