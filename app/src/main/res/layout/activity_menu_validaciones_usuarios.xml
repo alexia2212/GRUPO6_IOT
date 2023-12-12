@@ -108,7 +108,7 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="@+id/view26"
             app:layout_constraintTop_toBottomOf="@+id/nombreUser"
-            app:srcCompat="@mipmap/angelo" />
+            app:srcCompat="@drawable/imagenpordefecto" />
 
         <TextView
             android:id="@+id/nombreUser"
