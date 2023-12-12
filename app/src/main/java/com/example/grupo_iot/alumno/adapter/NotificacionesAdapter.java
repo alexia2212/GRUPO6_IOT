@@ -1,6 +1,7 @@
 package com.example.grupo_iot.alumno.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.alumno.entity.Alumno;
 import com.example.grupo_iot.alumno.entity.Notificacion;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -45,14 +51,29 @@ public class NotificacionesAdapter extends RecyclerView.Adapter<NotificacionesAd
         holder.notificacion = notificacion;
         TextView contenidoNotificacion = holder.itemView.findViewById(R.id.contenidoNotificacion);
         TextView fechaHora = holder.itemView.findViewById(R.id.fechaHoraNotificacion);
-        //ImageView imageView = holder.itemView.findViewById(R.id.chat1);
+        TextView tituloNotificacion = holder.itemView.findViewById(R.id.tituloNotifi);
+        ImageView imageViewNotificacion = holder.itemView.findViewById(R.id.img_notif);
 
         SimpleDateFormat formato = new SimpleDateFormat("HH:mm 'Hrs.' dd/MM/yyyy", new Locale("es", "ES"));
         String fechaHoraStr = formato.format(notificacion.getFechaHora());
 
+        tituloNotificacion.setText(notificacion.getTitulo());
         contenidoNotificacion.setText(notificacion.getContenido());
         fechaHora.setText(fechaHoraStr);
-        //imageView.setImageResource(R.drawable.baseline_error_outline_24);
+/*
+        Glide.with(context)
+                .load(notificacion.getImagen())
+                .into(imageViewNotificacion);
+
+ */
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference imgRef = firebaseStorage.getReference().child("img_notificaciones/"+notificacion.getImagen()+".png");
+
+        Log.d("sdd", "img_notificaciones/"+notificacion.getImagen()+".png");
+        Glide.with(context)
+                .load(imgRef)
+                .into(imageViewNotificacion);
+
     }
 
     @Override

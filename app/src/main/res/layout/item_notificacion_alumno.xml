@@ -12,47 +12,55 @@
         android:background="@drawable/background5">
 
         <ImageView
-            android:id="@+id/chat1"
+            android:id="@+id/img_notif"
             android:layout_width="33dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentStart="false"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
             android:layout_marginStart="11dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="367dp"
             app:srcCompat="@mipmap/notification" />
 
         <TextView
             android:id="@+id/contenidoNotificacion"
-            android:layout_width="244dp"
-            android:layout_height="52dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tituloNotifi"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="16dp"
+            android:layout_toEndOf="@+id/img_notif"
             android:text="No olvides que Futsal Damas empieza a las 6:00 pm. Esperamos tu apoyo en las gradas."
             android:textColor="#045E71"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/fechaHoraNotificacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/contenidoNotificacion"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="false"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginTop="5dp"
             android:paddingStart="140dp"
             android:paddingBottom="5dp"
             android:text="2:12 Hrs.   09/10/2023"
             android:textColor="#8A8A8A"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tituloNotifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/img_notif"
+            android:text="TextView"
+            android:textColor="#045E71"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </RelativeLayout>
 
