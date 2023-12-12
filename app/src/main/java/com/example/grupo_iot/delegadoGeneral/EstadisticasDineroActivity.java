@@ -26,6 +26,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -51,7 +52,6 @@ public class EstadisticasDineroActivity extends AppCompatActivity {
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     // Mapa para almacenar donaciones agrupadas por mes
                     Map<String, Float> monthlyDonations = new HashMap<>();
-
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         if (document.contains("monto") && document.get("monto") instanceof String) {
                             String fechaStr = document.getId();
@@ -80,11 +80,26 @@ public class EstadisticasDineroActivity extends AppCompatActivity {
                     }
 
                     List<String> monthsList = new ArrayList<>(monthlyDonations.keySet());
+
+
                     Collections.sort(monthsList, (month1, month2) -> {
                         try {
                             Date date1 = new SimpleDateFormat("MMMM yyyy", Locale.getDefault()).parse(month1);
                             Date date2 = new SimpleDateFormat("MMMM yyyy", Locale.getDefault()).parse(month2);
-                            return date1.compareTo(date2);
+
+                            // Comparar date1 y date2
+                            int comparisonResult = date1.compareTo(date2);
+
+                            if (comparisonResult == 0) {
+                                // Si los meses son iguales, compara el año
+                                SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+                                int year1 = Integer.parseInt(yearFormat.format(date1));
+                                int year2 = Integer.parseInt(yearFormat.format(date2));
+
+                                return Integer.compare(year1, year2);
+                            } else {
+                                return comparisonResult;
+                            }
                         } catch (ParseException e) {
                             // Manejar errores al parsear la fecha
                             Log.e("EstadisticasDineroActivity", "Error parsing fecha: " + e.getMessage());
@@ -114,29 +129,25 @@ public class EstadisticasDineroActivity extends AppCompatActivity {
         barChartView.animateY(5000);
 
         // Configure chart description
-        barChartView.getDescription().setText("Monto de Donaciones");
-        barChartView.getDescription().setTextColor(Color.BLUE);
     }
     private void createAndDisplayMonthlyBarChart(List<String> months, List<Float> amounts) {
         ArrayList<BarEntry> barEntries = new ArrayList<>();
 
         // Crear entradas de gráfico para cada mes
-        for (int i = 0; i < months.size(); i++) {
-            BarEntry barEntry = new BarEntry(i + 1, amounts.get(i));
+        for (int i = months.size() - 1; i >= 0; i--) {
+            BarEntry barEntry = new BarEntry(months.size() - i, amounts.get(i));
             barEntries.add(barEntry);
         }
 
         // Crear conjunto de datos y configurar el gráfico
-        BarDataSet barDataSet = new BarDataSet(barEntries, "Monto de Donaciones por Mes");
+        BarDataSet barDataSet = new BarDataSet(barEntries, ""); // Establecer descripción como cadena vacía
         barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         barDataSet.setDrawValues(false);
-
         BarData barData = new BarData(barDataSet);
         barChartView.setData(barData);
         barChartView.animateY(5000);
         barChartView.getDescription().setTextColor(Color.BLUE);
         XAxis xAxis = barChartView.getXAxis();
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(months));
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setGranularity(1f);
     }

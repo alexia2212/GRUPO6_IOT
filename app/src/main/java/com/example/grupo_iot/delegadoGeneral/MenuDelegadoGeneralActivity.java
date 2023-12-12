@@ -9,15 +9,18 @@ import android.view.View;
 import com.example.grupo_iot.R;
 import com.example.grupo_iot.databinding.ActivityIniciarSesionBinding;
 import com.example.grupo_iot.databinding.ActivityMenuDelegadoGeneralBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MenuDelegadoGeneralActivity extends AppCompatActivity {
 
     ActivityMenuDelegadoGeneralBinding binding;
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMenuDelegadoGeneralBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        auth = FirebaseAuth.getInstance();
     }
 
     public void actividades(View view){

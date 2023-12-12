@@ -20,6 +20,7 @@ import com.example.grupo_iot.databinding.ActivityActividadesCrearBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.Firebase;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -33,12 +34,14 @@ public class CrearActividadActivity extends AppCompatActivity {
     private FirebaseFirestore firebaseDatabase;
     private StorageReference storageReference;
 
+    FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityActividadesCrearBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        
+        auth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
        // generarBottomNavigationMenu();

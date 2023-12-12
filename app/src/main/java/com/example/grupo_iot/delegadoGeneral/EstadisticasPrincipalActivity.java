@@ -7,14 +7,18 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.grupo_iot.databinding.ActivityMenuEstadisticasBinding;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class EstadisticasPrincipalActivity extends AppCompatActivity {
     ActivityMenuEstadisticasBinding binding;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMenuEstadisticasBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        auth = FirebaseAuth.getInstance();
     }
     public void estudiante(View view){
         Intent intent = new Intent(this, EstadisticasActivity.class);
