@@ -137,11 +137,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     intent.putExtra("alumno", alumnoIngresado);
                     startActivity(intent);
                 }
-                if(menuItem.getItemId()==R.id.navigation_lista_chats){
-                    Intent intent = new Intent(MapsActivity.this, ListaDeChatsActivity.class);
-                    intent.putExtra("alumno", alumnoIngresado);
-                    startActivity(intent);
-                }
+
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(MapsActivity.this, DonacionesActivity.class);
                     intent.putExtra("alumno", alumnoIngresado);

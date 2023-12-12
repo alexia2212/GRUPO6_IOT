@@ -9,10 +9,6 @@
         android:icon="@mipmap/eventos_apoyados"
         android:title="Apoyos" />
     <item
-        android:id="@+id/navigation_lista_chats"
-        android:icon="@mipmap/chat"
-        android:title="Chats" />
-    <item
         android:id="@+id/navigation_donaciones"
         android:icon="@mipmap/donacion"
         android:title="Donación" />

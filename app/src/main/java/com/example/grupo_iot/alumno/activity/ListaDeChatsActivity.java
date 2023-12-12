@@ -51,7 +51,6 @@ public class ListaDeChatsActivity extends AppCompatActivity {
         buscarDatosAlumnos(alumno.getEmail());
         generarBottomNavigationMenu();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.navigation_lista_chats);
 
         binding.imageView6.setOnClickListener(view -> {
             cerrarSesion();
@@ -141,10 +140,6 @@ public class ListaDeChatsActivity extends AppCompatActivity {
                     Intent intent = new Intent(ListaDeChatsActivity.this, ListaEventosApoyadosActivity.class);
                     intent.putExtra("alumno", alumno);
                     startActivity(intent);
-                }
-                if(menuItem.getItemId()==R.id.navigation_lista_chats){
-                    menuItem.setEnabled(false);
-                    menuItem.setChecked(true);
                 }
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(ListaDeChatsActivity.this, DonacionesActivity.class);

@@ -131,11 +131,7 @@ public class ConfirmacionTransferenciaActivity extends AppCompatActivity {
                     intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
-                if(menuItem.getItemId()==R.id.navigation_lista_chats){
-                    Intent intent = new Intent(ConfirmacionTransferenciaActivity.this, ListaDeChatsActivity.class);
-                    intent.putExtra("alumno", alumno);
-                    startActivity(intent);
-                }
+
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     menuItem.setEnabled(false);
                     menuItem.setChecked(true);

@@ -211,11 +211,6 @@ public class ListaEventosActivity extends AppCompatActivity {
                     intent.putExtra("alumno", alumno);
                     startActivity(intent);
                 }
-                if(menuItem.getItemId()==R.id.navigation_lista_chats){
-                    Intent intent = new Intent(ListaEventosActivity.this, ListaDeChatsActivity.class);
-                    intent.putExtra("alumno", alumno);
-                    startActivity(intent);
-                }
                 if(menuItem.getItemId()==R.id.navigation_donaciones){
                     Intent intent = new Intent(ListaEventosActivity.this, DonacionesActivity.class);
                     intent.putExtra("alumno", alumno);
